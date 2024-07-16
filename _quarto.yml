@@ -1,0 +1,35 @@
+project:
+  type: website
+  output-dir: docs
+  
+website:
+  title: "EC910"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - text: Lectures
+        menu:
+          - href: lecture-1.qmd
+            text: Lecture 1
+      - text: Seminars
+        menu:
+          - href: seminar-1.qmd
+            text: Seminar 1
+      - text: Additional
+        menu:
+          - href: material-cef.qmd
+            text: Conditional Expectation Function 
+          - href: material-linearalgebra.qmd
+            text: Linear Algebra
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: source
+
