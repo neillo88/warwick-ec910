@@ -150,6 +150,10 @@ window.Quarto = {
     <a class="dropdown-item" href="./lecture-1.html">
  <span class="dropdown-text">Lecture 1</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./lecture-2.html">
+ <span class="dropdown-text">Lecture 2</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -193,22 +197,12 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul>
-  <li><a href="#model-specification" id="toc-model-specification" class="nav-link active" data-scroll-target="#model-specification">Model Specification</a>
   <ul class="collapse">
-  <li><a href="#intercept" id="toc-intercept" class="nav-link" data-scroll-target="#intercept">Intercept</a></li>
-  <li><a href="#matrix-notation" id="toc-matrix-notation" class="nav-link" data-scroll-target="#matrix-notation">Matrix notation</a></li>
-  </ul></li>
-  <li><a href="#clrm-assumptions" id="toc-clrm-assumptions" class="nav-link" data-scroll-target="#clrm-assumptions">CLRM Assumptions</a>
-  <ul class="collapse">
-  <li><a href="#non-random-x" id="toc-non-random-x" class="nav-link" data-scroll-target="#non-random-x">Non-random <span class="math inline">\(X\)</span></a></li>
-  <li><a href="#identification" id="toc-identification" class="nav-link" data-scroll-target="#identification">Identification</a></li>
-  </ul></li>
-  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">Interpretation</a>
-  <ul class="collapse">
-  <li><a href="#semi-elasticities-and-elasticities" id="toc-semi-elasticities-and-elasticities" class="nav-link" data-scroll-target="#semi-elasticities-and-elasticities">Semi-elasticities and elasticities</a></li>
-  </ul></li>
-  <li><a href="#bibliography" id="toc-bibliography" class="nav-link" data-scroll-target="#bibliography">Bibliography</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a></li>
+  <li><a href="#model-specification" id="toc-model-specification" class="nav-link" data-scroll-target="#model-specification"><span class="header-section-number">2</span> Model Specification</a></li>
+  <li><a href="#clrm-assumptions" id="toc-clrm-assumptions" class="nav-link" data-scroll-target="#clrm-assumptions"><span class="header-section-number">3</span> CLRM Assumptions</a></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">4</span> Interpretation</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">5</span> References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lecture-1.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -234,14 +228,17 @@ window.Quarto = {
 </header>
 
 
+<section id="overview" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1</span> Overview</h2>
 <p>In this handout we will revisit the Classical Linear Regression Model (CLRM) <span class="citation" data-cites="wooldridge2010">(see <a href="#ref-wooldridge2010" role="doc-biblioref">Wooldridge 2010, chaps. 1–2</a>)</span>. The goal of this week’s lecture is to:</p>
 <ol type="1">
 <li><p>understand the model specification;</p></li>
 <li><p>it’s underlying assumptions;</p></li>
 <li><p>and the appropriate interpretation (correlation vs causation).</p></li>
 </ol>
-<section id="model-specification" class="level2">
-<h2 class="anchored" data-anchor-id="model-specification">Model Specification</h2>
+</section>
+<section id="model-specification" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="model-specification"><span class="header-section-number">2</span> Model Specification</h2>
 <p>The linear population regression model is given by,</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -260,8 +257,8 @@ window.Quarto = {
 <p>The linear population regression equation is <strong>linear in parameters</strong>. This is an important assumption that does NOT restrict the model from being non-linear in regressors. For example, the equation</p>
 <p><span class="math display">\[Y_i = \beta_1 + \beta_2X_{i2} + \beta_3X_{i2}^{\color{red}{2}} + \varepsilon_i\]</span> non-linear in <span class="math inline">\(X_{i2}\)</span>, but still linear in parameters. In contrast, the equation</p>
 <p><span class="math display">\[Y_i = \beta_1 + \beta_2X_{i2} + ({\color{red}{\beta_2\beta_3}})X_{i3} + \varepsilon_i\]</span> is non-linear in parameters.</p>
-<section id="intercept" class="level3">
-<h3 class="anchored" data-anchor-id="intercept">Intercept</h3>
+<section id="intercept" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="intercept"><span class="header-section-number">2.1</span> Intercept</h3>
 <p>The constant (intercept) in the equation serves an important purpose. While there is no <em>a priori</em> reason for the model to have a constant term, it does ensure that the error term is mean zero.</p>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span>Suppose <span class="math inline">\(E[\varepsilon_i] = \gamma\)</span>.</p>
@@ -271,8 +268,8 @@ window.Quarto = {
 \]</span> The model has a new intercept <span class="math inline">\(\tilde{\beta}_1=\beta_1 + \gamma\)</span>, but the other parameters remain unchanged.</p>
 </div>
 </section>
-<section id="matrix-notation" class="level3">
-<h3 class="anchored" data-anchor-id="matrix-notation">Matrix notation</h3>
+<section id="matrix-notation" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="matrix-notation"><span class="header-section-number">2.2</span> Matrix notation</h3>
 <p>For a sample of <span class="math inline">\(n\)</span> observations, we can stack the unit-level linear regression equation into a vector,</p>
 <p><span class="math display">\[
 Y =\underbrace{\begin{bmatrix}Y_1 \\ Y_2 \\ \vdots \\ Y_n \end{bmatrix}}_{n\times 1} = \underbrace{\begin{bmatrix}X_1'\beta \\ X_2'\beta \\ \vdots \\ X_n'\beta\end{bmatrix}}_{n\times 1}  + \underbrace{\begin{bmatrix}\varepsilon_1 \\ \varepsilon_2 \\ \vdots \\ \varepsilon_n\end{bmatrix}}_{n\times 1}  
@@ -280,8 +277,8 @@ Y =\underbrace{\begin{bmatrix}Y_1 \\ Y_2 \\ \vdots \\ Y_n \end{bmatrix}}_{n\time
 \]</span> Notice, in matrix notation, you lose the transpose from <span class="math inline">\(X_i'\beta\)</span>. Apart from the absence of the <span class="math inline">\(i\)</span> subscript, this is a useful way of knowing the dimension of the equation (in my notes). You MUST always write <span class="math inline">\(X\beta\)</span> and not <span class="math inline">\(\beta X\)</span>. For the scalar case, <span class="math inline">\(X_i'\beta = \beta'X_i\)</span>, but for the vector case <span class="math inline">\(\beta X\)</span> is not defined since <span class="math inline">\(\beta\)</span> is <span class="math inline">\(k\times 1\)</span> and <span class="math inline">\(X\)</span> is <span class="math inline">\(n\times k\)</span>.</p>
 </section>
 </section>
-<section id="clrm-assumptions" class="level2">
-<h2 class="anchored" data-anchor-id="clrm-assumptions">CLRM Assumptions</h2>
+<section id="clrm-assumptions" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="clrm-assumptions"><span class="header-section-number">3</span> CLRM Assumptions</h2>
 <p><strong>Assumption CLRM 1.</strong> Population regression equation is linear in parameters: <span class="math display">\[Y = X\beta+\varepsilon\]</span></p>
 <p><strong>Assumption CLRM 2.</strong> Conditional mean independence of the error term: <span class="math display">\[E[\varepsilon|X]=0\]</span></p>
 <p>Together, CLRM 1. and CLRM 2. imply that</p>
@@ -306,16 +303,16 @@ Y =\underbrace{\begin{bmatrix}Y_1 \\ Y_2 \\ \vdots \\ Y_n \end{bmatrix}}_{n\time
 <p><strong>Assumption CLRM 5.</strong> Normality of the error term: <span class="math inline">\(U|X \sim N(0,\sigma^2 I_n)\)</span></p>
 <p><strong>Assumption CLRM 6.</strong> Observations <span class="math inline">\(\{(Y_i,X_i): i=1,...,n\}\)</span> are independently and identically distributed (iid).</p>
 <p>CLRM 5 &amp; 6 are not part of the Classical assumptions, but do simplify the problem of inference. Note, CLRM 5 implies independence across error terms, not implied by CLRM 4.</p>
-<section id="non-random-x" class="level3">
-<h3 class="anchored" data-anchor-id="non-random-x">Non-random <span class="math inline">\(X\)</span></h3>
+<section id="non-random-x" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="non-random-x"><span class="header-section-number">3.1</span> Non-random <span class="math inline">\(X\)</span></h3>
 <p>There is an alternative version of the CLRM in which <span class="math inline">\(X\)</span> is a non-random, matrix of regressors/predictors. With <span class="math inline">\(X\)</span> fixed, the error term is the only only random variable in the model. CLRM assumptions 1 and 4 remain the same, while CLRM 2, 3, 5, and 6 become:</p>
 <p><strong>Assumption CLRM 2<sup>a</sup>.</strong> Mean independence of the error term: <span class="math display">\[E[\varepsilon]=0\]</span></p>
 <p><strong>Assumption CLRM 3<sup>a</sup>.</strong> Homoskedasticity: <span class="math inline">\(Var(\varepsilon) = \sigma^2I_n\)</span></p>
 <p><strong>Assumption CLRM 5<sup>a</sup>.</strong> Normality of the error term: <span class="math inline">\(U \sim N(0,\sigma^2 I_n)\)</span></p>
 <p><strong>Assumption CLRM 6<sup>a</sup>.</strong> Observations <span class="math inline">\(\{\varepsilon_i: i=1,...,n\}\)</span> are independently and identically distributed (iid).</p>
 </section>
-<section id="identification" class="level3">
-<h3 class="anchored" data-anchor-id="identification">Identification</h3>
+<section id="identification" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="identification"><span class="header-section-number">3.2</span> Identification</h3>
 <p>CLRM 1,2 and 4. are the <em>identifying</em> assumptions of the model. These assumptions allow us to write the parameter of interest as a set of ‘observable’ moments in the data. We can demonstrate this as follows.</p>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span>Start with CLRM 2.</p>
@@ -348,8 +345,8 @@ Y =\underbrace{\begin{bmatrix}Y_1 \\ Y_2 \\ \vdots \\ Y_n \end{bmatrix}}_{n\time
 <p>In this instance, the identification of <span class="math inline">\(\beta\)</span> is scale dependent. That is, if we multiply <span class="math inline">\(Y_i\)</span> by a scalar, <span class="math inline">\(\beta\)</span> is multiplied by the same scalar. Consider cases where a researcher is modelling standardized test-scores.</p>
 </section>
 </section>
-<section id="interpretation" class="level2">
-<h2 class="anchored" data-anchor-id="interpretation">Interpretation</h2>
+<section id="interpretation" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="interpretation"><span class="header-section-number">4</span> Interpretation</h2>
 <p>In this linear regression model each slope coefficient has a partial derivative interpretation,</p>
 <p><span class="math display">\[
 \beta_j = \frac{\partial E[Y_i|X_i]}{\partial X_{ij}}
@@ -372,8 +369,8 @@ E[Y_i|X_i] = X_i'\beta
 <p>Assuming <span class="math inline">\(E[\upsilon_i|S_i,EXP_i]=0\)</span>, <span class="math inline">\(\beta_3\)</span> is the expected change in wages from an additional year of experience, holding fixed years of schooling. The model implies that if we were to consider two individuals with the same years of schooling, but a 1-year difference in work experience, then we would expect the more experienced worker to earn <span class="math inline">\(\beta_3\)</span> £’s more.</p>
 <p>We would get the same interpretation from an experiment where we <em>control</em> individual schooling, but (randomly) vary years of experience by one year across units in the population.</p>
 <p>Remember, for the above linear regression model, this interpretation is based on the assumption that the conditional expectation function is correctly specified. If no, then this interpretation is incorrect. Moreover, there are other ways to think about “controlling” for covariates that we will address towards the end of this module.</p>
-<section id="semi-elasticities-and-elasticities" class="level3">
-<h3 class="anchored" data-anchor-id="semi-elasticities-and-elasticities">Semi-elasticities and elasticities</h3>
+<section id="semi-elasticities-and-elasticities" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="semi-elasticities-and-elasticities"><span class="header-section-number">4.1</span> Semi-elasticities and elasticities</h3>
 <p>The original Mincer equation has the outcome as the log of wages,</p>
 <p><span class="math display">\[\ln(WAGE_i) = \gamma_1 + \gamma_2EDU_i + \gamma_3EXP_ i + \gamma_4EXP^2_ i + \upsilon_i\]</span> The interpretation of <span class="math inline">\(\beta_3\)</span> is now in terms of expected log-points of wages.</p>
 <p><span class="math display">\[
@@ -394,7 +391,7 @@ E[Y_i|X_i] = X_i'\beta
 \]</span></p>
 </section>
 </section>
-<section id="bibliography" class="level2">
+<section id="references" class="level2" data-number="5">
 
 
 
@@ -402,7 +399,7 @@ E[Y_i|X_i] = X_i'\beta
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Bibliography</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">5 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-wooldridge2010" class="csl-entry" role="listitem">
 Wooldridge, Jeffrey M. 2010. <em>Econometric Analysis of Cross Section and Panel Data</em>. MIT press.
 </div>

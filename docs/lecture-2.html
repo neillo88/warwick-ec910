@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EC910 - Estimators</title>
+<title>EC910 - Estimators and their Properties</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -67,6 +121,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -100,6 +183,10 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="./lecture-1.html">
  <span class="dropdown-text">Lecture 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./lecture-2.html">
+ <span class="dropdown-text">Lecture 2</span></a>
   </li>  
     </ul>
   </li>
@@ -141,14 +228,24 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lecture-2.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a></li>
+  <li><a href="#an-estimator" id="toc-an-estimator" class="nav-link" data-scroll-target="#an-estimator"><span class="header-section-number">2</span> An estimator</a></li>
+  <li><a href="#properties-of-estimators" id="toc-properties-of-estimators" class="nav-link" data-scroll-target="#properties-of-estimators"><span class="header-section-number">3</span> Properties of estimators</a></li>
+  
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">5</span> References</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lecture-2.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Estimators</h1>
+<h1 class="title">Estimators and their Properties</h1>
 </div>
 
 
@@ -165,10 +262,345 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="overview" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1</span> Overview</h2>
+<p>In this handout we will investigate the <em>desirable</em> properties of an estimator. Further reading can be found in:</p>
+<ul>
+<li>Appendix A of <span class="citation" data-cites="cameron2005">Cameron and Trivedi (<a href="#ref-cameron2005" role="doc-biblioref">2005</a>)</span></li>
+<li>Section 2.6 of <span class="citation" data-cites="verbeek2017">Verbeek (<a href="#ref-verbeek2017" role="doc-biblioref">2017</a>)</span></li>
+</ul>
+</section>
+<section id="an-estimator" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="an-estimator"><span class="header-section-number">2</span> An estimator</h2>
+<p>An estimator is a rule that tells you how to get your <em>estimate</em> given the observed data. As it is a that it is a function of random variables, <strong>an estimator is a random variable</strong> itself.</p>
+<p>Without further information, we do not know anything about the distribution of this random variable and, in practice, will typically have to estimate the parameters of this distribution: mean, variance, skewness.</p>
+<p>The <em>assumed</em> model (or data generating process) may pin down certain parameters or distributions. For example, under assumpions CLRM 5 &amp; 6 the ordinary least squares estimator for <span class="math inline">\(\beta\)</span> will be normally distributed.</p>
+</section>
+<section id="properties-of-estimators" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="properties-of-estimators"><span class="header-section-number">3</span> Properties of estimators</h2>
+<p>When evaluating an estimator you want to consider:</p>
+<ol type="1">
+<li><p><em>bias</em>: does the estimator yield estimates that ‘hit the right target’ <strong>on average</strong>?</p></li>
+<li><p><em>efficiency</em>: do the estimates generated by the estimator have a limited dispersion/variance?</p></li>
+<li><p><em>distribution</em>: do you know the exact/approximate distribution of the estimator with which you can construct a valid hypothesis test?</p></li>
+</ol>
+<p>It is important to consider both the small sample and large sample (asymptotic) properties of an estimator.</p>
+<p>Unbiasedness (property 1) is typically emphasized over properties 2 and 3. Afterall, a precise estimator of the wrong target is not particularly useful. That said, the expected value of an estimator is not always well defined.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These are properties of the <em>estimator</em>, a random variable, and not the <em>estimate</em>. The estimate is a just a constant: a non-random realization of the estimator.</p>
+</div>
+</div>
+<section id="small-vs-large-sample-properties" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="small-vs-large-sample-properties"><span class="header-section-number">3.1</span> Small vs large sample properties</h3>
+<p>Sometimes it is easier to study the large-sample, or <em>asymptotic</em>, properties of an estimator. That is, the properties of the estimator as the sample size gets large: <span class="math inline">\(n\longrightarrow \infty\)</span>.</p>
+<p>Small-sample properties include:</p>
+<ul>
+<li><p>Biasedness</p></li>
+<li><p>Efficiency/variance</p></li>
+<li><p>Finite-sample distribution</p></li>
+</ul>
+<p>Large-sample properties include:</p>
+<ul>
+<li><p>Consistency</p></li>
+<li><p>Asymptotic distribution</p></li>
+</ul>
+<p>An estimator can have an asymptotic variance (efficiency); although, in EC910 will mostly discuss estimators with variances that shrink to zero as <span class="math inline">\(n\longrightarrow \infty\)</span>.</p>
+<div class="important-prop" title="Important">
+<p>The phrase “finite-sample” is also used in other contexts. For example, in the Causal Inference (or Treatment Effects) literature “finite-sample” is used to describe <em>estimands</em>. This literature distinguishes between finite-sample and super-population estimands. The former relate to settings where the sample is treated as fixed, while the latter to settings where the sample is take as a draw from an unknown super population.</p>
+<p>The estimator for a super-population estimand will have both finite and asymptotic properities.</p>
+</div>
+</section>
+<section id="bias" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="bias"><span class="header-section-number">3.2</span> Bias</h3>
+<p>The estimator <span class="math inline">\(\hat{\theta}\)</span> is <strong>unbiased</strong> for <span class="math inline">\(\theta\)</span> if,</p>
+<p><span class="math display">\[
+E(\hat{\theta}) = \theta
+\]</span> <span class="math inline">\(\hat{\theta}\)</span> is a function of sample size, <span class="math inline">\(n\)</span>, while <span class="math inline">\(\theta\)</span> is not. Some texts will use the notation <span class="math inline">\(\hat{\theta}_n\)</span> to emphasize this point.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x_values <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">3</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> x_values), <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> .<span class="dv">5</span>), <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Density"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),            </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="fu">TeX</span>(<span class="st">"$</span><span class="sc">\\</span><span class="st">theta$"</span>), <span class="fu">TeX</span>(<span class="st">"$E[</span><span class="sc">\\</span><span class="st">hat{</span><span class="sc">\\</span><span class="st">theta}]$"</span>))  </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">1.75</span>, <span class="at">y =</span> <span class="fl">0.35</span>, <span class="at">label =</span> <span class="st">"Biased"</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="sc">-</span><span class="fl">0.75</span>, <span class="at">y =</span> <span class="fl">0.6</span>, <span class="at">label =</span> <span class="st">"Unbiased"</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">color =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture-2_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="efficiency" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="efficiency"><span class="header-section-number">3.3</span> Efficiency</h3>
+<p>Efficiency is a relative concept. The estimator <span class="math inline">\(\hat{\theta}\)</span> is more efficient the estimator <span class="math inline">\(\tilde{\theta}\)</span>, if both are unbiased for <span class="math inline">\(\theta\)</span> <strong>and</strong></p>
+<p><span class="math display">\[
+Var(\hat{\theta})&lt;Var(\tilde{\theta})
+\]</span> What if the estimator is biased? We can use Mean Square Error:</p>
+<div id="def-mse" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 1 (MSE)</strong></span> <span class="math inline">\(MSE = E\big[(\hat{\theta}-\theta)^2\big] = \text{bias}^2+\text{variance}\)</span></p>
+</div>
+<p>Note, the above definition assumes that a finite variance.</p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><span class="math display">\[
+\begin{aligned}
+E\big[(\hat{\theta}-\theta)^2\big] &amp;= E\big[\big((\hat{\theta}-E[\hat{\theta}])-(E[\hat{\theta}]-\theta)\big)^2\big] \\
+&amp;=E\big[(\hat{\theta}-E[\hat{\theta}])^2\big]+ E\big[(\theta-E[\hat{\theta}])\big] - 2E\big[(\hat{\theta}-E[\hat{\theta}])(\theta-E[\hat{\theta}])\big] \\
+&amp;=Var(\hat{\theta}) + \text{bias}^2
+\end{aligned}
+\]</span></p>
+</div>
+<p>The first line adds and subtracts the mean of the estimator, which need not be <span class="math inline">\(\theta\)</span>, the targetted population parameter. The second expands the outside exponent over the two bracketted terms.</p>
+<p>The cross-product term in line 2 is 0. <span style="color: blue;">Can you show this?</span></p>
+</section>
+<section id="consistency" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="consistency"><span class="header-section-number">3.4</span> Consistency</h3>
+<p>Consistency is an asumptotic property of an estimator.</p>
+<div id="def-consistency" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 2</strong></span> The estimator <span class="math inline">\(\hat{\theta}_n\)</span> is a consistent estimator of <span class="math inline">\(\theta\)</span> if it converges in probability to <span class="math inline">\(\theta\)</span> as <span class="math inline">\(n\longrightarrow\infty\)</span>,</p>
+<p><span class="math display">\[
+Pr(|\hat{\theta}_n-\theta|\geq\varepsilon)\longrightarrow 0\qquad n\longrightarrow 0
+\]</span> for <span class="math inline">\(\varepsilon\)</span> very small.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+</div>
+<p>Intuitively, this means that tail area probabilities (i.e.&nbsp;probability of an estimator very far from the true value) goes to zero as the sample size gets large.</p>
+<p>We use the notations, <span class="math inline">\(p\lim\)</span>,</p>
+<p><span class="math display">\[
+p\lim\hat{\theta}_n = \theta
+\]</span> or convergence in probability, <span class="math display">\[\hat{\theta}_n \longrightarrow_p \theta\qquad\text{as}\qquad n\longrightarrow \infty\]</span></p>
+<p>An important theorem regarding the consistency of estimators is Slutzky’s theorem concerning continuous functions of estimators. For example, we will use this theorem to prove the consistency of the OLS estimator.</p>
+<div id="thm-slutzky" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 1 (Slutzky’s Theorem)</strong></span> If <span class="math inline">\(p\lim\hat{\theta}_n = \theta\)</span> and <span class="math inline">\(h(\cdot)\)</span> is a continuous function, then</p>
+<p><span class="math display">\[
+p\lim\;h(\hat{\theta}_n) = h\big(p\lim\hat{\theta}_n\big)=h(\theta)
+\]</span></p>
+</div>
+<p>Here are some useful examples,</p>
+<div id="exm-slutzky" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1</strong></span> Given two consistent estimators <span class="math inline">\(\big[\hat{\theta}_n,\hat{\beta}_n\big]\)</span>,</p>
+<ol type="1">
+<li><p><span class="math inline">\(p\lim\;(a\hat{\theta}_n+ b\hat{\beta}_n) = a(p\lim\;\hat{\theta}_n)+b(p\lim\;\hat{\beta}_n) =a\theta +b\beta\)</span> for constants <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span></p></li>
+<li><p><span class="math inline">\(p\lim\;(\hat{\theta}_n\times\hat{\beta}_n) = (p\lim\;\hat{\theta}_n)\times (p\lim\;\hat{\beta}\_n)=\theta\beta\)</span></p></li>
+<li><p><span class="math inline">\(p\lim\;(\hat{\theta}_n^2) = (p\lim\;\hat{\theta}_n)^2 = \theta^2\)</span></p></li>
+<li><p><span class="math inline">\(p\lim\;\bigg(\frac{\hat{\theta}_n}{\hat{\beta}_n}\bigg) = \frac{\theta}{\beta}\)</span></p></li>
+<li><p><span class="math inline">\(p\lim\;\exp(\hat{\theta}_n) = \exp(p\lim\;\hat{\theta}_n) = \exp(\theta)\)</span></p></li>
+</ol>
+</div>
+<p>MSE convergence (to zero) is a <strong>sufficient</strong> condition for consistency. However, it is not a necessary.</p>
+<p>For an <em>unbiased</em> estimator,</p>
+<p><span class="math display">\[
+Var(\hat{\theta}_n)\longrightarrow 0 \quad \text{as}\quad n\longrightarrow 0 \implies p\lim\hat{\theta}_n = \theta
+\]</span></p>
+<p>For a biased estimator,</p>
+<p><span class="math display">\[
+MSE(\hat{\theta}_n)\longrightarrow 0 \quad \text{as}\quad n\longrightarrow 0 \implies p\lim\hat{\theta}_n = \theta
+\]</span></p>
+<div id="exr-mseconv" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 1</strong></span> Given a sample of independently and identically distributed (iid) random variables, <span class="math display">\[
+X_1,...,X_n \sim N(\mu,\sigma^2)
+\]</span> Show that the mean estimator - <span class="math inline">\(\overline{X} = \frac{1}{n}\sum_{i=1}{n}X_i\)</span> is a consistent estimator of <span class="math inline">\(\mu\)</span>; i.e.&nbsp;<span class="math inline">\(p \lim\;\overline{X} = \mu\)</span>.</p>
+</div>
+<p>The above exercise relates to one of the most important examples of convergence in probability:</p>
+<div id="thm-wlln" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 2 (Weak Law of Large Numbers)</strong></span> Let <span class="math inline">\(X_1,...,X_n\)</span> be a sample of iid random variables, such that <span class="math inline">\(E|X_1|&lt;\infty\)</span>. Then, <span class="math display">\[
+n^{-1}\sum_{i=1}^{n}X_i \longrightarrow_p E[X_1]\qquad \text{as}\qquad n\longrightarrow \infty
+\]</span></p>
+</div>
+<p>Here we use the notation <span class="math inline">\(E[X_1]\)</span>, since the data is iid and <span class="math inline">\(E[X_i]=E[X_1]\)</span> for <span class="math inline">\(i=1,...,n\)</span>. We prove a modified version of the WLLN theorem, assuming <span class="math inline">\(E[X_1^2]&lt;\infty\)</span>. Since <span class="math inline">\(E[X_1^2]&lt;\infty\implies\)</span> both <span class="math inline">\(E|X_1|&lt;\infty\)</span> and <span class="math inline">\(Var(X_1)&lt;\infty\)</span>, we will have proven WLLN theorem.</p>
+<div id="thm-wlln2" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 3</strong></span> Let <span class="math inline">\(X_1,...,X_n\)</span> be a sample of iid random variables, such that <span class="math inline">\(Var(X_1)&lt;\infty\)</span>. Then, <span class="math display">\[
+n^{-1}\sum_{i=1}^{n}X_i \longrightarrow_p E[X_1]\qquad \text{as}\qquad n\longrightarrow \infty
+\]</span></p>
+</div>
+<p>To complete the proof of WLLN, we will need to use Markov’s Inequality. We will not prove this lemma, but versions of the proof are readily available online.</p>
+<div id="lem-markov" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lemma 1 (Markov’s Inequality)</strong></span> Let <span class="math inline">\(X\)</span> be a random variable. For <span class="math inline">\(\varepsilon&gt;0\)</span> and <span class="math inline">\(r&gt;0\)</span>, then</p>
+<p><span class="math display">\[
+Pr(|X|\geq \varepsilon)\leq \frac{E\big[|X|^2\big]}{\varepsilon^2}
+\]</span></p>
+</div>
+<p>Now, we can complete the proof of WLLN, assuming a finite second moment.</p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><span class="math display">\[
+\begin{aligned}
+Pr\bigg(\bigg|n^{-1}\sum_{i=1}^{n}X_i - E[X_1]\bigg|\geq \varepsilon\bigg) &amp;= Pr\bigg(\bigg|n^{-1}\sum_{i=1}^{n}(X_i - E[X_1])\bigg|\geq \varepsilon\bigg) \\
+&amp;\leq \frac{E\big[|\sum_{i=1}^{n}(X_i - E[X_1])|^2\big]}{n^2\varepsilon^2} \\
+&amp;=\frac{\sum_{i=1}^{n}\sum_{j=1}^{n}E\big[(X_i - E[X_1])(X_j - E[X_1])\big]}{n^2\varepsilon^2} \\
+&amp;=\frac{\sum_{i=1}^{n}E\big[(X_i - E[X_1])^2\big]}{n^2\varepsilon^2} \\
+&amp;=\frac{nVar(X_1)}{n^2\varepsilon^2} \\
+&amp;\longrightarrow 0 \qquad \text{as}\qquad n\longrightarrow \infty
+\end{aligned}
+\]</span></p>
+</div>
+<p>Note, the WLLN holds under a weaker condition than iid. Between lines 3 and 4 we used the independence of observations to set correlations between units to 0. Thus, we required a weaker assumption of uncorrelateness: <span class="math inline">\(Cov(X_i,X_j)=0\;\forall\;i\neq j\)</span>.</p>
+<p>Under the WLLN, you can show that the sample variance converges in probability to the population variance.</p>
+<p><span class="math display">\[
+p\lim \big(n^{-1}\sum_{i=1}^{n}(X_i - \overline{X})^2\big) \longrightarrow_p Var(X_i)
+\]</span></p>
+</section>
+<section id="distribution" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="distribution"><span class="header-section-number">3.5</span> Distribution</h3>
+<p>In this section we will focus on the asymptotic distribution of an estimator. If we know the joint distribution of the data, then we can <em>potentially</em> work out the distribution of the estimator in a finite sample. This is especially true when the random variables in question are drawn from known families of distributions.</p>
+<p>For example, we know that the sum of Normal distributed random variables is Normally distributed itself. And the sum of the square of standard-Normally distributed random variables is Chi-squared distributed. We used these results do determine the distribution of test-statistics corresponding to the Classical Linear Regression Model.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>However, what do you do when you do not know the underlying distribution of the random variables? Here we will rely on a the Central Limit Theorem, which tells us about the approximate distribution of an estimator when the sample is large.</p>
+<p>Before discussing CLT, we must define a new convergence concept: convergence in distribution.</p>
+<div id="def-condist" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3</strong></span> Let <span class="math inline">\(X_1,...,X_n\)</span> be a sequence of random variables and let <span class="math inline">\(F_n(x)\)</span> denote the marginal CDF of <span class="math inline">\(X_n\)</span>, <span class="math display">\[
+F_n(x) = Pr(X_n\leq x)
+\]</span> Then, <span class="math inline">\(X_n\)</span> converges <em>in distribution</em> if <span class="math inline">\(F_n(x)\longrightarrow F(x)\)</span> as <span class="math inline">\(n\longrightarrow \infty\)</span>, where F(x) is continuous.</p>
+</div>
+<p>Convergence in distribution can be denoted,</p>
+<p><span class="math display">\[
+X_n\longrightarrow_d X
+\]</span></p>
+<p>where X is a random variable with distribution function <span class="math inline">\(F(x)\)</span>. Note, it is not the random variables that are converging, but rather the distributions of said random variables.</p>
+<p>As with convergence in probability, there are some basic rules for manipulation.</p>
+<ol type="1">
+<li>The first is <strong>Cramer Convergence Theorem</strong>: Suppose <span class="math inline">\(X_n\rightarrow_dX\)</span> and <span class="math inline">\(Y_n\rightarrow_p c\)</span>. then,
+<ul>
+<li><span class="math inline">\(X_n+Y_n\rightarrow_d X+c\)</span></li>
+<li><span class="math inline">\(Y_nX_n\rightarrow_d cX\)</span></li>
+<li><span class="math inline">\(X_n/Y_n\rightarrow_d X/c\)</span>, for <span class="math inline">\(c\neq 0\)</span></li>
+</ul></li>
+<li>If <span class="math inline">\(X_n\rightarrow_p X\)</span>, then <span class="math inline">\(X_n\rightarrow_d X\)</span>. The converse is not true, with the exception:</li>
+<li>If <span class="math inline">\(X_n\rightarrow_d C\)</span>, a constant, then <span class="math inline">\(X_n\rightarrow_p C\)</span>.</li>
+<li>If <span class="math inline">\(X_n-Y_n\rightarrow_p 0\)</span>, and <span class="math inline">\(Y_n\rightarrow_d Y\)</span>, then <span class="math inline">\(X_n\rightarrow_d Y\)</span>.</li>
+</ol>
+<p>Unlike with convergence in probability, <span class="math inline">\(X_n\rightarrow_d X\)</span> and <span class="math inline">\(Y_n\rightarrow_d Y\)</span> does NOT imply <span class="math inline">\(X_n + Y_n \rightarrow_d X+Y\)</span>, unless joint convergences holds too. This is because the former are statements concerning the <em>marginal</em> distributions of <span class="math inline">\(X_n\)</span> and <span class="math inline">\(Y_n\)</span>, while the distribution of <span class="math inline">\(X_n + Y_n\)</span> depends on the <em>joint</em> distribution.</p>
+<p>If <span class="math inline">\((X_n,Y_n)\rightarrow_d (X,Y)\)</span> (joint convergence), then <span class="math inline">\(X_n+Y_n\rightarrow_dX+Y\)</span>. This result follows from the Central Mapping Theorem.</p>
+<div id="thm-cmt" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4 (Continuous Mapping Theorem)</strong></span> Suppose <span class="math inline">\(X_n\rightarrow_d X\)</span> and let <span class="math inline">\(h(\cdot)\)</span> be a continuous function. Then, <span class="math inline">\(h(X_n)\rightarrow_d h(X)\)</span>.</p>
+</div>
+<p>CMT holds for a vector of random variables as well as single random variable. Thus, if</p>
+<p><span class="math display">\[
+\begin{bmatrix}X_n \\ Y_n\end{bmatrix}\rightarrow_d \begin{bmatrix}X \\ Y\end{bmatrix}
+\]</span> then by CMT, <span class="math display">\[
+X_n+Y_n=\begin{bmatrix}1 &amp; 1\end{bmatrix}\begin{bmatrix}X_n \\ Y_n\end{bmatrix} \rightarrow_d\begin{bmatrix}1 &amp; 1\end{bmatrix}\begin{bmatrix}X \\ Y\end{bmatrix} = X+Y
+\]</span></p>
+<p>Can you show:</p>
+<ul>
+<li><span class="math inline">\((X_n,Y_n)\rightarrow_d (X,Y)\)</span> (i.e.&nbsp;joint convergence) implies <span class="math inline">\(X_n\rightarrow_d X\)</span> (i.e.&nbsp;marginal convergence)?</li>
+<li><span class="math inline">\(\sum_{j=1}^k X_{jn}^2 \sim \chi^2_k\)</span> for <span class="math inline">\(X_n\sim N(0,I_k)\)</span>, <span class="math inline">\(X_n\in \mathbf{R}^k\)</span>.</li>
+</ul>
+<p>Having discussed the CMT, we are now ready to discuss the Central Limit Theorem. Both are used extensively in Econometrics. We will not prove CLT as the proof requires a more detailed discussion of Moment Generating Functions.</p>
+<p>Recall, for an iid random sample, the sample converges in probability to the population mean:</p>
+<p><span class="math display">\[
+p \lim\;\overline{X} = E[X_1]
+\]</span></p>
+<p>The rate of convergence for this estimator is <span class="math inline">\(\sqrt{n}\)</span>. The estimator is said to be root-<span class="math inline">\(n\)</span>-consistent.</p>
+<div id="thm-clt" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 5 (Central Limit Theorem)</strong></span> Let <span class="math inline">\(X_1,...,X_n\)</span> be a sample of iid random variables such that <span class="math inline">\(E[X_1]=0\)</span> and <span class="math inline">\(0&lt;E[X_1^2]&lt;\infty\)</span>. Then,</p>
+<p><span class="math display">\[
+n^{-1/2}\sum_{i=1}^{n}X_i\longrightarrow_d N(0,E[X_1^2])
+\]</span></p>
+</div>
+<p>Consider a random sample drawn independently from a distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma\)</span>. Note, this distribution need not be Normal. It holds that, $X_1-,…,X_n-$ are iid and <span class="math inline">\(E[X_1-\mu]\)</span>. In addition, <span class="math inline">\(E[(X_1-\mu)^2]=\sigma^2&lt;\infty\)</span>. Therefore, by CLT</p>
+<p><span class="math display">\[
+n^{1/2}(\overline{X}-\mu) = n^{-1/2}\sum_{i=1}^{n}(X_i-\mu)\longrightarrow_d N(0,\sigma^2)
+\]</span></p>
+<p>In practice, we use CLT to determine the <em>approximate</em> distribution of an estimator in large samples. Based on the above result, we can say</p>
+<p><span class="math display">\[
+n^{1/2}(\overline{X}-\mu)\overset{a}{\sim} N(0,\sigma^2)
+\]</span> or,</p>
+<p><span class="math display">\[
+\overline{X}\overset{a}{\sim}N(\mu,\sigma^2/n)
+\]</span></p>
+<p>where <span class="math inline">\(\sigma^2/n\)</span> is referred to as the <em>asymptotic variance</em> of <span class="math inline">\(\overline{X}\)</span>. Here, the symbol <span class="math inline">\(\overset{a}{\sim}\)</span> can be interpreted as “approximately in large samples”.</p>
+<p>With CMT and CLT, we need one more theorem before we continue. We know from the WLLN that <span class="math inline">\(\overline{X}\rightarrow_p E[X_1]=\mu\)</span>. Moreover, by Slutzky’s theorem we know that <span class="math inline">\(h(\overline{X})\rightarrow_p h(\mu)\)</span>, for <span class="math inline">\(h(\cdot)\)</span> continuous. However, we do not know the approximate distribution of <span class="math inline">\(h(\overline{X})\)</span> in a large sample.</p>
+<p>Consider, <span class="math inline">\(h(\mu)\)</span> is a non-random constant and CLT applies to <span class="math inline">\(n^{1/2}(\overline{X}-\mu)\)</span> and not <span class="math inline">\(\overline{X}\)</span>. The latter implying that we cannot use CMT.</p>
+<div id="thm-clt" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 6 (Delta Method)</strong></span> Let <span class="math inline">\(\hat{\theta}_n\)</span> be a random k-dimensional vector. Suppose that <span class="math inline">\(n^{1/2}(\hat{\theta}_n-\theta)\rightarrow_d Y\)</span>, where <span class="math inline">\(theta\)</span> is a non-random k-dimensional vector and <span class="math inline">\(Y\)</span> a random k-dimensional vector.</p>
+<p>Let <span class="math inline">\(h: \mathbf{R}^k\rightarrow\mathbf{R}^m\)</span> be a function (mapping) that is continuously differentiable on some open neighbourhood of <span class="math inline">\(\theta\)</span>. Then,</p>
+<p><span class="math display">\[
+n^{1/2}\big(h(\hat{\theta}_n)-h(\theta)\big)\rightarrow_d \frac{\partial h(\theta)}{\partial\theta'}Y
+\]</span></p>
+</div>
+<p>The proof involves Cramer’s Convergence Theorem, Slutzky’s Theorem, as well as the Mean Value Theorem (which we have not discussed). This result is used to derive the limiting distribution of non-linear models and their marginal effects (e.g.&nbsp;probit/logit), as well as non-linear tests of regression coefficients.</p>
+</section>
+</section>
+
+<section id="references" class="level2" data-number="5">
 
 
 
-</main> <!-- /main -->
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="properties-of-the-expectation-operator" class="level2 appendix" data-number="4"><h2 class="anchored quarto-appendix-heading"><span class="header-section-number">4</span> Properties of the E[xpectation] operator</h2><div class="quarto-appendix-contents">
+
+<p>The expectation of a continuously-distributed, random variable <span class="math inline">\(X\)</span> can be defined as:</p>
+<p><span class="math display">\[
+E[X] = \int_{-\infty}^{\infty}tf_Xdt = \int_{-\infty}^{\infty}tdF_X(t)
+\]</span></p>
+<p>If <span class="math inline">\(X\)</span> takes on discrete values, <span class="math inline">\(X \in \mathbf{X} = \{x_1,x_2,...,x_m\}\)</span>, we can replace the integral with a summation and the probability density function (pdf: <span class="math inline">\(f_X\)</span>) with a probability mass function (pmf: <span class="math inline">\(p_X\)</span>).</p>
+<p><span class="math display">\[
+E[X] = \sum_{t\in \mathbf{X}}tp_X(t)
+\]</span></p>
+<p>An important property of the Exptation operator is that it is linear. Let <span class="math inline">\(\{a,b\}\)</span> be two constants (non-random scalars), then</p>
+<p><span class="math display">\[
+E[aX+b] = aE[X]+b
+\]</span></p>
+<p><span style="color: blue;">Can you show this, using the above definition of the expectation operator?</span></p>
+<p>Similarly, consider two random varibales <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. Then,</p>
+<p><span class="math display">\[
+E[aX + bY] = E[aX] + E[bY] = aE[X] + bE[Y]
+\]</span></p>
+<p>However, note</p>
+<ol type="1">
+<li><span class="math inline">\(E[XY] = E[X] \times E[Y]\)</span> <strong>if</strong> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent</li>
+</ol>
+<p>This follows from the fact that <span class="math inline">\(f_{X,Y} = f_X\cdot f_Y\)</span> <strong>if</strong> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent. Note, this is not an iff (if-and-only-if) statement.</p>
+<ol start="2" type="1">
+<li><p><span class="math inline">\(E\left[\frac{X}{Y}\right]\neq\frac{E[X]}{E[Y]}\)</span> for <span class="math inline">\(E[Y]\neq0\)</span></p></li>
+<li><p><span class="math inline">\(E[\ln(X)]\neq \ln(E[Y])\)</span></p></li>
+</ol>
+<p>In general, <span class="math inline">\(E[h(X)]\neq h(E[Y])\)</span> with the exception of <span class="math inline">\(h(\cdot)\)</span> linear function.</p>
+</div></section><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">5 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-cameron2005" class="csl-entry" role="listitem">
+Cameron, A Colin, and Pravin K Trivedi. 2005. <em>Microeconometrics: Methods and Applications</em>. Cambridge university press.
+</div>
+<div id="ref-verbeek2017" class="csl-entry" role="listitem">
+Verbeek, Marno. 2017. <em>A Guide to Modern Econometrics</em>. John Wiley &amp; Sons.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><span class="math inline">\(|x-a|&gt;b\; \implies \;-b&gt;x-a\quad\text{and}\quad b&lt;x-a\)</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>In this setting, we make an assumption around the distribution of the error term in the model.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
