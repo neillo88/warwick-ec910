@@ -29,9 +29,13 @@ bibliography: references.bib
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
-    toc: true
+    theme: 
+      light: lightly
+      dark: darkly
+    toc: true              # Include a table of contents in the HTML output
+    css: styles.css        # Optionally include custom CSS for styling
 
 editor: source
 
+execute:
+  freeze: auto

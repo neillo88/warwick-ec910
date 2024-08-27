@@ -2,10 +2,8 @@
 title: Classical Linear Regression Model
 format:
   html:
-    toc: true              # Include a table of contents in the HTML output
-    toc-depth: 2           # Set the depth of the table of contents
+    toc-depth: 3           # Set the depth of the table of contents
     number-sections: true  # Number the sections in the HTML output
-    css: styles.css        # Optionally include custom CSS for styling
     resources: 
       - "lecture-1.pdf" # Make the PDF file available for download
     code-fold: true   # places code in dropdown

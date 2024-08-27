@@ -81,7 +81,28 @@
     "href": "index.html",
     "title": "Quantitative Methods: Econometrics B",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "This is not the official module website. The EC910 (or EC987, 2024/25) Moodle-page is the primary source of communication and resources for this module. All material available on this website can be found there.\nI designed this website as a means of testing out the Quarto package, developed by RStudio.1 This was partly as a way to develop my own skills and better incorporate the R language into the module. However, there are also accessibility benefits to this approach. Mathematical notation published in pdf’s using LaTeX cannot be read by a screen reader, while LaTeX published in html can. In addition, the website has built-in dark-mode option (see top-right toggle). For those who prefer pdf (for printing and notetaking), each page contains a unique downloadable link.\nPlease let me know if you find any mistakes in my notes or code. In addition, I welcome suggestions on how to improve the R (or Stata) code provided in this module. I will endeavor to do my best to acknowledge the many people who have contributed to this material and my wider knowledge of this subject."
+  },
+  {
+    "objectID": "index.html#welcome-to-metrics-b",
+    "href": "index.html#welcome-to-metrics-b",
+    "title": "Quantitative Methods: Econometrics B",
+    "section": "",
+    "text": "This is not the official module website. The EC910 (or EC987, 2024/25) Moodle-page is the primary source of communication and resources for this module. All material available on this website can be found there.\nI designed this website as a means of testing out the Quarto package, developed by RStudio.1 This was partly as a way to develop my own skills and better incorporate the R language into the module. However, there are also accessibility benefits to this approach. Mathematical notation published in pdf’s using LaTeX cannot be read by a screen reader, while LaTeX published in html can. In addition, the website has built-in dark-mode option (see top-right toggle). For those who prefer pdf (for printing and notetaking), each page contains a unique downloadable link.\nPlease let me know if you find any mistakes in my notes or code. In addition, I welcome suggestions on how to improve the R (or Stata) code provided in this module. I will endeavor to do my best to acknowledge the many people who have contributed to this material and my wider knowledge of this subject."
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "Quantitative Methods: Econometrics B",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nI am building off material developed by Prof. Wiji Arulampalam, who taught this module from 2011-2024. Since arriving at Warwick in 2021, I have learned so much from Prof. Arulampalam’s expertise and years of research and professional experience. More importantly, I have so enjoyed working alongside her as both colleague and friend. I wish her well in her retirement.\nI have also borrowed from material developed by Prof. Vadim Marmer (Vancouver School of Economics, UBC) who taught the Econometrics module I attended during my own Master’s degree. I was the teaching assistant for this module from 2017-2019 and developed some additional notes found here. I am hugely indebted to Prof. Marmer, whose teaching and professional guidance have been foundational to my academic career.\nI hope you enjoy this module!\nNeil Lloyd"
+  },
+  {
+    "objectID": "index.html#footnotes",
+    "href": "index.html#footnotes",
+    "title": "Quantitative Methods: Econometrics B",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.↩︎"
   },
   {
     "objectID": "lecture-2.html",
