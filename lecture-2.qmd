@@ -57,7 +57,7 @@ These are properties of the *estimator*, a random variable, and not the *estimat
 
 ### Small vs large sample properties
 
-Sometimes it is easier to study the large-sample, or *asymptotic*, properties of an estimator. That is, the properties of the estimator as the sample size gets large: $n\longrightarrow \infty$.
+Sometimes it is easier to study the large-sample, or *asymptotic*, properties of an estimator. That is, the properties of the estimator as the sample size gets large: $n\rightarrow \infty$.
 
 Small-sample properties include:
 
@@ -73,7 +73,7 @@ Large-sample properties include:
 
 -   Asymptotic distribution
 
-An estimator can have an asymptotic variance (efficiency); although, in EC910 will mostly discuss estimators with variances that shrink to zero as $n\longrightarrow \infty$.
+An estimator can have an asymptotic variance (efficiency); although, in EC910 will mostly discuss estimators with variances that shrink to zero as $n\rightarrow \infty$.
 
 ::: {.important-prop title="Important"}
 The phrase "finite-sample" is also used in other contexts. For example, in the Causal Inference (or Treatment Effects) literature "finite-sample" is used to describe *estimands*. This literature distinguishes between finite-sample and super-population estimands. The former relate to settings where the sample is treated as fixed, while the latter to settings where the sample is take as a draw from an unknown super population.
@@ -145,10 +145,10 @@ The cross-product term in line 2 is 0. [Can you show this?]{style="color: blue;"
 Consistency is an asumptotic property of an estimator.
 
 ::: {#def-consistency}
-The estimator $\hat{\theta}_n$ is a consistent estimator of $\theta$ if it converges in probability to $\theta$ as $n\longrightarrow\infty$,
+The estimator $\hat{\theta}_n$ is a consistent estimator of $\theta$ if it converges in probability to $\theta$ as $n\rightarrow\infty$,
 
 $$
-Pr(|\hat{\theta}_n-\theta|\geq\varepsilon)\longrightarrow 0\qquad n\longrightarrow 0
+Pr(|\hat{\theta}_n-\theta|\geq\varepsilon)\rightarrow 0\qquad n\rightarrow 0
 $$ for $\varepsilon$ very small.[^1]
 :::
 
@@ -160,7 +160,11 @@ We use the notations, $p\lim$,
 
 $$
 p\lim\hat{\theta}_n = \theta
-$$ or convergence in probability, $$\hat{\theta}_n \longrightarrow_p \theta\qquad\text{as}\qquad n\longrightarrow \infty$$
+$$ 
+
+or convergence in probability, 
+
+$$\hat{\theta}_n \rightarrow_p \theta\qquad\text{as}\qquad n\rightarrow \infty$$
 
 An important theorem regarding the consistency of estimators is Slutzky's theorem concerning continuous functions of estimators. For example, we will use this theorem to prove the consistency of the OLS estimator.
 
@@ -181,7 +185,7 @@ Given two consistent estimators $\big[\hat{\theta}_n,\hat{\beta}_n\big]$,
 
 1.  $p\lim\;(a\hat{\theta}_n+ b\hat{\beta}_n) = a(p\lim\;\hat{\theta}_n)+b(p\lim\;\hat{\beta}_n) =a\theta +b\beta$ for constants $a$ and $b$
 
-2.  $p\lim\;(\hat{\theta}_n\times\hat{\beta}_n) = (p\lim\;\hat{\theta}_n)\times (p\lim\;\hat{\beta}\_n)=\theta\beta$
+2.  $p\lim\;(\hat{\theta}_n\times\hat{\beta}_n) = (p\lim\;\hat{\theta}_n)\times (p\lim\;\hat{\beta}_n)=\theta\beta$
 
 3.  $p\lim\;(\hat{\theta}_n^2) = (p\lim\;\hat{\theta}_n)^2 = \theta^2$
 
@@ -195,13 +199,13 @@ MSE convergence (to zero) is a **sufficient** condition for consistency. However
 For an *unbiased* estimator,
 
 $$
-Var(\hat{\theta}_n)\longrightarrow 0 \quad \text{as}\quad n\longrightarrow 0 \implies p\lim\hat{\theta}_n = \theta
+Var(\hat{\theta}_n)\rightarrow 0 \quad \text{as}\quad n\rightarrow 0 \implies p\lim\hat{\theta}_n = \theta
 $$
 
 For a biased estimator,
 
 $$
-MSE(\hat{\theta}_n)\longrightarrow 0 \quad \text{as}\quad n\longrightarrow 0 \implies p\lim\hat{\theta}_n = \theta
+MSE(\hat{\theta}_n)\rightarrow 0 \quad \text{as}\quad n\rightarrow 0 \implies p\lim\hat{\theta}_n = \theta
 $$
 
 ::: {#exr-mseconv}
@@ -216,7 +220,7 @@ The above exercise relates to one of the most important examples of convergence 
 #### Weak Law of Large Numbers
 
 Let $X_1,...,X_n$ be a sample of iid random variables, such that $E|X_1|<\infty$. Then, $$
-n^{-1}\sum_{i=1}^{n}X_i \longrightarrow_p E[X_1]\qquad \text{as}\qquad n\longrightarrow \infty
+n^{-1}\sum_{i=1}^{n}X_i \rightarrow_p E[X_1]\qquad \text{as}\qquad n\rightarrow \infty
 $$
 :::
 
@@ -224,7 +228,7 @@ Here we use the notation $E[X_1]$, since the data is iid and $E[X_i]=E[X_1]$ for
 
 ::: {#thm-wlln2}
 Let $X_1,...,X_n$ be a sample of iid random variables, such that $Var(X_1)<\infty$. Then, $$
-n^{-1}\sum_{i=1}^{n}X_i \longrightarrow_p E[X_1]\qquad \text{as}\qquad n\longrightarrow \infty
+n^{-1}\sum_{i=1}^{n}X_i \rightarrow_p E[X_1]\qquad \text{as}\qquad n\rightarrow \infty
 $$
 :::
 
@@ -250,7 +254,7 @@ Pr\bigg(\bigg|n^{-1}\sum_{i=1}^{n}X_i - E[X_1]\bigg|\geq \varepsilon\bigg) &= Pr
 &=\frac{\sum_{i=1}^{n}\sum_{j=1}^{n}E\big[(X_i - E[X_1])(X_j - E[X_1])\big]}{n^2\varepsilon^2} \\
 &=\frac{\sum_{i=1}^{n}E\big[(X_i - E[X_1])^2\big]}{n^2\varepsilon^2} \\
 &=\frac{nVar(X_1)}{n^2\varepsilon^2} \\
-&\longrightarrow 0 \qquad \text{as}\qquad n\longrightarrow \infty
+&\rightarrow 0 \qquad \text{as}\qquad n\rightarrow \infty
 \end{aligned}
 $$
 :::
@@ -260,7 +264,7 @@ Note, the WLLN holds under a weaker condition than iid. Between lines 3 and 4 we
 Under the WLLN, you can show that the sample variance converges in probability to the population variance.
 
 $$
-p\lim \big(n^{-1}\sum_{i=1}^{n}(X_i - \overline{X})^2\big) \longrightarrow_p Var(X_i)
+p\lim \big(n^{-1}\sum_{i=1}^{n}(X_i - \overline{X})^2\big) \rightarrow_p Var(X_i)
 $$
 
 ### Distribution
@@ -278,13 +282,13 @@ Before discussing CLT, we must define a new convergence concept: convergence in 
 ::: {#def-condist}
 Let $X_1,...,X_n$ be a sequence of random variables and let $F_n(x)$ denote the marginal CDF of $X_n$, $$
 F_n(x) = Pr(X_n\leq x)
-$$ Then, $X_n$ converges *in distribution* if $F_n(x)\longrightarrow F(x)$ as $n\longrightarrow \infty$, where F(x) is continuous.
+$$ Then, $X_n$ converges *in distribution* if $F_n(x)\rightarrow F(x)$ as $n\rightarrow \infty$, where F(x) is continuous.
 :::
 
 Convergence in distribution can be denoted,
 
 $$
-X_n\longrightarrow_d X
+X_n\rightarrow_d X
 $$
 
 where X is a random variable with distribution function $F(x)$. Note, it is not the random variables that are converging, but rather the distributions of said random variables.
@@ -337,14 +341,14 @@ The rate of convergence for this estimator is $\sqrt{n}$. The estimator is said 
 Let $X_1,...,X_n$ be a sample of iid random variables such that $E[X_1]=0$ and $0<E[X_1^2]<\infty$. Then,
 
 $$
-n^{-1/2}\sum_{i=1}^{n}X_i\longrightarrow_d N(0,E[X_1^2])
+n^{-1/2}\sum_{i=1}^{n}X_i\rightarrow_d N(0,E[X_1^2])
 $$
 :::
 
 Consider a random sample drawn independently from a distribution with mean $\mu$ and variance $\sigma$. Note, this distribution need not be Normal. It holds that, \$X_1-\mu,...,X_n-\mu \$ are iid and $E[X_1-\mu]$. In addition, $E[(X_1-\mu)^2]=\sigma^2<\infty$. Therefore, by CLT
 
 $$
-n^{1/2}(\overline{X}-\mu) = n^{-1/2}\sum_{i=1}^{n}(X_i-\mu)\longrightarrow_d N(0,\sigma^2)
+n^{1/2}(\overline{X}-\mu) = n^{-1/2}\sum_{i=1}^{n}(X_i-\mu)\rightarrow_d N(0,\sigma^2)
 $$
 
 In practice, we use CLT to determine the *approximate* distribution of an estimator in large samples. Based on the above result, we can say

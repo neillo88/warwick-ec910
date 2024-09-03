@@ -81,7 +81,8 @@ For a sample of $n$ observations, we can stack the unit-level linear regression 
 $$
 Y =\underbrace{\begin{bmatrix}Y_1 \\ Y_2 \\ \vdots \\ Y_n \end{bmatrix}}_{n\times 1} = \underbrace{\begin{bmatrix}X_1'\beta \\ X_2'\beta \\ \vdots \\ X_n'\beta\end{bmatrix}}_{n\times 1}  + \underbrace{\begin{bmatrix}\varepsilon_1 \\ \varepsilon_2 \\ \vdots \\ \varepsilon_n\end{bmatrix}}_{n\times 1}  
 = \underbrace{\begin{bmatrix}X_{11} & X_{12} & \dots & X_{1k}\\ X_{21} & X_{22} && \\ \vdots & & \ddots & \\ X_{n1} & & & X_{nk} \end{bmatrix}}_{n\times k} \underbrace{\begin{bmatrix}\beta_1 \\ \beta_2 \\ \vdots \\ \beta_k\end{bmatrix}}_{k\times 1} + \begin{bmatrix}\varepsilon_1 \\ \varepsilon_2 \\ \vdots \\ \varepsilon_n\end{bmatrix} = X\beta + \varepsilon
-$$ Notice, in matrix notation, you lose the transpose from $X_i'\beta$. Apart from the absence of the $i$ subscript, this is a useful way of knowing the dimension of the equation (in my notes). You MUST always write $X\beta$ and not $\beta X$. For the scalar case, $X_i'\beta = \beta'X_i$, but for the vector case $\beta X$ is not defined since $\beta$ is $k\times 1$ and $X$ is $n\times k$.
+$$ 
+Notice, in matrix notation, you lose the transpose from $X_i'\beta$. Apart from the absence of the $i$ subscript, this is a useful way of knowing the dimension of the equation (in my notes). You MUST always write $X\beta$ and not $\beta X$. For the scalar case, $X_i'\beta = \beta'X_i$, but for the vector case $\beta X$ is not defined since $\beta$ is $k\times 1$ and $X$ is $n\times k$.
 
 ## CLRM Assumptions
 
@@ -141,7 +142,7 @@ There is an alternative version of the CLRM in which $X$ is a non-random, matrix
 
 **Assumption CLRM 3^a^.** Homoskedasticity: $Var(\varepsilon) = \sigma^2I_n$
 
-**Assumption CLRM 5^a^.** Normality of the error term: $U \sim N(0,\sigma^2 I_n)$
+**Assumption CLRM 5^a^.** Normality of the error term: $\varepsilon \sim N(0,\sigma^2 I_n)$
 
 **Assumption CLRM 6^a^.** Observations $\{\varepsilon_i: i=1,...,n\}$ are independently and identically distributed (iid).
 

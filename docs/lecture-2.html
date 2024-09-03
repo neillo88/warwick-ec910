@@ -190,6 +190,10 @@ window.Quarto = {
     <a class="dropdown-item" href="./lecture-2.html">
  <span class="dropdown-text">Lecture 2</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./lecture-3.html">
+ <span class="dropdown-text">Lecture 3</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -318,7 +322,7 @@ Important
 </div>
 <section id="small-vs-large-sample-properties" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="small-vs-large-sample-properties"><span class="header-section-number">3.1</span> Small vs large sample properties</h3>
-<p>Sometimes it is easier to study the large-sample, or <em>asymptotic</em>, properties of an estimator. That is, the properties of the estimator as the sample size gets large: <span class="math inline">\(n\longrightarrow \infty\)</span>.</p>
+<p>Sometimes it is easier to study the large-sample, or <em>asymptotic</em>, properties of an estimator. That is, the properties of the estimator as the sample size gets large: <span class="math inline">\(n\rightarrow \infty\)</span>.</p>
 <p>Small-sample properties include:</p>
 <ul>
 <li><p>Biasedness</p></li>
@@ -330,7 +334,7 @@ Important
 <li><p>Consistency</p></li>
 <li><p>Asymptotic distribution</p></li>
 </ul>
-<p>An estimator can have an asymptotic variance (efficiency); although, in EC910 will mostly discuss estimators with variances that shrink to zero as <span class="math inline">\(n\longrightarrow \infty\)</span>.</p>
+<p>An estimator can have an asymptotic variance (efficiency); although, in EC910 will mostly discuss estimators with variances that shrink to zero as <span class="math inline">\(n\rightarrow \infty\)</span>.</p>
 <div class="important-prop" title="Important">
 <p>The phrase “finite-sample” is also used in other contexts. For example, in the Causal Inference (or Treatment Effects) literature “finite-sample” is used to describe <em>estimands</em>. This literature distinguishes between finite-sample and super-population estimands. The former relate to settings where the sample is treated as fixed, while the latter to settings where the sample is take as a draw from an unknown super population.</p>
 <p>The estimator for a super-population estimand will have both finite and asymptotic properities.</p>
@@ -399,16 +403,18 @@ E\big[(\hat{\theta}-\theta)^2\big] &amp;= E\big[\big((\hat{\theta}-E[\hat{\theta
 <h3 data-number="3.4" class="anchored" data-anchor-id="consistency"><span class="header-section-number">3.4</span> Consistency</h3>
 <p>Consistency is an asumptotic property of an estimator.</p>
 <div id="def-consistency" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 2</strong></span> The estimator <span class="math inline">\(\hat{\theta}_n\)</span> is a consistent estimator of <span class="math inline">\(\theta\)</span> if it converges in probability to <span class="math inline">\(\theta\)</span> as <span class="math inline">\(n\longrightarrow\infty\)</span>,</p>
+<p><span class="theorem-title"><strong>Definition 2</strong></span> The estimator <span class="math inline">\(\hat{\theta}_n\)</span> is a consistent estimator of <span class="math inline">\(\theta\)</span> if it converges in probability to <span class="math inline">\(\theta\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>,</p>
 <p><span class="math display">\[
-Pr(|\hat{\theta}_n-\theta|\geq\varepsilon)\longrightarrow 0\qquad n\longrightarrow 0
+Pr(|\hat{\theta}_n-\theta|\geq\varepsilon)\rightarrow 0\qquad n\rightarrow 0
 \]</span> for <span class="math inline">\(\varepsilon\)</span> very small.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 </div>
 <p>Intuitively, this means that tail area probabilities (i.e.&nbsp;probability of an estimator very far from the true value) goes to zero as the sample size gets large.</p>
 <p>We use the notations, <span class="math inline">\(p\lim\)</span>,</p>
 <p><span class="math display">\[
 p\lim\hat{\theta}_n = \theta
-\]</span> or convergence in probability, <span class="math display">\[\hat{\theta}_n \longrightarrow_p \theta\qquad\text{as}\qquad n\longrightarrow \infty\]</span></p>
+\]</span></p>
+<p>or convergence in probability,</p>
+<p><span class="math display">\[\hat{\theta}_n \rightarrow_p \theta\qquad\text{as}\qquad n\rightarrow \infty\]</span></p>
 <p>An important theorem regarding the consistency of estimators is Slutzky’s theorem concerning continuous functions of estimators. For example, we will use this theorem to prove the consistency of the OLS estimator.</p>
 <div id="thm-slutzky" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 1 (Slutzky’s Theorem)</strong></span> If <span class="math inline">\(p\lim\hat{\theta}_n = \theta\)</span> and <span class="math inline">\(h(\cdot)\)</span> is a continuous function, then</p>
@@ -421,7 +427,7 @@ p\lim\;h(\hat{\theta}_n) = h\big(p\lim\hat{\theta}_n\big)=h(\theta)
 <p><span class="theorem-title"><strong>Example 1</strong></span> Given two consistent estimators <span class="math inline">\(\big[\hat{\theta}_n,\hat{\beta}_n\big]\)</span>,</p>
 <ol type="1">
 <li><p><span class="math inline">\(p\lim\;(a\hat{\theta}_n+ b\hat{\beta}_n) = a(p\lim\;\hat{\theta}_n)+b(p\lim\;\hat{\beta}_n) =a\theta +b\beta\)</span> for constants <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span></p></li>
-<li><p><span class="math inline">\(p\lim\;(\hat{\theta}_n\times\hat{\beta}_n) = (p\lim\;\hat{\theta}_n)\times (p\lim\;\hat{\beta}\_n)=\theta\beta\)</span></p></li>
+<li><p><span class="math inline">\(p\lim\;(\hat{\theta}_n\times\hat{\beta}_n) = (p\lim\;\hat{\theta}_n)\times (p\lim\;\hat{\beta}_n)=\theta\beta\)</span></p></li>
 <li><p><span class="math inline">\(p\lim\;(\hat{\theta}_n^2) = (p\lim\;\hat{\theta}_n)^2 = \theta^2\)</span></p></li>
 <li><p><span class="math inline">\(p\lim\;\bigg(\frac{\hat{\theta}_n}{\hat{\beta}_n}\bigg) = \frac{\theta}{\beta}\)</span></p></li>
 <li><p><span class="math inline">\(p\lim\;\exp(\hat{\theta}_n) = \exp(p\lim\;\hat{\theta}_n) = \exp(\theta)\)</span></p></li>
@@ -430,11 +436,11 @@ p\lim\;h(\hat{\theta}_n) = h\big(p\lim\hat{\theta}_n\big)=h(\theta)
 <p>MSE convergence (to zero) is a <strong>sufficient</strong> condition for consistency. However, it is not a necessary.</p>
 <p>For an <em>unbiased</em> estimator,</p>
 <p><span class="math display">\[
-Var(\hat{\theta}_n)\longrightarrow 0 \quad \text{as}\quad n\longrightarrow 0 \implies p\lim\hat{\theta}_n = \theta
+Var(\hat{\theta}_n)\rightarrow 0 \quad \text{as}\quad n\rightarrow 0 \implies p\lim\hat{\theta}_n = \theta
 \]</span></p>
 <p>For a biased estimator,</p>
 <p><span class="math display">\[
-MSE(\hat{\theta}_n)\longrightarrow 0 \quad \text{as}\quad n\longrightarrow 0 \implies p\lim\hat{\theta}_n = \theta
+MSE(\hat{\theta}_n)\rightarrow 0 \quad \text{as}\quad n\rightarrow 0 \implies p\lim\hat{\theta}_n = \theta
 \]</span></p>
 <div id="exr-mseconv" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 1</strong></span> Given a sample of independently and identically distributed (iid) random variables, <span class="math display">\[
@@ -444,13 +450,13 @@ X_1,...,X_n \sim N(\mu,\sigma^2)
 <p>The above exercise relates to one of the most important examples of convergence in probability:</p>
 <div id="thm-wlln" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 2 (Weak Law of Large Numbers)</strong></span> Let <span class="math inline">\(X_1,...,X_n\)</span> be a sample of iid random variables, such that <span class="math inline">\(E|X_1|&lt;\infty\)</span>. Then, <span class="math display">\[
-n^{-1}\sum_{i=1}^{n}X_i \longrightarrow_p E[X_1]\qquad \text{as}\qquad n\longrightarrow \infty
+n^{-1}\sum_{i=1}^{n}X_i \rightarrow_p E[X_1]\qquad \text{as}\qquad n\rightarrow \infty
 \]</span></p>
 </div>
 <p>Here we use the notation <span class="math inline">\(E[X_1]\)</span>, since the data is iid and <span class="math inline">\(E[X_i]=E[X_1]\)</span> for <span class="math inline">\(i=1,...,n\)</span>. We prove a modified version of the WLLN theorem, assuming <span class="math inline">\(E[X_1^2]&lt;\infty\)</span>. Since <span class="math inline">\(E[X_1^2]&lt;\infty\implies\)</span> both <span class="math inline">\(E|X_1|&lt;\infty\)</span> and <span class="math inline">\(Var(X_1)&lt;\infty\)</span>, we will have proven WLLN theorem.</p>
 <div id="thm-wlln2" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 3</strong></span> Let <span class="math inline">\(X_1,...,X_n\)</span> be a sample of iid random variables, such that <span class="math inline">\(Var(X_1)&lt;\infty\)</span>. Then, <span class="math display">\[
-n^{-1}\sum_{i=1}^{n}X_i \longrightarrow_p E[X_1]\qquad \text{as}\qquad n\longrightarrow \infty
+n^{-1}\sum_{i=1}^{n}X_i \rightarrow_p E[X_1]\qquad \text{as}\qquad n\rightarrow \infty
 \]</span></p>
 </div>
 <p>To complete the proof of WLLN, we will need to use Markov’s Inequality. We will not prove this lemma, but versions of the proof are readily available online.</p>
@@ -469,14 +475,14 @@ Pr\bigg(\bigg|n^{-1}\sum_{i=1}^{n}X_i - E[X_1]\bigg|\geq \varepsilon\bigg) &amp;
 &amp;=\frac{\sum_{i=1}^{n}\sum_{j=1}^{n}E\big[(X_i - E[X_1])(X_j - E[X_1])\big]}{n^2\varepsilon^2} \\
 &amp;=\frac{\sum_{i=1}^{n}E\big[(X_i - E[X_1])^2\big]}{n^2\varepsilon^2} \\
 &amp;=\frac{nVar(X_1)}{n^2\varepsilon^2} \\
-&amp;\longrightarrow 0 \qquad \text{as}\qquad n\longrightarrow \infty
+&amp;\rightarrow 0 \qquad \text{as}\qquad n\rightarrow \infty
 \end{aligned}
 \]</span></p>
 </div>
 <p>Note, the WLLN holds under a weaker condition than iid. Between lines 3 and 4 we used the independence of observations to set correlations between units to 0. Thus, we required a weaker assumption of uncorrelateness: <span class="math inline">\(Cov(X_i,X_j)=0\;\forall\;i\neq j\)</span>.</p>
 <p>Under the WLLN, you can show that the sample variance converges in probability to the population variance.</p>
 <p><span class="math display">\[
-p\lim \big(n^{-1}\sum_{i=1}^{n}(X_i - \overline{X})^2\big) \longrightarrow_p Var(X_i)
+p\lim \big(n^{-1}\sum_{i=1}^{n}(X_i - \overline{X})^2\big) \rightarrow_p Var(X_i)
 \]</span></p>
 </section>
 <section id="distribution" class="level3" data-number="3.5">
@@ -488,11 +494,11 @@ p\lim \big(n^{-1}\sum_{i=1}^{n}(X_i - \overline{X})^2\big) \longrightarrow_p Var
 <div id="def-condist" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 3</strong></span> Let <span class="math inline">\(X_1,...,X_n\)</span> be a sequence of random variables and let <span class="math inline">\(F_n(x)\)</span> denote the marginal CDF of <span class="math inline">\(X_n\)</span>, <span class="math display">\[
 F_n(x) = Pr(X_n\leq x)
-\]</span> Then, <span class="math inline">\(X_n\)</span> converges <em>in distribution</em> if <span class="math inline">\(F_n(x)\longrightarrow F(x)\)</span> as <span class="math inline">\(n\longrightarrow \infty\)</span>, where F(x) is continuous.</p>
+\]</span> Then, <span class="math inline">\(X_n\)</span> converges <em>in distribution</em> if <span class="math inline">\(F_n(x)\rightarrow F(x)\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>, where F(x) is continuous.</p>
 </div>
 <p>Convergence in distribution can be denoted,</p>
 <p><span class="math display">\[
-X_n\longrightarrow_d X
+X_n\rightarrow_d X
 \]</span></p>
 <p>where X is a random variable with distribution function <span class="math inline">\(F(x)\)</span>. Note, it is not the random variables that are converging, but rather the distributions of said random variables.</p>
 <p>As with convergence in probability, there are some basic rules for manipulation.</p>
@@ -532,12 +538,12 @@ p \lim\;\overline{X} = E[X_1]
 <div id="thm-clt" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 5 (Central Limit Theorem)</strong></span> Let <span class="math inline">\(X_1,...,X_n\)</span> be a sample of iid random variables such that <span class="math inline">\(E[X_1]=0\)</span> and <span class="math inline">\(0&lt;E[X_1^2]&lt;\infty\)</span>. Then,</p>
 <p><span class="math display">\[
-n^{-1/2}\sum_{i=1}^{n}X_i\longrightarrow_d N(0,E[X_1^2])
+n^{-1/2}\sum_{i=1}^{n}X_i\rightarrow_d N(0,E[X_1^2])
 \]</span></p>
 </div>
 <p>Consider a random sample drawn independently from a distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma\)</span>. Note, this distribution need not be Normal. It holds that, $X_1-,…,X_n-$ are iid and <span class="math inline">\(E[X_1-\mu]\)</span>. In addition, <span class="math inline">\(E[(X_1-\mu)^2]=\sigma^2&lt;\infty\)</span>. Therefore, by CLT</p>
 <p><span class="math display">\[
-n^{1/2}(\overline{X}-\mu) = n^{-1/2}\sum_{i=1}^{n}(X_i-\mu)\longrightarrow_d N(0,\sigma^2)
+n^{1/2}(\overline{X}-\mu) = n^{-1/2}\sum_{i=1}^{n}(X_i-\mu)\rightarrow_d N(0,\sigma^2)
 \]</span></p>
 <p>In practice, we use CLT to determine the <em>approximate</em> distribution of an estimator in large samples. Based on the above result, we can say</p>
 <p><span class="math display">\[

@@ -13,7 +13,9 @@ website:
           - href: lecture-1.qmd
             text: Lecture 1
           - href: lecture-2.qmd
-            text: Lecture 2  
+            text: Lecture 2
+          - href: lecture-3.qmd
+            text: Lecture 3
       - text: Seminars
         menu:
           - href: seminar-1.qmd
