@@ -1,0 +1,136 @@
+---
+format: 
+  revealjs:
+    slide-number: true
+    incremental: false
+    smaller: false
+    scrollable: false
+    logo: images/aubergine_master_logo_for_digital_png.png
+    footer: "EC910: Econometrics B"
+---
+
+# Econometrics B {background-color="rgba(109,205,184,.7)"}
+
+EC910/EC987
+
+## Outline
+
+The general structure of EC910 (or EC987[^1]); including,
+
+[^1]: MSc BES Economics-track students only take term 1 of Econometrics B
+
+-   who it's for;
+
+-   'metrics A or B;
+
+-   a tentative syllabus.
+
+## Who's it for?
+
+Target audience: [someone who wants to understand the language and concepts needed to comprehend more technical Economic research.]{style="color: rgba(60,16,83,1);"}
+
+Because,
+
+::: incremental
+1.  you are *considering* a PhD;
+
+2.  you have a strong background in Econometrics, Statistics, or Mathematics (incl., Physics and Engineering);
+
+3.  your favourite question is "Why?" and proofs help you sleep;
+
+4.  you don't like sunshine and prefer Greek letters.
+:::
+
+## Litmus Test
+
+What is the first thing you think, when you see this?
+
+. . .
+
+$$
+\bigg[\underbrace{n^{-1}\sum_{i=1}^n\frac{\partial g(W_i,\hat{\theta}^{GMM})}{\partial \theta'}}_{Q_n\big(\hat{\theta}^{GMM}\big)}\bigg]'A_n'A_n n^{-1}\sum_{i=1}^{n}g(W_i,\hat{\theta}^{GMM}) = 0
+$$
+
+. . .
+
+-   "please, NO MORE"
+
+-   "interesting, tell me more"
+
+## Individual Learning Outcomes
+
+By the end of this year, you should be able to:
+
+::: incremental
+1.  discuss and prove the properties of common estimators, and demonstrate these properties using simulations;
+
+2.  compute various estimators using experimental and observational data;
+
+3.  use statistical languages/software (R/Stata);
+
+4.  accurately interpret and discuss the results of empirical research output;
+
+5.  engage more confidently with technical Economics research.
+:::
+
+## Metrics A or B
+
+::: columns
+::: {.column width="60%"}
+Metrics B:
+
+1.  assumes familiarity with basic material
+
+2.  more methodological, incl. proofs
+
+3.  theory focused
+
+4.  use vector notation
+
+5.  applications in seminars
+:::
+
+::: {.column width="40%"}
+![](images/matrix-red-blue-pill.jpg){width="100%"}
+:::
+:::
+
+## Foundation
+
+Metrics B assumes you have a good knowledge of the following:
+
+1.  t and F tests for linear restrictions
+2.  Heteroskedasticity and Serial Correlation
+3.  Estimation - in the presence of above problems
+4.  Dummy variables.
+5.  Exogeneity and Endogeneity
+
+## Module Structure
+
+-   **Term 1:** [Neil Lloyd](https://warwick.ac.uk/fac/soc/economics/staff/nlloyd/) (Module Leader)
+
+    -   Cross-section and panel data models
+
+    -   Selection models
+
+    -   Causal inference
+
+-   **Term 2:** [Han Zhang](https://warwick.ac.uk/fac/soc/economics/staff/hzzhang/)
+
+    -   Instrumental Variables
+
+    -   Time Series
+
+## Weekly Seminars
+
+-   Start Week 3
+    
+-   Sign-up for class via Tabula
+
+-   **Tutors**
+
+    -   Neil Lloyd (Term 1)
+    
+    -   Carolina Kansikas (Term 1)
+    
+    -   Han Zhang (Term 2)

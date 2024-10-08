@@ -16,10 +16,10 @@ website:
             text: Lecture 2
           - href: lecture-3.qmd
             text: Lecture 3
-      - text: Seminars
+      - text: Problem Sets
         menu:
-          - href: seminar-1.qmd
-            text: Seminar 1
+          - href: problem-sets/problem-set-1.html
+            text: Problem Set 1
       - text: Additional
         menu:
           - href: material-cef.qmd
