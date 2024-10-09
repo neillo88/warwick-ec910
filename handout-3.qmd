@@ -12,7 +12,7 @@ format:
     toc: true              # Include a table of contents in the PDF output
     number-sections: true  # Number the sections in the PDF output
     keep-md: false          # Optionally keep the intermediate markdown file
-    output-file: "lecture-3.pdf" # Specify the PDF output file name
+    output-file: "handout-3.pdf" # Specify the PDF output file name
     echo: false  # hides code
 ---
 
