@@ -189,14 +189,12 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sec-cef" id="toc-sec-cef" class="nav-link active" data-scroll-target="#sec-cef">Conditional Expectation Function</a>
+  <li><a href="#interpretation-of-linear-models" id="toc-interpretation-of-linear-models" class="nav-link active" data-scroll-target="#interpretation-of-linear-models">Interpretation of Linear Models</a>
   <ul class="collapse">
-  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition">Definition</a></li>
-  <li><a href="#law-of-iterated-expectations" id="toc-law-of-iterated-expectations" class="nav-link" data-scroll-target="#law-of-iterated-expectations">Law of Iterated Expectations</a></li>
-  <li><a href="#properties-of-the-cef" id="toc-properties-of-the-cef" class="nav-link" data-scroll-target="#properties-of-the-cef">Properties of the CEF</a></li>
+  <li><a href="#semi-elasticities-and-elasticities" id="toc-semi-elasticities-and-elasticities" class="nav-link" data-scroll-target="#semi-elasticities-and-elasticities">Semi-elasticities and elasticities</a></li>
   </ul></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="material-cef.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="material-interpretation.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -204,210 +202,44 @@ window.Quarto = {
 
 
 
-<section id="sec-cef" class="level1">
-<h1>Conditional Expectation Function</h1>
-<p>Consider the random variable <span class="math inline">\(Y_i\in\mathbb{R}\)</span> and the random vector <span class="math inline">\(X_i\in\mathbb{R}^k\)</span>, <span class="math inline">\(k\geq1\)</span>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<section id="definition" class="level2">
-<h2 class="anchored" data-anchor-id="definition">Definition</h2>
-<p>The Conditional Expecation Function (CEF) - denoted <span class="math inline">\(E[Y_i|X_i]\)</span> - is a <strong>random function</strong>. It is a function that returns the expected value of <span class="math inline">\(Y_i\)</span> for each realized value of <span class="math inline">\(X_i\)</span>. Since <span class="math inline">\(X_i\)</span> is a random vector the resulting function is random itself.</p>
-<p>If we fix <span class="math inline">\(X_i=x\)</span>, then the value at which we are evaluating the function is no longer random. The result is a constant: the expected value of <span class="math inline">\(Y_i\)</span> at the given <span class="math inline">\(x\)</span>.</p>
+<section id="interpretation-of-linear-models" class="level1">
+<h1>Interpretation of Linear Models</h1>
+<p>Consider this simplified version of the linear regression model popularized by Mincer.</p>
+<p><span class="math display">\[WAGE_i = \gamma_1 + \gamma_2EDU_i + \gamma_3EXP_ i + \upsilon_i\]</span> where,</p>
+<ul>
+<li><p><span class="math inline">\(WAGE_i\)</span>: individual wage (£’s)</p></li>
+<li><p><span class="math inline">\(EDU_i\)</span>: years of schooling/education</p></li>
+<li><p><span class="math inline">\(EXP_i\)</span>: years of experience</p></li>
+</ul>
+<p>Assuming <span class="math inline">\(E[\upsilon_i|S_i,EXP_i]=0\)</span>, <span class="math inline">\(\beta_3\)</span> is the expected change in wages from an additional year of experience, holding fixed years of schooling. The model implies that if we were to consider two individuals with the same years of schooling, but a 1-year difference in work experience, then we would expect the more experienced worker to earn <span class="math inline">\(\beta_3\)</span> £’s more.</p>
+<p>We would get the same interpretation from an experiment where we <em>control</em> individual schooling, but (randomly) vary years of experience by one year across units in the population.</p>
+<p>Remember, for the above linear regression model, this interpretation is based on the assumption that the conditional expectation function is correctly specified. If no, then this interpretation is incorrect. Moreover, there are other ways to think about “controlling” for covariates that we will address towards the end of this module.</p>
+<section id="semi-elasticities-and-elasticities" class="level3">
+<h3 class="anchored" data-anchor-id="semi-elasticities-and-elasticities">Semi-elasticities and elasticities</h3>
+<p>The original Mincer equation has the outcome as the log of wages,</p>
+<p><span class="math display">\[\ln(WAGE_i) = \gamma_1 + \gamma_2EDU_i + \gamma_3EXP_ i + \gamma_4EXP^2_ i + \upsilon_i\]</span> The interpretation of <span class="math inline">\(\beta_3\)</span> is now in terms of expected log-points of wages.</p>
 <p><span class="math display">\[
-E[Y_i|X_i=x] = \int y \cdot f_{Y}(y|X_i=x)dy = \int y dF_{Y}(y|X_i=x)
+\beta_3 = \frac{\partial E[ln(WAGE_i)|EDU_i,EXP_i]}{\partial EXP_{i}}
 \]</span></p>
-<p>This follows the same logic that the expectation of a random variable is, <span class="math inline">\(E[Y_i]\)</span>, is not random.</p>
-<p><strong>Discrete case.</strong> The book devotes a lot time to the discussion of cases were <span class="math inline">\(X_i\)</span> is a discrete random <em>variable</em>; using the notation <span class="math inline">\(W_i\in\{0,1\}\)</span> or <span class="math inline">\(D_i\in\{0,1\}\)</span>. In this unique case, we can write the CEF as,</p>
+<p>This can be converted into a percentage change in (expected) wages,</p>
+<p><span class="math display">\[\%\Delta E[WAGE_i|EDU_i,EXP_i] = (\exp^{\beta_3}-1)\times 100\]</span> For values of <span class="math inline">\(\beta_3 \in [-0.1,0.1]\)</span> this value is closely approximated by <span class="math inline">\(\beta_3\times 100\)</span>.</p>
+<p>Next, consider a model where the regressor is in logs, while the outcome remains in levels. For example, a model of commuting cost as a function of distance to work,</p>
+<p><span class="math display">\[COST_i = \gamma_1 + \gamma_2\ln(DIST_i) + + \nu_i\]</span> Here the interpretation of <span class="math inline">\(\beta_2\)</span> is, <span class="math display">\[
+\beta_2 = \frac{\partial E[COST_i|\ln(DIST_i)]}{\partial \ln(DIST_i)}
+\]</span> We can convert this to <span class="math inline">\(\%\Delta\)</span> in <span class="math inline">\(DIST_i\)</span>, using the fact that a 1% change in distance implies a change in log points of <span class="math inline">\(\ln(1.01)\approxeq 0.01\)</span>. Thus, we can approximate the expected change in cost by <span class="math inline">\(\beta_2/100\)</span>.</p>
+<p>Finally, when both the outcome and regressor are logged, the coefficient as an elasticity interpretation. For example, in the taxation literature, it is common to see taxable income modeled as a function of the (marginal) tax rate,</p>
 <p><span class="math display">\[
-E[Y_i|D_i] = E[Y_i|D_i=0] + D_i\cdot\big(E[Y_i|D_i=1]-E[Y_i|D_i=0]\big)
-\]</span></p>
-<p>The above function returns <span class="math inline">\(E[Y_i|D_i=0]\)</span> when <span class="math inline">\(D_i=0\)</span> and <span class="math inline">\(E[Y_i|D_i=1]\)</span> when <span class="math inline">\(D_i=1\)</span>. This expression for the CEF will be useful in latter chapters of the book.</p>
-</section>
-<section id="law-of-iterated-expectations" class="level2">
-<h2 class="anchored" data-anchor-id="law-of-iterated-expectations">Law of Iterated Expectations</h2>
-<p>The Law of Iterated Expectations says that given two random variables<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <span class="math inline">\([Y_i,X_i]\)</span>, we can express the unconditional expected value of <span class="math inline">\(Y_i\)</span> as the expected value of the conditional expectation of <span class="math inline">\(Y_i\)</span> on <span class="math inline">\(X_i\)</span>.</p>
+  \ln(INC_i) = \beta_1 + \beta_2 \ln(RATE_i) + \xi_i
+\]</span> Here, <span class="math inline">\(\beta_2\)</span> has an tax elasticity interpretation,</p>
 <p><span class="math display">\[
-        E[Y_i] = E\big[E[Y_i|X_i]\big]
+  \beta_2 = \frac{\partial E[\ln(INC_i)|\ln(RATE_i)]}{\partial \ln(RATE_i)} = \frac{\%\Delta E[INC_i|RATE_i]}{\%\Delta RATE_i}
 \]</span></p>
-<p>Where the outside expectation is with respect to <span class="math inline">\(X_i\)</span>,<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> since the CEF is a random function of <span class="math inline">\(X_i\)</span>. We can expand this as follows,</p>
-<p><span class="math display">\[
-E[Y_i] = \int t \cdot f_{Y_i}(t)dt = \int\int y \cdot f_{Y_i|X}(y|x)dyf_X(x)dx = E\big[E[Y_i|X_i]\big]
-\]</span></p>
-<div id="exm-cef" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1</strong></span> Suppose <span class="math inline">\(Y_i\)</span> and <span class="math inline">\(X_i\)</span> are both discrete, <span class="math inline">\(Y_i\in\{1,2\}\)</span> and <span class="math inline">\(X_i\in\{3,4\}\)</span>, with the joint distribution:</p>
-<table class="caption-top table">
-<caption><span class="math inline">\(f_{Y,X}\)</span></caption>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="math inline">\(X_i=3\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(X_i=2\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(Y_i=1\)</span></td>
-<td style="text-align: center;"><strong>1/10</strong></td>
-<td style="text-align: center;"><strong>3/10</strong></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(Y_i=2\)</span></td>
-<td style="text-align: center;"><strong>2/10</strong></td>
-<td style="text-align: center;"><strong>4/10</strong></td>
-</tr>
-</tbody>
-</table>
-<p>We can then define the two marginal distributions,</p>
-<table class="caption-top table">
-<caption><span class="math inline">\(f_Y\)</span></caption>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(Y_i=1\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(Y_i=2\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><strong>4/10</strong></td>
-<td style="text-align: center;"><strong>6/10</strong></td>
-</tr>
-</tbody>
-</table>
-<p>and,</p>
-<table class="caption-top table">
-<caption><span class="math inline">\(f_X\)</span></caption>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(X_i=3\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(X_i=4\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><strong>3/10</strong></td>
-<td style="text-align: center;"><strong>7/10</strong></td>
-</tr>
-</tbody>
-</table>
-<p>Likewise, we know the conditional distribution <span class="math inline">\(f_{Y|X}\)</span>; which we get by dividing the joint distribution by the marginal distribution of <span class="math inline">\(X_i\)</span>. Each column of the conditional distribution should add up to 1.</p>
-<table class="caption-top table">
-<caption><span class="math inline">\(f_{Y|X}\)</span></caption>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="math inline">\(X_i=3\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(X_i=4\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(Y_i=1\)</span></td>
-<td style="text-align: center;"><strong>1/3</strong></td>
-<td style="text-align: center;"><strong>3/7</strong></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(Y_i=2\)</span></td>
-<td style="text-align: center;"><strong>2/3</strong></td>
-<td style="text-align: center;"><strong>4/7</strong></td>
-</tr>
-</tbody>
-</table>
-<p>Now we can calculate the following objects:</p>
-<ol type="1">
-<li><span class="math inline">\(E[Y_i]\)</span></li>
-</ol>
-<p><span class="math display">\[
-\begin{aligned}
-        E[Y_i] =&amp; 1\cdot Pr(Y_i=1)+2\cdot Pr(Y_i=2) \\
-        =&amp;1\cdot 4/10+2\cdot 6/10 \\
-        =&amp;16/10
-    \end{aligned}
-\]</span></p>
-<ol start="2" type="1">
-<li><span class="math inline">\(E[Y_i|X_i=3]\)</span></li>
-</ol>
-<p><span class="math display">\[
-\begin{aligned}
-        E[Y_i|X_i=3] =&amp; 1\cdot Pr(Y_i=1|X_i=3)+2\cdot Pr(Y_i=2|X_i=3) \\
-        =&amp;1\cdot 1/3+2\cdot 2/3 \\
-        =&amp;5/3
-\end{aligned}
-\]</span></p>
-<ol start="3" type="1">
-<li><span class="math inline">\(E[Y_i|X_i=4]\)</span></li>
-</ol>
-<p><span class="math display">\[
-\begin{aligned}
-        E[Y_i|X_i=4] =&amp; 1\cdot Pr(Y_i=1|X_i=4)+2\cdot Pr(Y_i=2|X_i=4) \\
-        =&amp;1\cdot 3/7+2\cdot 4/7 \\
-        =&amp;11/7
-    \end{aligned}
-\]</span></p>
-<ol start="4" type="1">
-<li><span class="math inline">\(E\big[E[Y_i|X_i]\big]\)</span></li>
-</ol>
-<p><span class="math display">\[
-\begin{aligned}
-        E\big[E[Y_i|X_i]\big] =&amp; E[Y_i|X_i=3]\cdot Pr(X_i=3)+ E[Y_i|X_i=4]\cdot Pr(X_i=4) \\
-        =&amp;5/3\cdot3/10+11/7\cdot 7/10 \\
-        =&amp;16/10
-    \end{aligned}
-\]</span></p>
-<p>We have therefore demonstrated the law of iterated expectations.</p>
-</div>
-<p>We can extend this principle to conditional expectations. Suppose you have three random variables/vectors <span class="math inline">\(\{Y_i,X_i,Z_i\}\)</span>, we can express the conditional expected value of <span class="math inline">\(Y_i\)</span> on <span class="math inline">\(X_i\)</span> as the (conditional) expected value of the conditional expectation of <span class="math inline">\(Y_i\)</span> on <span class="math inline">\(X_i\)</span> <em>and</em> <span class="math inline">\(Z_i\)</span>.</p>
-<p><span class="math display">\[
-        E[Y_i|X_i] = E\big[E[Y_i|X_i,Z_i]|X_i\big]
-\]</span></p>
-<p>Here the outside expectation is with respect <span class="math inline">\(Z_i\)</span> <em>conditional on</em> <span class="math inline">\(X_i\)</span>. It utilizes the conditional distribution <span class="math inline">\(f_{Z|X}\)</span> to form the outside expectation,</p>
-<p><span class="math display">\[
-E[Y_i|X_i] = \int y \cdot f_{Y|X}(y|X_i)dt = \int\int y \cdot f_{Y|X,Z}(y|X_i,z)dyf_{Z|X}(z|X_i)dz = E\big[E[Y_i|X_i,Z_i]|X_i\big]
-\]</span></p>
-</section>
-<section id="properties-of-the-cef" class="level2">
-<h2 class="anchored" data-anchor-id="properties-of-the-cef">Properties of the CEF</h2>
-<p>The following three theorems can be found in a range of Econometrics textbooks and Microeconometrics texts, including MM &amp; MHE</p>
-<div id="thm-cef1" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 1</strong></span> We can express the <em>observed</em> outcome <span class="math inline">\(Y_i\)</span> as a sum of <span class="math inline">\(E[Y_i|X_i]+\varepsilon_i\)</span> where <span class="math inline">\(E[\varepsilon_i|X_i]=0\)</span> (i.e., mean independent).</p>
-</div>
-<div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span></p>
-<ol type="1">
-<li><p><span class="math inline">\(E[\varepsilon_i | X_i] = E[Y_i - E[Y_i | X_i] | X_i] = E[Y_i | X_i] - E[Y_i | X_i] = 0\)</span></p></li>
-<li><p><span class="math inline">\(E[h(X_i)\varepsilon_i] = E[h(X_i)E[\varepsilon_i | X_i]] = E[h(X_i) \times 0] = 0\)</span></p></li>
-</ol>
-</div>
-<div id="thm-cef2" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 2</strong></span> <span class="math inline">\(E[Y_i|X_i]\)</span> is the best predictor of <span class="math inline">\(Y_i\)</span>.</p>
-</div>
-<div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span><span class="math display">\[
-\begin{aligned}
-(Y_i - m(X_i))^2 =&amp; \left((Y_i - E[Y_i | X_i]) + (E[Y_i | X_i] - m(X_i))\right)^2 \\
-=&amp; (Y_i - E[Y_i \| X_i])^2 + (E[Y_i | X_i] - m(X_i))^2 \\&amp;+ 2(Y_i - E[Y_i | X_i]) \times (E[Y_i | X_i] - m(X_i))
-\end{aligned}
-\]</span></p>
-<p>The last term (cross product) is mean zero. Thus, the function is minimized by setting <span class="math inline">\(m(X_i) = E[Y_i | X_i]\)</span>.</p>
-</div>
-<div id="thm-cef3" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 3</strong></span> [ANOVA Theorem] The variance of <span class="math inline">\(Y_i\)</span> can be decomposed as <span class="math inline">\(V(E[Y_i|X_i])+E(V(Y_i|X_i))\)</span></p>
-</div>
-<div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span><span class="math display">\[
-\begin{aligned}
-        V(Y_i)=&amp;V(E[Y_i|X_i] + \varepsilon_i) \\
-        =&amp;V(E[Y_i|X_i])+V(\varepsilon_i) \\
-        =&amp;V(E[Y_i|X_i])+E[\varepsilon_i^2]
-    \end{aligned}
-\]</span> The second line follows from Theorem 1.1 (independence) and</p>
-<p><span class="math display">\[
-        E[\varepsilon_i^2]=E\left[E[\varepsilon_i^2|X_i]\right]=E\left[V(Y_i|X_i)\right]
-\]</span></p>
-</div>
 
 
 </section>
 </section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>The subscript <span class="math inline">\(i\)</span> is not necessary here. However, this notation is consistent with the rest of the book. In this book, <span class="math inline">\(Y_i\)</span> denotes a random variable, <span class="math inline">\(\in \mathbb{R}\)</span>, and <span class="math inline">\(Y\)</span> a random vector, <span class="math inline">\(\in \mathbb{R}^n\)</span>. Likewise, <span class="math inline">\(X_i\)</span> is a random vector, <span class="math inline">\(\in \mathbb{R}^k\)</span>, while <span class="math inline">\(X\)</span> will represent a random matrix, <span class="math inline">\(\in \mathbb{R}^n \times \mathbb{R}^k\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>This can be extended to random vectors.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Some texts use the notation <span class="math inline">\(E_X\big[E[Y_i|X_i]\big]\)</span> to demonstrate that the outside expectation is with respect to <span class="math inline">\(X_i\)</span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

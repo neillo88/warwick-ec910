@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EC910 - Classical Linear Regression Model</title>
+<title>EC910 - Classical Linear Regression Model &amp; Ordinary Least Squares</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -144,21 +144,21 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lectures" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Lectures</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lecture-handouts" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lecture Handouts</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-lectures">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lecture-handouts">    
         <li>
-    <a class="dropdown-item" href="./lecture-1.html">
- <span class="dropdown-text">Lecture 1</span></a>
+    <a class="dropdown-item" href="./handout-1.html">
+ <span class="dropdown-text">Handout 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./lecture-2.html">
- <span class="dropdown-text">Lecture 2</span></a>
+    <a class="dropdown-item" href="./handout-2.html">
+ <span class="dropdown-text">Handout 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./lecture-3.html">
- <span class="dropdown-text">Lecture 3</span></a>
+    <a class="dropdown-item" href="./handout-3.html">
+ <span class="dropdown-text">Handout 3</span></a>
   </li>  
     </ul>
   </li>
@@ -174,10 +174,14 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-additional" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Additional</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-additional-material" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Additional Material</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-additional">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-additional-material">    
+        <li>
+    <a class="dropdown-item" href="./material-interpretation.html">
+ <span class="dropdown-text">Interpreting Linear Models</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="./material-cef.html">
  <span class="dropdown-text">Conditional Expectation Function</span></a>
@@ -216,11 +220,14 @@ window.Quarto = {
   <li><a href="#non-random-x" id="toc-non-random-x" class="nav-link" data-scroll-target="#non-random-x"><span class="header-section-number">3.1</span> Non-random <span class="math inline">\(X\)</span></a></li>
   <li><a href="#identification" id="toc-identification" class="nav-link" data-scroll-target="#identification"><span class="header-section-number">3.2</span> Identification</a></li>
   </ul></li>
-  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">4</span> Interpretation</a>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">4</span> Interpretation</a></li>
+  <li><a href="#ordinary-least-squares" id="toc-ordinary-least-squares" class="nav-link" data-scroll-target="#ordinary-least-squares"><span class="header-section-number">5</span> Ordinary Least Squares</a>
   <ul class="collapse">
-  <li><a href="#semi-elasticities-and-elasticities" id="toc-semi-elasticities-and-elasticities" class="nav-link" data-scroll-target="#semi-elasticities-and-elasticities"><span class="header-section-number">4.1</span> Semi-elasticities and elasticities</a></li>
+  <li><a href="#univariate-case" id="toc-univariate-case" class="nav-link" data-scroll-target="#univariate-case"><span class="header-section-number">5.1</span> Univariate case</a></li>
+  <li><a href="#geometry-of-ols" id="toc-geometry-of-ols" class="nav-link" data-scroll-target="#geometry-of-ols"><span class="header-section-number">5.2</span> Geometry of OLS</a></li>
+  <li><a href="#partitioned-regression" id="toc-partitioned-regression" class="nav-link" data-scroll-target="#partitioned-regression"><span class="header-section-number">5.3</span> Partitioned regression</a></li>
   </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">5</span> References</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">6</span> References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lecture-1.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -229,7 +236,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Classical Linear Regression Model</h1>
+<h1 class="title">Classical Linear Regression Model &amp; Ordinary Least Squares</h1>
 </div>
 
 
@@ -377,39 +384,240 @@ E[Y_i|X_i] = X_i'\beta
 \]</span></p>
 <p>For a given value of <span class="math inline">\(X_i\)</span>, the above expression is non-random.</p>
 <p>As <span class="math inline">\(\beta_j\)</span> is a partial derivative, its interpretation is one that “holds fixed” the value of other regressors (i.e.&nbsp;<em>ceteris paribus</em>). Because of this, many researchers apply the experimental language of control variables when interpretting regression coefficients.</p>
-<p>Consider this simplified version of the linear regression model popularized by Mincer.</p>
-<p><span class="math display">\[WAGE_i = \gamma_1 + \gamma_2EDU_i + \gamma_3EXP_ i + \upsilon_i\]</span> where,</p>
+</section>
+<section id="ordinary-least-squares" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="ordinary-least-squares"><span class="header-section-number">5</span> Ordinary Least Squares</h2>
+<p>OLS is <em>an</em> estimator for <span class="math inline">\(\beta\)</span>. As will become evident in Lecture 3, it is not the only estimator for <span class="math inline">\(\beta\)</span>.</p>
+<p>The OLS estimator is the solution to,</p>
+<p><span class="math display">\[
+\min_b\;\sum_{i=1}^n(Y_i-X_i'b)^2
+\]</span></p>
+<p>Using vector notation, we can rewrite this as</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;\min_b\;(Y-Xb)'(Y-Xb)\\
+=&amp;\min_b\;Y'Y-Y'Xb-b'X'Y+b'X'Xb \\
+=&amp;\min_b\;Y'Y-2b'X'Y+b'X'Xb
+\end{aligned}
+\]</span> From line 2 to 3 we use the face that <span class="math inline">\(Y'Xb\)</span> is a scalar and therefore symmetric: <span class="math inline">\(Y'Xb=b'X'Y\)</span>.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+<p>Differentiating the above expression w.r.t. the vecotr <span class="math inline">\(b\)</span> and setting the first-order conditions to <span class="math inline">\(0\)</span>, we find that the following condition must hold for <span class="math inline">\(\hat{\beta}\)</span>, the solution.</p>
+<p><span class="math display">\[
+  \begin{aligned}
+  &amp;0=-2X'Y+2X'X\hat{\beta}
+  \\ \Rightarrow&amp; X'X\hat{\beta} = X'Y
+  \end{aligned}
+\]</span></p>
+<hr>
+<p><strong>How did we get this result?</strong> Deriving the first order conditions requires knowledge of how to solve for the derivative of a scalar respect to a column vector (in this case <span class="math inline">\(b\in R^k\)</span>). The extra material on Linear Algebra has some notes on vector differentiation.</p>
+<p>We can ignore the first term <span class="math inline">\(Y'Y\)</span> as it does not depend on <span class="math inline">\(b\)</span>. The second term is <span class="math inline">\(-2b'X'Y\)</span>. Here we can use the rule that, <span class="math display">\[
+  \frac{\partial z'a}{\partial z} = \frac{\partial a'z}{\partial z} = a
+\]</span> In this instance, <span class="math inline">\(a = X'Y \in R^k\)</span>. Thus, <span class="math display">\[
+  \frac{\partial -2b'X'Y}{\partial b} = -2\frac{\partial b'X'Y}{\partial b} = -2X'Y
+\]</span> The third term is <span class="math inline">\(b'X'Xb\)</span>. This is what is commonly referred to as a quadratic form: <span class="math inline">\(z'Az\)</span>. We know that the derivative of this form is, <span class="math display">\[
+  \frac{\partial z'Az}{\partial z} = Az + A'z
+\]</span> and if <span class="math inline">\(A\)</span> is symmetric, the result simplies to <span class="math inline">\(2Az\)</span>. In this instance, <span class="math inline">\(A = X'X\)</span> is symmetric and the derivative is given by, <span class="math display">\[
+  \frac{\partial b'X'Xb}{\partial b} = 2X'X
+\]</span></p>
+<hr>
+<p>In order to solve for <span class="math inline">\(\hat{\beta}\)</span> we need to move the <span class="math inline">\(X'X\)</span> term to the right-hand side. If these were scalars we would simply divide both sides by the same constant. However, as <span class="math inline">\(X'X\)</span> is a matrix, division is not possible. Instead, we need to pre-multiply both sides by the inverse of <span class="math inline">\(X'X\)</span>: <span class="math inline">\((X'X)^{-1}\)</span>. Here’s the issue: the inverse of a matrix need not exist.</p>
+<p>Given a <em>square</em> <span class="math inline">\(k\times k\)</span> matrix <span class="math inline">\(A\)</span>, its inverse exists <em>if and only if</em> <span class="math inline">\(A\)</span> is non-singular. For <span class="math inline">\(A\)</span> to be non-singular its rank must have full rank: <span class="math inline">\(r(A)=k\)</span>, the number of rows/columns. This means that all <span class="math inline">\(k\)</span> columns/rows must be linearly independent. (See Material on Linear Algebra for a more detailed discussion of all these terms.)</p>
+<p>In our application, <span class="math inline">\(A=X'X\)</span> and</p>
+<p><span class="math display">\[ r(X'X) = r(X) = colrank(X)\leq k \]</span></p>
+<p>To insure that the inverse of <span class="math inline">\(X'X\)</span> exists, <span class="math inline">\(X\)</span> must have full column rank: all column vectors must be <em>linearly independent</em>. In practice, this means that no regressor can be a <em>perfect</em> linear combination of others. However, we have this from</p>
+<p><strong>CLRM 4:</strong> <span class="math inline">\(rank(X)=k\)</span></p>
+<p>You may know this assumption by another name: the absence of perfect colinearity between regressors.</p>
+<blockquote class="blockquote">
+<p>The rank condition is the reason we exclude a base category when working with categorical variables.</p>
+<p>Recall, most linear regression models are specified with constant. Thus, the first column of <span class="math inline">\(X\)</span> is</p>
+<p><span class="math display">\[ X_1 = \begin{bmatrix}1 \\ 1 \\ \vdots \\ 1\end{bmatrix} \]</span> a <span class="math inline">\(n\times 1\)</span> vector vector of <span class="math inline">\(1\)</span>’s, denoted here as <span class="math inline">\(\ell\)</span>. Suppose you have a categorical - for example, gender in an individual level dataset - that splits the same in two. The categories are assumed to be exhaustive and mutually exclusive. If you create two dummy variables, one for each category,</p>
+<p><span class="math display">\[ X_2 = \begin{bmatrix}1 \\ \vdots \\1\\0\\ \vdots \\ 0\end{bmatrix}\qquad\text{and}\qquad X_3 = \begin{bmatrix}0 \\ \vdots \\0\\1\\ \vdots \\ 1\end{bmatrix} \]</span></p>
+<p>it is evident that <span class="math inline">\(X_2+X_3 = \ell\)</span>. (Here I have depicted the sample as sorted along these two categories.) If <span class="math inline">\(X=[X_1\;X_2\;X_3]\)</span>, then it is rank-deficient: <span class="math inline">\(r(X) = 2&lt;3\)</span>, since <span class="math inline">\(X_3=X_1-X2\)</span>. Thus, we can only include two of these three regressors. We can even exclude the constant and have <span class="math inline">\(X=[X_2\;X_3]\)</span>.</p>
+</blockquote>
+<p>If <span class="math inline">\(X\)</span> is full rank, then <span class="math inline">\((X'X)^{-1}\)</span> exists and,</p>
+<p><span class="math display">\[
+\hat{\beta} = (X'X)^{-1}X'Y
+\]</span></p>
+<p>This relatively simple expression is the solution to least squares minimization problem. Just think, it would take less than three lines of code to programme this. That is the power of knowing a little linear algebra.</p>
+<p>We can write the same expression in terms of summations over unit-level observations,</p>
+<p><span class="math display">\[
+\hat{\beta} = \big(\sum_{i=1}^nX_iX_i')^{-1}\sum_{i=1}^nX_iY_i
+\]</span></p>
+<p>Note, the change in position of the transpose: <span class="math inline">\(X_i\)</span> is a column vector <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(X_i'X_i\)</span> is a scalar and <span class="math inline">\(X_iX_i'\)</span> is a <span class="math inline">\(k\times k\)</span> matrix. To match the first expression, the term inside the parenthesis must be a <span class="math inline">\(k\times k\)</span> matrix. Similarly, <span class="math inline">\(X'Y\)</span> is a <span class="math inline">\(k\times 1\)</span> vector, as is <span class="math inline">\(X_iY_i\)</span>.</p>
+<section id="univariate-case" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="univariate-case"><span class="header-section-number">5.1</span> Univariate case</h3>
+<p>Undergraduate textbooks all teach a very similar expression for the OLS estimator of a uni-variate regression model (with a constant); typically, something like,<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<p><span class="math display">\[
+Y_i = \beta_1+\beta_2X_{i2}+\varepsilon_i
+\]</span> We know that,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\tilde{\beta}_2 =&amp; \frac{\sum(Y_i-\bar{Y})(X_{i2}-\bar{X}_2)}{\sum_{i=1}^n(X_{i2}-\bar{X}_2)^2} \\
+\text{and}\qquad \tilde{\beta}_1 =&amp; \bar{Y}-\tilde{\beta_2}\bar{X}_2
+\end{aligned}
+\]</span></p>
+<p>I am deliberately using the notation <span class="math inline">\(\tilde{\beta}\)</span> to distinguish these two estimators from the expression below.</p>
+<p>Let us see if we can replicate this result. When written in vector notation, the model is,</p>
+<p><span class="math display">\[
+\begin{aligned}
+Y =&amp; X\beta+\varepsilon \\
+=&amp; \begin{bmatrix}1&amp;X_{12} \\ 1 &amp; X_{22} \\ \vdots &amp; \vdots \\ 1 &amp; X_{n2}\end{bmatrix}\begin{bmatrix}\beta_1 \\ \beta_2 \end{bmatrix} + \varepsilon \\
+=&amp; \begin{bmatrix}\ell &amp;X_{2} \end{bmatrix}\begin{bmatrix}\beta_1 \\ \beta_2 \end{bmatrix} + \varepsilon
+\end{aligned}
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\hat{\beta} = \begin{bmatrix}\hat{\beta}_1 \\ \hat{\beta}_2\end{bmatrix}=&amp;(X'X)^{-1}X'Y \\
+=&amp;\bigg(\begin{bmatrix}\ell' \\ X_{2}' \end{bmatrix}\begin{bmatrix}\ell &amp;X_{2}\end{bmatrix}\bigg)^{-1}\begin{bmatrix}\ell'  \\ X_{2}' \end{bmatrix}Y \\
+=&amp;\begin{bmatrix}\ell'\ell &amp; \ell'X_2 \\ X_{2}'\ell &amp; X_2'X_2 \end{bmatrix}^{-1}\begin{bmatrix}\ell'Y  \\ X_{2}'Y \end{bmatrix}
+\end{aligned}
+\]</span></p>
+<p>I went through this rather quickly, using a number of linear algebra rules that you may not be familiar with. Do not worry, the point of the exercise is not become a linear algebra master, but instead to focus on the element of each of each matrix/vector. Each element is a scalar (size <span class="math inline">\(1\times 1\)</span>).</p>
+<p>If we right them each down as sums you they might be a little more familiar. First consider the <span class="math inline">\(2\times 2\)</span> matrix:</p>
 <ul>
-<li><p><span class="math inline">\(WAGE_i\)</span>: individual wage (£’s)</p></li>
-<li><p><span class="math inline">\(EDU_i\)</span>: years of schooling/education</p></li>
-<li><p><span class="math inline">\(EXP_i\)</span>: years of experience</p></li>
+<li><p>element [1,1]: <span class="math inline">\(\ell'\ell = \sum_{i=1}^n 1 = n\)</span></p></li>
+<li><p>element [1,2]: <span class="math inline">\(\ell'X_2 = \sum_{i=1}^nX_{i2} = n\bar{X}_2\)</span></p></li>
+<li><p>element [2,1]: <span class="math inline">\(X_2'\ell = \sum_{i=1}^nX_{i2} = n\bar{X}_2\)</span> (as above, since scalars are symmetric)</p></li>
+<li><p>element [2,2]: <span class="math inline">\(X_2'X_2=\sum_{i=1}^nX_{i2}^2\)</span></p></li>
 </ul>
-<p>Assuming <span class="math inline">\(E[\upsilon_i|S_i,EXP_i]=0\)</span>, <span class="math inline">\(\beta_3\)</span> is the expected change in wages from an additional year of experience, holding fixed years of schooling. The model implies that if we were to consider two individuals with the same years of schooling, but a 1-year difference in work experience, then we would expect the more experienced worker to earn <span class="math inline">\(\beta_3\)</span> £’s more.</p>
-<p>We would get the same interpretation from an experiment where we <em>control</em> individual schooling, but (randomly) vary years of experience by one year across units in the population.</p>
-<p>Remember, for the above linear regression model, this interpretation is based on the assumption that the conditional expectation function is correctly specified. If no, then this interpretation is incorrect. Moreover, there are other ways to think about “controlling” for covariates that we will address towards the end of this module.</p>
-<section id="semi-elasticities-and-elasticities" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="semi-elasticities-and-elasticities"><span class="header-section-number">4.1</span> Semi-elasticities and elasticities</h3>
-<p>The original Mincer equation has the outcome as the log of wages,</p>
-<p><span class="math display">\[\ln(WAGE_i) = \gamma_1 + \gamma_2EDU_i + \gamma_3EXP_ i + \gamma_4EXP^2_ i + \upsilon_i\]</span> The interpretation of <span class="math inline">\(\beta_3\)</span> is now in terms of expected log-points of wages.</p>
+<p>Next, consider the final <span class="math inline">\(2\times 1\)</span> vector,</p>
+<ul>
+<li><p>element [1,1]: <span class="math inline">\(\ell'Y = \sum_{i=1}^n Y_i = n\bar{Y}\)</span></p></li>
+<li><p>element [2,1]: <span class="math inline">\(X_2'Y = \sum_{i=1}^nY_iX_{i2}\)</span></p></li>
+</ul>
+<p>Our OLS estimator is therefore,</p>
 <p><span class="math display">\[
-\beta_3 = \frac{\partial E[ln(WAGE_i)|EDU_i,EXP_i]}{\partial EXP_{i}}
+\hat{\beta} = \begin{bmatrix} n &amp; n\bar{X}_2 \\ n\bar{X}_2 &amp; \sum_{i=1}^nX_{i2}^2 \end{bmatrix}^{-1}\begin{bmatrix}n\bar{Y}  \\ \sum_{i=1}^nY_iX_{i2} \end{bmatrix}
 \]</span></p>
-<p>This can be converted into a percentage change in (expected) wages,</p>
-<p><span class="math display">\[\%\Delta E[WAGE_i|EDU_i,EXP_i] = (\exp^{\beta_3}-1)\times 100\]</span> For values of <span class="math inline">\(\beta_3 \in [-0.1,0.1]\)</span> this value is closely approximated by <span class="math inline">\(\beta_3\times 100\)</span>.</p>
-<p>Next, consider a model where the regressor is in logs, while the outcome remains in levels. For example, a model of commuting cost as a function of distance to work,</p>
-<p><span class="math display">\[COST_i = \gamma_1 + \gamma_2\ln(DIST_i) + + \nu_i\]</span> Here the interpretation of <span class="math inline">\(\beta_2\)</span> is, <span class="math display">\[
-\beta_2 = \frac{\partial E[COST_i|\ln(DIST_i)]}{\partial \ln(DIST_i)}
-\]</span> We can convert this to <span class="math inline">\(\%\Delta\)</span> in <span class="math inline">\(DIST_i\)</span>, using the fact that a 1% change in distance implies a change in log points of <span class="math inline">\(\ln(1.01)\approxeq 0.01\)</span>. Thus, we can approximate the expected change in cost by <span class="math inline">\(\beta_2/100\)</span>.</p>
-<p>Finally, when both the outcome and regressor are logged, the coefficient as an elasticity interpretation. For example, in the taxation literature, it is common to see taxable income modeled as a function of the (marginal) tax rate,</p>
+<p>We now need to solve for the inverse of the <span class="math inline">\(2\times 2\)</span> matrix. You can easily find notes on how to do this online. Here, I will just provide the solution.</p>
 <p><span class="math display">\[
-  \ln(INC_i) = \beta_1 + \beta_2 \ln(RATE_i) + \xi_i
-\]</span> Here, <span class="math inline">\(\beta_2\)</span> has an tax elasticity interpretation,</p>
-<p><span class="math display">\[
-  \beta_2 = \frac{\partial E[\ln(INC_i)|\ln(RATE_i)]}{\partial \ln(RATE_i)} = \frac{\%\Delta E[INC_i|RATE_i]}{\%\Delta RATE_i}
+\hat{\beta} = \frac{1}{n\sum_{i=1}^nX_{i2}^2-n^2\bar{X}_2^2}\begin{bmatrix} \sum_{i=1}^nX_{i2}^2 &amp; -n\bar{X}_2 \\ -n\bar{X}_2 &amp;  n\end{bmatrix}\begin{bmatrix}n\bar{Y}  \\ \sum_{i=1}^nY_iX_{i2} \end{bmatrix}
 \]</span></p>
+<p>Remember, this is still a <span class="math inline">\(2\times 1\)</span> vector. We can now solve for the final solution:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\hat{\beta} =&amp; \frac{1}{n\sum_{i=1}^nX_{i2}^2-n^2\bar{X}_2^2}\begin{bmatrix} n\bar{Y}\sum_{i=1}^nX_{i2}^2 -n\bar{X}_2\sum_{i=1}^nY_iX_{i2} \\ n\sum_{i=1}^nY_iX_{i2}-n^2\bar{X}_2\bar{Y}\end{bmatrix} \\
+=&amp; \frac{1}{n\sum_{i=1}^n(X_{i2}-\bar{X}_2)^2}\begin{bmatrix} n\bar{Y}\sum_{i=1}^nX_{i2}^2 + n^2\bar{Y}\bar{X}^2 - n^2\bar{Y}\bar{X}^2 -n\bar{X}_2\sum_{i=1}^nY_iX_{i2} \\ n\sum_{i=1}^n(Y_i-\bar{Y})(X_{i2}-\bar{X}_2) \end{bmatrix} \\
+=&amp; \frac{1}{n\sum_{i=1}^n(X_{i2}-\bar{X}_2)^2}\begin{bmatrix} n\bar{Y}\sum_{i=1}^n(X_{i2}-\bar{X})^2 -n\bar{X}_2\sum_{i=1}^n(Y_i-\bar{Y})(X_{i2}-\bar{X}_2) \\ n\sum_{i=1}^n(Y_i-\bar{Y})(X_{i2}-\bar{X}_2) \end{bmatrix} \\
+=&amp; \begin{bmatrix} \bar{Y}  -\frac{n\sum_{i=1}^n(Y_i-\bar{Y})(X_{i2}-\bar{X}_2)}{n\sum_{i=1}^n(X_{i2}-\bar{X}_2)^2}\bar{X}_2 \\ \frac{n\sum_{i=1}^n(Y_i-\bar{Y})(X_{i2}-\bar{X}_2)}{n\sum_{i=1}^n(X_{i2}-\bar{X}_2)^2} \end{bmatrix} \\
+=&amp; \begin{bmatrix} \bar{Y}  -\tilde{\beta}_2\bar{X}_2 \\ \tilde{\beta}_2 \end{bmatrix} \\
+=&amp; \begin{bmatrix}\tilde{\beta}_1 \\ \tilde{\beta}_2 \end{bmatrix}
+\end{aligned}
+\]</span></p>
+<p>The math is a little involved, but it shows you these solutions are are the same. Unfortunately, the working gets even more arduous in a multivariate context. However, there are useful tools to help us with that we will discuss next.</p>
+</section>
+<section id="geometry-of-ols" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="geometry-of-ols"><span class="header-section-number">5.2</span> Geometry of OLS</h3>
+<p>In the last section we saw how the OLS estimator can, more generally, be described as a linear transformation of the <span class="math inline">\(Y\)</span> vector.</p>
+<p><span class="math display">\[
+\hat{\beta} = (X'X)^{-1}X'Y
+\]</span></p>
+<p>We also saw that in order for there to be a (unique) solution to the least squared problem, the <span class="math inline">\(X\)</span> matrix must be full rank. This rules out any perfect colinearity between columns (i.e.&nbsp;regressors) in the <span class="math inline">\(X\)</span> matrix, including the constant.</p>
+<p>Given the vector of OLS coefficients, we can also estimate the residual,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\hat{\varepsilon} =&amp; Y - X\hat{\beta} \\
+=&amp;Y-X(X'X)^{-1}X'Y \\
+=&amp;(I_n-X(X'X)X^{-1})Y
+\end{aligned}
+\]</span></p>
+<p>by plugging the definition of <span class="math inline">\(\hat{\beta}\)</span>. Thus, the OLS estimator separates the vector <span class="math inline">\(Y\)</span> into two components:</p>
+<p><span class="math display">\[
+\begin{aligned}
+Y =&amp; X\hat{\beta} + \hat{\varepsilon} \\
+=&amp;\underbrace{X(X'X)^{-1}X'}_{P_X}Y + (\underbrace{I_n-X(X'X)X^{-1}}_{I_n-P_X = M_X})Y \\
+=&amp;P_XY + M_XY
+\end{aligned}
+\]</span></p>
+<p>The matrix <span class="math inline">\(P_X = X(X'X)^{-1}X'\)</span> is a <span class="math inline">\(n\times n\)</span> <em>projection</em> matrix. It is a linear transformation that projects any vector into the span of <span class="math inline">\(X\)</span>: <span class="math inline">\(S(X)\)</span>. (See for more information on these terms.) <span class="math inline">\(S(X)\)</span> is the vector space spanned by the columns of <span class="math inline">\(X\)</span>. The dimensions of this vector space depends on the rank of <span class="math inline">\(P_X\)</span>,</p>
+<p><span class="math display">\[
+dim(S(X)) = r(P_X) = r(X) = k
+\]</span></p>
+<p>The matrix <span class="math inline">\(M_X = I_n-X(X'X)^{-1}X'\)</span> is also a <span class="math inline">\(n\times n\)</span> projection matrix. It projects any vector into <span class="math inline">\(X\)</span>’s <em>orthogonal</em> span: <span class="math inline">\(S^{\perp}(X)\)</span>. Any vector <span class="math inline">\(z\in S^{\perp}(X)\)</span> is orthogonal to <span class="math inline">\(X\)</span>. This includes the estimated residual, which is by definition orthogonal to the predicted values and, indeed, any column of <span class="math inline">\(X\)</span> (i.e.&nbsp;any regressor). The dimension of this orthogonal vector space depends on the rank of <span class="math inline">\(M_X\)</span>,</p>
+<p><span class="math display">\[
+dim(S^{\perp}(X)) = r(M_X) = r(I_n)-r(X) = n-k
+\]</span></p>
+<p>The orthogonality of these two projections can be easily shown, since projection matrices are idempotent (<span class="math inline">\(P_XP_X = P_X\)</span>) and symmetric (<span class="math inline">\(P_X' = P_X\)</span>). Consider the inner product of these two projections,</p>
+<p><span class="math display">\[
+P_X'M_X = P_X(I_n-P_X) = P_X-P_XP_X = P_X-P_X = 0
+\]</span></p>
+<p>The least squares estimator is a projection of Y into two vector spaces: one the span of the columns of <span class="math inline">\(X\)</span> and the other a space orthogonal to <span class="math inline">\(X\)</span>.</p>
+<p>Why is this useful? Well, it helps us understand the “mechanics” (technically geometry) of OLS. When work with linear regression models, we typically assume either strict exogeneity - <span class="math inline">\(E[\varepsilon|X]=0\)</span> - or uncorrelatedness - <span class="math inline">\(E[X'\varepsilon]=0\)</span> - where the former implies the latter (but not the other way around).</p>
+<p>When we use OLS, we estimate the vector <span class="math inline">\(\hat{\beta}\)</span> such that,</p>
+<p><span class="math display">\[
+X'(Y-X\hat{\beta})=X'\hat{\varepsilon}=0 \quad always
+\]</span></p>
+<p>This is true, <em>not just in expectation</em>, but by definition. The relationship is “mechanical”: the covariates and estimated residual are perfectly uncorrelated. This can be easily shown:</p>
+<p><span class="math display">\[
+\begin{aligned}
+X'\hat{\varepsilon} =&amp; X'M_XY \\
+=&amp; X'(I_n-P_X)Y \\
+=&amp;X'I_nY-X'X(X'X)^{-1}X'Y \\
+=&amp;X'Y-X'Y \\
+=&amp;0
+\end{aligned}
+\]</span></p>
+<p>You are essentially imposing the assumption of uncorrelatedness between the explained and unexplained components of Y on the data. This means that if the assumption is wrong, so is the projection.</p>
+</section>
+<section id="partitioned-regression" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="partitioned-regression"><span class="header-section-number">5.3</span> Partitioned regression</h3>
+<p>The tools of linear algebra can help us better understand partitioned regression. Indeed, I would go as far to to say that it is quite difficult to understand partitioned regression without an understanding of projection matrices. Moreover, we need to understand partitioned regression to really understand multivariate regression. The partitioned regression result is referred to as Frisch-Waugh-Lovell Theorem (FWL).</p>
+<div id="thm-fwl" class="theorem" title="Frisch-Waugh-Lovell (FWL)">
+<p><span class="theorem-title"><strong>Theorem 1</strong></span> FWL says that if you have two sets of regressors, <span class="math inline">\([X_1,X_2]\)</span>, then <span class="math inline">\(\hat{\beta}_1\)</span>, the OLS estimator for <span class="math inline">\(\beta_1\)</span>, from the regression,</p>
+<p><span class="math display">\[
+        Y = X_1\beta_1 + X_2\beta_2 + \varepsilon
+\]</span></p>
+<p>is also given by the regression,</p>
+<p><span class="math display">\[
+        M_2Y = M_2X_1\beta_1 + \xi
+\]</span></p>
+</div>
+<p>We can demonstrate the FWL theorem result using projection matrices. Two simplify matters, we will divide the set of regressors into two groups: <span class="math inline">\(X_1\)</span> a single regressor and <span class="math inline">\(X_2\)</span> a <span class="math inline">\(n\times (k-1)\)</span> matrix. We can rewrite the linear model as,</p>
+<p><span class="math display">\[
+Y = X\beta+ \varepsilon =\beta_1X_1+X_2\beta_2+\varepsilon
+\]</span></p>
+<p>Let us begin by applying our existing knowledge. From above, we know that the residual from the regression of <span class="math inline">\(X_1\)</span> on <span class="math inline">\(X_2\)</span> is,</p>
+<p><span class="math display">\[
+\hat{\upsilon} = M_2X_1
+\]</span></p>
+<p>where <span class="math inline">\(M_2 = I_n-X_2(X_2'X_2)^{-1}X_2'\)</span>. It turns out, it does not matter if we residualize <span class="math inline">\(Y\)</span> too. <strong>Can you see why?</strong> Thus, the model we estimate in the second step, is</p>
+<p><span class="math display">\[
+Y = \gamma_1\underbrace{M_2X_1}_{\hat{\upsilon}}+\xi
+\]</span></p>
+<p>We know that <span class="math inline">\(\hat{\gamma}_1 = (\hat{\upsilon}'\hat{\upsilon})^{-1}\hat{\upsilon}'Y\)</span>. Replacing the value of the residual, we get,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\hat{\gamma}_1 =&amp; (\hat{\upsilon}'\hat{\upsilon})^{-1}\hat{\upsilon}'Y \\
+=&amp;(X_1'M_2M_2X_1)^{-1}X_1'M_2Y \\
+=&amp;(X_1'M_2X_1)^{-1}X_1'M_2Y
+\end{aligned}
+\]</span> Here, we use both the symmetry and idempotent quality of <span class="math inline">\(M_2\)</span>. Next we want to show that <span class="math inline">\(\hat{\beta}_1\)</span> is given by the same value. This part is more complicated. Let’s start with by reminding ourselves of the following:</p>
+<p><span class="math display">\[
+\begin{aligned}
+X'X\hat{\beta} &amp;= X'Y \\
+\begin{bmatrix}X_1 &amp; X_2\end{bmatrix}'\begin{bmatrix}X_1 &amp; X_2\end{bmatrix}\begin{bmatrix}\hat{\beta}_1 \\ \hat{\beta}_2\end{bmatrix} &amp;= \begin{bmatrix}X_1 &amp; X_2\end{bmatrix}'Y \\
+\begin{bmatrix}X_1'X_1 &amp; X_1'X_2 \\ X_2'X_1 &amp; X_2'X_2 \end{bmatrix}\begin{bmatrix}\hat{\beta}_1 \\ \hat{\beta}_2\end{bmatrix} &amp;= \begin{bmatrix}X_1'Y \\ X_2'Y\end{bmatrix}
+\end{aligned}
+\]</span></p>
+<p>We could solve for <span class="math inline">\(\hat{\beta}_1\)</span> by solving for the inverse of <span class="math inline">\(X'X\)</span>; however, this will take a long time. An easier approach is to simply verify that <span class="math inline">\(\hat{\beta}_1=(X_1'M_2X_1)^{-1}X_1'M_2Y\)</span>. Recall, <span class="math inline">\(\hat{\beta}\)</span> splits <span class="math inline">\(Y\)</span> into two components:</p>
+<p><span class="math display">\[
+Y = \hat{\beta}_1X_1+X_2\hat{\beta}_2 + \hat{\varepsilon}
+\]</span></p>
+<p>If we plug this definition of <span class="math inline">\(Y\)</span> into the above expression we get,</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;(X_1'M_2X_1)^{-1}X_1'M_2(\hat{\beta}_1X_1+X_2\hat{\beta}_2 + \hat{\varepsilon}) \\
+=&amp;\hat{\beta}_1\underbrace{(X_1'M_2X_1)^{-1}X_1'M_2X_1}_{=I_n} \\
+&amp;+\underbrace{(X_1'M_2X_1)^{-1}X_1'M_2X_2\hat{\beta_2}}_{=0} \\
+&amp;+\underbrace{(X_1'M_2X_1)^{-1}X_1'M_2\hat{\varepsilon}}_{=0} \\
+=&amp;\hat{\beta}_1
+\end{aligned}
+\]</span></p>
+<p>In line 2, I use the fact that <span class="math inline">\(\hat{\beta}_1\)</span> is a scalar and can be moved to the front (since the order of multiplication does not matter with a scalar). In line 3, I use the fact that <span class="math inline">\(M_2X_2=0\)</span> by definition. Line 4 uses the fact that <span class="math inline">\(M_2\hat{\varepsilon}=\hat{\varepsilon}\)</span> which means that <span class="math inline">\(X_1'M_2\hat{\varepsilon}=X_1'\hat{\varepsilon}=0\)</span>.</p>
+<p>The OLS estimator solves for <span class="math inline">\(\beta_1\)</span> using the variance in <span class="math inline">\(X_1\)</span> that is orthogonal to <span class="math inline">\(X_2\)</span>. This is the manner in which we “hold <span class="math inline">\(X_2\)</span> constant”: the variation in <span class="math inline">\(M_2X_1\)</span> is orthogonal to <span class="math inline">\(X_2\)</span>. Changes in <span class="math inline">\(M_2X_1\)</span> are <em>uncorrelated</em> with changes in <span class="math inline">\(X_2\)</span>; <em>as if</em> the variation in <span class="math inline">\(M_2X_1\)</span> arose independently of <span class="math inline">\(X_2\)</span>. However, uncorrelatedness does NOT imply independence.</p>
 </section>
 </section>
-<section id="references" class="level2" data-number="5">
+<section id="references" class="level2" data-number="6">
 
 
 
@@ -417,7 +625,7 @@ E[Y_i|X_i] = X_i'\beta
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">5 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">6 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-wooldridge2010" class="csl-entry" role="listitem">
 Wooldridge, Jeffrey M. 2010. <em>Econometric Analysis of Cross Section and Panel Data</em>. MIT press.
 </div>
@@ -429,6 +637,13 @@ Wooldridge, Jeffrey M. 2010. <em>Econometric Analysis of Cross Section and Panel
 <li id="fn3"><p>This is <strong>NOT</strong> the residual.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>See extra material on Linear Algebra. Since <span class="math inline">\(X\)</span> is a random variable we should add to the assumption: <span class="math inline">\(rank(X) = k\)</span> <em>almost surely</em> (abbreviated a.s.). This means that the set of events in which <span class="math inline">\(X\)</span> is not full rank occur with probability 0. The reason for this addition is that such a set of events may not be empty.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>There are many such failures of (parametric) identification in models that include dummy variables (or fixed effects). Earlier we saw that the intercept is not separately identified from the mean of the error term. Mean independence of the error term, <span class="math inline">\(E[\varepsilon_i]=0\)</span>, is required for us to separately ‘identify’ <span class="math inline">\(\beta_1\)</span>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>When working with vectors and matrices it is important to keep track of their size. You can only multiply two matrices/vectors if their column and row dimensions match. For example, if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are both <span class="math inline">\(n\times k\)</span> matrices (<span class="math inline">\(n\neq k\)</span>), then <span class="math inline">\(AB\)</span> is not defined since <span class="math inline">\(A\)</span> has <span class="math inline">\(k\)</span> columns and <span class="math inline">\(B\)</span> <span class="math inline">\(n\)</span> rows. For the same reason <span class="math inline">\(BA\)</span> is also not defined. However, you can pre-multiply <span class="math inline">\(B\)</span> with <span class="math inline">\(A'\)</span> as <span class="math inline">\(A'\)</span> is a <span class="math inline">\(k\times n\)</span> matrix: <span class="math inline">\(A'B\)</span> is therefore a <span class="math inline">\((k\times n)\cdot (n\times k)=k\times k\)</span> matrix. Similarly, <span class="math inline">\(B'A\)</span> is defined, but is a <span class="math inline">\(n\times n\)</span> matrix.</p>
+<p>Order matters when working with matrices and vectors. Pre-multiplication and post-multiplication are not the same thing.</p>
+<p>Keep track of the size of each term to ensure they correspond to one another. In this instance, each term should be a scalar. For example, <span class="math inline">\(-2b'X'Y\)</span> is the multiplication of a scalar (<span class="math inline">\(-2\)</span>: size <span class="math inline">\(1\times 1\)</span>), row vector (<span class="math inline">\(b'\)</span>: size <span class="math inline">\(1\times k\)</span>), matrix (<span class="math inline">\(X'\)</span>: size <span class="math inline">\(k\times n\)</span>), and column vector (<span class="math inline">\(Y\)</span>: size <span class="math inline">\(n\times 1\)</span>). Thus we have a <span class="math inline">\((1\times 1)\cdot (1\times k)\cdot (k\times n)\cdot (n\times 1)=1\times 1\)</span>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Once you are familiar with vector notation, it is relatively easy to tell whether a model is uni- or multi-variate. This is because the notation <span class="math inline">\(\beta_2 X_{i2}\)</span> is not consistent with <span class="math inline">\(X_{2i}\)</span> being a vector (row or column).</p>
+<p>If <span class="math inline">\(X_{i2}\)</span> is a <span class="math inline">\(k\times 1\)</span> vector then so is <span class="math inline">\(\beta_2\)</span>. Thus, <span class="math inline">\(\beta_2 X_{i2}\)</span> is <span class="math inline">\((k\times 1)\cdot (k\times1)\)</span>, which is not defined.</p>
+<p>If <span class="math inline">\(X_{i2}\)</span> is a row vector (as in Wooldridge, 2011), <span class="math inline">\(\beta_2 X_{i2}\)</span> will then be <span class="math inline">\((k\times 1)\cdot (1\times k)\)</span>, a <span class="math inline">\(k\times k\)</span> matrix. This cannot be correct since the model is defined at the unit level.</p>
+<p>Thus, if you see a model written with the parameter in front of the regressor, you know that this must be a single regressor. This is subtle, yet imporant, distinction that researchers often use to convey the structure of their model. Whenever <span class="math inline">\(X_{i2}\)</span> is a vector, researchers will <em>almost always</em> use the notation <span class="math inline">\(X_{i2}'\beta\)</span> or <span class="math inline">\(X_{i2}\beta\)</span>, depending on whether <span class="math inline">\(X_{i2}\)</span> is assumed to be a column or row vector.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

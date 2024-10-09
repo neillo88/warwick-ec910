@@ -1,0 +1,51 @@
+---
+format:
+    pdf: default
+    html: default
+---
+# Interpretation of Linear Models
+Consider this simplified version of the linear regression model popularized by Mincer.
+
+$$WAGE_i = \gamma_1 + \gamma_2EDU_i + \gamma_3EXP_ i + \upsilon_i$$ where,
+
+-   $WAGE_i$: individual wage (£'s)
+
+-   $EDU_i$: years of schooling/education
+
+-   $EXP_i$: years of experience
+
+Assuming $E[\upsilon_i|S_i,EXP_i]=0$, $\beta_3$ is the expected change in wages from an additional year of experience, holding fixed years of schooling. The model implies that if we were to consider two individuals with the same years of schooling, but a 1-year difference in work experience, then we would expect the more experienced worker to earn $\beta_3$ £'s more.
+
+We would get the same interpretation from an experiment where we *control* individual schooling, but (randomly) vary years of experience by one year across units in the population.
+
+Remember, for the above linear regression model, this interpretation is based on the assumption that the conditional expectation function is correctly specified. If no, then this interpretation is incorrect. Moreover, there are other ways to think about "controlling" for covariates that we will address towards the end of this module.
+
+### Semi-elasticities and elasticities
+
+The original Mincer equation has the outcome as the log of wages,
+
+$$\ln(WAGE_i) = \gamma_1 + \gamma_2EDU_i + \gamma_3EXP_ i + \gamma_4EXP^2_ i + \upsilon_i$$ The interpretation of $\beta_3$ is now in terms of expected log-points of wages.
+
+$$
+\beta_3 = \frac{\partial E[ln(WAGE_i)|EDU_i,EXP_i]}{\partial EXP_{i}}
+$$
+
+This can be converted into a percentage change in (expected) wages,
+
+$$\%\Delta E[WAGE_i|EDU_i,EXP_i] = (\exp^{\beta_3}-1)\times 100$$ For values of $\beta_3 \in [-0.1,0.1]$ this value is closely approximated by $\beta_3\times 100$.
+
+Next, consider a model where the regressor is in logs, while the outcome remains in levels. For example, a model of commuting cost as a function of distance to work,
+
+$$COST_i = \gamma_1 + \gamma_2\ln(DIST_i) + + \nu_i$$ Here the interpretation of $\beta_2$ is, $$
+\beta_2 = \frac{\partial E[COST_i|\ln(DIST_i)]}{\partial \ln(DIST_i)}
+$$ We can convert this to $\%\Delta$ in $DIST_i$, using the fact that a 1% change in distance implies a change in log points of $\ln(1.01)\approxeq 0.01$. Thus, we can approximate the expected change in cost by $\beta_2/100$.
+
+Finally, when both the outcome and regressor are logged, the coefficient as an elasticity interpretation. For example, in the taxation literature, it is common to see taxable income modeled as a function of the (marginal) tax rate,
+
+$$
+  \ln(INC_i) = \beta_1 + \beta_2 \ln(RATE_i) + \xi_i
+$$ Here, $\beta_2$ has an tax elasticity interpretation,
+
+$$
+  \beta_2 = \frac{\partial E[\ln(INC_i)|\ln(RATE_i)]}{\partial \ln(RATE_i)} = \frac{\%\Delta E[INC_i|RATE_i]}{\%\Delta RATE_i}
+$$

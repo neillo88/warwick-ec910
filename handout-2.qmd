@@ -5,7 +5,7 @@ format:
     toc-depth: 3           # Set the depth of the table of contents
     number-sections: true  # Number the sections in the HTML output
     resources: 
-      - "lecture-2.pdf" # Make the PDF file available for download
+      - "handout-2.pdf" # Make the PDF file available for download
     code-fold: true   # places code in dropdown
   pdf:
     #documentclass: article # LaTeX class used for the PDF document
