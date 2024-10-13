@@ -24,7 +24,11 @@ In this handout we will revisit the Classical Linear Regression Model (CLRM) [se
 
 2.  it's underlying assumptions;
 
-3.  and the appropriate interpretation (correlation vs causation).
+3.  and the appropriate interpretation;
+
+4.  the OLS estimator, using linear algebra;
+
+5.  the geometry of OLS and partitioned regression result.
 
 ## Model Specification
 
@@ -43,7 +47,7 @@ for $i = 1,2,...,n$. Where,
 
 -   $Y_i \in \mathbb{R}$: scalar random variable.
 
--   $X_i \in \mathbb{R}^k$: $k$-dimensional (column[^1]) vector of regressors.[^2]
+-   $X_i \in \mathbb{R}^k$: $k$-dimensional (column[^1]) vector of regressors, with $k<n$.[^2]
 
 -   $\beta$: $k$-dimensional, non-random vector of unknown population parameters.
 
@@ -51,7 +55,7 @@ for $i = 1,2,...,n$. Where,
 
 [^1]: My notation assumes that $X_i$ is a column vector, which makes $X_i'\beta$ a scalar. Wooldridge (2010) uses the notation $X_i\beta$, implying that $X_i$ is a row vector. This is a matter of preference.
 
-[^2]: You might also refer to the vector of regressors as covariates or explanatory variables. Some texts will use the term independent variables, but this name implies a specific relationship between $Y$ and $X$ that need not hold.
+[^2]: You might also refer to the vector of regressors or explanatory variables. The terms covariates or control variables are more common in Microeconometrics literature, where regressors are typically included for identification of causal effects. Some texts will use the term independent variables, but this name implies a specific relationship between $Y$ and $X$ that need not hold. Note, we will asssume in this term that $n>k$; i.e. this is "small" data.  
 
 [^3]: This is **NOT** the residual.
 
@@ -89,6 +93,8 @@ $$ Notice, in matrix notation, you lose the transpose from $X_i'\beta$. Apart fr
 
 **Assumption CLRM 2.** Conditional mean independence of the error term: $$E[\varepsilon|X]=0$$
 
+Assumption CLRM 2. is stronger than $E[\varepsilon_i|X_i]$ (mean independence for unit $i$). If all units were independent, then $E[\varepsilon_i|X_i]$ would imply $E[\varepsilon|X]=0$. However, since we have not (yet) assumed this, we need this stronger exogeneity assumption. Consider, if $i$ represented units of time ($t$), as in time-series models, independence across $i$ will not hold.
+
 Together, CLRM 1. and CLRM 2. imply that
 
 $$ E[Y|X] = X\beta  $$ This means that the Conditional Expectation Function is known and linear in parameters.
@@ -121,17 +127,19 @@ This assumption is unlikely to hold in time-series models where units represent 
 
 Even in cross-sectional data settings, you can have non-zero correlations across units in the data. A common instance of this is the case of clustering. Clustering can occur when units experience common/correlated 'shocks'; for example, the data contains groups of students from the same classroom who have a the same teacher. This can also be the result of clustered sampling, a common practice in multi-stage survey design.
 
-**Assumption CLRM 4.** Full rank: $rank(X)=k$[^4]
+**Assumption CLRM 4.** Full rank: $rank(X)=k\quad a.s.$ a.s.[^4]
 
-[^4]: See extra material on Linear Algebra. Since $X$ is a random variable we should add to the assumption: $rank(X) = k$ *almost surely* (abbreviated a.s.). This means that the set of events in which $X$ is not full rank occur with probability 0. The reason for this addition is that such a set of events may not be empty.
+[^4]: See extra material on Linear Algebra to read more on rank.
+
+Since $X$ is a random variable we should add to the assumption: $rank(X) = k$ *almost surely* (abbreviated a.s.). This means that the set of events in which $X$ is not full rank occur with probability 0. The reason for this addition is that such a set of events (in the sample space) may not be empty.
 
 CLRM 4. is some time referred to as the absence of perfect (or exact) collinearity. Do not confuse this with multicollinearity. Multicollinearity occurs when regressors are highly (linearly) correlated with one another, yielding imprecise estimates.
 
-**Assumption CLRM 5.** Normality of the error term: $U|X \sim N(0,\sigma^2 I_n)$
+**Assumption CLRM 5.** Normality of the error term: $\varepsilon|X \sim N(0,\sigma^2 I_n)$
 
 **Assumption CLRM 6.** Observations $\{(Y_i,X_i): i=1,...,n\}$ are independently and identically distributed (iid).
 
-CLRM 5 & 6 are not part of the Classical assumptions, but do simplify the problem of inference. Note, CLRM 5 implies independence across error terms, not implied by CLRM 4.
+CLRM 5 & 6 are not part of the Classical assumptions, but do simplify the problem of inference. Note, CLRM 5 implies independence across error terms, not implied by CLRM 3.
 
 ### Non-random $X$
 
@@ -177,20 +185,22 @@ $$
 
 Since $\beta$ is a non-random vector, we can remove it from the expectation function.
 
-Now we have a system of linear equations (of the form $Av = b$) with a unique solution if and only if the matrix $E[X_iX_i']$ is invertible. For the inverse of $E[X_iX_i']$ to exist, we require CLRM 3.
+Now we have a system of linear equations (of the form $Av = b$) with a unique solution if and only if the matrix $E[X_iX_i']$ is invertible. For the inverse of $E[X_iX_i']$ to exist, we require CLRM 4, since $rank(X)=k\quad a.s.\Rightarrow rank(E[X_iX_i'])=k$.[^5]
 
 $$
     \beta = E[X_iX_i']^{-1}E[X_iY_i]
 $$
 :::
 
+[^5]: For $n$ large, $rank(E[X_iX_i'])=k\Rightarrow rank(X)=k$. This follows from Law of Large Numbers, since $plim(n^{-1}X'X) = E[X_iX_i']$.
+
 We cannot compute $\beta$ because we do not know the joint distribution of $(Y_i,X_i)$ needed to solve for the variance-covariance matrices. However, $\beta$ is (point) identified because both $Y$ and $X$ are observed in the data and the parameters are "pinned down" by a unique set of 'observable' moments in the data.
 
-$\beta$ is not identified if the above system of linear equations does not have a unique solution. This will occur if two or more of the regressors are perfectly colinear.[^5] $\beta$ is also not be identified is the resulting expression for $\beta$ includes 'objects' (moments, distribution/scale parameters) that are not 'observed' in the data. For example, if the error is not mean independent, the above expression will include a bias term that depends on $E[X_i'\varepsilon_i]$.
+$\beta$ is not identified if the above system of linear equations does not have a unique solution. This will occur if two or more of the regressors are perfectly colinear.[^6] $\beta$ is also not be identified if the resulting expression for $\beta$ includes 'objects' (moments, distribution/scale parameters) that are not 'observed' in the data. For example, if the error is not mean independent, the above expression will include a bias term that depends on $E[X_i'\varepsilon_i]$.
 
-[^5]: There are many such failures of (parametric) identification in models that include dummy variables (or fixed effects). Earlier we saw that the intercept is not separately identified from the mean of the error term. Mean independence of the error term, $E[\varepsilon_i]=0$, is required for us to separately 'identify' $\beta_1$.
+[^6]: There are many such failures of (parametric) identification in models that include dummy variables (or fixed effects). Earlier we saw that the intercept is not separately identified from the mean of the error term. Mean independence of the error term, $E[\varepsilon_i]=0$, is required for us to separately 'identify' $\beta_1$.
 
-In this instance, the identification of $\beta$ is scale dependent. That is, if we multiply $Y_i$ by a scalar, $\beta$ is multiplied by the same scalar. Consider cases where a researcher is modelling standardized test-scores.
+In this instance, the identification of $\beta$ is scale dependent. That is, if we multiply $Y_i$ by a scalar, $\beta$ is multiplied by the same scalar. For example, in cases where a researcher is modelling standardized test-scores.
 
 ## Interpretation
 
@@ -210,7 +220,7 @@ $$
 
 For a given value of $X_i$, the above expression is non-random.
 
-As $\beta_j$ is a partial derivative, its interpretation is one that "holds fixed" the value of other regressors (i.e. *ceteris paribus*). Because of this, many researchers apply the experimental language of control variables when interpretting regression coefficients.
+As $\beta_j$ is a partial derivative, its interpretation is one that "holds fixed" the value of other regressors (i.e. *ceteris paribus*). Because of this, many researchers apply the experimental language of control variables when interpretting regression coefficients. However, this is dependent on the *assumed* linearity of the CEF.
 
 ## Ordinary Least Squares
 
@@ -230,15 +240,15 @@ $$
 =&\min_b\;Y'Y-Y'Xb-b'X'Y+b'X'Xb \\
 =&\min_b\;Y'Y-2b'X'Y+b'X'Xb 
 \end{aligned} 
-$$ From line 2 to 3 we use the face that $Y'Xb$ is a scalar and therefore symmetric: $Y'Xb=b'X'Y$.[^6]
+$$ From line 2 to 3 we use the fact that $Y'Xb$ is a scalar and therefore symmetric: $Y'Xb=b'X'Y$.[^7]
 
-[^6]: When working with vectors and matrices it is important to keep track of their size. You can only multiply two matrices/vectors if their column and row dimensions match. For example, if $A$ and $B$ are both $n\times k$ matrices ($n\neq k$), then $AB$ is not defined since $A$ has $k$ columns and $B$ $n$ rows. For the same reason $BA$ is also not defined. However, you can pre-multiply $B$ with $A'$ as $A'$ is a $k\times n$ matrix: $A'B$ is therefore a $(k\times n)\cdot (n\times k)=k\times k$ matrix. Similarly, $B'A$ is defined, but is a $n\times n$ matrix.
+[^7]: When working with vectors and matrices it is important to keep track of their size. You can only multiply two matrices/vectors if their column and row dimensions match. For example, if $A$ and $B$ are both $n\times k$ matrices ($n\neq k$), then $AB$ is not defined since $A$ has $k$ columns and $B$ $n$ rows. For the same reason $BA$ is also not defined. However, you can pre-multiply $B$ with $A'$ as $A'$ is a $k\times n$ matrix: $A'B$ is therefore a $(k\times n)\cdot (n\times k)=k\times k$ matrix. Similarly, $B'A$ is defined, but is a $n\times n$ matrix.
 
     Order matters when working with matrices and vectors. Pre-multiplication and post-multiplication are not the same thing.
 
     Keep track of the size of each term to ensure they correspond to one another. In this instance, each term should be a scalar. For example, $-2b'X'Y$ is the multiplication of a scalar ($-2$: size $1\times 1$), row vector ($b'$: size $1\times k$), matrix ($X'$: size $k\times n$), and column vector ($Y$: size $n\times 1$). Thus we have a $(1\times 1)\cdot (1\times k)\cdot (k\times n)\cdot (n\times 1)=1\times 1$.
 
-Differentiating the above expression w.r.t. the vecotr $b$ and setting the first-order conditions to $0$, we find that the following condition must hold for $\hat{\beta}$, the solution.
+Differentiating the above expression w.r.t. the vector $b$ and setting the first-order conditions to $0$, we find that the following condition must hold for $\hat{\beta}$, the solution.
 
 $$ 
   \begin{aligned} 
@@ -279,13 +289,13 @@ You may know this assumption by another name: the absence of perfect colinearity
 
 > The rank condition is the reason we exclude a base category when working with categorical variables.
 >
-> Recall, most linear regression models are specified with constant. Thus, the first column of $X$ is
+> Recall, most linear regression models are specified with a constant. Thus, the first column of $X$ is
 >
 > $$ X_1 = \begin{bmatrix}1 \\ 1 \\ \vdots \\ 1\end{bmatrix} $$ a $n\times 1$ vector vector of $1$'s, denoted here as $\ell$. Suppose you have a categorical - for example, gender in an individual level dataset - that splits the same in two. The categories are assumed to be exhaustive and mutually exclusive. If you create two dummy variables, one for each category,
 >
 > $$ X_2 = \begin{bmatrix}1 \\ \vdots \\1\\0\\ \vdots \\ 0\end{bmatrix}\qquad\text{and}\qquad X_3 = \begin{bmatrix}0 \\ \vdots \\0\\1\\ \vdots \\ 1\end{bmatrix} $$
 >
-> it is evident that $X_2+X_3 = \ell$. (Here I have depicted the sample as sorted along these two categories.) If $X=[X_1\;X_2\;X_3]$, then it is rank-deficient: $r(X) = 2<3$, since $X_3=X_1-X2$. Thus, we can only include two of these three regressors. We can even exclude the constant and have $X=[X_2\;X_3]$.
+> it is evident that $X_2+X_3 = \ell$. (Here I have depicted the sample as sorted along these two categories.) If $X=[X_1\;X_2\;X_3]$, then it is rank-deficient: $r(X) = 2<3$, since $X_3=X_1-X_2$. Thus, we can only include two of these three regressors. We can even exclude the constant and have $X=[X_2\;X_3]$.
 
 If $X$ is full rank, then $(X'X)^{-1}$ exists and,
 
@@ -298,16 +308,16 @@ This relatively simple expression is the solution to least squares minimization 
 We can write the same expression in terms of summations over unit-level observations,
 
 $$ 
-\hat{\beta} = \big(\sum_{i=1}^nX_iX_i')^{-1}\sum_{i=1}^nX_iY_i 
+\hat{\beta} = \bigg(\sum_{i=1}^nX_iX_i'\bigg)^{-1}\sum_{i=1}^nX_iY_i 
 $$
 
-Note, the change in position of the transpose: $X_i$ is a column vector $\Rightarrow$ $X_i'X_i$ is a scalar and $X_iX_i'$ is a $k\times k$ matrix. To match the first expression, the term inside the parenthesis must be a $k\times k$ matrix. Similarly, $X'Y$ is a $k\times 1$ vector, as is $X_iY_i$.
+Note, the change in position of the transpose: $X_i$ is a column vector $\Rightarrow$ $X_i'X_i$ is a scalar while $X_iX_i'$ is a $k\times k$ matrix. To match the first expression, the term inside the parenthesis must be a $k\times k$ matrix. Similarly, $X'Y$ is a $k\times 1$ vector, as is $X_iY_i$.
 
 ### Univariate case
 
-Undergraduate textbooks all teach a very similar expression for the OLS estimator of a uni-variate regression model (with a constant); typically, something like,[^7]
+Undergraduate textbooks all teach a very similar expression for the OLS estimator of a uni-variate regression model (with a constant); typically, something like,[^8]
 
-[^7]: Once you are familiar with vector notation, it is relatively easy to tell whether a model is uni- or multi-variate. This is because the notation $\beta_2 X_{i2}$ is not consistent with $X_{2i}$ being a vector (row or column).
+[^8]: Once you are familiar with vector notation, it is relatively easy to tell whether a model is uni- or multi-variate. This is because the notation $\beta_2 X_{i2}$ is not consistent with $X_{2i}$ being a vector (row or column).
 
     If $X_{i2}$ is a $k\times 1$ vector then so is $\beta_2$. Thus, $\beta_2 X_{i2}$ is $(k\times 1)\cdot (k\times1)$, which is not defined.
 
@@ -317,7 +327,7 @@ Undergraduate textbooks all teach a very similar expression for the OLS estimato
 
 $$
 Y_i = \beta_1+\beta_2X_{i2}+\varepsilon_i
-$$ We know that,
+$$ We know that the OLS estimators are give by,
 
 $$
 \begin{aligned}
@@ -326,9 +336,7 @@ $$
 \end{aligned}
 $$
 
-I am deliberately using the notation $\tilde{\beta}$ to distinguish these two estimators from the expression below.
-
-Let us see if we can replicate this result. When written in vector notation, the model is,
+I am deliberately using the notation $\tilde{\beta}$ to distinguish these two estimators from the expression below. Let us see if we can replicate this result, using vector notation. The the model is,
 
 $$
 \begin{aligned}
@@ -423,7 +431,7 @@ $$
 \end{aligned}
 $$
 
-The matrix $P_X = X(X'X)^{-1}X'$ is a $n\times n$ *projection* matrix. It is a linear transformation that projects any vector into the span of $X$: $S(X)$. (See for more information on these terms.) $S(X)$ is the vector space spanned by the columns of $X$. The dimensions of this vector space depends on the rank of $P_X$,
+The matrix $P_X = X(X'X)^{-1}X'$ is a $n\times n$ *projection* matrix. It is a linear transformation that projects any vector into the span of $X$: $S(X)\subset\mathbb{R}^n$. (See for more information on these terms.) $S(X)$ is the vector space spanned by the columns of $X$. The dimensions of this vector space depends on the rank of $P_X$,
 
 $$
 dim(S(X)) = r(P_X) = r(X) = k
@@ -443,7 +451,7 @@ $$
 
 The least squares estimator is a projection of Y into two vector spaces: one the span of the columns of $X$ and the other a space orthogonal to $X$.
 
-Why is this useful? Well, it helps us understand the "mechanics" (technically geometry) of OLS. When work with linear regression models, we typically assume either strict exogeneity - $E[\varepsilon|X]=0$ - or uncorrelatedness - $E[X'\varepsilon]=0$ - where the former implies the latter (but not the other way around).
+Why is this useful? Well, it helps us understand the "mechanics" (technically geometry) of OLS. When working with linear regression models, we typically assume either strict exogeneity - $E[\varepsilon|X]=0$ - or uncorrelatedness - $E[X'\varepsilon]=0$ - where the former implies the latter (but not the other way around).
 
 When we use OLS, we estimate the vector $\hat{\beta}$ such that,
 
@@ -451,7 +459,7 @@ $$
 X'(Y-X\hat{\beta})=X'\hat{\varepsilon}=0 \quad always
 $$
 
-This is true, *not just in expectation*, but by definition. The relationship is "mechanical": the covariates and estimated residual are perfectly uncorrelated. This can be easily shown:
+This is true, *not just in expectation*, but by definition. The relationship is "mechanical": the regressors and estimated residual are perfectly uncorrelated. This can be easily shown:
 
 $$
 \begin{aligned}
@@ -501,7 +509,7 @@ $$
 Y = \gamma_1\underbrace{M_2X_1}_{\hat{\upsilon}}+\xi
 $$
 
-We know that $\hat{\gamma}_1 = (\hat{\upsilon}'\hat{\upsilon})^{-1}\hat{\upsilon}'Y$. Replacing the value of the residual, we get, 
+We know that $\hat{\gamma}_1 = (\hat{\upsilon}'\hat{\upsilon})^{-1}\hat{\upsilon}'Y$. Replacing the value of the residual, we get,
 
 $$
 \begin{aligned}
@@ -509,8 +517,8 @@ $$
 =&(X_1'M_2M_2X_1)^{-1}X_1'M_2Y \\
 =&(X_1'M_2X_1)^{-1}X_1'M_2Y
 \end{aligned}
-$$
-Here, we use both the symmetry and idempotent quality of $M_2$. Next we want to show that $\hat{\beta}_1$ is given by the same value. This part is more complicated. Let's start with by reminding ourselves of the following:
+$$ 
+Here, we use both the symmetric and idempotent qualities of $M_2$. Next we want to show that $\hat{\beta}_1$ is given by the same value. This part is more complicated. Let's start with by reminding ourselves of the following:
 
 $$
 \begin{aligned}

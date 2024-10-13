@@ -259,7 +259,9 @@ window.Quarto = {
 <ol type="1">
 <li><p>understand the model specification;</p></li>
 <li><p>it’s underlying assumptions;</p></li>
-<li><p>and the appropriate interpretation (correlation vs causation).</p></li>
+<li><p>and the appropriate interpretation;</p></li>
+<li><p>the OLS estimator, using linear algebra;</p></li>
+<li><p>the geometry of OLS and partitioned regression result.</p></li>
 </ol>
 </section>
 <section id="model-specification" class="level2" data-number="2">
@@ -275,7 +277,7 @@ window.Quarto = {
 <ul>
 <li><p><span class="math inline">\(i\)</span>: unit of observation; e.g.&nbsp;individual, firm, union, political party, etc.</p></li>
 <li><p><span class="math inline">\(Y_i \in \mathbb{R}\)</span>: scalar random variable.</p></li>
-<li><p><span class="math inline">\(X_i \in \mathbb{R}^k\)</span>: <span class="math inline">\(k\)</span>-dimensional (column<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>) vector of regressors.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p></li>
+<li><p><span class="math inline">\(X_i \in \mathbb{R}^k\)</span>: <span class="math inline">\(k\)</span>-dimensional (column<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>) vector of regressors, with <span class="math inline">\(k&lt;n\)</span>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p></li>
 <li><p><span class="math inline">\(\beta\)</span>: <span class="math inline">\(k\)</span>-dimensional, non-random vector of unknown population parameters.</p></li>
 <li><p><span class="math inline">\(\varepsilon_i\)</span>: <em>unobserved</em>, random error term.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p></li>
 </ul>
@@ -306,6 +308,7 @@ Y =\underbrace{\begin{bmatrix}Y_1 \\ Y_2 \\ \vdots \\ Y_n \end{bmatrix}}_{n\time
 <h2 data-number="3" class="anchored" data-anchor-id="clrm-assumptions"><span class="header-section-number">3</span> CLRM Assumptions</h2>
 <p><strong>Assumption CLRM 1.</strong> Population regression equation is linear in parameters: <span class="math display">\[Y = X\beta+\varepsilon\]</span></p>
 <p><strong>Assumption CLRM 2.</strong> Conditional mean independence of the error term: <span class="math display">\[E[\varepsilon|X]=0\]</span></p>
+<p>Assumption CLRM 2. is stronger than <span class="math inline">\(E[\varepsilon_i|X_i]\)</span> (mean independence for unit <span class="math inline">\(i\)</span>). If all units were independent, then <span class="math inline">\(E[\varepsilon_i|X_i]\)</span> would imply <span class="math inline">\(E[\varepsilon|X]=0\)</span>. However, since we have not (yet) assumed this, we need this stronger exogeneity assumption. Consider, if <span class="math inline">\(i\)</span> represented units of time (<span class="math inline">\(t\)</span>), as in time-series models, independence across <span class="math inline">\(i\)</span> will not hold.</p>
 <p>Together, CLRM 1. and CLRM 2. imply that</p>
 <p><span class="math display">\[ E[Y|X] = X\beta  \]</span> This means that the Conditional Expectation Function is known and linear in parameters.</p>
 <p>Conditional mean independence implies - by the Law of Iterated Expectations - mean independence of the error term,</p>
@@ -323,11 +326,12 @@ Y =\underbrace{\begin{bmatrix}Y_1 \\ Y_2 \\ \vdots \\ Y_n \end{bmatrix}}_{n\time
 <p>Models with heteroskedasticity relax the assumption of constant variance, allowing for a richer variance-covariance matrix that typically depends on <span class="math inline">\(X\)</span>.</p>
 <p>This assumption is unlikely to hold in time-series models where units represent repeated observations across time. Such violations are referred to as serial correlation or autocorrelation.</p>
 <p>Even in cross-sectional data settings, you can have non-zero correlations across units in the data. A common instance of this is the case of clustering. Clustering can occur when units experience common/correlated ‘shocks’; for example, the data contains groups of students from the same classroom who have a the same teacher. This can also be the result of clustered sampling, a common practice in multi-stage survey design.</p>
-<p><strong>Assumption CLRM 4.</strong> Full rank: <span class="math inline">\(rank(X)=k\)</span><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p><strong>Assumption CLRM 4.</strong> Full rank: <span class="math inline">\(rank(X)=k\quad a.s.\)</span> a.s.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>Since <span class="math inline">\(X\)</span> is a random variable we should add to the assumption: <span class="math inline">\(rank(X) = k\)</span> <em>almost surely</em> (abbreviated a.s.). This means that the set of events in which <span class="math inline">\(X\)</span> is not full rank occur with probability 0. The reason for this addition is that such a set of events (in the sample space) may not be empty.</p>
 <p>CLRM 4. is some time referred to as the absence of perfect (or exact) collinearity. Do not confuse this with multicollinearity. Multicollinearity occurs when regressors are highly (linearly) correlated with one another, yielding imprecise estimates.</p>
-<p><strong>Assumption CLRM 5.</strong> Normality of the error term: <span class="math inline">\(U|X \sim N(0,\sigma^2 I_n)\)</span></p>
+<p><strong>Assumption CLRM 5.</strong> Normality of the error term: <span class="math inline">\(\varepsilon|X \sim N(0,\sigma^2 I_n)\)</span></p>
 <p><strong>Assumption CLRM 6.</strong> Observations <span class="math inline">\(\{(Y_i,X_i): i=1,...,n\}\)</span> are independently and identically distributed (iid).</p>
-<p>CLRM 5 &amp; 6 are not part of the Classical assumptions, but do simplify the problem of inference. Note, CLRM 5 implies independence across error terms, not implied by CLRM 4.</p>
+<p>CLRM 5 &amp; 6 are not part of the Classical assumptions, but do simplify the problem of inference. Note, CLRM 5 implies independence across error terms, not implied by CLRM 3.</p>
 <section id="non-random-x" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="non-random-x"><span class="header-section-number">3.1</span> Non-random <span class="math inline">\(X\)</span></h3>
 <p>There is an alternative version of the CLRM in which <span class="math inline">\(X\)</span> is a non-random, matrix of regressors/predictors. With <span class="math inline">\(X\)</span> fixed, the error term is the only only random variable in the model. CLRM assumptions 1 and 4 remain the same, while CLRM 2, 3, 5, and 6 become:</p>
@@ -360,14 +364,14 @@ Y =\underbrace{\begin{bmatrix}Y_1 \\ Y_2 \\ \vdots \\ Y_n \end{bmatrix}}_{n\time
 \end{aligned}
 \]</span></p>
 <p>Since <span class="math inline">\(\beta\)</span> is a non-random vector, we can remove it from the expectation function.</p>
-<p>Now we have a system of linear equations (of the form <span class="math inline">\(Av = b\)</span>) with a unique solution if and only if the matrix <span class="math inline">\(E[X_iX_i']\)</span> is invertible. For the inverse of <span class="math inline">\(E[X_iX_i']\)</span> to exist, we require CLRM 3.</p>
+<p>Now we have a system of linear equations (of the form <span class="math inline">\(Av = b\)</span>) with a unique solution if and only if the matrix <span class="math inline">\(E[X_iX_i']\)</span> is invertible. For the inverse of <span class="math inline">\(E[X_iX_i']\)</span> to exist, we require CLRM 4, since <span class="math inline">\(rank(X)=k\quad a.s.\Rightarrow rank(E[X_iX_i'])=k\)</span>.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
 <p><span class="math display">\[
     \beta = E[X_iX_i']^{-1}E[X_iY_i]
 \]</span></p>
 </div>
 <p>We cannot compute <span class="math inline">\(\beta\)</span> because we do not know the joint distribution of <span class="math inline">\((Y_i,X_i)\)</span> needed to solve for the variance-covariance matrices. However, <span class="math inline">\(\beta\)</span> is (point) identified because both <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> are observed in the data and the parameters are “pinned down” by a unique set of ‘observable’ moments in the data.</p>
-<p><span class="math inline">\(\beta\)</span> is not identified if the above system of linear equations does not have a unique solution. This will occur if two or more of the regressors are perfectly colinear.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> <span class="math inline">\(\beta\)</span> is also not be identified is the resulting expression for <span class="math inline">\(\beta\)</span> includes ‘objects’ (moments, distribution/scale parameters) that are not ‘observed’ in the data. For example, if the error is not mean independent, the above expression will include a bias term that depends on <span class="math inline">\(E[X_i'\varepsilon_i]\)</span>.</p>
-<p>In this instance, the identification of <span class="math inline">\(\beta\)</span> is scale dependent. That is, if we multiply <span class="math inline">\(Y_i\)</span> by a scalar, <span class="math inline">\(\beta\)</span> is multiplied by the same scalar. Consider cases where a researcher is modelling standardized test-scores.</p>
+<p><span class="math inline">\(\beta\)</span> is not identified if the above system of linear equations does not have a unique solution. This will occur if two or more of the regressors are perfectly colinear.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> <span class="math inline">\(\beta\)</span> is also not be identified if the resulting expression for <span class="math inline">\(\beta\)</span> includes ‘objects’ (moments, distribution/scale parameters) that are not ‘observed’ in the data. For example, if the error is not mean independent, the above expression will include a bias term that depends on <span class="math inline">\(E[X_i'\varepsilon_i]\)</span>.</p>
+<p>In this instance, the identification of <span class="math inline">\(\beta\)</span> is scale dependent. That is, if we multiply <span class="math inline">\(Y_i\)</span> by a scalar, <span class="math inline">\(\beta\)</span> is multiplied by the same scalar. For example, in cases where a researcher is modelling standardized test-scores.</p>
 </section>
 </section>
 <section id="interpretation" class="level2" data-number="4">
@@ -383,7 +387,7 @@ Y =\underbrace{\begin{bmatrix}Y_1 \\ Y_2 \\ \vdots \\ Y_n \end{bmatrix}}_{n\time
 E[Y_i|X_i] = X_i'\beta
 \]</span></p>
 <p>For a given value of <span class="math inline">\(X_i\)</span>, the above expression is non-random.</p>
-<p>As <span class="math inline">\(\beta_j\)</span> is a partial derivative, its interpretation is one that “holds fixed” the value of other regressors (i.e.&nbsp;<em>ceteris paribus</em>). Because of this, many researchers apply the experimental language of control variables when interpretting regression coefficients.</p>
+<p>As <span class="math inline">\(\beta_j\)</span> is a partial derivative, its interpretation is one that “holds fixed” the value of other regressors (i.e.&nbsp;<em>ceteris paribus</em>). Because of this, many researchers apply the experimental language of control variables when interpretting regression coefficients. However, this is dependent on the <em>assumed</em> linearity of the CEF.</p>
 </section>
 <section id="ordinary-least-squares" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="ordinary-least-squares"><span class="header-section-number">5</span> Ordinary Least Squares</h2>
@@ -399,8 +403,8 @@ E[Y_i|X_i] = X_i'\beta
 =&amp;\min_b\;Y'Y-Y'Xb-b'X'Y+b'X'Xb \\
 =&amp;\min_b\;Y'Y-2b'X'Y+b'X'Xb
 \end{aligned}
-\]</span> From line 2 to 3 we use the face that <span class="math inline">\(Y'Xb\)</span> is a scalar and therefore symmetric: <span class="math inline">\(Y'Xb=b'X'Y\)</span>.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
-<p>Differentiating the above expression w.r.t. the vecotr <span class="math inline">\(b\)</span> and setting the first-order conditions to <span class="math inline">\(0\)</span>, we find that the following condition must hold for <span class="math inline">\(\hat{\beta}\)</span>, the solution.</p>
+\]</span> From line 2 to 3 we use the fact that <span class="math inline">\(Y'Xb\)</span> is a scalar and therefore symmetric: <span class="math inline">\(Y'Xb=b'X'Y\)</span>.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<p>Differentiating the above expression w.r.t. the vector <span class="math inline">\(b\)</span> and setting the first-order conditions to <span class="math inline">\(0\)</span>, we find that the following condition must hold for <span class="math inline">\(\hat{\beta}\)</span>, the solution.</p>
 <p><span class="math display">\[
   \begin{aligned}
   &amp;0=-2X'Y+2X'X\hat{\beta}
@@ -428,10 +432,10 @@ E[Y_i|X_i] = X_i'\beta
 <p>You may know this assumption by another name: the absence of perfect colinearity between regressors.</p>
 <blockquote class="blockquote">
 <p>The rank condition is the reason we exclude a base category when working with categorical variables.</p>
-<p>Recall, most linear regression models are specified with constant. Thus, the first column of <span class="math inline">\(X\)</span> is</p>
+<p>Recall, most linear regression models are specified with a constant. Thus, the first column of <span class="math inline">\(X\)</span> is</p>
 <p><span class="math display">\[ X_1 = \begin{bmatrix}1 \\ 1 \\ \vdots \\ 1\end{bmatrix} \]</span> a <span class="math inline">\(n\times 1\)</span> vector vector of <span class="math inline">\(1\)</span>’s, denoted here as <span class="math inline">\(\ell\)</span>. Suppose you have a categorical - for example, gender in an individual level dataset - that splits the same in two. The categories are assumed to be exhaustive and mutually exclusive. If you create two dummy variables, one for each category,</p>
 <p><span class="math display">\[ X_2 = \begin{bmatrix}1 \\ \vdots \\1\\0\\ \vdots \\ 0\end{bmatrix}\qquad\text{and}\qquad X_3 = \begin{bmatrix}0 \\ \vdots \\0\\1\\ \vdots \\ 1\end{bmatrix} \]</span></p>
-<p>it is evident that <span class="math inline">\(X_2+X_3 = \ell\)</span>. (Here I have depicted the sample as sorted along these two categories.) If <span class="math inline">\(X=[X_1\;X_2\;X_3]\)</span>, then it is rank-deficient: <span class="math inline">\(r(X) = 2&lt;3\)</span>, since <span class="math inline">\(X_3=X_1-X2\)</span>. Thus, we can only include two of these three regressors. We can even exclude the constant and have <span class="math inline">\(X=[X_2\;X_3]\)</span>.</p>
+<p>it is evident that <span class="math inline">\(X_2+X_3 = \ell\)</span>. (Here I have depicted the sample as sorted along these two categories.) If <span class="math inline">\(X=[X_1\;X_2\;X_3]\)</span>, then it is rank-deficient: <span class="math inline">\(r(X) = 2&lt;3\)</span>, since <span class="math inline">\(X_3=X_1-X_2\)</span>. Thus, we can only include two of these three regressors. We can even exclude the constant and have <span class="math inline">\(X=[X_2\;X_3]\)</span>.</p>
 </blockquote>
 <p>If <span class="math inline">\(X\)</span> is full rank, then <span class="math inline">\((X'X)^{-1}\)</span> exists and,</p>
 <p><span class="math display">\[
@@ -440,23 +444,22 @@ E[Y_i|X_i] = X_i'\beta
 <p>This relatively simple expression is the solution to least squares minimization problem. Just think, it would take less than three lines of code to programme this. That is the power of knowing a little linear algebra.</p>
 <p>We can write the same expression in terms of summations over unit-level observations,</p>
 <p><span class="math display">\[
-\hat{\beta} = \big(\sum_{i=1}^nX_iX_i')^{-1}\sum_{i=1}^nX_iY_i
+\hat{\beta} = \bigg(\sum_{i=1}^nX_iX_i'\bigg)^{-1}\sum_{i=1}^nX_iY_i
 \]</span></p>
-<p>Note, the change in position of the transpose: <span class="math inline">\(X_i\)</span> is a column vector <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(X_i'X_i\)</span> is a scalar and <span class="math inline">\(X_iX_i'\)</span> is a <span class="math inline">\(k\times k\)</span> matrix. To match the first expression, the term inside the parenthesis must be a <span class="math inline">\(k\times k\)</span> matrix. Similarly, <span class="math inline">\(X'Y\)</span> is a <span class="math inline">\(k\times 1\)</span> vector, as is <span class="math inline">\(X_iY_i\)</span>.</p>
+<p>Note, the change in position of the transpose: <span class="math inline">\(X_i\)</span> is a column vector <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(X_i'X_i\)</span> is a scalar while <span class="math inline">\(X_iX_i'\)</span> is a <span class="math inline">\(k\times k\)</span> matrix. To match the first expression, the term inside the parenthesis must be a <span class="math inline">\(k\times k\)</span> matrix. Similarly, <span class="math inline">\(X'Y\)</span> is a <span class="math inline">\(k\times 1\)</span> vector, as is <span class="math inline">\(X_iY_i\)</span>.</p>
 <section id="univariate-case" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="univariate-case"><span class="header-section-number">5.1</span> Univariate case</h3>
-<p>Undergraduate textbooks all teach a very similar expression for the OLS estimator of a uni-variate regression model (with a constant); typically, something like,<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<p>Undergraduate textbooks all teach a very similar expression for the OLS estimator of a uni-variate regression model (with a constant); typically, something like,<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
 <p><span class="math display">\[
 Y_i = \beta_1+\beta_2X_{i2}+\varepsilon_i
-\]</span> We know that,</p>
+\]</span> We know that the OLS estimators are give by,</p>
 <p><span class="math display">\[
 \begin{aligned}
 \tilde{\beta}_2 =&amp; \frac{\sum(Y_i-\bar{Y})(X_{i2}-\bar{X}_2)}{\sum_{i=1}^n(X_{i2}-\bar{X}_2)^2} \\
 \text{and}\qquad \tilde{\beta}_1 =&amp; \bar{Y}-\tilde{\beta_2}\bar{X}_2
 \end{aligned}
 \]</span></p>
-<p>I am deliberately using the notation <span class="math inline">\(\tilde{\beta}\)</span> to distinguish these two estimators from the expression below.</p>
-<p>Let us see if we can replicate this result. When written in vector notation, the model is,</p>
+<p>I am deliberately using the notation <span class="math inline">\(\tilde{\beta}\)</span> to distinguish these two estimators from the expression below. Let us see if we can replicate this result, using vector notation. The the model is,</p>
 <p><span class="math display">\[
 \begin{aligned}
 Y =&amp; X\beta+\varepsilon \\
@@ -529,7 +532,7 @@ Y =&amp; X\hat{\beta} + \hat{\varepsilon} \\
 =&amp;P_XY + M_XY
 \end{aligned}
 \]</span></p>
-<p>The matrix <span class="math inline">\(P_X = X(X'X)^{-1}X'\)</span> is a <span class="math inline">\(n\times n\)</span> <em>projection</em> matrix. It is a linear transformation that projects any vector into the span of <span class="math inline">\(X\)</span>: <span class="math inline">\(S(X)\)</span>. (See for more information on these terms.) <span class="math inline">\(S(X)\)</span> is the vector space spanned by the columns of <span class="math inline">\(X\)</span>. The dimensions of this vector space depends on the rank of <span class="math inline">\(P_X\)</span>,</p>
+<p>The matrix <span class="math inline">\(P_X = X(X'X)^{-1}X'\)</span> is a <span class="math inline">\(n\times n\)</span> <em>projection</em> matrix. It is a linear transformation that projects any vector into the span of <span class="math inline">\(X\)</span>: <span class="math inline">\(S(X)\subset\mathbb{R}^n\)</span>. (See for more information on these terms.) <span class="math inline">\(S(X)\)</span> is the vector space spanned by the columns of <span class="math inline">\(X\)</span>. The dimensions of this vector space depends on the rank of <span class="math inline">\(P_X\)</span>,</p>
 <p><span class="math display">\[
 dim(S(X)) = r(P_X) = r(X) = k
 \]</span></p>
@@ -542,12 +545,12 @@ dim(S^{\perp}(X)) = r(M_X) = r(I_n)-r(X) = n-k
 P_X'M_X = P_X(I_n-P_X) = P_X-P_XP_X = P_X-P_X = 0
 \]</span></p>
 <p>The least squares estimator is a projection of Y into two vector spaces: one the span of the columns of <span class="math inline">\(X\)</span> and the other a space orthogonal to <span class="math inline">\(X\)</span>.</p>
-<p>Why is this useful? Well, it helps us understand the “mechanics” (technically geometry) of OLS. When work with linear regression models, we typically assume either strict exogeneity - <span class="math inline">\(E[\varepsilon|X]=0\)</span> - or uncorrelatedness - <span class="math inline">\(E[X'\varepsilon]=0\)</span> - where the former implies the latter (but not the other way around).</p>
+<p>Why is this useful? Well, it helps us understand the “mechanics” (technically geometry) of OLS. When working with linear regression models, we typically assume either strict exogeneity - <span class="math inline">\(E[\varepsilon|X]=0\)</span> - or uncorrelatedness - <span class="math inline">\(E[X'\varepsilon]=0\)</span> - where the former implies the latter (but not the other way around).</p>
 <p>When we use OLS, we estimate the vector <span class="math inline">\(\hat{\beta}\)</span> such that,</p>
 <p><span class="math display">\[
 X'(Y-X\hat{\beta})=X'\hat{\varepsilon}=0 \quad always
 \]</span></p>
-<p>This is true, <em>not just in expectation</em>, but by definition. The relationship is “mechanical”: the covariates and estimated residual are perfectly uncorrelated. This can be easily shown:</p>
+<p>This is true, <em>not just in expectation</em>, but by definition. The relationship is “mechanical”: the regressors and estimated residual are perfectly uncorrelated. This can be easily shown:</p>
 <p><span class="math display">\[
 \begin{aligned}
 X'\hat{\varepsilon} =&amp; X'M_XY \\
@@ -591,7 +594,7 @@ Y = \gamma_1\underbrace{M_2X_1}_{\hat{\upsilon}}+\xi
 =&amp;(X_1'M_2M_2X_1)^{-1}X_1'M_2Y \\
 =&amp;(X_1'M_2X_1)^{-1}X_1'M_2Y
 \end{aligned}
-\]</span> Here, we use both the symmetry and idempotent quality of <span class="math inline">\(M_2\)</span>. Next we want to show that <span class="math inline">\(\hat{\beta}_1\)</span> is given by the same value. This part is more complicated. Let’s start with by reminding ourselves of the following:</p>
+\]</span> Here, we use both the symmetric and idempotent qualities of <span class="math inline">\(M_2\)</span>. Next we want to show that <span class="math inline">\(\hat{\beta}_1\)</span> is given by the same value. This part is more complicated. Let’s start with by reminding ourselves of the following:</p>
 <p><span class="math display">\[
 \begin{aligned}
 X'X\hat{\beta} &amp;= X'Y \\
@@ -633,17 +636,18 @@ Wooldridge, Jeffrey M. 2010. <em>Econometric Analysis of Cross Section and Panel
 
 <ol>
 <li id="fn1"><p>My notation assumes that <span class="math inline">\(X_i\)</span> is a column vector, which makes <span class="math inline">\(X_i'\beta\)</span> a scalar. Wooldridge (2010) uses the notation <span class="math inline">\(X_i\beta\)</span>, implying that <span class="math inline">\(X_i\)</span> is a row vector. This is a matter of preference.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>You might also refer to the vector of regressors as covariates or explanatory variables. Some texts will use the term independent variables, but this name implies a specific relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> that need not hold.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>You might also refer to the vector of regressors or explanatory variables. The terms covariates or control variables are more common in Microeconometrics literature, where regressors are typically included for identification of causal effects. Some texts will use the term independent variables, but this name implies a specific relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> that need not hold. Note, we will asssume in this term that <span class="math inline">\(n&gt;k\)</span>; i.e.&nbsp;this is “small” data.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>This is <strong>NOT</strong> the residual.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>See extra material on Linear Algebra. Since <span class="math inline">\(X\)</span> is a random variable we should add to the assumption: <span class="math inline">\(rank(X) = k\)</span> <em>almost surely</em> (abbreviated a.s.). This means that the set of events in which <span class="math inline">\(X\)</span> is not full rank occur with probability 0. The reason for this addition is that such a set of events may not be empty.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>There are many such failures of (parametric) identification in models that include dummy variables (or fixed effects). Earlier we saw that the intercept is not separately identified from the mean of the error term. Mean independence of the error term, <span class="math inline">\(E[\varepsilon_i]=0\)</span>, is required for us to separately ‘identify’ <span class="math inline">\(\beta_1\)</span>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>When working with vectors and matrices it is important to keep track of their size. You can only multiply two matrices/vectors if their column and row dimensions match. For example, if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are both <span class="math inline">\(n\times k\)</span> matrices (<span class="math inline">\(n\neq k\)</span>), then <span class="math inline">\(AB\)</span> is not defined since <span class="math inline">\(A\)</span> has <span class="math inline">\(k\)</span> columns and <span class="math inline">\(B\)</span> <span class="math inline">\(n\)</span> rows. For the same reason <span class="math inline">\(BA\)</span> is also not defined. However, you can pre-multiply <span class="math inline">\(B\)</span> with <span class="math inline">\(A'\)</span> as <span class="math inline">\(A'\)</span> is a <span class="math inline">\(k\times n\)</span> matrix: <span class="math inline">\(A'B\)</span> is therefore a <span class="math inline">\((k\times n)\cdot (n\times k)=k\times k\)</span> matrix. Similarly, <span class="math inline">\(B'A\)</span> is defined, but is a <span class="math inline">\(n\times n\)</span> matrix.</p>
+<li id="fn4"><p>See extra material on Linear Algebra to read more on rank.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>For <span class="math inline">\(n\)</span> large, <span class="math inline">\(rank(E[X_iX_i'])=k\Rightarrow rank(X)=k\)</span>. This follows from Law of Large Numbers, since <span class="math inline">\(plim(n^{-1}X'X) = E[X_iX_i']\)</span>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>There are many such failures of (parametric) identification in models that include dummy variables (or fixed effects). Earlier we saw that the intercept is not separately identified from the mean of the error term. Mean independence of the error term, <span class="math inline">\(E[\varepsilon_i]=0\)</span>, is required for us to separately ‘identify’ <span class="math inline">\(\beta_1\)</span>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>When working with vectors and matrices it is important to keep track of their size. You can only multiply two matrices/vectors if their column and row dimensions match. For example, if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are both <span class="math inline">\(n\times k\)</span> matrices (<span class="math inline">\(n\neq k\)</span>), then <span class="math inline">\(AB\)</span> is not defined since <span class="math inline">\(A\)</span> has <span class="math inline">\(k\)</span> columns and <span class="math inline">\(B\)</span> <span class="math inline">\(n\)</span> rows. For the same reason <span class="math inline">\(BA\)</span> is also not defined. However, you can pre-multiply <span class="math inline">\(B\)</span> with <span class="math inline">\(A'\)</span> as <span class="math inline">\(A'\)</span> is a <span class="math inline">\(k\times n\)</span> matrix: <span class="math inline">\(A'B\)</span> is therefore a <span class="math inline">\((k\times n)\cdot (n\times k)=k\times k\)</span> matrix. Similarly, <span class="math inline">\(B'A\)</span> is defined, but is a <span class="math inline">\(n\times n\)</span> matrix.</p>
 <p>Order matters when working with matrices and vectors. Pre-multiplication and post-multiplication are not the same thing.</p>
-<p>Keep track of the size of each term to ensure they correspond to one another. In this instance, each term should be a scalar. For example, <span class="math inline">\(-2b'X'Y\)</span> is the multiplication of a scalar (<span class="math inline">\(-2\)</span>: size <span class="math inline">\(1\times 1\)</span>), row vector (<span class="math inline">\(b'\)</span>: size <span class="math inline">\(1\times k\)</span>), matrix (<span class="math inline">\(X'\)</span>: size <span class="math inline">\(k\times n\)</span>), and column vector (<span class="math inline">\(Y\)</span>: size <span class="math inline">\(n\times 1\)</span>). Thus we have a <span class="math inline">\((1\times 1)\cdot (1\times k)\cdot (k\times n)\cdot (n\times 1)=1\times 1\)</span>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>Once you are familiar with vector notation, it is relatively easy to tell whether a model is uni- or multi-variate. This is because the notation <span class="math inline">\(\beta_2 X_{i2}\)</span> is not consistent with <span class="math inline">\(X_{2i}\)</span> being a vector (row or column).</p>
+<p>Keep track of the size of each term to ensure they correspond to one another. In this instance, each term should be a scalar. For example, <span class="math inline">\(-2b'X'Y\)</span> is the multiplication of a scalar (<span class="math inline">\(-2\)</span>: size <span class="math inline">\(1\times 1\)</span>), row vector (<span class="math inline">\(b'\)</span>: size <span class="math inline">\(1\times k\)</span>), matrix (<span class="math inline">\(X'\)</span>: size <span class="math inline">\(k\times n\)</span>), and column vector (<span class="math inline">\(Y\)</span>: size <span class="math inline">\(n\times 1\)</span>). Thus we have a <span class="math inline">\((1\times 1)\cdot (1\times k)\cdot (k\times n)\cdot (n\times 1)=1\times 1\)</span>.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Once you are familiar with vector notation, it is relatively easy to tell whether a model is uni- or multi-variate. This is because the notation <span class="math inline">\(\beta_2 X_{i2}\)</span> is not consistent with <span class="math inline">\(X_{2i}\)</span> being a vector (row or column).</p>
 <p>If <span class="math inline">\(X_{i2}\)</span> is a <span class="math inline">\(k\times 1\)</span> vector then so is <span class="math inline">\(\beta_2\)</span>. Thus, <span class="math inline">\(\beta_2 X_{i2}\)</span> is <span class="math inline">\((k\times 1)\cdot (k\times1)\)</span>, which is not defined.</p>
 <p>If <span class="math inline">\(X_{i2}\)</span> is a row vector (as in Wooldridge, 2011), <span class="math inline">\(\beta_2 X_{i2}\)</span> will then be <span class="math inline">\((k\times 1)\cdot (1\times k)\)</span>, a <span class="math inline">\(k\times k\)</span> matrix. This cannot be correct since the model is defined at the unit level.</p>
-<p>Thus, if you see a model written with the parameter in front of the regressor, you know that this must be a single regressor. This is subtle, yet imporant, distinction that researchers often use to convey the structure of their model. Whenever <span class="math inline">\(X_{i2}\)</span> is a vector, researchers will <em>almost always</em> use the notation <span class="math inline">\(X_{i2}'\beta\)</span> or <span class="math inline">\(X_{i2}\beta\)</span>, depending on whether <span class="math inline">\(X_{i2}\)</span> is assumed to be a column or row vector.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<p>Thus, if you see a model written with the parameter in front of the regressor, you know that this must be a single regressor. This is subtle, yet imporant, distinction that researchers often use to convey the structure of their model. Whenever <span class="math inline">\(X_{i2}\)</span> is a vector, researchers will <em>almost always</em> use the notation <span class="math inline">\(X_{i2}'\beta\)</span> or <span class="math inline">\(X_{i2}\beta\)</span>, depending on whether <span class="math inline">\(X_{i2}\)</span> is assumed to be a column or row vector.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
