@@ -20,6 +20,10 @@ website:
         menu:
           - href: problem-sets/problem-set-1.html
             text: Problem Set 1
+          - href: problem-sets/problem-set-1-solutions.html
+            text: Problem Set 1 (Solutions)
+          - href: problem-sets/problem-set-2.html
+            text: Problem Set 2            
       - text: Additional Material
         menu:
           - href: material-interpretation.qmd
