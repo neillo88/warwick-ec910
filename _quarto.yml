@@ -26,12 +26,15 @@ website:
             text: Problem Set 2            
       - text: Additional Material
         menu:
+          - href: material-cef.qmd
+            text: Conditional Expectation Function  
           - href: material-interpretation.qmd
             text: Interpreting Linear Models
-          - href: material-cef.qmd
-            text: Conditional Expectation Function 
+          - href: material-dummy.qmd
+            text: Dummy Variables
           - href: material-linearalgebra.qmd
             text: Linear Algebra
+          
 
 bibliography: references.bib
 
