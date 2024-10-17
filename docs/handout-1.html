@@ -301,7 +301,7 @@ window.Quarto = {
 <p>The constant (intercept) in the equation serves an important purpose. While there is no <em>a priori</em> reason for the model to have a constant term, it does ensure that the error term is mean zero.</p>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span>Suppose <span class="math inline">\(E[\varepsilon_i] = \gamma\)</span>.</p>
-<p>We can then define a new error term, <span class="math inline">\(\upsilon_i = \varepsilon_i - \gamma\)</span>, such <span class="math inline">\(E[\upsilon_i] = \gamma\)</span>. The population regression model can be rewritten as, <span class="math display">\[ \begin{aligned} Y_i =&amp; X_ i'\beta + v_i + \gamma  \\
+<p>We can then define a new error term, <span class="math inline">\(\upsilon_i = \varepsilon_i - \gamma\)</span>, such <span class="math inline">\(E[\upsilon_i] = 0\)</span>. The population regression model can be rewritten as, <span class="math display">\[ \begin{aligned} Y_i =&amp; X_ i'\beta + v_i + \gamma  \\
 =&amp; \underbrace{(\beta_1+\gamma)}_{\tilde{\beta}_1}\mathbf{1} + \beta_2X_{i2} + \beta_3X_{i3} + ... + \beta_kX_{ik} + v_i
 \end{aligned}
 \]</span> The model has a new intercept <span class="math inline">\(\tilde{\beta}_1=\beta_1 + \gamma\)</span>, but the other parameters remain unchanged.</p>

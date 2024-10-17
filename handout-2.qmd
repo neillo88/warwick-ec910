@@ -65,7 +65,7 @@ Small-sample properties include:
 
 -   Efficiency/variance
 
--   Finite-sample distribution
+-   Finite-sample distribution (which might not be known)
 
 Large-sample properties include:
 
@@ -75,7 +75,7 @@ Large-sample properties include:
 
 An estimator can have an asymptotic variance (efficiency); although, in EC910 will mostly discuss estimators with variances that shrink to zero as $n\rightarrow \infty$.
 
-::: {.important-prop title="Important"}
+::: callout-important
 The phrase "finite-sample" is also used in other contexts. For example, in the Causal Inference (or Treatment Effects) literature "finite-sample" is used to describe *estimands*. This literature distinguishes between finite-sample and super-population estimands. The former relate to settings where the sample is treated as fixed, while the latter to settings where the sample is take as a draw from an unknown super population.
 
 The estimator for a super-population estimand will have both finite and asymptotic properities.
@@ -86,7 +86,7 @@ The estimator for a super-population estimand will have both finite and asymptot
 The estimator $\hat{\theta}$ is **unbiased** for $\theta$ if,
 
 $$
-E(\hat{\theta}) = \theta
+E[\hat{\theta}] = \theta
 $$ $\hat{\theta}$ is a function of sample size, $n$, while $\theta$ is not. Some texts will use the notation $\hat{\theta}_n$ to emphasize this point.
 
 ```{r}
@@ -129,8 +129,8 @@ Note, the above definition assumes that a finite variance.
 ::: proof
 $$
 \begin{aligned}
-E\big[(\hat{\theta}-\theta)^2\big] &= E\big[\big((\hat{\theta}-E[\hat{\theta}])-(E[\hat{\theta}]-\theta)\big)^2\big] \\
-&=E\big[(\hat{\theta}-E[\hat{\theta}])^2\big]+ E\big[(\theta-E[\hat{\theta}])\big] - 2E\big[(\hat{\theta}-E[\hat{\theta}])(\theta-E[\hat{\theta}])\big] \\
+E\big[(\hat{\theta}-\theta)^2\big] &= E\big[\big((\hat{\theta}-E[\hat{\theta}])+(E[\hat{\theta}]-\theta)\big)^2\big] \\
+&=E\big[(\hat{\theta}-E[\hat{\theta}])^2\big]+ E\big[(\theta-E[\hat{\theta}])^2\big] + 2E\big[(\hat{\theta}-E[\hat{\theta}])(\theta-E[\hat{\theta}])\big] \\
 &=Var(\hat{\theta}) + \text{bias}^2
 \end{aligned}
 $$
@@ -142,13 +142,13 @@ The cross-product term in line 2 is 0. [Can you show this?]{style="color: blue;"
 
 ### Consistency
 
-Consistency is an asumptotic property of an estimator.
+Consistency is an asymptotic property of an estimator.
 
 ::: {#def-consistency}
 The estimator $\hat{\theta}_n$ is a consistent estimator of $\theta$ if it converges in probability to $\theta$ as $n\rightarrow\infty$,
 
 $$
-Pr(|\hat{\theta}_n-\theta|\geq\varepsilon)\rightarrow 0\qquad n\rightarrow 0
+Pr(|\hat{\theta}_n-\theta|\geq\varepsilon)\rightarrow 0\qquad n\rightarrow \infty
 $$ for $\varepsilon$ very small.[^1]
 :::
 
@@ -199,19 +199,19 @@ MSE convergence (to zero) is a **sufficient** condition for consistency. However
 For an *unbiased* estimator,
 
 $$
-Var(\hat{\theta}_n)\rightarrow 0 \quad \text{as}\quad n\rightarrow 0 \implies p\lim\hat{\theta}_n = \theta
+Var(\hat{\theta}_n)\rightarrow 0 \quad \text{as}\quad n\rightarrow \infty \implies p\lim\hat{\theta}_n = \theta
 $$
 
 For a biased estimator,
 
 $$
-MSE(\hat{\theta}_n)\rightarrow 0 \quad \text{as}\quad n\rightarrow 0 \implies p\lim\hat{\theta}_n = \theta
+MSE(\hat{\theta}_n)\rightarrow 0 \quad \text{as}\quad n\rightarrow \infty \implies p\lim\hat{\theta}_n = \theta
 $$
 
 ::: {#exr-mseconv}
 Given a sample of independently and identically distributed (iid) random variables, $$
 X_1,...,X_n \sim N(\mu,\sigma^2)
-$$ Show that the mean estimator - $\overline{X} = \frac{1}{n}\sum_{i=1}{n}X_i$ is a consistent estimator of $\mu$; i.e. $p \lim\;\overline{X} = \mu$.
+$$ Show that the mean estimator - $\overline{X} = \frac{1}{n}\sum_{i=1}X_i$ is a consistent estimator of $\mu$; i.e. $p \lim\;\overline{X} = \mu$.
 :::
 
 The above exercise relates to one of the most important examples of convergence in probability:
@@ -219,12 +219,12 @@ The above exercise relates to one of the most important examples of convergence 
 ::: {#thm-wlln}
 #### Weak Law of Large Numbers
 
-Let $X_1,...,X_n$ be a sample of iid random variables, such that $E|X_1|<\infty$. Then, $$
+Let $X_1,...,X_n$ be a sample of iid random variables, such that $E[|X_1|]<\infty$. Then, $$
 n^{-1}\sum_{i=1}^{n}X_i \rightarrow_p E[X_1]\qquad \text{as}\qquad n\rightarrow \infty
 $$
 :::
 
-Here we use the notation $E[X_1]$, since the data is iid and $E[X_i]=E[X_1]$ for $i=1,...,n$. We prove a modified version of the WLLN theorem, assuming $E[X_1^2]<\infty$. Since $E[X_1^2]<\infty\implies$ both $E|X_1|<\infty$ and $Var(X_1)<\infty$, we will have proven WLLN theorem.
+Here we use the notation $E[X_1]$, since the data is iid and $E[X_i]=E[X_1]$ for $i=1,...,n$. We will prove a modified version of the WLLN theorem, assuming $E[X_1^2]<\infty$. Since $E[X_1^2]<\infty\implies$ both $E[|X_1|]<\infty$ and $Var(X_1)<\infty$, we will have proven WLLN theorem.
 
 ::: {#thm-wlln2}
 Let $X_1,...,X_n$ be a sample of iid random variables, such that $Var(X_1)<\infty$. Then, $$
@@ -240,7 +240,7 @@ To complete the proof of WLLN, we will need to use Markov's Inequality. We will 
 Let $X$ be a random variable. For $\varepsilon>0$ and $r>0$, then
 
 $$
-Pr(|X|\geq \varepsilon)\leq \frac{E\big[|X|^2\big]}{\varepsilon^2}
+Pr(|X|\geq \varepsilon)\leq \frac{E\big[|X|^r\big]}{\varepsilon^r}
 $$
 :::
 
@@ -264,7 +264,7 @@ Note, the WLLN holds under a weaker condition than iid. Between lines 3 and 4 we
 Under the WLLN, you can show that the sample variance converges in probability to the population variance.
 
 $$
-p\lim \big(n^{-1}\sum_{i=1}^{n}(X_i - \overline{X})^2\big) \rightarrow_p Var(X_i)
+p\lim \big(n^{-1}\sum_{i=1}^{n}(X_i - \overline{X})^2\big) \rightarrow_p Var(X_1)
 $$
 
 ### Distribution
@@ -282,7 +282,7 @@ Before discussing CLT, we must define a new convergence concept: convergence in 
 ::: {#def-condist}
 Let $X_1,...,X_n$ be a sequence of random variables and let $F_n(x)$ denote the marginal CDF of $X_n$, $$
 F_n(x) = Pr(X_n\leq x)
-$$ Then, $X_n$ converges *in distribution* if $F_n(x)\rightarrow F(x)$ as $n\rightarrow \infty$, where F(x) is continuous.
+$$ Then, $X_n$ converges *in distribution* to $X$ if $F_n(x)\rightarrow F(x)$ as $n\rightarrow \infty$, where $F(x)$ is continuous.
 :::
 
 Convergence in distribution can be denoted,
@@ -327,7 +327,7 @@ Can you show:
 
 Having discussed the CMT, we are now ready to discuss the Central Limit Theorem. Both are used extensively in Econometrics. We will not prove CLT as the proof requires a more detailed discussion of Moment Generating Functions. 
 
-Recall, for an iid random sample, the sample converges in probability to the population mean:
+Recall, for an iid random sample, the sample average converges in probability to the population mean:
 
 $$
 p \lim\;\overline{X} = E[X_1]
@@ -345,7 +345,7 @@ n^{-1/2}\sum_{i=1}^{n}X_i\rightarrow_d N(0,E[X_1^2])
 $$
 :::
 
-Consider a random sample drawn independently from a distribution with mean $\mu$ and variance $\sigma$. Note, this distribution need not be Normal. It holds that, \$X_1-\mu,...,X_n-\mu \$ are iid and $E[X_1-\mu]$. In addition, $E[(X_1-\mu)^2]=\sigma^2<\infty$. Therefore, by CLT
+Consider a random sample drawn independently from a distribution with mean $\mu$ and variance $\sigma$. Note, this distribution need not be Normal. It holds that, $X_1-\mu,...,X_n-\mu $ are iid and $E[X_1-\mu]$. In addition, $E[(X_1-\mu)^2]=\sigma^2<\infty$. Therefore, by CLT
 
 $$
 n^{1/2}(\overline{X}-\mu) = n^{-1/2}\sum_{i=1}^{n}(X_i-\mu)\rightarrow_d N(0,\sigma^2)
@@ -369,7 +369,7 @@ Consider, $h(\mu)$ is a non-random constant and CLT applies to $n^{1/2}(\overlin
 
 ::: {#thm-clt}
 #### Delta Method
-Let $\hat{\theta}_n$ be a random k-dimensional vector. Suppose that $n^{1/2}(\hat{\theta}_n-\theta)\rightarrow_d Y$, where $theta$ is a non-random k-dimensional vector and $Y$ a random k-dimensional vector. 
+Let $\hat{\theta}_n$ be a random k-dimensional vector. Suppose that $n^{1/2}(\hat{\theta}_n-\theta)\rightarrow_d Y$, where $\theta$ is a non-random k-dimensional vector and $Y$ a random k-dimensional vector. 
 
 Let $h: \mathbf{R}^k\rightarrow\mathbf{R}^m$ be a function (mapping) that is continuously differentiable on some open neighbourhood of $\theta$. Then, 
 

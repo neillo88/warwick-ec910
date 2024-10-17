@@ -220,9 +220,9 @@ window.Quarto = {
 
 <section id="dummy-variables" class="level1">
 <h1>Dummy Variables</h1>
-<p>Dummy variables are used extensively in Microeconometrics. They are used to model the impact (treatment effect) of public policies, randomized control trials, and ‘natural’ experiments. They are also used to model categorical variables and fixed-effects (used to explain unobserved heterogeneity in cross-section and panel models).</p>
+<p>Dummy variables are used extensively in Econometrics and applied research. They are used to model the impact (treatment effect) of public policies, randomized control trials, and ‘natural’ experiments. They are also used to model categorical variables and fixed-effects (used to explain unobserved heterogeneity in cross-section and panel models). Given their proclivity, it is important that we understand their mechanics.</p>
 <p>You might be surprised by how much ‘real-world’ data is not continuous. For example, if you downloaded a survey dataset you will likely find that most variables are in fact categorical. This is the result of a number of factors, including accuracy (avoiding reporting bias) and just the nature of real-world variables. For example, sureys often ask people to report their income on a binned scale (e.g., $0-$10,000; $10,000-$20,000; …) as a lot of people do not know their exact annual or monthly salary. Variables about a households structure (e.g.&nbsp;“2 parents, with children”; “Single parent, without children”; …) are naturally categorical.</p>
-<p>Even if a variable may have (close to) continuous measure (e.g.&nbsp;age in months/days; years of education), you might choose to model the variable as categorical since it may not be cardinal. For example, is a a bachelors degree may correspond to a 15 years of education, compared to 12 years of education for a high school diploma. However, is the difference of 3 years equivalent to the difference in education of individuals with 5 and 2 years of education? You could say this about income (measured in $’s), height/weight/BMI, and employment tenure, as these measures are cardinal.</p>
+<p>Even if a variable may have (close to) continuous measure (e.g.&nbsp;age in months/days; years of education), you might choose to model the variable as categorical since it may not be cardinal. For example, a bachelors degree may correspond to a 15 years of education, compared to 12 years of education for a high school diploma. However, is this 3-year difference equivalent to the difference in education of individuals with 5 and 2 years of education? You could say this about income (measured in $’s), height/weight/BMI, and employment tenure, as these measures are cardinal.</p>
 <section id="notation" class="level2">
 <h2 class="anchored" data-anchor-id="notation">Notation</h2>
 <p>Any dummy variable is a discrete random variable (often denoted <span class="math inline">\(D\)</span>) that takes on two values: <span class="math inline">\(D_i\in\{0,1\}\)</span>. It corresponds to a true-false statement:</p>
@@ -289,7 +289,7 @@ X_{(2)}=[\ell,D_1]=\begin{bmatrix}1 &amp; 0 \\ \vdots &amp; \vdots \\ 1 &amp; 0 
 <p>We can have also substituted <span class="math inline">\(D_{i1}\)</span> with <span class="math inline">\(1-D_{i2}\)</span>. This would give us the model,</p>
 <p><span class="math display">\[
   Y_i = \beta_{1(1)} + \beta_{2(1)} D_{i2} + \varepsilon_i
-\]</span> where <span class="math inline">\(\beta_{1(1)} = \beta_1 + \beta_2\)</span> and <span class="math inline">\(\beta_{2(1)} = \beta_3-\beta2\)</span>.</p>
+\]</span> where <span class="math inline">\(\beta_{1(1)} = \beta_1 + \beta_2\)</span> and <span class="math inline">\(\beta_{2(1)} = \beta_3-\beta_2\)</span>.</p>
 <p>or,</p>
 <p><span class="math display">\[
   Y = X_{(1)}\beta_{(1)} + \varepsilon
@@ -303,7 +303,7 @@ X_{(2)}=[\ell,D_1]=\begin{bmatrix}1 &amp; 0 \\ \vdots &amp; \vdots \\ 1 &amp; 0 
 <p>Finally, we can substitute in the constant with <span class="math inline">\(D_{i1}+D_{i2}\)</span>. This gives us the model,</p>
 <p><span class="math display">\[
   Y_i = \beta_{1(0)}D_{i1} + \beta_{2(0)} D_{i2} + \varepsilon_i
-\]</span> where <span class="math inline">\(\beta_{1(0)} = \beta_1 + \beta_2\)</span> and <span class="math inline">\(\beta_{2(0)} = \beta_1+\beta3\)</span>.</p>
+\]</span> where <span class="math inline">\(\beta_{1(0)} = \beta_1 + \beta_2\)</span> and <span class="math inline">\(\beta_{2(0)} = \beta_1+\beta_3\)</span>.</p>
 <p>or,</p>
 <p><span class="math display">\[
   Y = X_{(0)}\beta_{(0)} + \varepsilon
@@ -353,8 +353,8 @@ Y = \beta_1 X_{1} + \beta_{21(0)} D_{1} + \beta_{22(0)} D_{2} +  ... + \beta_{2m
 <h2 class="anchored" data-anchor-id="fixed-effects">Fixed Effects</h2>
 <p>The above result helps rationalize a fairly common notation in applied econometrics. Suppose you were studying the relationship between (log of) wages and education. We know that there is a lot of spatial heteroegeneity in wages: some occupations in certain cities pay a lot more than the same occupation in a different city. This could be for a whole range of reasons - some individual (differences in education/training, etc.) and some environmental (local ammenities, labour competition, number of employers etc.). Some of these location factors may be obserable, but some not. If you are willing to assume that these characteristics relate to the local area and not the specific individual, then you could model them as,</p>
 <p><span class="math display">\[
-  A_{l} = [A_{l1},...,A_{lm}]'
-\]</span> Where <span class="math inline">\(A_l\)</span> is a vector of <span class="math inline">\(l\)</span>-location’s characteristics. You can use the notation <span class="math inline">\(A_{l(i)}\)</span> to link the individual to a specific location. Recall, these are common to all individuals in this location. We can think of this linear combination of location specific variables as a single location-specific parameter <span class="math inline">\(\alpha_l\)</span>.</p>
+  A_{l} = [A_{l1},...,A_{ls}]'
+\]</span> Where <span class="math inline">\(A_l\)</span> is a <span class="math inline">\(s\times 1\)</span> vector of <span class="math inline">\(l\)</span>-location’s characteristics. You can use the notation <span class="math inline">\(A_{l(i)}\)</span> to link the individual to a specific location. Recall, these are common to all individuals in this location. We can think of this linear combination of location specific variables as a single location-specific parameter <span class="math inline">\(\alpha_l\)</span>.</p>
 <p><span class="math display">\[
   \alpha_l = A_{l(i)}'\gamma
 \]</span> By doing this, we remove the need to observe all the variables in <span class="math inline">\(A_l\)</span>. However, we must observe multiple people from the same location.</p>

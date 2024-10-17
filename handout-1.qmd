@@ -72,7 +72,7 @@ The constant (intercept) in the equation serves an important purpose. While ther
 ::: proof
 Suppose $E[\varepsilon_i] = \gamma$.
 
-We can then define a new error term, $\upsilon_i = \varepsilon_i - \gamma$, such $E[\upsilon_i] = \gamma$. The population regression model can be rewritten as, $$ \begin{aligned} Y_i =& X_ i'\beta + v_i + \gamma  \\
+We can then define a new error term, $\upsilon_i = \varepsilon_i - \gamma$, such $E[\upsilon_i] = 0$. The population regression model can be rewritten as, $$ \begin{aligned} Y_i =& X_ i'\beta + v_i + \gamma  \\
 =& \underbrace{(\beta_1+\gamma)}_{\tilde{\beta}_1}\mathbf{1} + \beta_2X_{i2} + \beta_3X_{i3} + ... + \beta_kX_{ik} + v_i
 \end{aligned}
 $$ The model has a new intercept $\tilde{\beta}_1=\beta_1 + \gamma$, but the other parameters remain unchanged.
