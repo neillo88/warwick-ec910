@@ -1,0 +1,439 @@
+{smcl}
+{res}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick-ec910\problem-sets\ps-2\problem-set-2.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}22 Oct 2024, 12:47:00
+{txt}(PSID wage data 1976-82 from Baltagi and Khanti-Akom (1990))
+{res}
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(1, 4163)      = {res}   491.72
+{txt}       Model {c |} {res} 93.6914807         1  93.6914807   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 793.213421     4,163  .190538895   {txt}R-squared       ={res}    0.1056
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1054
+{txt}       Total {c |} {res} 886.904902     4,164  .212993492   {txt}Root MSE        =   {res} .43651
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}female {c |}{col 14}{res}{space 2}-.4744661{col 26}{space 2} .0213967{col 37}{space 1}  -22.17{col 46}{space 3}0.000{col 54}{space 4} -.516415{col 67}{space 3}-.4325171
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 6.729774{col 26}{space 2}   .00718{col 37}{space 1}  937.29{col 46}{space 3}0.000{col 54}{space 4} 6.715697{col 67}{space 3}  6.74385
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(1, 4163)      = {res}   491.72
+{txt}       Model {c |} {res} 93.6914807         1  93.6914807   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 793.213421     4,163  .190538895   {txt}R-squared       ={res}    0.1056
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1054
+{txt}       Total {c |} {res} 886.904902     4,164  .212993492   {txt}Root MSE        =   {res} .43651
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}male {c |}{col 14}{res}{space 2} .4744661{col 26}{space 2} .0213967{col 37}{space 1}   22.17{col 46}{space 3}0.000{col 54}{space 4} .4325171{col 67}{space 3}  .516415
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 6.255308{col 26}{space 2}  .020156{col 37}{space 1}  310.34{col 46}{space 3}0.000{col 54}{space 4} 6.215791{col 67}{space 3} 6.294824
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(1, 4163)      = {res}   491.72
+{txt}       Model {c |} {res} 93.6914807         1  93.6914807   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 793.213421     4,163  .190538895   {txt}R-squared       ={res}    0.1056
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1054
+{txt}       Total {c |} {res} 886.904902     4,164  .212993492   {txt}Root MSE        =   {res} .43651
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}1.female {c |}{col 14}{res}{space 2}-.4744661{col 26}{space 2} .0213967{col 37}{space 1}  -22.17{col 46}{space 3}0.000{col 54}{space 4} -.516415{col 67}{space 3}-.4325171
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 6.729774{col 26}{space 2}   .00718{col 37}{space 1}  937.29{col 46}{space 3}0.000{col 54}{space 4} 6.715697{col 67}{space 3}  6.74385
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(1, 4163)      = {res}   491.72
+{txt}       Model {c |} {res} 93.6914807         1  93.6914807   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 793.213421     4,163  .190538895   {txt}R-squared       ={res}    0.1056
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1054
+{txt}       Total {c |} {res} 886.904902     4,164  .212993492   {txt}Root MSE        =   {res} .43651
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}0.female {c |}{col 14}{res}{space 2} .4744661{col 26}{space 2} .0213967{col 37}{space 1}   22.17{col 46}{space 3}0.000{col 54}{space 4} .4325171{col 67}{space 3}  .516415
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 6.255308{col 26}{space 2}  .020156{col 37}{space 1}  310.34{col 46}{space 3}0.000{col 54}{space 4} 6.215791{col 67}{space 3} 6.294824
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Linear regression                               Number of obs     = {res}     4,165
+                                                {txt}F(1, 4163)        =  {res}   520.64
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.1056
+                                                {txt}Root MSE          =    {res} .43651
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}female {c |}{col 14}{res}{space 2}-.4744661{col 26}{space 2} .0207939{col 37}{space 1}  -22.82{col 46}{space 3}0.000{col 54}{space 4}-.5152332{col 67}{space 3}-.4336989
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 6.729774{col 26}{space 2} .0072089{col 37}{space 1}  933.53{col 46}{space 3}0.000{col 54}{space 4}  6.71564{col 67}{space 3} 6.743907
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}{p 0 6 2}note: {bf:male_black} omitted because of collinearity.{p_end}
+
+      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(3, 4161)      = {res}   191.17
+{txt}       Model {c |} {res} 107.436063         3  35.8120209   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 779.468839     4,161  .187327287   {txt}R-squared       ={res}    0.1211
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1205
+{txt}       Total {c |} {res} 886.904902     4,164  .212993492   {txt}Root MSE        =   {res} .43281
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+female_black {c |}{col 14}{res}{space 2}-.4434409{col 26}{space 2} .0523433{col 37}{space 1}   -8.47{col 46}{space 3}0.000{col 54}{space 4}-.5460617{col 67}{space 3}  -.34082
+{txt}female_non~k {c |}{col 14}{res}{space 2}-.2101553{col 26}{space 2} .0383456{col 37}{space 1}   -5.48{col 46}{space 3}0.000{col 54}{space 4}-.2853332{col 67}{space 3}-.1349774
+{txt}{space 2}male_black {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+male_nonbl~k {c |}{col 14}{res}{space 2} .2239593{col 26}{space 2} .0317691{col 37}{space 1}    7.05{col 46}{space 3}0.000{col 54}{space 4} .1616749{col 67}{space 3} .2862436
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 6.517691{col 26}{space 2} .0309152{col 37}{space 1}  210.82{col 46}{space 3}0.000{col 54}{space 4} 6.457081{col 67}{space 3} 6.578301
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(4, 4161)      > {res} 99999.00
+{txt}       Model {c |} {res} 185756.485         4  46439.1213   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 779.468839     4,161  .187327287   {txt}R-squared       ={res}    0.9958
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.9958
+{txt}       Total {c |} {res} 186535.954     4,165  44.7865436   {txt}Root MSE        =   {res} .43281
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+female_black {c |}{col 14}{res}{space 2}  6.07425{col 26}{space 2} .0422382{col 37}{space 1}  143.81{col 46}{space 3}0.000{col 54}{space 4} 5.991441{col 67}{space 3}  6.15706
+{txt}female_non~k {c |}{col 14}{res}{space 2} 6.307536{col 26}{space 2} .0226856{col 37}{space 1}  278.04{col 46}{space 3}0.000{col 54}{space 4}  6.26306{col 67}{space 3} 6.352012
+{txt}{space 2}male_black {c |}{col 14}{res}{space 2} 6.517691{col 26}{space 2} .0309152{col 37}{space 1}  210.82{col 46}{space 3}0.000{col 54}{space 4} 6.457081{col 67}{space 3} 6.578301
+{txt}male_nonbl~k {c |}{col 14}{res}{space 2}  6.74165{col 26}{space 2} .0073159{col 37}{space 1}  921.51{col 46}{space 3}0.000{col 54}{space 4} 6.727307{col 67}{space 3} 6.755993
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(3, 4161)      = {res}   191.17
+{txt}       Model {c |} {res} 107.436063         3  35.8120209   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 779.468839     4,161  .187327287   {txt}R-squared       ={res}    0.1211
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1205
+{txt}       Total {c |} {res} 886.904902     4,164  .212993492   {txt}Root MSE        =   {res} .43281
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}female {c |}{col 14}{res}{space 2}-.4341146{col 26}{space 2} .0238361{col 37}{space 1}  -18.21{col 46}{space 3}0.000{col 54}{space 4} -.480846{col 67}{space 3}-.3873832
+{txt}{space 7}black {c |}{col 14}{res}{space 2}-.2239593{col 26}{space 2} .0317691{col 37}{space 1}   -7.05{col 46}{space 3}0.000{col 54}{space 4}-.2862436{col 67}{space 3}-.1616749
+{txt}female_black {c |}{col 14}{res}{space 2}-.0093263{col 26}{space 2}  .057515{col 37}{space 1}   -0.16{col 46}{space 3}0.871{col 54}{space 4}-.1220865{col 67}{space 3} .1034339
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}  6.74165{col 26}{space 2} .0073159{col 37}{space 1}  921.51{col 46}{space 3}0.000{col 54}{space 4} 6.727307{col 67}{space 3} 6.755993
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(3, 4161)      = {res}   191.17
+{txt}       Model {c |} {res} 107.436063         3  35.8120209   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 779.468839     4,161  .187327287   {txt}R-squared       ={res}    0.1211
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1205
+{txt}       Total {c |} {res} 886.904902     4,164  .212993492   {txt}Root MSE        =   {res} .43281
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}1.female {c |}{col 14}{res}{space 2}-.4341146{col 26}{space 2} .0238361{col 37}{space 1}  -18.21{col 46}{space 3}0.000{col 54}{space 4} -.480846{col 67}{space 3}-.3873832
+{txt}{space 5}1.black {c |}{col 14}{res}{space 2}-.2239593{col 26}{space 2} .0317691{col 37}{space 1}   -7.05{col 46}{space 3}0.000{col 54}{space 4}-.2862436{col 67}{space 3}-.1616749
+{txt}{space 12} {c |}
+female#black {c |}
+{space 8}1 1  {c |}{col 14}{res}{space 2}-.0093263{col 26}{space 2}  .057515{col 37}{space 1}   -0.16{col 46}{space 3}0.871{col 54}{space 4}-.1220865{col 67}{space 3} .1034339
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}  6.74165{col 26}{space 2} .0073159{col 37}{space 1}  921.51{col 46}{space 3}0.000{col 54}{space 4} 6.727307{col 67}{space 3} 6.755993
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(3, 4161)      = {res}   191.17
+{txt}       Model {c |} {res} 107.436063         3  35.8120209   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 779.468839     4,161  .187327287   {txt}R-squared       ={res}    0.1211
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1205
+{txt}       Total {c |} {res} 886.904902     4,164  .212993492   {txt}Root MSE        =   {res} .43281
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+female_black {c |}{col 14}{res}{space 2}-.6674001{col 26}{space 2} .0428671{col 37}{space 1}  -15.57{col 46}{space 3}0.000{col 54}{space 4}-.7514426{col 67}{space 3}-.5833576
+{txt}female_non~k {c |}{col 14}{res}{space 2}-.4341146{col 26}{space 2} .0238361{col 37}{space 1}  -18.21{col 46}{space 3}0.000{col 54}{space 4} -.480846{col 67}{space 3}-.3873832
+{txt}{space 2}male_black {c |}{col 14}{res}{space 2}-.2239593{col 26}{space 2} .0317691{col 37}{space 1}   -7.05{col 46}{space 3}0.000{col 54}{space 4}-.2862436{col 67}{space 3}-.1616749
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}  6.74165{col 26}{space 2} .0073159{col 37}{space 1}  921.51{col 46}{space 3}0.000{col 54}{space 4} 6.727307{col 67}{space 3} 6.755993
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{smcl}
+{reset}{...}
+{hline 14}{c -}{c TT}{c -}{c -}{hline 8}{c -}{c -}{c -}{hline 8}{c -}{c -}{c -}{hline 8}
+{space 14} {c |}  {space 13}black{space 12}
+{space 14} {c |}  {space 7}0   {space 7}1   {space 3}Total
+{hline 14}{c -}{c +}{c -}{c -}{hline 8}{c -}{c -}{c -}{hline 8}{c -}{c -}{c -}{hline 8}
+female or male {c |}  {space 8}   {space 8}   {space 8}
+  0{space 11} {c |}  {space 1}{result:6.74165}   {result:6.517691}   {result:6.729774}
+  1{space 11} {c |}  {result:6.307536}   {space 1}{result:6.07425}   {result:6.255308}
+  Total{space 7} {c |}  {result:6.700755}   {result:6.363002}   {result:6.676346}
+{hline 14}{c -}{c BT}{c -}{c -}{hline 8}{c -}{c -}{c -}{hline 8}{c -}{c -}{c -}{hline 8}
+{res}
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(4, 4161)      > {res} 99999.00
+{txt}       Model {c |} {res} 185756.485         4  46439.1213   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 779.468839     4,161  .187327287   {txt}R-squared       ={res}    0.9958
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.9958
+{txt}       Total {c |} {res} 186535.954     4,165  44.7865436   {txt}Root MSE        =   {res} .43281
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+female_black {c |}{col 14}{res}{space 2}  6.07425{col 26}{space 2} .0422382{col 37}{space 1}  143.81{col 46}{space 3}0.000{col 54}{space 4} 5.991441{col 67}{space 3}  6.15706
+{txt}female_non~k {c |}{col 14}{res}{space 2} 6.307536{col 26}{space 2} .0226856{col 37}{space 1}  278.04{col 46}{space 3}0.000{col 54}{space 4}  6.26306{col 67}{space 3} 6.352012
+{txt}{space 2}male_black {c |}{col 14}{res}{space 2} 6.517691{col 26}{space 2} .0309152{col 37}{space 1}  210.82{col 46}{space 3}0.000{col 54}{space 4} 6.457081{col 67}{space 3} 6.578301
+{txt}male_nonbl~k {c |}{col 14}{res}{space 2}  6.74165{col 26}{space 2} .0073159{col 37}{space 1}  921.51{col 46}{space 3}0.000{col 54}{space 4} 6.727307{col 67}{space 3} 6.755993
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{p 0 7}{space 1}{text:( 1)}{space 1} female_black - female_nonblack = 0{p_end}
+
+{txt}       F(  1,  4161) ={res}   23.68
+{txt}{col 13}Prob > F ={res}    0.0000
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(3, 4161)      = {res}   191.17
+{txt}       Model {c |} {res} 107.436063         3  35.8120209   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 779.468839     4,161  .187327287   {txt}R-squared       ={res}    0.1211
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1205
+{txt}       Total {c |} {res} 886.904902     4,164  .212993492   {txt}Root MSE        =   {res} .43281
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}female {c |}{col 14}{res}{space 2}-.4341146{col 26}{space 2} .0238361{col 37}{space 1}  -18.21{col 46}{space 3}0.000{col 54}{space 4} -.480846{col 67}{space 3}-.3873832
+{txt}{space 7}black {c |}{col 14}{res}{space 2}-.2239593{col 26}{space 2} .0317691{col 37}{space 1}   -7.05{col 46}{space 3}0.000{col 54}{space 4}-.2862436{col 67}{space 3}-.1616749
+{txt}female_black {c |}{col 14}{res}{space 2}-.0093263{col 26}{space 2}  .057515{col 37}{space 1}   -0.16{col 46}{space 3}0.871{col 54}{space 4}-.1220865{col 67}{space 3} .1034339
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}  6.74165{col 26}{space 2} .0073159{col 37}{space 1}  921.51{col 46}{space 3}0.000{col 54}{space 4} 6.727307{col 67}{space 3} 6.755993
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{p 0 7}{space 1}{text:( 1)}{space 1} black + female_black = 0{p_end}
+
+{txt}       F(  1,  4161) ={res}   23.68
+{txt}{col 13}Prob > F ={res}    0.0000
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(3, 4161)      = {res}   191.17
+{txt}       Model {c |} {res} 107.436063         3  35.8120209   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 779.468839     4,161  .187327287   {txt}R-squared       ={res}    0.1211
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1205
+{txt}       Total {c |} {res} 886.904902     4,164  .212993492   {txt}Root MSE        =   {res} .43281
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+female_black {c |}{col 14}{res}{space 2}-.6674001{col 26}{space 2} .0428671{col 37}{space 1}  -15.57{col 46}{space 3}0.000{col 54}{space 4}-.7514426{col 67}{space 3}-.5833576
+{txt}female_non~k {c |}{col 14}{res}{space 2}-.4341146{col 26}{space 2} .0238361{col 37}{space 1}  -18.21{col 46}{space 3}0.000{col 54}{space 4} -.480846{col 67}{space 3}-.3873832
+{txt}{space 2}male_black {c |}{col 14}{res}{space 2}-.2239593{col 26}{space 2} .0317691{col 37}{space 1}   -7.05{col 46}{space 3}0.000{col 54}{space 4}-.2862436{col 67}{space 3}-.1616749
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}  6.74165{col 26}{space 2} .0073159{col 37}{space 1}  921.51{col 46}{space 3}0.000{col 54}{space 4} 6.727307{col 67}{space 3} 6.755993
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{p 0 7}{space 1}{text:( 1)}{space 1} female_black - female_nonblack = 0{p_end}
+
+{txt}       F(  1,  4161) ={res}   23.68
+{txt}{col 13}Prob > F ={res}    0.0000
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(4, 4161)      > {res} 99999.00
+{txt}       Model {c |} {res} 185756.485         4  46439.1213   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 779.468839     4,161  .187327287   {txt}R-squared       ={res}    0.9958
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.9958
+{txt}       Total {c |} {res} 186535.954     4,165  44.7865436   {txt}Root MSE        =   {res} .43281
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+female_black {c |}{col 14}{res}{space 2}  6.07425{col 26}{space 2} .0422382{col 37}{space 1}  143.81{col 46}{space 3}0.000{col 54}{space 4} 5.991441{col 67}{space 3}  6.15706
+{txt}female_non~k {c |}{col 14}{res}{space 2} 6.307536{col 26}{space 2} .0226856{col 37}{space 1}  278.04{col 46}{space 3}0.000{col 54}{space 4}  6.26306{col 67}{space 3} 6.352012
+{txt}{space 2}male_black {c |}{col 14}{res}{space 2} 6.517691{col 26}{space 2} .0309152{col 37}{space 1}  210.82{col 46}{space 3}0.000{col 54}{space 4} 6.457081{col 67}{space 3} 6.578301
+{txt}male_nonbl~k {c |}{col 14}{res}{space 2}  6.74165{col 26}{space 2} .0073159{col 37}{space 1}  921.51{col 46}{space 3}0.000{col 54}{space 4} 6.727307{col 67}{space 3} 6.755993
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{p 0 7}{space 1}{text:( 1)}{space 1} female_black - female_nonblack = 0{p_end}
+{p 0 7}{space 1}{text:( 2)}{space 1} female_black - male_black = 0{p_end}
+{p 0 7}{space 1}{text:( 3)}{space 1} female_black - male_nonblack = 0{p_end}
+
+{txt}       F(  3,  4161) ={res}  191.17
+{txt}{col 13}Prob > F ={res}    0.0000
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(3, 4161)      = {res}   191.17
+{txt}       Model {c |} {res} 107.436063         3  35.8120209   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 779.468839     4,161  .187327287   {txt}R-squared       ={res}    0.1211
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1205
+{txt}       Total {c |} {res} 886.904902     4,164  .212993492   {txt}Root MSE        =   {res} .43281
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}female {c |}{col 14}{res}{space 2}-.4341146{col 26}{space 2} .0238361{col 37}{space 1}  -18.21{col 46}{space 3}0.000{col 54}{space 4} -.480846{col 67}{space 3}-.3873832
+{txt}{space 7}black {c |}{col 14}{res}{space 2}-.2239593{col 26}{space 2} .0317691{col 37}{space 1}   -7.05{col 46}{space 3}0.000{col 54}{space 4}-.2862436{col 67}{space 3}-.1616749
+{txt}female_black {c |}{col 14}{res}{space 2}-.0093263{col 26}{space 2}  .057515{col 37}{space 1}   -0.16{col 46}{space 3}0.871{col 54}{space 4}-.1220865{col 67}{space 3} .1034339
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}  6.74165{col 26}{space 2} .0073159{col 37}{space 1}  921.51{col 46}{space 3}0.000{col 54}{space 4} 6.727307{col 67}{space 3} 6.755993
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{p 0 7}{space 1}{text:( 1)}{space 1}{space 1}{res}- black + female_black = 0{p_end}
+{p 0 7}{space 1}{text:( 2)}{space 1}{space 1}{res}- female + female_black = 0{p_end}
+{p 0 7}{space 1}{text:( 3)}{space 1} female_black = 0{p_end}
+
+{txt}       F(  3,  4161) ={res}  191.17
+{txt}{col 13}Prob > F ={res}    0.0000
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(3, 4161)      = {res}   191.17
+{txt}       Model {c |} {res} 107.436063         3  35.8120209   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 779.468839     4,161  .187327287   {txt}R-squared       ={res}    0.1211
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1205
+{txt}       Total {c |} {res} 886.904902     4,164  .212993492   {txt}Root MSE        =   {res} .43281
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+female_black {c |}{col 14}{res}{space 2}-.6674001{col 26}{space 2} .0428671{col 37}{space 1}  -15.57{col 46}{space 3}0.000{col 54}{space 4}-.7514426{col 67}{space 3}-.5833576
+{txt}female_non~k {c |}{col 14}{res}{space 2}-.4341146{col 26}{space 2} .0238361{col 37}{space 1}  -18.21{col 46}{space 3}0.000{col 54}{space 4} -.480846{col 67}{space 3}-.3873832
+{txt}{space 2}male_black {c |}{col 14}{res}{space 2}-.2239593{col 26}{space 2} .0317691{col 37}{space 1}   -7.05{col 46}{space 3}0.000{col 54}{space 4}-.2862436{col 67}{space 3}-.1616749
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}  6.74165{col 26}{space 2} .0073159{col 37}{space 1}  921.51{col 46}{space 3}0.000{col 54}{space 4} 6.727307{col 67}{space 3} 6.755993
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{p 0 7}{space 1}{text:( 1)}{space 1} female_black - female_nonblack = 0{p_end}
+{p 0 7}{space 1}{text:( 2)}{space 1} female_black - male_black = 0{p_end}
+{p 0 7}{space 1}{text:( 3)}{space 1} female_black = 0{p_end}
+
+{txt}       F(  3,  4161) ={res}  191.17
+{txt}{col 13}Prob > F ={res}    0.0000
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(3, 4161)      = {res}   191.17
+{txt}       Model {c |} {res} 107.436063         3  35.8120209   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 779.468839     4,161  .187327287   {txt}R-squared       ={res}    0.1211
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1205
+{txt}       Total {c |} {res} 886.904902     4,164  .212993492   {txt}Root MSE        =   {res} .43281
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}female {c |}{col 14}{res}{space 2}-.4341146{col 26}{space 2} .0238361{col 37}{space 1}  -18.21{col 46}{space 3}0.000{col 54}{space 4} -.480846{col 67}{space 3}-.3873832
+{txt}{space 7}black {c |}{col 14}{res}{space 2}-.2239593{col 26}{space 2} .0317691{col 37}{space 1}   -7.05{col 46}{space 3}0.000{col 54}{space 4}-.2862436{col 67}{space 3}-.1616749
+{txt}female_black {c |}{col 14}{res}{space 2}-.0093263{col 26}{space 2}  .057515{col 37}{space 1}   -0.16{col 46}{space 3}0.871{col 54}{space 4}-.1220865{col 67}{space 3} .1034339
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}  6.74165{col 26}{space 2} .0073159{col 37}{space 1}  921.51{col 46}{space 3}0.000{col 54}{space 4} 6.727307{col 67}{space 3} 6.755993
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}scalars:
+                  e(N) =  {res}4165
+               {txt}e(df_m) =  {res}3
+               {txt}e(df_r) =  {res}4161
+                  {txt}e(F) =  {res}191.1735422330181
+                 {txt}e(r2) =  {res}.1211359442526956
+               {txt}e(rmse) =  {res}.4328132235793649
+                {txt}e(mss) =  {res}107.4360627542734
+                {txt}e(rss) =  {res}779.4688391479763
+               {txt}e(r2_a) =  {res}.1205023003768864
+                 {txt}e(ll) =  {res}-2419.902951629166
+               {txt}e(ll_0) =  {res}-2688.805870567022
+               {txt}e(rank) =  {res}4
+
+{txt}macros:
+            e(cmdline) : "{res}regress lwage female black female_black{txt}"
+              e(title) : "{res}Linear regression{txt}"
+          e(marginsok) : "{res}XB default{txt}"
+                e(vce) : "{res}ols{txt}"
+             e(depvar) : "{res}lwage{txt}"
+                e(cmd) : "{res}regress{txt}"
+         e(properties) : "{res}b V{txt}"
+            e(predict) : "{res}regres_p{txt}"
+              e(model) : "{res}ols{txt}"
+          e(estat_cmd) : "{res}regress_estat{txt}"
+
+matrices:
+                  e(b) : {res} 1 x 4
+                  {txt}e(V) : {res} 4 x 4
+               {txt}e(beta) : {res} 1 x 3
+
+{txt}functions:
+             e(sample)   
+     fstat = {res} 191.17354
+
+                     {txt}years of education
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        6              4
+{txt} 5%    {res}        8              4
+{txt}10%    {res}        9              4       {txt}Obs         {res}      4,165
+{txt}25%    {res}       12              4       {txt}Sum of wgt. {res}      4,165
+
+{txt}50%    {res}       12                      {txt}Mean          {res} 12.84538
+                        {txt}Largest       Std. dev.     {res} 2.787995
+{txt}75%    {res}       16             17
+{txt}90%    {res}       17             17       {txt}Variance      {res} 7.772916
+{txt}95%    {res}       17             17       {txt}Skewness      {res}-.2581161
+{txt}99%    {res}       17             17       {txt}Kurtosis      {res}  2.71273
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(6, 4158)      = {res}   411.81
+{txt}       Model {c |} {res}    330.586         6  55.0976667   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 556.318902     4,158   .13379483   {txt}R-squared       ={res}    0.3727
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.3718
+{txt}       Total {c |} {res} 886.904902     4,164  .212993492   {txt}Root MSE        =   {res} .36578
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}1.female {c |}{col 14}{res}{space 2}-.4032047{col 26}{space 2} .0203208{col 37}{space 1}  -19.84{col 46}{space 3}0.000{col 54}{space 4}-.4430444{col 67}{space 3} -.363365
+{txt}{space 5}1.black {c |}{col 14}{res}{space 2}-.1551546{col 26}{space 2} .0269249{col 37}{space 1}   -5.76{col 46}{space 3}0.000{col 54}{space 4}-.2079417{col 67}{space 3}-.1023674
+{txt}{space 12} {c |}
+female#black {c |}
+{space 8}1 1  {c |}{col 14}{res}{space 2} -.002071{col 26}{space 2} .0488405{col 37}{space 1}   -0.04{col 46}{space 3}0.966{col 54}{space 4}-.0978246{col 67}{space 3} .0936826
+{txt}{space 12} {c |}
+{space 7}exper {c |}{col 14}{res}{space 2} .0427346{col 26}{space 2} .0022404{col 37}{space 1}   19.07{col 46}{space 3}0.000{col 54}{space 4} .0383422{col 67}{space 3}  .047127
+{txt}{space 7}expsq {c |}{col 14}{res}{space 2}-.0006982{col 26}{space 2} .0000494{col 37}{space 1}  -14.14{col 46}{space 3}0.000{col 54}{space 4}-.0007951{col 67}{space 3}-.0006014
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0731837{col 26}{space 2} .0020983{col 37}{space 1}   34.88{col 46}{space 3}0.000{col 54}{space 4} .0690698{col 67}{space 3} .0772975
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 5.303667{col 26}{space 2} .0362462{col 37}{space 1}  146.32{col 46}{space 3}0.000{col 54}{space 4} 5.232606{col 67}{space 3} 5.374729
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}7.5928119
+
+             {txt}years of full-time work experience
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        3              1
+{txt} 5%    {res}        5              1
+{txt}10%    {res}        7              1       {txt}Obs         {res}      4,165
+{txt}25%    {res}       11              1       {txt}Sum of wgt. {res}      4,165
+
+{txt}50%    {res}       18                      {txt}Mean          {res} 19.85378
+                        {txt}Largest       Std. dev.     {res} 10.96637
+{txt}75%    {res}       29             50
+{txt}90%    {res}       36             50       {txt}Variance      {res} 120.2613
+{txt}95%    {res}       39             50       {txt}Skewness      {res} .4000014
+{txt}99%    {res}       44             51       {txt}Kurtosis      {res} 2.072064
+
+{txt}scalars:
+                  r(N) =  {res}4165
+              {txt}r(sum_w) =  {res}4165
+               {txt}r(mean) =  {res}19.85378151260504
+                {txt}r(Var) =  {res}120.2612759224727
+                 {txt}r(sd) =  {res}10.96637022548814
+           {txt}r(skewness) =  {res}.4000013893781186
+           {txt}r(kurtosis) =  {res}2.072064120792274
+                {txt}r(sum) =  {res}82691
+                {txt}r(min) =  {res}1
+                {txt}r(max) =  {res}51
+                 {txt}r(p1) =  {res}3
+                 {txt}r(p5) =  {res}5
+                {txt}r(p10) =  {res}7
+                {txt}r(p25) =  {res}11
+                {txt}r(p50) =  {res}18
+                {txt}r(p75) =  {res}29
+                {txt}r(p90) =  {res}36
+                {txt}r(p95) =  {res}39
+                {txt}r(p99) =  {res}44
+1.7754427
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick-ec910\problem-sets\ps-2\problem-set-2.txt
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}22 Oct 2024, 12:47:02
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

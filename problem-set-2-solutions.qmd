@@ -1,0 +1,361 @@
+---
+format:
+    html: default
+    pdf: default
+jupyter: nbstata  
+---
+
+# Problem Set 2 (SOLUTIONS)
+
+This problem set will take you through some Stata commands to estimate simple regression equations with dummy variables. You will learn how to interpret the estimated coefficients and test some linear hypotheses. Interpretation of these coefficients will be useful when we do treatment evaluation models later in term 1.
+
+The hypothesis tests discussed in this problem set include standard T-tests and F-tests, which is assumed undergraduate knowledge for this module. 
+
+You will need to download the dataset problemset2.dta, which is available on Moodle.
+
+## Conditional Expectation Function
+
+Consider the Conditional Expectation Function (CEF), $E[Y_i|X_i]$. If $X$ takes on discrete values: $X_i\in\{x_1,x_2,...,x_m\}$, then 
+
+$$
+	E[Y_i|X_i] =  E[Y_i|X_i=x_1]\cdot\mathbf{1}\{X_i = x_1\}+...+E[Y_i|X_i=x_m]\cdot\mathbf{1}\{X_i = x_m\}
+$$
+where $\mathbf{1}\{X_i = x_m\}$ is a dummy variable, $=1$ when $X_i=x_m$. Since the values of $X_i$ are mutually exclusive there is no overlap of these dummy variables. 
+
+Note, we do not need to assume that $X$ is a single random variable. It can be a vector of random variables that takes on discrete values. 
+
+We can re-arrange this expression using anyone of the values of $X$. The natural option is to choose the first, but this is arbitrary.
+
+$$
+\begin{aligned}
+	E[Y_i|X_i] =& E[Y_i|X_i=x_1]+ (E[Y_i|X_i=x_2]-E[Y_i|X_i=x_1])\cdot\mathbf{1}\{X_i = x_2\}+... \\
+&+(E[Y_i|X_i=x_m]-E[Y_i|X_i=x_1])\cdot\mathbf{1}\{X_i = x_m\}
+\end{aligned}
+$$
+
+Since, $E[Y_i|X_i = x_m]$ is a constant ($X_i$ is set to a specific value), we can express the CEF as a function that is linear in parameters. 
+
+$$
+	E[Y_i|X_i] = \beta_1 + \beta_2D_{i2} + ... + \beta_m D_{im}
+$$
+
+where $D_{im}\mathbf{1}\{X_i = x_m\}$.
+
+
+## Preamble
+
+```{stata}
+*| echo: false
+global rootdir "C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick-ec910"
+```
+
+Create a do-file for this problem set and include a preamble that sets the directory and opens the data. For example, 
+```{stata}
+*| output: false
+clear 
+//or, to remove all stored values (including macros, matrices, scalars, etc.) 
+*clear all
+
+* Replace $rootdir with the relevant path to on your local harddrive.
+cd "$rootdir/problem-sets/ps-2"
+
+cap log close
+log using problem-set-2.txt, replace
+
+use problem-set-2-data.dta
+```
+
+## Questions
+
+**1.**	Consider the $E[ln(Wage_i)|Gender_i]$, where $Gender_i\in\{1 ``Male'', 2 ``Female''\}$. Show that this CEF implies a linear model, 
+
+$$
+	ln(Wage_i) = \beta_1 + \beta_2 D_{i2} + \varepsilon_i 
+$$
+ 
+What do the parameters $\beta_1$ and $\beta_2$ imply? 
+
+$$
+E[ln(Wage_i)|G_i] = E[ln(Wage_i)|G_i=1]+ (E[ln(Wage_i)|G_i=2]-E[ln(Wage_i)|G_i=1])\cdot\mathbf{1}\{G_i = 2\}
+$$
+$$
+ = \beta_1+ \beta_2D_{i2}
+$$
+$\Rightarrow E[\varepsilon_i|D_{i2}]=0$.
+
+**2.** Regress `lwage` (log wage) on just a set of binary indicators that will enable you to test the hypothesis that males and females are on average, paid the same wage, ceteris paribus. Test this hypothesis.
+
+```{stata}
+reg lwage female
+
+* or
+
+gen male=1-female
+reg lwage male
+```
+
+Alternatively, you could use Stata's factor notation:
+
+```{stata}
+reg lwage i.female
+
+//note: defaults to smallest value as base category. This can be changed as follows.
+
+reg lwage ib1.female
+```
+
+It is evident from the test p-value that the difference is statistically significantly. Note, the standard `reg` command assume homoskedastic SEs. If we believe that the variance varies of (log of) wages varies with gender, we should estimate heteroskedastic SEs. However, in this instance it will not make a difference to the conclusion. 
+
+```{stata}
+reg lwage female, r
+```
+
+**3.**	Extend the specification in (2) that will enable you to test the hypothesis that there is no difference in the wages between the following gender-ethnicity groups. Begin by defining the following dummy variables: 
+
+-	`female_black` = `female`$\times$`black`
+
+-	`male_black` = (1-`female`)$\times$`black`
+
+-	`female_nonblack` = `female`$\times$(1-`black`)
+
+-	`male_nonblack` = (1-`female`)$\times$(1-`black`)
+
+```{stata}
+gen female_black=female*black
+gen female_nonblack=female*(1-black)
+gen male_black=(1-female)*black
+gen male_nonblack=(1-female)*(1-black)
+```
+
+Then estimate the following regressions:
+
+a. `lwage` on `female_black`, `female_nonblack`, `male_black`, `male_nonblack` (without a constant: option `nocons`)
+
+b.	`lwage` on `female`, `black`, `female_black`
+
+c.	`lwage` on `female_black`, `female_nonblack`, `male_black`
+
+For some of these exercises you may be able to use Stata's factor notation. However, in some instances you will need to manually create the above dummy-variable interactions.
+
+In each case, identify the base category and write down the parameters of the (implied) model in terms of conditional expectations.
+
+
+```{stata}
+* (a)
+reg lwage female_black female_nonblack male_black male_nonblack
+
+// note, Stata has dropped one variable due to perfect collinearity
+
+reg lwage female_black female_nonblack male_black male_nonblack, nocons
+```
+
+This model returns four parameter-estimates, each corresponding to the four gender-ethnicity groups. These are essentially conditional mean estimates. 
+
+```{stata}
+* (b)
+reg lwage female black female_black
+
+// or, using factor notation:
+
+reg lwage i.female##i.black
+```
+
+In this model, we have the following:
+
+-	$\beta_1 = E[ln(Wage_i)|F = 0,B = 0]$
+
+-	$\beta_2 = E[ln(Wage_i)|F = 1,B = 0]-E[ln(Wage_i)|F = 0,B = 0]$
+
+-	$\beta_3 = E[ln(Wage_i)|F = 0,B = 1]-E[ln(Wage_i)|F = 0,B = 0]$
+
+-	$\beta_4 = (E[ln(Wage_i)|F = 1,B = 1]-E[ln(Wage_i)|F = 0,B = 1])-(E[ln(Wage_i)|F = 1,B = 0]-E[ln(Wage_i)|F = 0,B = 0])$
+
+```{stata}
+* (c) 
+reg lwage female_black female_nonblack male_black  
+
+// note, this one is harder to replicate using factor notation. 
+```
+
+In this model, we have the following:
+
+-	$\beta_1 = E[ln(Wage_i)|F = 0,B = 0]$
+
+-	$\beta_2 = E[ln(Wage_i)|F = 1,B = 1]-E[ln(Wage_i)|F = 0,B = 0]$
+
+-	$\beta_3 = E[ln(Wage_i)|F = 1,B = 0]-E[ln(Wage_i)|F = 0,B = 0]$
+
+-	$\beta_4 = E[ln(Wage_i)|F = 0,B = 1]-E[ln(Wage_i)|F = 0,B = 0]$
+
+**4.**	Compare the estimated coefficients with the sample average values for the lwage for the four subgroups. What do you see?
+
+```{stata}
+table female black, stat(mean lwage)
+```
+
+You can compute the coefficients from each model simply using these averages. 
+
+
+**5.** In each of the above models, describe the null hypothesis you would test to evaluate whether there is a significant earnings difference between the earnings of black and non-black females. 
+
+a.	$H_0: \beta_1 = \beta_2$
+
+b.	$H_0: \beta_3 + \beta_4 = 0$
+
+c.	$H_0: \beta_2 - \beta_3 = 0$
+
+**6.**	Verify your solution to 4 by performing a test using the three set of regression output. You can use the post-estimation `test` command.
+
+```{stata}
+reg lwage female_black female_nonblack male_black male_nonblack, nocons
+
+test female_black = female_nonblack
+
+reg lwage female black female_black
+
+test female_black + black = 0
+
+reg lwage female_black female_nonblack male_black  
+
+test female_black - female_nonblack = 0
+```
+
+**7.** In each case, test equality across all four gender-ethnicity groups. Again, you should get the same result. 
+
+```{stata}
+reg lwage female_black female_nonblack male_black male_nonblack, nocons
+
+test female_black = female_nonblack = male_black = male_nonblack
+
+reg lwage female black female_black
+
+test female_black = black = female = 0
+
+reg lwage female_black female_nonblack male_black  
+
+test female_black = female_nonblack = male_black = 0
+```
+
+
+**8.** Try to replicate the F-statistic for one of the above models. Hint, the F-stat for these models is the same as that of the whole model. 
+
+```{stata}
+reg lwage female black female_black
+ereturn list
+scalar fstat = (e(r2)*e(df_r))/((1-e(r2))*e(df_m))
+scalar list fstat
+```
+
+In the case where the F-test corresponds to the test of the entire model, you can write the F-statistic in terms of $R^2$. 
+
+
+**9.** Estimate the following model:
+
+$$
+	lwage = \beta_1 + \beta_2F + \beta_3B + \beta_4F\times B + \beta_5exp + \beta_6exp^2 + \beta_7educ + \varepsilon
+$$
+
+-	Interpret the estimated coeffiecients $\hat{\beta}_7$.
+
+-	Interpret the effect of experience variable `exp`. Use the median level of experience to make your calculation.
+
+```{stata}
+sum educ, det
+reg lwage i.female##i.black exper expsq educ
+
+di (exp(_b[educ])-1)*100
+```
+
+-	A one unit increase in years of educ is associated with an increase of 7.59% in expected wages, holding other regressors fixed. 
+
+```{stata}
+sum exper, det
+return list
+di (exp(_b[exper]+2*r(p50)*_b[expsq])-1)*100
+```
+
+-	A one unit incease in years of experience is associated with an increase of 1.78% in expected wages, holding other regressors fixed. 
+
+**10.**	Theoretically, how would you test the following restrictions for the model below?
+
+a.	$\beta_2 = \beta_3$ 
+
+b.	$\beta_4 + \beta_5 = 1$
+
+c.	$\beta_2 = \beta_3$ **and** $\beta_4 + \beta_5 = 1$
+
+$$
+	Y = \beta_1 + \beta_2X_2 + \beta_3X_3 + \beta_4X_4 + \beta_5X_5 + \varepsilon
+$$
+
+a.	Restrictions 1: $H_0: \beta_2 = \beta_3\Rightarrow \beta_2-\beta_3 = 0$. This can be written as a simple T-test (or F-tests), 
+
+$$
+\text{T-stat}  = \frac{\hat{\beta}_2-\hat{\beta}_3}{\sqrt{\hat{Var}(\hat{\beta}_2-\hat{\beta}_3)}}
+$$
+
+where, 
+
+$$
+Var(\hat{\beta}_2-\hat{\beta}_3) = Var(\hat{\beta}_2) + Var(\hat{\beta}_3)-2\cdot Cov(\hat{\beta}_2,\hat{\beta}_3)
+$$
+
+Alternatively, rewrite the model, adding and subtracting $\beta_3X_2$ (or $\beta_2X_3$):
+
+$$
+	Y = \beta_1 + (\beta_2-\beta_3)X_2 + \beta_3(X_2+X_3) + \beta_4X_4 + \beta_5X_5 + \varepsilon
+$$
+
+Then test the hypothese that the coefficient on $X_2$ is $=0$.
+
+b.	Restrictions 1: $H_0: \beta_4 + \beta_5 = 1$. This can be written as a simple T-test, 
+
+$$
+\text{T-stat} = \frac{\hat{\beta}_4+\hat{\beta}_5-1}{\sqrt{\hat{Var}(\hat{\beta}_4+\hat{\beta}_5})}
+$$
+
+where, 
+
+$$
+Var(\hat{\beta}_4+\hat{\beta}_5) = Var(\hat{\beta}_4) + Var(\hat{\beta}_5)+2\cdot Cov(\hat{\beta}_4,\hat{\beta}_5)
+$$
+
+Alternatively, rewrite the model, adding and subtracting $\beta_5X_4-X_5$ (or $\beta_2X_3$):
+
+$$
+	Y-X_4 = \beta_1 + \beta_2X_2 + \beta_3X_3 + (\beta_4+\beta_5-1)X_4 + (\beta_5)(X_5-X_4) + \varepsilon
+$$
+
+Then test the hypothese that the coefficient on $X_4$ is $=0$.
+
+c.	To test both of the linear restrictions simultaneously, we would use an F-test. 
+
+Step 1: estimate the unrestricted model
+
+$$
+	Y = \beta_1 + \beta_2X_2 + \beta_3X_3 + \beta_4X_4 + \beta_5X_5 + \varepsilon
+$$
+
+Store the $SSR_U$
+
+Step 2: estimate the restricted model
+
+$$
+	(Y-X_4) = \gamma_1 + \gamma_2(X_2+X_3) + \gamma_5(X_5-X_4) + \varepsilon
+$$
+
+Store the $SSR_R$. 
+
+Step 3: Compute the F-statistic
+
+$$
+\text{F-stat} = \frac{(SSR_R-SSR_U)/(df_R-df_U)}{SSR_U/df_U}
+$$
+
+## Postamble
+
+
+```{stata}
+*| output: false
+log close
+```

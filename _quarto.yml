@@ -18,12 +18,16 @@ website:
             text: Handout 3
       - text: Problem Sets
         menu:
-          - href: problem-sets/problem-set-1.html
+          - href: problem-sets/ps-1/problem-set-1.html
             text: Problem Set 1
-          - href: problem-sets/problem-set-1-solutions.html
+          - href: problem-sets/ps-1/problem-set-1-solutions.html
             text: Problem Set 1 (Solutions)
-          - href: problem-sets/problem-set-2.html
-            text: Problem Set 2            
+          - href: problem-set-2.qmd
+            text: Problem Set 2
+          - href: problem-set-2-solutions.qmd
+            text: Problem Set 2 (Solutions) 
+          - href: problem-set-3.qmd
+            text: Problem Set 3            
       - text: Additional Material
         menu:
           - href: material-cef.qmd
