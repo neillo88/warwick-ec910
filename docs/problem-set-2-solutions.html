@@ -180,6 +180,10 @@ window.Quarto = {
     <a class="dropdown-item" href="./handout-3.html">
  <span class="dropdown-text">Handout 3</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-4.html">
+ <span class="dropdown-text">Handout 4</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -299,17 +303,17 @@ window.Quarto = {
 <p><span class="math display">\[
     E[Y_i|X_i] = \beta_1 + \beta_2D_{i2} + ... + \beta_m D_{im}
 \]</span></p>
-<p>where <span class="math inline">\(D_{im}\mathbf{1}\{X_i = x_m\}\)</span>.</p>
+<p>where <span class="math inline">\(D_{im}=\mathbf{1}\{X_i = x_m\}\)</span>.</p>
 </section>
 <section id="preamble" class="level2">
 <h2 class="anchored" data-anchor-id="preamble">Preamble</h2>
-<div id="0d6e5bd5" class="cell" data-execution_count="1">
+<div id="3291c043" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <style>div.jp-Notebook .datagrid-container {min-height: 448px; }</style>
 </div>
 </div>
 <p>Create a do-file for this problem set and include a preamble that sets the directory and opens the data. For example,</p>
-<div id="ee688424" class="cell" data-execution_count="2">
+<div id="db5316ab" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">//or, to remove all stored values (including macros, matrices, scalars, etc.) </span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>*<span class="kw">clear</span> <span class="ot">all</span></span>
@@ -336,7 +340,7 @@ E[ln(Wage_i)|G_i] = E[ln(Wage_i)|G_i=1]+ (E[ln(Wage_i)|G_i=2]-E[ln(Wage_i)|G_i=1
 = \beta_1+ \beta_2D_{i2}
 \]</span> <span class="math inline">\(\Rightarrow E[\varepsilon_i|D_{i2}]=0\)</span>.</p>
 <p><strong>2.</strong> Regress <code>lwage</code> (log wage) on just a set of binary indicators that will enable you to test the hypothesis that males and females are on average, paid the same wage, ceteris paribus. Test this hypothesis.</p>
-<div id="3253cdcf" class="cell" data-execution_count="3">
+<div id="389908a0" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lwage female</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>* <span class="kw">or</span></span>
@@ -375,7 +379,7 @@ E[ln(Wage_i)|G_i] = E[ln(Wage_i)|G_i=1]+ (E[ln(Wage_i)|G_i=2]-E[ln(Wage_i)|G_i=1
 </div>
 </div>
 <p>Alternatively, you could use Stata’s factor notation:</p>
-<div id="e00de7d9" class="cell" data-execution_count="4">
+<div id="e3c8e992" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lwage i.female</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">//note: defaults to smallest value as base category. This can be changed as follows.</span></span>
@@ -413,7 +417,7 @@ E[ln(Wage_i)|G_i] = E[ln(Wage_i)|G_i=1]+ (E[ln(Wage_i)|G_i=2]-E[ln(Wage_i)|G_i=1
 </div>
 </div>
 <p>It is evident from the test p-value that the difference is statistically significantly. Note, the standard <code>reg</code> command assume homoskedastic SEs. If we believe that the variance varies of (log of) wages varies with gender, we should estimate heteroskedastic SEs. However, in this instance it will not make a difference to the conclusion.</p>
-<div id="35c074b0" class="cell" data-execution_count="5">
+<div id="a34050c9" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lwage female, <span class="fu">r</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -439,7 +443,7 @@ Linear regression                               Number of obs     =      4,165
 <li><p><code>female_nonblack</code> = <code>female</code><span class="math inline">\(\times\)</span>(1-<code>black</code>)</p></li>
 <li><p><code>male_nonblack</code> = (1-<code>female</code>)<span class="math inline">\(\times\)</span>(1-<code>black</code>)</p></li>
 </ul>
-<div id="4215a841" class="cell" data-execution_count="6">
+<div id="d6ddb867" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> female_black=female*<span class="bn">black</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> female_nonblack=female*(1-<span class="bn">black</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> male_black=(1-female)*<span class="bn">black</span></span>
@@ -453,7 +457,7 @@ Linear regression                               Number of obs     =      4,165
 </ol>
 <p>For some of these exercises you may be able to use Stata’s factor notation. However, in some instances you will need to manually create the above dummy-variable interactions.</p>
 <p>In each case, identify the base category and write down the parameters of the (implied) model in terms of conditional expectations.</p>
-<div id="eef4093b" class="cell" data-execution_count="7">
+<div id="cffdfb08" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>* (a)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lwage female_black female_nonblack male_black male_nonblack</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -498,7 +502,7 @@ male_nonbl~k |    6.74165   .0073159   921.51   0.000     6.727307    6.755993
 </div>
 </div>
 <p>This model returns four parameter-estimates, each corresponding to the four gender-ethnicity groups. These are essentially conditional mean estimates.</p>
-<div id="25f2460c" class="cell" data-execution_count="8">
+<div id="9f81d5e2" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>* (b)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lwage female <span class="bn">black</span> female_black</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -550,7 +554,7 @@ female#black |
 <li><p><span class="math inline">\(\beta_3 = E[ln(Wage_i)|F = 0,B = 1]-E[ln(Wage_i)|F = 0,B = 0]\)</span></p></li>
 <li><p><span class="math inline">\(\beta_4 = (E[ln(Wage_i)|F = 1,B = 1]-E[ln(Wage_i)|F = 0,B = 1])-(E[ln(Wage_i)|F = 1,B = 0]-E[ln(Wage_i)|F = 0,B = 0])\)</span></p></li>
 </ul>
-<div id="c730dc1e" class="cell" data-execution_count="9">
+<div id="154e87dc" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>* (c) </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lwage female_black female_nonblack male_black  </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -582,7 +586,7 @@ female_non~k |  -.4341146   .0238361   -18.21   0.000     -.480846   -.3873832
 <li><p><span class="math inline">\(\beta_4 = E[ln(Wage_i)|F = 0,B = 1]-E[ln(Wage_i)|F = 0,B = 0]\)</span></p></li>
 </ul>
 <p><strong>4.</strong> Compare the estimated coefficients with the sample average values for the lwage for the four subgroups. What do you see?</p>
-<div id="ebfa97f5" class="cell" data-execution_count="10">
+<div id="7f4c8f9f" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">table</span> female <span class="bn">black</span>, stat(<span class="kw">mean</span> lwage)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -605,7 +609,7 @@ female or male |
 <li><p><span class="math inline">\(H_0: \beta_2 - \beta_3 = 0\)</span></p></li>
 </ol>
 <p><strong>6.</strong> Verify your solution to 4 by performing a test using the three set of regression output. You can use the post-estimation <code>test</code> command.</p>
-<div id="a2b808ae" class="cell" data-execution_count="11">
+<div id="afccad80" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lwage female_black female_nonblack male_black male_nonblack, <span class="kw">nocons</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> female_black = female_nonblack</span>
@@ -684,7 +688,7 @@ female_non~k |  -.4341146   .0238361   -18.21   0.000     -.480846   -.3873832
 </div>
 </div>
 <p><strong>7.</strong> In each case, test equality across all four gender-ethnicity groups. Again, you should get the same result.</p>
-<div id="79eb2266" class="cell" data-execution_count="12">
+<div id="e4e4d8b1" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lwage female_black female_nonblack male_black male_nonblack, <span class="kw">nocons</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> female_black = female_nonblack = male_black = male_nonblack</span>
@@ -769,7 +773,7 @@ female_non~k |  -.4341146   .0238361   -18.21   0.000     -.480846   -.3873832
 </div>
 </div>
 <p><strong>8.</strong> Try to replicate the F-statistic for one of the above models. Hint, the F-stat for these models is the same as that of the whole model.</p>
-<div id="73f254c7" class="cell" data-execution_count="13">
+<div id="2ce4a72b" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lwage female <span class="bn">black</span> female_black</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ereturn</span> <span class="ot">list</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> fstat = (<span class="fu">e</span>(r2)*<span class="fu">e</span>(df_r))/((1-<span class="fu">e</span>(r2))*<span class="fu">e</span>(df_m))</span>
@@ -837,7 +841,7 @@ functions:
 <li><p>Interpret the estimated coeffiecients <span class="math inline">\(\hat{\beta}_7\)</span>.</p></li>
 <li><p>Interpret the effect of experience variable <code>exp</code>. Use the median level of experience to make your calculation.</p></li>
 </ul>
-<div id="864780da" class="cell" data-execution_count="14">
+<div id="5fcb9f75" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">sum</span> educ, <span class="fu">det</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lwage i.female##i.<span class="bn">black</span> exper expsq educ</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -886,7 +890,7 @@ female#black |
 <ul>
 <li>A one unit increase in years of educ is associated with an increase of 7.59% in expected wages, holding other regressors fixed.</li>
 </ul>
-<div id="0541da14" class="cell" data-execution_count="15">
+<div id="0e36d8d5" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">sum</span> exper, <span class="fu">det</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span> <span class="ot">list</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> (<span class="fu">exp</span>(_b[exper]+2*<span class="fu">r</span>(p50)*_b[expsq])-1)*100</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -992,7 +996,7 @@ Var(\hat{\beta}_4+\hat{\beta}_5) = Var(\hat{\beta}_4) + Var(\hat{\beta}_5)+2\cdo
 </section>
 <section id="postamble" class="level2">
 <h2 class="anchored" data-anchor-id="postamble">Postamble</h2>
-<div id="2fc5ce7f" class="cell" data-execution_count="16">
+<div id="275b088d" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">close</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 

@@ -39,7 +39,7 @@ $$
 	E[Y_i|X_i] = \beta_1 + \beta_2D_{i2} + ... + \beta_m D_{im}
 $$
 
-where $D_{im}\mathbf{1}\{X_i = x_m\}$.
+where $D_{im}=\mathbf{1}\{X_i = x_m\}$.
 
 
 ## Preamble

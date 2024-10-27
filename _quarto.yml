@@ -16,6 +16,8 @@ website:
             text: Handout 2
           - href: handout-3.qmd
             text: Handout 3
+          - href: handout-4.qmd
+            text: Handout 4
       - text: Problem Sets
         menu:
           - href: problem-sets/ps-1/problem-set-1.html

@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick-ec910\problem-sets\ps-2\problem-set-2.txt
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}22 Oct 2024, 12:47:00
+ {txt}opened on:  {res}27 Oct 2024, 15:33:07
 {txt}(PSID wage data 1976-82 from Baltagi and Khanti-Akom (1990))
 {res}
 {txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
@@ -433,7 +433,7 @@ female#black {c |}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick-ec910\problem-sets\ps-2\problem-set-2.txt
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}22 Oct 2024, 12:47:02
+ {txt}closed on:  {res}27 Oct 2024, 15:33:10
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

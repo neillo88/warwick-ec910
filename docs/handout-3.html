@@ -160,6 +160,10 @@ window.Quarto = {
     <a class="dropdown-item" href="./handout-3.html">
  <span class="dropdown-text">Handout 3</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-4.html">
+ <span class="dropdown-text">Handout 4</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -259,6 +263,7 @@ window.Quarto = {
   <li><a href="#asymptotic-normality-1" id="toc-asymptotic-normality-1" class="nav-link" data-scroll-target="#asymptotic-normality-1"><span class="header-section-number">5.5</span> Asymptotic Normality</a></li>
   <li><a href="#additional-comments-1" id="toc-additional-comments-1" class="nav-link" data-scroll-target="#additional-comments-1"><span class="header-section-number">5.6</span> Additional comments</a></li>
   </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">6</span> References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="handout-3.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -417,7 +422,7 @@ Var(u|X) = \sigma^2 I_n = \begin{bmatrix}\sigma^2&amp; 0 &amp; \dots &amp; 0 \\
 <p>the above expression simplies to</p>
 <p><span class="math display">\[
 \begin{aligned}
-Var(\hat{\beta}^{OLS}|X) =&amp; (X'X)^{-1}\sigma^2I_nX(X'X)^{-1} \\
+Var(\hat{\beta}^{OLS}|X) =&amp; (X'X)^{-1}X'\sigma^2I_nX(X'X)^{-1} \\
 =&amp;\sigma^2(X'X)^{-1}X'X(X'X)^{-1} \\
 =&amp;\sigma^2(X'X)^{-1}
 \end{aligned}
@@ -431,7 +436,7 @@ Var(u|X) = \begin{bmatrix}\sigma^2_1&amp; 0 &amp; \dots &amp; 0 \\
 \]</span></p>
 <p>the variance matrix does not reduce to a scalar multiplied by the identity matrix. And,</p>
 <p><span class="math display">\[
-Var(\hat{\beta}^{OLS}|X) = (X'X)^{-1}\Omega X(X'X)^{-1}
+Var(\hat{\beta}^{OLS}|X) = (X'X)^{-1}X'\Omega X(X'X)^{-1}
 \]</span></p>
 <p>This is commonly referred to as a ‘sandwich’ formula, given the way <span class="math inline">\(Var(u|X)=\Omega\)</span> is sandwiched between two linear transformations. The Eicker-Huber-White estimator for heteroskedastic standard errors of <span class="math inline">\(\hat{\beta}^{OLS}\)</span> replaces <span class="math inline">\(Var(u|X)=E[uu'|X]\)</span> with <span class="math inline">\(\hat{u}\hat{u}'\)</span>, the OLS residuals.</p>
 </section>
@@ -458,6 +463,7 @@ u|X \sim N(0,\sigma^2 I_n)
 <ul>
 <li><p>CLRM 1: linear in parameters</p></li>
 <li><p>CLRM 2<sup>b</sup>: uncorrelatedness, <span class="math inline">\(E[X_iu_i]=0\)</span></p></li>
+<li><p>CLRM 4: <span class="math inline">\(rank(X) = k\)</span></p></li>
 <li><p>CLRM 6: data is iid</p></li>
 <li><p>(NEW) CLRM 7: <span class="math inline">\(E[X_iX_i']\)</span> is a finite, positive-definite matrix.</p></li>
 </ul>
@@ -514,7 +520,7 @@ E\bigg[n^{-1}\sum_{i=1}^nX_iX_i'\bigg] = E[X_1X_1']
 \]</span> We have already established that, <span class="math display">\[
 \big(n^{-1}X'X\big)^{-1}\rightarrow_p \big(E[X_1X_1']\big)^{-1}
 \]</span> under assumptions CLRM 1, 2<sup>b</sup>, 6, and 7.</p>
-<p>We therefore need to consider the asymptotic distribution of <span class="math inline">\(n^{-1/2}Xu\)</span>. By CLRM 2<sup>b</sup> <span class="math inline">\(E[X_1u_1]=0\)</span>, fulfilling one of the CLT conditions. We then need the second moment to be finite: <span class="math inline">\(Var(X_1u1) = E[u_1^2X_1X_1']\)</span>. This is a <span class="math inline">\(k\times k\)</span> matrix.</p>
+<p>We therefore need to consider the asymptotic distribution of <span class="math inline">\(n^{-1/2}Xu\)</span>. By CLRM 2<sup>b</sup> <span class="math inline">\(E[X_1u_1]=0\)</span>, fulfilling one of the CLT conditions. We then need the second moment to be finite: <span class="math inline">\(Var(X_1u_1) = E[u_1^2X_1X_1']\)</span>. This is a <span class="math inline">\(k\times k\)</span> matrix.</p>
 <p>We will need to make some additional assumptions:</p>
 <ul>
 <li>(NEW) CLRM 8: <span class="math inline">\(E[u_1^2X_1X_1']\)</span> is a finite positive-definite matrix.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
@@ -524,7 +530,7 @@ E\bigg[n^{-1}\sum_{i=1}^nX_iX_i'\bigg] = E[X_1X_1']
 n^{-1/2}Xu\rightarrow N(0,E[u_1^2 X_1 X_1'])
 \]</span> There, <span class="math display">\[
 \sqrt{n}(\hat{\beta}_n-\beta) \rightarrow_d N\bigg(0,\big(E[X_1X_1']\big)^{-1}E[u_1^2X_1X_1']\big(E[X_1X_1']\big)^{-1}\bigg)
-\]</span> Under the homoskedasticity, <span class="math inline">\(E[u_1^2X_1X_1']=\sigma^2 E[X_1,X_1']\)</span>, giving us, <span class="math display">\[
+\]</span> Under the homoskedasticity, <span class="math inline">\(E[u_1^2X_1X_1']=\sigma^2 E[X_1X_1']\)</span>, giving us, <span class="math display">\[
 \sqrt{n}(\hat{\beta}_n-\beta) \rightarrow_d N\bigg(0,\sigma^2\big(E[X_1X_1']\big)^{-1}\bigg)
 \]</span> We can approximate the asymptotic distribution <span class="math inline">\(\hat{\beta}_n\)</span> by multiplying by <span class="math inline">\(\sqrt{n}\)</span> and replacing <span class="math inline">\(\big(E[X_1X_1']\big)^{-1}\)</span> with the approximation <span class="math inline">\(\big(n^{-1}X'X\big)^{-1}\)</span>. <span class="math display">\[
 \hat{\beta}_n \overset{a}{\sim}N\big(\beta,\sigma^2(X'X)^{-1}\big)
@@ -560,6 +566,7 @@ n^{-1}\sum_{i=1}^n g(W_i,\hat{\theta}^{MM}) = 0
 <p><span class="math display">\[
 \hat{\theta}^{GMM} = \underset{\theta\in\Theta}{\text{arg min}}\;\bigg|\bigg|A_n n^{-1}\sum_{i=1}^n g(W_i,\hat{\theta}^{MM})\bigg|\bigg|^2
 \]</span></p>
+<p>Here, <span class="math inline">\(||v||\)</span> denotes the Euclidean norm of vector <span class="math inline">\(v\)</span>: <span class="math inline">\(||v|| = \sqrt{v'v}\)</span>.</p>
 </section>
 <section id="application-to-clrm-1" class="level3" data-number="4.3">
 <h3 data-number="4.3" class="anchored" data-anchor-id="application-to-clrm-1"><span class="header-section-number">4.3</span> Application to CLRM</h3>
@@ -577,7 +584,7 @@ E[X_i(Y_i-X_i'\beta)] = \begin{bmatrix}E[X_{i1}(Y_i-X_i'\beta)]\\E[X_{i2}(Y_i-X_
 n^{-1}\sum_{i=1}^n X_i(Y_i-X_i'\hat{\beta}^{MM}) = 0
 \]</span></p>
 <p>The solution is equivalent to the OLS estimator: <span class="math display">\[
-\hat{\beta}^{MM} = \bigg(n^{-1}\sum_{i=1}^n X_iX_i'\bigg)n^{-1}\sum_{i=1}^nX_iY_i = \big(X'X\big)^{-1}X'Y = \hat{\beta}^{OLS}
+\hat{\beta}^{MM} = \bigg(n^{-1}\sum_{i=1}^n X_iX_i'\bigg)^{-1}n^{-1}\sum_{i=1}^nX_iY_i = \big(X'X\big)^{-1}X'Y = \hat{\beta}^{OLS}
 \]</span></p>
 </section>
 <section id="consistency-1" class="level3" data-number="4.4">
@@ -586,7 +593,7 @@ n^{-1}\sum_{i=1}^n X_i(Y_i-X_i'\hat{\beta}^{MM}) = 0
 <p>Recall, the assumption <span class="math inline">\(A_n\rightarrow_p A\)</span>. Then,</p>
 <p><span class="math display">\[
 \bigg|\bigg|A_n n^{-1}\sum_{i=1}^n g(W_i,\theta)\bigg|\bigg|^2\rightarrow_p \big|\big|A E\big[ g(W_i,\theta)\big]\big|\big|^2
-\]</span> In instance where identification is exact/unique, <span class="math inline">\(E\big[ g(W_i,\theta)\big]=0\iff\theta=\theta_0\)</span>. Which is to say that the true value of <span class="math inline">\(\theta\)</span> is the unique minizer.</p>
+\]</span> In instance where identification is exact/unique, <span class="math inline">\(E\big[ g(W_i,\theta)\big]=0\iff\theta=\theta_0\)</span>. Which is to say that the true value of <span class="math inline">\(\theta\)</span> is the unique minimizer.</p>
 <p>Then,</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -594,7 +601,7 @@ n^{-1}\sum_{i=1}^n X_i(Y_i-X_i'\hat{\beta}^{MM}) = 0
 \rightarrow_p&amp;\underset{\theta\in\Theta}{\text{arg min}}\;\big|\big|A E\big[ g(W_i,\theta)\big]\big|\big|^2 \\
 =&amp;\theta_0
 \end{aligned}
-\]</span> The formal proof requires a number of additional regulrity assumptions; including, the compactness of <span class="math inline">\(\Theta\)</span>.</p>
+\]</span> The formal proof requires a number of additional regularity assumptions; including, the compactness of <span class="math inline">\(\Theta\)</span>.</p>
 </section>
 <section id="asymptotic-normality" class="level3" data-number="4.5">
 <h3 data-number="4.5" class="anchored" data-anchor-id="asymptotic-normality"><span class="header-section-number">4.5</span> Asymptotic Normality</h3>
@@ -613,7 +620,7 @@ Q =&amp; E\bigg[\frac{\partial g(W_i,\theta_0)}{\partial \theta'}\bigg] \\
 \]</span> In the above expression, the matrix of derivatives will converge (under some regularity conditions) in probability: <span class="math inline">\(Q_n\big(\hat{\theta}^{GMM}\big)\rightarrow_p Q\)</span>. Second, since <span class="math inline">\(E\big[ g(W_i,\theta)\big]=0\)</span>, by CLT we know,</p>
 <p><span class="math display">\[
 n^{-1/2}\sum_{i=1}^{n}g(W_i,\theta_0)\rightarrow_d N(0,\underbrace{E\big[ g(W_i,\theta)g(W_i,\theta)'\big]}_\Omega)
-\]</span> We can therefore see where the components of the Variance come from. The proof requires a bit more work. First, we need the distribution of <span class="math inline">\(\sqrt{n}\big(\hat{\theta}^{GMM}-\theta_0\big)\)</span>, not <span class="math inline">\(n^{-1/2}\sum_{i=1}^{n}g(W_i,\theta_0)\)</span>. Second, the FOCs contain <span class="math inline">\(n^{-1}\sum_{i=1}^{n}g(W_i,\hat{\theta}^{GMM})\neq\)</span> and not <span class="math inline">\(n^{-1}\sum_{i=1}^{n}g(W_i,\theta_0)\)</span>.</p>
+\]</span> We can therefore see where the components of the variance come from. The proof requires a bit more work. First, we need the distribution of <span class="math inline">\(\sqrt{n}\big(\hat{\theta}^{GMM}-\theta_0\big)\)</span>, not <span class="math inline">\(n^{-1/2}\sum_{i=1}^{n}g(W_i,\theta_0)\)</span>. Second, the FOCs contain <span class="math inline">\(n^{-1}\sum_{i=1}^{n}g(W_i,\hat{\theta}^{GMM})\)</span> and not <span class="math inline">\(n^{-1}\sum_{i=1}^{n}g(W_i,\theta_0)\)</span>.</p>
 <p>This is resolve using a mean value expansion:</p>
 <p><span class="math display">\[
 g(W_i,,\hat{\theta}^{GMM}) = g(W_i,\theta_0) + \frac{\partial g(W_i,\hat{\theta}^*)}{\partial \theta'}\big(\hat{\theta}^{GMM}-\theta_0\big)
@@ -629,7 +636,7 @@ g(W_i,,\hat{\theta}^{GMM}) = g(W_i,\theta_0) + \frac{\partial g(W_i,\hat{\theta}
 <p><span class="math display">\[
 E\bigg[\underbrace{\delta\bigg(\frac{C_{t+1}}{C_t}\bigg)^{-\alpha}(1+R_{j,t})-1}_{g(W_{j,t},\theta)}\bigg]=0
 \]</span></p>
-<p>where <span class="math inline">\(W_{j,t}=[C_t,C_{t+1},R_{j,t}]\)</span> and <span class="math inline">\(\theta = [\alpha,\delta]\)</span>. As the moment must hold for each asset, <span class="math inline">\(\theta\)</span> is identified so long as <span class="math inline">\(m\geq 2\)</span>.</p>
+<p>where <span class="math inline">\(W_{j,t}=[C_t,C_{t+1},R_{j,t}]'\)</span> and <span class="math inline">\(\theta = [\alpha,\delta]'\)</span>. As the moment must hold for each asset, <span class="math inline">\(\theta\)</span> is identified so long as <span class="math inline">\(m\geq 2\)</span>.</p>
 <p>Given the non-linearity of the <span class="math inline">\(g\)</span>-function, there is no closed for solution. Instead, the GMM estimator must be solved for using numerical optimization.</p></li>
 <li><p>Some (macroeconomic) models are not identified (or underidentified). For example, a simple RBC model (with a random government component) yields the following moment condition from Euler equation,<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
 <p><span class="math display">\[
@@ -643,7 +650,7 @@ E\bigg[\underbrace{\beta\frac{C_{t+1}}{C_t}\big(f_K + (1-\delta)\big)-1}_{g(W_i,
 <p>Maximum Likelihood (ML or MLE) are a general class of estimators that exploit a knowledge of the underlying distribution of unobservables in the model. As the name suggests, the goal will be to maximize the likelihood (i.e.&nbsp;probability) of observing the a given sample of data, given the assumed distribution of the data, governed by a fixed set of parameters.</p>
 <section id="general-setup-1" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="general-setup-1"><span class="header-section-number">5.1</span> General setup</h3>
-<p>Consider an iid random sample of data: <span class="math inline">\(W_i,...,W_n\)</span>. We will assume that the data is drawn from a <strong>known</strong> distribution, <span class="math inline">\(f(w_i;\theta)\)</span>, where <span class="math inline">\(\theta\in\Theta\subset \mathbf{R}^k\)</span> is an unknown vector of population parameters.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+<p>Consider an iid random sample of data: <span class="math inline">\(W_1,...,W_n\)</span>. We will assume that the data is drawn from a <strong>known</strong> distribution, <span class="math inline">\(f(w_i;\theta)\)</span>, where <span class="math inline">\(\theta\in\Theta\subset \mathbf{R}^k\)</span> is an unknown vector of population parameters.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
 <div class="callout callout-style-default callout-note callout-titled" title="Notation">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -654,7 +661,7 @@ Notation
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The notation used to describe ML estimation varies quite a bit across texts. One key difference appears to be how to denote a parameterized distribution. The density function, <span class="math inline">\(f(w_i;\theta)\)</span>, is the density at <span class="math inline">\(w_i\)</span> (the realized value for observation <span class="math inline">\(i\)</span>), where the distribution is <em>parameterized by</em> <span class="math inline">\(\theta\)</span>. Some texts use the conditional notation, <span class="math inline">\(f(w_i|\theta)\)</span>, as the distribution depends on <span class="math inline">\(\theta\)</span>. However, probabilistic conditions tend to be based on random variables and not non-random parameters. I found this <a href="https://stats.stackexchange.com/questions/10234/what-is-the-difference-between-the-vertical-bar-and-semi-colon-notations">StackExchange</a> discussion on the topic quite interesting. Needless to say, there is much agreement and notation appears to differ across Mathematics and Statistics, and among the Statisticians, between frequentists and Bayesians. Even the <a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation">Wikipedia page</a> on MLE uses a combination of the two notations. I will use ‘;’; which also happens to be the notation used by <span class="citation" data-cites="wooldridge2010">Wooldridge (<a href="#ref-wooldridge2010" role="doc-biblioref">2010</a>)</span>.</p>
+<p>The notation used to describe ML estimation varies quite a bit across texts. One key difference appears to be how to denote a parameterized distribution. The density function, <span class="math inline">\(f(w_i;\theta)\)</span>, is the density at <span class="math inline">\(w_i\)</span> (the realized value for observation <span class="math inline">\(i\)</span>), where the distribution is <em>parameterized by</em> <span class="math inline">\(\theta\)</span>. Some texts use the conditional notation, <span class="math inline">\(f(w_i|\theta)\)</span>, as the distribution depends on <span class="math inline">\(\theta\)</span>. However, probabilistic conditions tend to be based on random variables and not non-random parameters. I found this <a href="https://stats.stackexchange.com/questions/10234/what-is-the-difference-between-the-vertical-bar-and-semi-colon-notations">StackExchange</a> discussion on the topic quite interesting. Needless to say, there is much disagreement and notation appears to differ across Mathematics and Statistics, and among the Statisticians, between frequentists and Bayesians. Even the <a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation">Wikipedia page</a> on MLE uses a combination of the two notations. I will use ‘;’; which also happens to be the notation used by <span class="citation" data-cites="wooldridge2010">Wooldridge (<a href="#ref-wooldridge2010" role="doc-biblioref">2010</a>)</span>.</p>
 </div>
 </div>
 <p>As the sample is iid, the joint density (or pdf) of the realized observations is given by the product of marginals,</p>
@@ -708,7 +715,7 @@ n^{-1}\log L_n(\beta,\sigma^2) =  -\frac{1}{2}\log(\sigma^2)-\frac{1}{2}\log(2\p
 \frac{\partial n^{-1}\log L_n(\hat{\beta},\hat{\sigma}^2)}{\partial\sigma^2} =&amp; -\frac{1}{2\hat{\sigma}^2}+ \frac{1}{n2\hat{\sigma}^4}\sum_{i=1}^n(Y_i-X_i'\hat{\beta})^2 = 0 \\
 \Rightarrow \hat{\sigma}^{2}_{ML} =&amp; n^{-1}\sum_{i=1}^n(Y_i-X_i'\hat{\beta})^2
 \end{aligned}
-\]</span> This estimator for the variance is consistent, but biased for small samples. This is because it scales by <span class="math inline">\(n\)</span> and not <span class="math inline">\(n-1\)</span>, a distinction that is ignorable as <span class="math inline">\(n\rightarrow\infty\)</span>. For this reason, when conducting inference you should use the asymptotic distribution of the ML estimator.</p>
+\]</span> This estimator for the variance is consistent, but biased for small samples. This is because it scales by <span class="math inline">\(n\)</span> and not <span class="math inline">\(n-k\)</span>, a distinction that is ignorable as <span class="math inline">\(n\rightarrow\infty\)</span>. For this reason, when conducting inference you should use the asymptotic distribution of the ML estimator.</p>
 </section>
 <section id="consistency-2" class="level3" data-number="5.4">
 <h3 data-number="5.4" class="anchored" data-anchor-id="consistency-2"><span class="header-section-number">5.4</span> Consistency</h3>
@@ -768,14 +775,17 @@ J(\theta) = -E\bigg[\frac{\partial^2}{\partial\theta\partial\theta'}\log f(W_i,\
 <li><p>ML estimators require as to know the true PDF, up to its parameters. For example, probit (logit) models assumes that the error term is normally (logistically) distributed.</p></li>
 <li><p>In some cases, the estimator may be consistent even if the PDF is misspecified. As is the case for the OLS estimator of the linear model. These estimators are referred to as a quasi-ML estimators.</p></li>
 </ul>
+</section>
+</section>
+<section id="references" class="level2" data-number="6">
+
 
 
 
 </section>
-</section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">6 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-cameron2005" class="csl-entry" role="listitem">
 Cameron, A Colin, and Pravin K Trivedi. 2005. <em>Microeconometrics: Methods and Applications</em>. Cambridge university press.
 </div>
@@ -803,8 +813,8 @@ Wooldridge, Jeffrey M. 2010. <em>Econometric Analysis of Cross Section and Panel
 <p>These assumptions are sufficient for all elements of matrix <span class="math inline">\(E[u_1^2 X_1 X_1']\)</span> to be finite. The proof is an application of the Cauchy-Schwartz Inequality, which we haven’t covered.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7"><p>This example is taken from Canova (2007, ch.&nbsp;5, p.&nbsp;167).<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn8"><p><span class="math inline">\(\Theta\)</span> is a parameter space and is <em>typically</em> assumed to be compact: a closed and bounded subset of Euclidean space.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p>You may also see the equivalent notation <span class="math inline">\(L(W_i,\theta)\equiv L_n(\theta)\)</span>. The subscript-$n$ implies that the function depends on the sample.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p>This is actually a non-trivial issue and beyond the scope of this module. As noted by <span class="citation" data-cites="wooldridge2010">Wooldridge (<a href="#ref-wooldridge2010" role="doc-biblioref">2010</a>)</span>, we can arrive at the ML estimator by picking the value of <span class="math inline">\(\theta\)</span> to maximize the joint likelihood. However, this approach assumes that the true value of <span class="math inline">\(\theta\in\Theta\)</span>, \$\theta_0$, maximizes the joint likelihood. This is not immediately evident. Once established, we have a more robust basis of the ML estimator.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>You may also see the equivalent notation <span class="math inline">\(L(W_i;\theta)\equiv L_n(\theta)\)</span>. The subscript-<span class="math inline">\(n\)</span> implies that the function depends on the sample.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>This is actually a non-trivial issue and beyond the scope of this module. As noted by <span class="citation" data-cites="wooldridge2010">Wooldridge (<a href="#ref-wooldridge2010" role="doc-biblioref">2010</a>)</span>, we can arrive at the ML estimator by picking the value of <span class="math inline">\(\theta\)</span> to maximize the joint likelihood. However, this approach assumes that the true value of <span class="math inline">\(\theta\in\Theta\)</span>, <span class="math inline">\(\theta_0\)</span>, maximizes the joint likelihood. This is not immediately evident. Once established, we have a more robust basis of the ML estimator.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

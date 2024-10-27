@@ -171,7 +171,7 @@ the above expression simplies to
 
 $$
 \begin{aligned}
-Var(\hat{\beta}^{OLS}|X) =& (X'X)^{-1}\sigma^2I_nX(X'X)^{-1} \\
+Var(\hat{\beta}^{OLS}|X) =& (X'X)^{-1}X'\sigma^2I_nX(X'X)^{-1} \\
 =&\sigma^2(X'X)^{-1}X'X(X'X)^{-1} \\
 =&\sigma^2(X'X)^{-1}
 \end{aligned}
@@ -189,7 +189,7 @@ $$
 the variance matrix does not reduce to a scalar multiplied by the identity matrix. And,
 
 $$
-Var(\hat{\beta}^{OLS}|X) = (X'X)^{-1}\Omega X(X'X)^{-1} 
+Var(\hat{\beta}^{OLS}|X) = (X'X)^{-1}X'\Omega X(X'X)^{-1} 
 $$
 
 This is commonly referred to as a 'sandwich' formula, given the way $Var(u|X)=\Omega$ is sandwiched between two linear transformations. The Eicker-Huber-White estimator for heteroskedastic standard errors of $\hat{\beta}^{OLS}$ replaces $Var(u|X)=E[uu'|X]$ with $\hat{u}\hat{u}'$, the OLS residuals.
@@ -225,6 +225,8 @@ For the consistency of the OLS estimator we require a few assumptions,
 -   CLRM 1: linear in parameters
 
 -   CLRM 2^b^: uncorrelatedness, $E[X_iu_i]=0$
+
+-   CLRM 4: $rank(X) = k$
 
 -   CLRM 6: data is iid
 
@@ -290,7 +292,7 @@ $$ We have already established that, $$
 \big(n^{-1}X'X\big)^{-1}\rightarrow_p \big(E[X_1X_1']\big)^{-1}
 $$ under assumptions CLRM 1, 2^b^, 6, and 7.
 
-We therefore need to consider the asymptotic distribution of $n^{-1/2}Xu$. By CLRM 2^b^ $E[X_1u_1]=0$, fulfilling one of the CLT conditions. We then need the second moment to be finite: $Var(X_1u1) = E[u_1^2X_1X_1']$. This is a $k\times k$ matrix.
+We therefore need to consider the asymptotic distribution of $n^{-1/2}Xu$. By CLRM 2^b^ $E[X_1u_1]=0$, fulfilling one of the CLT conditions. We then need the second moment to be finite: $Var(X_1u_1) = E[u_1^2X_1X_1']$. This is a $k\times k$ matrix.
 
 We will need to make some additional assumptions:
 
@@ -310,7 +312,7 @@ $$
 n^{-1/2}Xu\rightarrow N(0,E[u_1^2 X_1 X_1'])
 $$ There, $$
 \sqrt{n}(\hat{\beta}_n-\beta) \rightarrow_d N\bigg(0,\big(E[X_1X_1']\big)^{-1}E[u_1^2X_1X_1']\big(E[X_1X_1']\big)^{-1}\bigg)
-$$ Under the homoskedasticity, $E[u_1^2X_1X_1']=\sigma^2 E[X_1,X_1']$, giving us, $$
+$$ Under the homoskedasticity, $E[u_1^2X_1X_1']=\sigma^2 E[X_1X_1']$, giving us, $$
 \sqrt{n}(\hat{\beta}_n-\beta) \rightarrow_d N\bigg(0,\sigma^2\big(E[X_1X_1']\big)^{-1}\bigg)
 $$ We can approximate the asymptotic distribution $\hat{\beta}_n$ by multiplying by $\sqrt{n}$ and replacing $\big(E[X_1X_1']\big)^{-1}$ with the approximation $\big(n^{-1}X'X\big)^{-1}$. $$
 \hat{\beta}_n \overset{a}{\sim}N\big(\beta,\sigma^2(X'X)^{-1}\big)
@@ -350,6 +352,8 @@ $$
 \hat{\theta}^{GMM} = \underset{\theta\in\Theta}{\text{arg min}}\;\bigg|\bigg|A_n n^{-1}\sum_{i=1}^n g(W_i,\hat{\theta}^{MM})\bigg|\bigg|^2
 $$
 
+Here, $||v||$ denotes the Euclidean norm of vector $v$: $||v|| = \sqrt{v'v}$.
+
 ### Application to CLRM
 
 Assumption CLRM 2^b^ tells us that the regressors are uncorrelated with the error term. $$
@@ -371,7 +375,7 @@ n^{-1}\sum_{i=1}^n X_i(Y_i-X_i'\hat{\beta}^{MM}) = 0
 $$
 
 The solution is equivalent to the OLS estimator: $$
-\hat{\beta}^{MM} = \bigg(n^{-1}\sum_{i=1}^n X_iX_i'\bigg)n^{-1}\sum_{i=1}^nX_iY_i = \big(X'X\big)^{-1}X'Y = \hat{\beta}^{OLS}
+\hat{\beta}^{MM} = \bigg(n^{-1}\sum_{i=1}^n X_iX_i'\bigg)^{-1}n^{-1}\sum_{i=1}^nX_iY_i = \big(X'X\big)^{-1}X'Y = \hat{\beta}^{OLS}
 $$
 
 ### Consistency
@@ -382,7 +386,7 @@ Recall, the assumption $A_n\rightarrow_p A$. Then,
 
 $$
 \bigg|\bigg|A_n n^{-1}\sum_{i=1}^n g(W_i,\theta)\bigg|\bigg|^2\rightarrow_p \big|\big|A E\big[ g(W_i,\theta)\big]\big|\big|^2
-$$ In instance where identification is exact/unique, $E\big[ g(W_i,\theta)\big]=0\iff\theta=\theta_0$. Which is to say that the true value of $\theta$ is the unique minizer.
+$$ In instance where identification is exact/unique, $E\big[ g(W_i,\theta)\big]=0\iff\theta=\theta_0$. Which is to say that the true value of $\theta$ is the unique minimizer.
 
 Then,
 
@@ -392,7 +396,7 @@ $$
 \rightarrow_p&\underset{\theta\in\Theta}{\text{arg min}}\;\big|\big|A E\big[ g(W_i,\theta)\big]\big|\big|^2 \\
 =&\theta_0
 \end{aligned}
-$$ The formal proof requires a number of additional regulrity assumptions; including, the compactness of $\Theta$.
+$$ The formal proof requires a number of additional regularity assumptions; including, the compactness of $\Theta$.
 
 ### Asymptotic Normality
 
@@ -410,11 +414,12 @@ $$ Where does this result come from? We won't go through the proof in details. H
 
 $$
 \bigg[\underbrace{n^{-1}\sum_{i=1}^n\frac{\partial g(W_i,\hat{\theta}^{GMM})}{\partial \theta'}}_{Q_n\big(\hat{\theta}^{GMM}\big)}\bigg]'A_n'A_n n^{-1}\sum_{i=1}^{n}g(W_i,\hat{\theta}^{GMM}) = 0
-$$ In the above expression, the matrix of derivatives will converge (under some regularity conditions) in probability: $Q_n\big(\hat{\theta}^{GMM}\big)\rightarrow_p Q$. Second, since $E\big[ g(W_i,\theta)\big]=0$, by CLT we know,
+$$ 
+In the above expression, the matrix of derivatives will converge (under some regularity conditions) in probability: $Q_n\big(\hat{\theta}^{GMM}\big)\rightarrow_p Q$. Second, since $E\big[ g(W_i,\theta)\big]=0$, by CLT we know,
 
 $$
 n^{-1/2}\sum_{i=1}^{n}g(W_i,\theta_0)\rightarrow_d N(0,\underbrace{E\big[ g(W_i,\theta)g(W_i,\theta)'\big]}_\Omega)
-$$ We can therefore see where the components of the Variance come from. The proof requires a bit more work. First, we need the distribution of $\sqrt{n}\big(\hat{\theta}^{GMM}-\theta_0\big)$, not $n^{-1/2}\sum_{i=1}^{n}g(W_i,\theta_0)$. Second, the FOCs contain $n^{-1}\sum_{i=1}^{n}g(W_i,\hat{\theta}^{GMM})\neq$ and not $n^{-1}\sum_{i=1}^{n}g(W_i,\theta_0)$.
+$$ We can therefore see where the components of the variance come from. The proof requires a bit more work. First, we need the distribution of $\sqrt{n}\big(\hat{\theta}^{GMM}-\theta_0\big)$, not $n^{-1/2}\sum_{i=1}^{n}g(W_i,\theta_0)$. Second, the FOCs contain $n^{-1}\sum_{i=1}^{n}g(W_i,\hat{\theta}^{GMM})$ and not $n^{-1}\sum_{i=1}^{n}g(W_i,\theta_0)$.
 
 This is resolve using a mean value expansion:
 
@@ -434,7 +439,7 @@ $$ Since $\hat{\theta}^*$ is a mean value, it is a also consistent and $Q_n\big(
     E\bigg[\underbrace{\delta\bigg(\frac{C_{t+1}}{C_t}\bigg)^{-\alpha}(1+R_{j,t})-1}_{g(W_{j,t},\theta)}\bigg]=0
     $$
 
-    where $W_{j,t}=[C_t,C_{t+1},R_{j,t}]$ and $\theta = [\alpha,\delta]$. As the moment must hold for each asset, $\theta$ is identified so long as $m\geq 2$.
+    where $W_{j,t}=[C_t,C_{t+1},R_{j,t}]'$ and $\theta = [\alpha,\delta]'$. As the moment must hold for each asset, $\theta$ is identified so long as $m\geq 2$.
 
     Given the non-linearity of the $g$-function, there is no closed for solution. Instead, the GMM estimator must be solved for using numerical optimization.
 
@@ -452,12 +457,12 @@ Maximum Likelihood (ML or MLE) are a general class of estimators that exploit a 
 
 ### General setup
 
-Consider an iid random sample of data: $W_i,...,W_n$. We will assume that the data is drawn from a **known** distribution, $f(w_i;\theta)$, where $\theta\in\Theta\subset \mathbf{R}^k$ is an unknown vector of population parameters.[^8]
+Consider an iid random sample of data: $W_1,...,W_n$. We will assume that the data is drawn from a **known** distribution, $f(w_i;\theta)$, where $\theta\in\Theta\subset \mathbf{R}^k$ is an unknown vector of population parameters.[^8]
 
 [^8]: $\Theta$ is a parameter space and is *typically* assumed to be compact: a closed and bounded subset of Euclidean space.
 
 ::: {.callout-note title="Notation"}
-The notation used to describe ML estimation varies quite a bit across texts. One key difference appears to be how to denote a parameterized distribution. The density function, $f(w_i;\theta)$, is the density at $w_i$ (the realized value for observation $i$), where the distribution is *parameterized by* $\theta$. Some texts use the conditional notation, $f(w_i|\theta)$, as the distribution depends on $\theta$. However, probabilistic conditions tend to be based on random variables and not non-random parameters. I found this [StackExchange](https://stats.stackexchange.com/questions/10234/what-is-the-difference-between-the-vertical-bar-and-semi-colon-notations) discussion on the topic quite interesting. Needless to say, there is much agreement and notation appears to differ across Mathematics and Statistics, and among the Statisticians, between frequentists and Bayesians. Even the [Wikipedia page](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation) on MLE uses a combination of the two notations. I will use ';'; which also happens to be the notation used by @wooldridge2010.
+The notation used to describe ML estimation varies quite a bit across texts. One key difference appears to be how to denote a parameterized distribution. The density function, $f(w_i;\theta)$, is the density at $w_i$ (the realized value for observation $i$), where the distribution is *parameterized by* $\theta$. Some texts use the conditional notation, $f(w_i|\theta)$, as the distribution depends on $\theta$. However, probabilistic conditions tend to be based on random variables and not non-random parameters. I found this [StackExchange](https://stats.stackexchange.com/questions/10234/what-is-the-difference-between-the-vertical-bar-and-semi-colon-notations) discussion on the topic quite interesting. Needless to say, there is much disagreement and notation appears to differ across Mathematics and Statistics, and among the Statisticians, between frequentists and Bayesians. Even the [Wikipedia page](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation) on MLE uses a combination of the two notations. I will use ';'; which also happens to be the notation used by @wooldridge2010.
 :::
 
 As the sample is iid, the joint density (or pdf) of the realized observations is given by the product of marginals,
@@ -475,7 +480,7 @@ L_n(\theta) =& \prod_{i=1}^n f(Y_i|X_i;\theta)
 \end{aligned}
 $$ Here my notation differs from @wooldridge2010, who uses $\ell_i(\theta)$ to denote the conditional log-likelihood for observation $i$ [see @wooldridge2010, pp. 471]. Take note of the fact that the likelihood function is a random function of $\theta$, since it depends on the random variables $W_i = [Y_i,X_i']'$.[^9]
 
-[^9]: You may also see the equivalent notation $L(W_i,\theta)\equiv L_n(\theta)$. The subscript-\$n\$ implies that the function depends on the sample.
+[^9]: You may also see the equivalent notation $L(W_i;\theta)\equiv L_n(\theta)$. The subscript-$n$ implies that the function depends on the sample.
 
 ### Estimator
 
@@ -491,7 +496,7 @@ $$ In addition, the division by $n$ makes this problem the sample analogue of, $
       \underset{\theta\in\Theta}{\text{max}}\;E[\log\ell_i(\theta)]
 $$ It turns out that the true value of the parameter, $\theta_0$, is the solution to the above problem \[see @wooldridge2010, pp. 473\].[^10] We will prove this for the unconditional case when we discuss consistency of ML.
 
-[^10]: This is actually a non-trivial issue and beyond the scope of this module. As noted by @wooldridge2010, we can arrive at the ML estimator by picking the value of $\theta$ to maximize the joint likelihood. However, this approach assumes that the true value of $\theta\in\Theta$, \\\$\\theta_0\$, maximizes the joint likelihood. This is not immediately evident. Once established, we have a more robust basis of the ML estimator.
+[^10]: This is actually a non-trivial issue and beyond the scope of this module. As noted by @wooldridge2010, we can arrive at the ML estimator by picking the value of $\theta$ to maximize the joint likelihood. However, this approach assumes that the true value of $\theta\in\Theta$, $\theta_0$, maximizes the joint likelihood. This is not immediately evident. Once established, we have a more robust basis of the ML estimator.
 
 Assuming a continuous, concave density function, we can solve for $\hat{\theta}^{ML}$ using first-order conditions.
 
@@ -507,7 +512,12 @@ Under CLRM 5, $U|X \sim N(0,\sigma^2 I_n)$. Together with CLRM 1 and 6, we know 
 Y_i|X_i\sim_{iid} N(X_i'\beta,\sigma^2)
 $$ where $X_i'\beta$ is the conditional mean of $Y_i$. Therefore, the conditional likelihood of the data is given by, $$
 L_n(\beta,\sigma^2) = \prod_{i=1}^n \bigg[\frac{1}{\sqrt{2\pi\sigma^2}}\exp\bigg(-\frac{1}{2}\bigg(\frac{Y_i-X_i'\beta}{\sigma}\bigg)^2\bigg)\bigg]
-$$ :::{.callout-important} We are working with the *conditional* likelihood. To define the likelihood of observing the entire sample, $W_1,...,W_n$, we would also need to consider the distribution of $X_i$. We would then define $f(W_i;\theta) = f(Y_i|X_i;\theta)\cdot f(X_i)$, where $f(X_i)$ may be parameterized by its own set of parameters. $\theta$ is the set of parameters that parameterize the conditional distribution of $Y|X$. ::: Taking the log transformation and divide by $n$, we get, $$
+$$ 
+:::{.callout-important} 
+We are working with the *conditional* likelihood. To define the likelihood of observing the entire sample, $W_1,...,W_n$, we would also need to consider the distribution of $X_i$. We would then define $f(W_i;\theta) = f(Y_i|X_i;\theta)\cdot f(X_i)$, where $f(X_i)$ may be parameterized by its own set of parameters. $\theta$ is the set of parameters that parameterize the conditional distribution of $Y|X$. 
+::: 
+Taking the log transformation and divide by $n$, we get, 
+$$
 n^{-1}\log L_n(\beta,\sigma^2) =  -\frac{1}{2}\log(\sigma^2)-\frac{1}{2}\log(2\pi)-\frac{1}{2n\sigma^2} \sum_{i=1}^n(Y_i-X_i'\beta)^2
 $$ It should be immediately clear that maximizing this expression will be equivalent to minimizing the sum of squared errors.
 
@@ -526,7 +536,7 @@ Second, w.r.t. $\sigma^2$, $$
 \frac{\partial n^{-1}\log L_n(\hat{\beta},\hat{\sigma}^2)}{\partial\sigma^2} =& -\frac{1}{2\hat{\sigma}^2}+ \frac{1}{n2\hat{\sigma}^4}\sum_{i=1}^n(Y_i-X_i'\hat{\beta})^2 = 0 \\
 \Rightarrow \hat{\sigma}^{2}_{ML} =& n^{-1}\sum_{i=1}^n(Y_i-X_i'\hat{\beta})^2
 \end{aligned}
-$$ This estimator for the variance is consistent, but biased for small samples. This is because it scales by $n$ and not $n-1$, a distinction that is ignorable as $n\rightarrow\infty$. For this reason, when conducting inference you should use the asymptotic distribution of the ML estimator.
+$$ This estimator for the variance is consistent, but biased for small samples. This is because it scales by $n$ and not $n-k$, a distinction that is ignorable as $n\rightarrow\infty$. For this reason, when conducting inference you should use the asymptotic distribution of the ML estimator.
 
 ### Consistency
 
@@ -596,3 +606,5 @@ $$
 -   ML estimators require as to know the true PDF, up to its parameters. For example, probit (logit) models assumes that the error term is normally (logistically) distributed.
 
 -   In some cases, the estimator may be consistent even if the PDF is misspecified. As is the case for the OLS estimator of the linear model. These estimators are referred to as a quasi-ML estimators.
+
+## References
