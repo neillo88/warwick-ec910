@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>IPUMS CPS</title>
+  <meta name="description" content="IPUMS CPS harmonizes microdata from the monthly U.S. labor force survey, the Current Population Survey (CPS), covering the period 1962 to the present. Data include demographic information, rich employment data, program participation and supplemental data on topics such as fertility, tobacco use, volunteer activities, voter registration, computer and internet use, food security, and more. The data may be linked together across time to create a short panel for longitudinal analysis." />
+  <meta name="keywords" content="Integrated Public Use Microdata Series, IPUMS, Minnesota Population Center, MPC, University of Minnesota, ISRDI, UMN, CPS, Current Population Survey, Labor Force, Unemployment, IPUMS-CPS, IPUMS CPS, Unemployment Statistics." />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="author" content="MPC UX/UI Team">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NBXR4PP');</script>
+  <!-- End Google Tag Manager -->
+		
+  <style>
+    @font-face {
+      font-family: "Cabrito Sans Subset";
+    }
+    @font-face {
+      font-family: "Cabrito Sans";
+    }
+  </style>
+
+  <link type="text/css" rel="stylesheet" href="//assets.ipums.org/_css/font-faces.1.2.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="//assets.ipums.org/_css/prism.css" media="all">
+  <link type="text/css" rel="stylesheet" href="//assets.ipums.org/_css/isrdi-common.1.6.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="//assets.ipums.org/_css/base-ipums-static.1.3.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="//assets.ipums.org/_css/project-cps.1.5.css" media="all" />
+  
+  <link rel="icon" href="/cps/_img/favicon-16x16.ico" sizes="16x16" type="image/x-icon">
+  <link rel="icon" href="/cps/_img/favicon-32x32.ico" sizes="32x32" type="image/x-icon">
+
+  <!-- load jquery from a cdn -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- load page tune parameters and provide a jquery fallback -->
+  <script type="text/javascript">
+     window.jQuery || document.write('<script src="//assets.ipums.org/_js/jquery-3.4.1.min.js"><\/script>');
+  </script>
+
+  <!-- scripts to load immediately -->
+  <script type="text/javascript" src="//assets.ipums.org/_js/ffo.2.1.0/fontfaceobserver.js"></script>
+  <script type="text/javascript" src="//assets.ipums.org/_js/load-fonts.1.3.js"></script>
+
+  <!-- defer attribute allows page to continue loading as script loads and won't run script until page is done loading -->
+  <script type="text/javascript" src="//assets.ipums.org/_js/prism.1.0.js" defer></script>
+  <script type="text/javascript" src="//assets.ipums.org/_js/to-title-case.1.0.js" defer></script>
+  <script type="text/javascript" src="//assets.ipums.org/_js/page-tune.1.7.js" defer></script>
+
+</head>
+
+<body>
+	<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBXR4PP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<header>
+  <nav id="user_bar">
+    <ul class="list-menu">
+    <!-- this list will stack right to left -->
+      <li><a href="https://www.ipums.org">ipums.org</a></li>
+      <li id="logInLink"></li>
+    </ul>
+  </nav>
+
+	<div id="siteLogo"><a href="/cps/"><img src="//assets.ipums.org/_img/logo-CPS.png" alt="IPUMS CPS" /></a></div>
+
+  <nav id="multi_project_menu">
+    <p class="projectSubtitle">Current Population Survey</p>
+  </nav>
+
+  <nav id="topNav">
+    <ul class="list-menu">
+      <li><a href="/cps/index.shtml">Home</a></li>
+      <li><a href="/cps-action/variables/group">Select Data</a></li>
+      <li><a href="/cps-action/extract_requests/download">My Data</a></li>
+      <li><a href="/cps/support.shtml">Support</a></li>
+    </ul>
+  </nav>
+
+
+	<div id="picturebar">
+		<div id="pic1"></div>
+		<div id="pic2"></div>
+		<div id="pic3"></div>
+		<div id="pic4"></div>
+		<div id="pic5"></div>
+		<div id="pic6"></div>
+	</div>
+</header>
+
+<div id="content">
+	<nav id="sidebar-left" class="item">
+		<h2>Site Navigation</h2>
+		<ul>
+			<li>
+				<h3>IPUMS CPS</h3>
+				<ul>
+					<li><a href="/cps/about.shtml">About</a></li>
+					<li><a href="/cps-action/menu">Register</a></li>
+					<li><a href="https://makingagift.umn.edu/give/fund.html?id=22263" target="_blank">Donate to IPUMS</a></li>
+				</ul>
+			</li>
+			
+			<li>
+				<h3>Data</h3>
+				<ul>
+					<li><a href="/cps-action/variables/group">Browse and Select Data</a></li>
+					<li><a href="/cps/sda.shtml">Analyze data online</a></li>
+					<li><a href="/cps-action/extract_requests/download">Download or Revise my Data</a></li>
+				</ul>
+			</li>
+
+			<li>
+				<h3>Documentation</h3>
+				<ul>
+                                        <li><a href="/cps/covid19.shtml">COVID-19 and CPS</a></li>
+					<li><a href="/cps/samples.shtml">Sample Descriptions</a></li>
+					<li><a href="/cps/technical_documents.shtml">Technical Documents</a></li>
+					<li><a href="/cps/cps_linking_documentation.shtml">Linking the CPS</a></li>
+					<li><a href="/cps-action/revisions">Revision History</a></li>
+					<!--Unharmonized Variables link-->
+					<!--<li><a href="/cps/unharmonized_variables.shtml">Unharmonized Variables</a></li>-->
+				</ul>
+			</li>
+
+			<li>
+				<h3>Support</h3>
+				<ul>
+					<li><a href="/cps-action/faq">FAQ</a></li>
+					<li><a href="http://ipums.org/tutorials.shtml#ipums_cps">Video Tutorials</a></li>
+					<li><a href="https://forum.ipums.org/" target="_blank">User Forum</a></li>	
+					<li><a href="/cps/training_materials.shtml">Training Materials</a></li>
+					<li><a href="https://variable-search.ipums.org/" target="_blank">Discover IPUMS Variables</a></li>
+				</ul>
+			</li>
+
+			<li>
+				<h3>Research</h3>
+				<ul>
+					<li><a href="/cps/citation.shtml">Citing IPUMS CPS</a></li>
+					<li><a href="http://bibliography.ipums.org" target="_blank">IPUMS Bibliography</a></li>
+				</ul>
+			</li>
+		</li>
+	</ul>
+	</nav>
+
+
+  <div id="main" role="main">
+  <!-- BEGIN PLACING PAGE CONTENT -->
+		<h1 id="page-title">Sample Designs</h1>
+
+		<h2>Differences and Similarities between IPUMS-CPS and IPUMS-USA Samples</h2>
+
+		<p>While IPUMS-USA provides information about the total U.S. population, IPUMS-CPS provides information about the U.S. non-institutionalized population because the ASEC is a probability sample of this population (see "<a href="about.shtml">About IPUMS-CPS</a>" for more details). Members of the armed forces who live in off-base housing or on base with their families are included in the ASEC, but persons in the military who reside in military barracks are excluded. Institutionalized persons, such as inmates in old age homes, prisons, and mental institutions, are excluded from the survey. To achieve comparability with IPUMS-CPS, IPUMS-USA users should exclude persons coded as 1, 2, 3, 4, and 6 on the IPUMS-USA variable GQTYPE. Non-institutional group quarters--defined as housing units that are not institutions and that contain nine or more persons unrelated to the householder--are sampled in the CPS.</p>
+
+		<p>Like the census samples included in IPUMS-USA, the ASEC datasets included in IPUMS-CPS are samples of households or dwellings. A household is defined as all persons who occupy a dwelling unit. A dwelling unit is a room or group of rooms intended for occupation as separate living quarters and having either a separate entrance or complete cooking facilities for the exclusive use of the occupants. These definitions are consistent with the definitions of households and dwelling units used in recent U.S. censuses. The provision of data about multiple individuals within the same household allows analysis of such topics as household composition, nuptiality, and the relative earnings of husbands and wives.</p>
+
+		<p>For the CPS, information is always collected by a trained interviewer, during face-to-face or telephone interviews of household members. In recent U.S. censuses, households are mailed census questionnaires, and household members fill in the forms themselves. Enumerators contact only the minority of households that do not send back completed census forms.</p>
+
+		<p>Housing units that were vacant or could not be interviewed (due to refusals to participate or absence of the residents) are included in the IPUMS-CPS data beginning in 1988. Such vacant and non-interview units have a weight of zero in the household weight (HWTSUPP). Vacant households are also included in the IPUMS-USA database beginning with the 1970 census. They can be identified with the VACANT variable and should be excluded from analysis for statistics comparable to the weighted figures from IPUMS-CPS.</p>
+
+		<p>Because the CPS is designed to measure unemployment in the civilian labor force, members of the armed forces are not part of the universe for many employment-related questions in the ASEC. Persons in the military provide demographic information, answer questions about their migration histories, and provide data about their incomes and primary jobs during the preceding calendar year. The census samples in IPUMS-USA do not treat persons in the military differently than civilian adults. Users who wish to work simultaneously with data from IPUMS-CPS and IPUMS-USA are strongly urged to read the universe restrictions and comparability issues discussed in the variable descriptions.</p>
+
+		<p>The application of comparable coding schemes for IPUMS-CPS and IPUMS-USA is designed to facilitate time-series analysis. Sample sizes in IPUMS-CPS are considerably smaller than in IPUMS-USA, but observations are available for every year, rather than at ten-year intervals. Users should not combine observations from the same year (1970, 1980, 1990, or 2000) from the two databases.</p>
+
+		<h2 id="design">CPS Sample Design</h2>
+
+		<p>The CPS samples are multi-stage stratified samples. The first stage of sampling involves dividing each U.S. state into "primary sampling units" (PSUs), most of which comprise a metropolitan area, a large county, or a group of smaller adjacent counties. The CPS consists of independent samples in each state and the District of Columbia. Within each state, the PSUs are grouped into homogenous strata with respect to labor force and other social and economic characteristics that are highly correlated with unemployment. One PSU is sampled per stratum, where the probability of selection for each PSU in the stratum is proportional to its population.</p>
+
+		<p>In the second stage of sampling, a systematic sample of housing units is drawn from within each chosen PSU. Addresses for housing units are taken from sources such as lists of addresses obtained from the decennial censuses and building permits. "Ultimate sampling units" (USUs) are clusters of about four housing units. Usually, all households in the USU are in the sample. Occasionally, a third stage of sampling is necessary when actual USU size is extremely large. The multi-stage stratified sampling method is roughly equivalent to dividing the entire United States into USUs and selecting a clustered sample of these USUs for interviewing. Hence, the CPS sample is also a cluster sample.</p>
+
+		<p>The monthly CPS is a rotating panel design; households are interviewed for four consecutive months, are not in the sample for the next eight months, and then are interviewed for four more consecutive months. The point in the rotation at which a household is interviewed, or the household's "Month in Sample" for a given interview, is indicated by <a href= "/cps-action/variables/MISH">MISH</a>. The rotating panel design means that for each month of the CPS, 50 percent of households are in the CPS during the same month one year earlier and the other 50% of households are in the CPS in the same month one year later. Any CPS household is in the survey up to 8 times over a 16 month period. There is no overlap for longer time intervals. </p>
+
+		<p>Beginning in 1976, the ASEC includes an oversample of Hispanics to increase the reliability of estimates for this group. Approximately twice as many Hispanics are interviewed than would be in the sample if it was exactly proportional to the U.S. population. Each Hispanic person represents a smaller number of individuals than each non-Hispanic person. The use of weights, discussed below, corrects for this oversampling to yield representative national statistics from IPUMS-CPS.</p>
+
+		<p>In 2002, in order to improve state estimates of children's health insurance coverage, the ASEC underwent a sample expansion. In addition to increasing the monthly CPs sample in states with high sampling errors for uninsured children, this expansion involved asking the ASEC supplement questions of one quarter of the February and April CPS samples that is, of the households not also included in the March sample (see above for discussion of Month in Sample) and interviewing selected sample households from the preceding November CPS sample during the February-April period using the ASEC supplement . Even though the data in the ASEC is collected in several different months beginning in 2002, it is generally referred to as the March supplement, though in IPUMS-CPS we refer to it as the ASEC and is listed as such on the "select samples" page of the extract system. Basic monthly survey data for the month of March are also available. <a href="basic_asec.shtml">Read further</a> for more information about the relationship between the March basic and the ASEC. </p>
+
+		<p><a href="#page-title">Back to Top</a></p>
+  <!-- END PLACING PAGE CONTENT -->
+  </div>
+	<section id="supported-by">
+        <h2>Supported By</h2>
+
+        <p>
+          <a href="http://www.nih.gov"><img src="//assets.ipums.org/_img/logo-NIH.png" alt="National Institutes of Health"/></a>
+          
+          <a href="http://www.stattransfer.com"><img src="//assets.ipums.org/_img/logo-StatTransfer.png" alt="Stat/Transfer" class="fixed-width-sm"/></a>
+          
+          <a href="http://www.umn.edu"><img src="//assets.ipums.org/_img/logo-UofM.png" alt="University of Minnesota"/></a>
+        </p>
+	</section>
+
+</div>
+<footer>
+	<nav>
+		<ul class="list-menu">
+      <li><a href="/cps/index.shtml">HOME</a></li>
+      <li><a href="/cps/data.shtml">DATA</a></li>
+      <li><a href="/cps-action/variables/group">VARIABLES</a></li>
+      <li><a href="/cps/instructions.shtml">USER'S GUIDE</a></li>
+      <li><a href="/cps/support.shtml">SUPPORT</a></li>
+      <li><a href="/cps/about.shtml">ABOUT IPUMS CPS</a></li>
+		</ul>
+	</nav>
+
+   <p>Copyright &copy; 2004-<span id="year"></span> 
+
+</footer>
+</body>
+</html>

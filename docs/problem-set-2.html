@@ -211,6 +211,14 @@ window.Quarto = {
     <a class="dropdown-item" href="./problem-set-3.html">
  <span class="dropdown-text">Problem Set 3</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-3-solutions.html">
+ <span class="dropdown-text">Problem Set 3 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-4.html">
+ <span class="dropdown-text">Problem Set 4</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -307,13 +315,13 @@ window.Quarto = {
 </section>
 <section id="preamble" class="level2">
 <h2 class="anchored" data-anchor-id="preamble">Preamble</h2>
-<div id="0d56963d" class="cell" data-execution_count="1">
+<div id="9914132a" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <style>div.jp-Notebook .datagrid-container {min-height: 448px; }</style>
 </div>
 </div>
 <p>Create a do-file for this problem set and include a preamble that sets the directory and opens the data. For example,</p>
-<div id="4d6f28fa" class="cell" data-execution_count="2">
+<div id="85925869" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">//or, to remove all stored values (including macros, matrices, scalars, etc.) </span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>*<span class="kw">clear</span> <span class="ot">all</span></span>
@@ -322,7 +330,7 @@ window.Quarto = {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>cd <span class="st">"$rootdir/problem-sets/ps-2"</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cap <span class="fu">log</span> <span class="kw">close</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">using</span> problem-<span class="kw">set</span>-2.txt, <span class="kw">replace</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">using</span> problem-<span class="kw">set</span>-2-<span class="fu">log</span>.txt, <span class="kw">replace</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> problem-<span class="kw">set</span>-2-<span class="kw">data</span>.dta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -376,7 +384,7 @@ window.Quarto = {
 </section>
 <section id="postamble" class="level2">
 <h2 class="anchored" data-anchor-id="postamble">Postamble</h2>
-<div id="d8069235" class="cell" data-execution_count="3">
+<div id="657a96a1" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">close</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 

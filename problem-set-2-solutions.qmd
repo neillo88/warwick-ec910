@@ -60,7 +60,7 @@ clear
 cd "$rootdir/problem-sets/ps-2"
 
 cap log close
-log using problem-set-2.txt, replace
+log using problem-set-2-log.txt, replace
 
 use problem-set-2-data.dta
 ```

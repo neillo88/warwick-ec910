@@ -29,7 +29,11 @@ website:
           - href: problem-set-2-solutions.qmd
             text: Problem Set 2 (Solutions) 
           - href: problem-set-3.qmd
-            text: Problem Set 3            
+            text: Problem Set 3
+          - href: problem-set-3-solutions.qmd
+            text: Problem Set 3 (Solutions) 
+          - href: problem-set-4.qmd
+            text: Problem Set 4
       - text: Additional Material
         menu:
           - href: material-cef.qmd

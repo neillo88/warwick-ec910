@@ -33,7 +33,7 @@ clear
 cd "$rootdir/problem-sets/ps-3"
 
 cap log close
-log using problem-set-3.txt, replace
+log using problem-set-3-log.txt, replace
 ```
 However, since we are going to generate random variables, we should set a seed. This ensures replicability of the exercise. The number you choose is arbitrary, it simply ensures that any algorithms used to generate (pseudo) random variables start at the same place. 
 

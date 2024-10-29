@@ -1,0 +1,16 @@
+{
+  "hash": "d41ff3d4bd658847461d6911235fe7f8",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\nformat:\n  html: default\n  pdf: default\ntitle: Problem Set 4 (SOLUTIONS)\n---\n\n\n\n\n\nThis problem set will revisit some of the material covered in Handouts 3 and 4. You will be required to work with a 'raw' dataset, downloaded from an online repository. For this reason, you should take care to check how the data is coded. \n\nYou will be using a version of the US Current Population Survey (CPS) called the ![Merged Outgoing Rotation Group](https://www.nber.org/research/data/current-population-survey-cps-data-nber#:~:text=Merged%20Outgoing%20Rotation%20Groups%20(MORG,weekly%20hours%2Fearnings%20are%20asked.) (MORG). This data is compiled by the National Bureau of Economic Research (NBER) and has been used in many famous studies of the US economy. The CPS has a rather unique rotating panel design: \"The monthly CPS is a rotating panel design; households are interviewed for four consecutive months, are not in the sample for the next eight months, and then are interviewed for four more consecutive months.\" (![source](https://cps.ipums.org/cps/sample_designs.shtml)). The NBER's MORG keeps only the outgoing rotation group's observations.\n\nThe MORG .dta files can be found at ![https://data.nber.org/morg/annual/](https://data.nber.org/morg/annual/).\n\n## Preamble\n\n\n::: {#25f0cff2 .cell execution_count=1}\n\n::: {.cell-output .cell-output-display}\n```{=html}\n<style>div.jp-Notebook .datagrid-container {min-height: 448px; }</style>\n```\n:::\n:::\n\n\nCreate a do-file for this problem set and include a preamble that sets the directory and opens the data **directly from the NBER website**. Of course, this requires a good internet connection. For example, \n\n::: {#81859069 .cell execution_count=2}\n``` {.stata .cell-code}\nclear \n//or, to remove all stored values (including macros, matrices, scalars, etc.) \n*clear all\n\n* Replace $rootdir with the relevant path to on your local harddrive.\ncd \"$rootdir/problem-sets/ps-4\"\n\ncap log close\nlog using problem-set-4.txt, replace\n\nuse \"https://data.nber.org/morg/annual/morg19.dta\", clear\n```\n:::\n\n\n",
+    "supporting": [
+      "problem-set-4-solution_files"
+    ],
+    "filters": [],
+    "includes": {
+      "include-in-header": [
+        "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js\" integrity=\"sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==\" crossorigin=\"anonymous\"></script>\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js\" integrity=\"sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==\" crossorigin=\"anonymous\" data-relocate-top=\"true\"></script>\n<script type=\"application/javascript\">define('jquery', [],function() {return window.jQuery;})</script>\n"
+      ]
+    }
+  }
+}

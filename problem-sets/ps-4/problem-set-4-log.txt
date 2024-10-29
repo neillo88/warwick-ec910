@@ -1,0 +1,781 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick-ec910\problem-sets\ps-4\problem-set-4-log.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}29 Oct 2024, 12:57:00
+{txt}
+{com}. 
+. *use "https://data.nber.org/morg/annual/morg19.dta", clear
+. use "C:\Users\neil_\Data\CPS_MORG\morg19.dta"
+{txt}
+{com}. 
+. 
+. **1.** Create a new variable `exper` equal to age minus (years of education + 6). This is referred to as potential years of experience. Check how each variable defines missing values before proceeding. You will need to create a years of education variable for this. Here is he the suggested code:
+. 
+. tab grade92, m
+
+    {txt}Highest {c |}
+      grade {c |}
+  completed {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         31 {c |}{res}        814        0.28        0.28
+{txt}         32 {c |}{res}      1,495        0.51        0.79
+{txt}         33 {c |}{res}      3,071        1.05        1.85
+{txt}         34 {c |}{res}      4,123        1.41        3.26
+{txt}         35 {c |}{res}      5,244        1.80        5.06
+{txt}         36 {c |}{res}      7,824        2.69        7.75
+{txt}         37 {c |}{res}      9,271        3.18       10.93
+{txt}         38 {c |}{res}      4,226        1.45       12.38
+{txt}         39 {c |}{res}     82,795       28.41       40.79
+{txt}         40 {c |}{res}     50,112       17.20       57.99
+{txt}         41 {c |}{res}     12,392        4.25       62.24
+{txt}         42 {c |}{res}     16,161        5.55       67.79
+{txt}         43 {c |}{res}     59,438       20.40       88.19
+{txt}         44 {c |}{res}     25,374        8.71       96.89
+{txt}         45 {c |}{res}      3,785        1.30       98.19
+{txt}         46 {c |}{res}      5,265        1.81      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}    291,390      100.00
+{txt}
+{com}. gen eduyrs = .
+{txt}(291,390 missing values generated)
+
+{com}.         replace eduyrs = .3 if grade92==31
+{txt}(814 real changes made)
+
+{com}.         replace eduyrs = 3.2 if grade92==32
+{txt}(1,495 real changes made)
+
+{com}.         replace eduyrs = 7.2 if grade92==33
+{txt}(3,071 real changes made)
+
+{com}.         replace eduyrs = 7.2 if grade92==34
+{txt}(4,123 real changes made)
+
+{com}.         replace eduyrs = 9  if grade92==35
+{txt}(5,244 real changes made)
+
+{com}.         replace eduyrs = 10 if grade92==36
+{txt}(7,824 real changes made)
+
+{com}.         replace eduyrs = 11 if grade92==37
+{txt}(9,271 real changes made)
+
+{com}.         replace eduyrs = 12 if grade92==38
+{txt}(4,226 real changes made)
+
+{com}.         replace eduyrs = 12 if grade92==39
+{txt}(82,795 real changes made)
+
+{com}.         replace eduyrs = 13 if grade92==40
+{txt}(50,112 real changes made)
+
+{com}.         replace eduyrs = 14 if grade92==41
+{txt}(12,392 real changes made)
+
+{com}.         replace eduyrs = 14 if grade92==42
+{txt}(16,161 real changes made)
+
+{com}.         replace eduyrs = 16 if grade92==43
+{txt}(59,438 real changes made)
+
+{com}.         replace eduyrs = 18 if grade92==44
+{txt}(25,374 real changes made)
+
+{com}.         replace eduyrs = 18 if grade92==45
+{txt}(3,785 real changes made)
+
+{com}.         replace eduyrs = 18 if grade92==46
+{txt}(5,265 real changes made)
+
+{com}.         lab var eduyrs "completed education"
+{txt}
+{com}. tab grade92, sum(eduyrs)
+
+    {txt}Highest {c |}
+      grade {c |}   Summary of completed education
+  completed {c |}        Mean   Std. dev.       Freq.
+{hline 12}{c +}{hline 36}
+         31 {c |}  {res} .30000001           0         814
+  {txt}       32 {c |}  {res}       3.2           0       1,495
+  {txt}       33 {c |}  {res} 7.1999998           0       3,071
+  {txt}       34 {c |}  {res} 7.1999998           0       4,123
+  {txt}       35 {c |}  {res}         9           0       5,244
+  {txt}       36 {c |}  {res}        10           0       7,824
+  {txt}       37 {c |}  {res}        11           0       9,271
+  {txt}       38 {c |}  {res}        12           0       4,226
+  {txt}       39 {c |}  {res}        12           0      82,795
+  {txt}       40 {c |}  {res}        13           0      50,112
+  {txt}       41 {c |}  {res}        14           0      12,392
+  {txt}       42 {c |}  {res}        14           0      16,161
+  {txt}       43 {c |}  {res}        16           0      59,438
+  {txt}       44 {c |}  {res}        18           0      25,374
+  {txt}       45 {c |}  {res}        18           0       3,785
+  {txt}       46 {c |}  {res}        18           0       5,265
+{txt}{hline 12}{c +}{hline 36}
+      Total {c |}  {res} 13.556855   2.7030576     291,390
+{txt}
+{com}. 
+. 
+. tab age, m
+
+        {txt}Age {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         16 {c |}{res}      4,661        1.60        1.60
+{txt}         17 {c |}{res}      4,630        1.59        3.19
+{txt}         18 {c |}{res}      4,417        1.52        4.70
+{txt}         19 {c |}{res}      4,039        1.39        6.09
+{txt}         20 {c |}{res}      3,915        1.34        7.43
+{txt}         21 {c |}{res}      3,996        1.37        8.81
+{txt}         22 {c |}{res}      3,918        1.34       10.15
+{txt}         23 {c |}{res}      3,950        1.36       11.51
+{txt}         24 {c |}{res}      4,194        1.44       12.94
+{txt}         25 {c |}{res}      4,185        1.44       14.38
+{txt}         26 {c |}{res}      4,325        1.48       15.87
+{txt}         27 {c |}{res}      4,476        1.54       17.40
+{txt}         28 {c |}{res}      4,600        1.58       18.98
+{txt}         29 {c |}{res}      4,633        1.59       20.57
+{txt}         30 {c |}{res}      4,829        1.66       22.23
+{txt}         31 {c |}{res}      4,735        1.62       23.85
+{txt}         32 {c |}{res}      4,601        1.58       25.43
+{txt}         33 {c |}{res}      4,748        1.63       27.06
+{txt}         34 {c |}{res}      4,646        1.59       28.66
+{txt}         35 {c |}{res}      4,730        1.62       30.28
+{txt}         36 {c |}{res}      4,742        1.63       31.91
+{txt}         37 {c |}{res}      4,848        1.66       33.57
+{txt}         38 {c |}{res}      4,550        1.56       35.13
+{txt}         39 {c |}{res}      4,735        1.62       36.76
+{txt}         40 {c |}{res}      4,667        1.60       38.36
+{txt}         41 {c |}{res}      4,503        1.55       39.90
+{txt}         42 {c |}{res}      4,390        1.51       41.41
+{txt}         43 {c |}{res}      4,309        1.48       42.89
+{txt}         44 {c |}{res}      4,193        1.44       44.33
+{txt}         45 {c |}{res}      4,253        1.46       45.79
+{txt}         46 {c |}{res}      4,266        1.46       47.25
+{txt}         47 {c |}{res}      4,447        1.53       48.78
+{txt}         48 {c |}{res}      4,563        1.57       50.34
+{txt}         49 {c |}{res}      4,698        1.61       51.96
+{txt}         50 {c |}{res}      4,646        1.59       53.55
+{txt}         51 {c |}{res}      4,477        1.54       55.09
+{txt}         52 {c |}{res}      4,555        1.56       56.65
+{txt}         53 {c |}{res}      4,523        1.55       58.20
+{txt}         54 {c |}{res}      4,736        1.63       59.83
+{txt}         55 {c |}{res}      5,010        1.72       61.55
+{txt}         56 {c |}{res}      5,035        1.73       63.27
+{txt}         57 {c |}{res}      4,976        1.71       64.98
+{txt}         58 {c |}{res}      5,030        1.73       66.71
+{txt}         59 {c |}{res}      5,066        1.74       68.45
+{txt}         60 {c |}{res}      5,124        1.76       70.20
+{txt}         61 {c |}{res}      5,067        1.74       71.94
+{txt}         62 {c |}{res}      5,035        1.73       73.67
+{txt}         63 {c |}{res}      4,927        1.69       75.36
+{txt}         64 {c |}{res}      4,892        1.68       77.04
+{txt}         65 {c |}{res}      4,554        1.56       78.60
+{txt}         66 {c |}{res}      4,526        1.55       80.16
+{txt}         67 {c |}{res}      4,344        1.49       81.65
+{txt}         68 {c |}{res}      4,328        1.49       83.13
+{txt}         69 {c |}{res}      4,100        1.41       84.54
+{txt}         70 {c |}{res}      4,058        1.39       85.93
+{txt}         71 {c |}{res}      4,008        1.38       87.31
+{txt}         72 {c |}{res}      3,897        1.34       88.65
+{txt}         73 {c |}{res}      3,147        1.08       89.73
+{txt}         74 {c |}{res}      2,815        0.97       90.69
+{txt}         75 {c |}{res}      2,809        0.96       91.66
+{txt}         76 {c |}{res}      2,623        0.90       92.56
+{txt}         77 {c |}{res}      2,373        0.81       93.37
+{txt}         78 {c |}{res}      2,201        0.76       94.13
+{txt}         79 {c |}{res}      1,977        0.68       94.80
+{txt}         80 {c |}{res}      7,799        2.68       97.48
+{txt}         85 {c |}{res}      7,340        2.52      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}    291,390      100.00
+{txt}
+{com}. gen exper = age-(eduyrs+6)
+{txt}
+{com}. 
+. **2.** Keep only those between the ages of 18 and 54. Check the distribution of `exper' and replace any negative values to 0.
+. 
+. keep if inrange(age,18,54)
+{txt}(126,352 observations deleted)
+
+{com}. sum exper, det
+
+                            {txt}exper
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        0             -6
+{txt} 5%    {res}        1             -5
+{txt}10%    {res}        2             -4       {txt}Obs         {res}    165,038
+{txt}25%    {res}        7             -4       {txt}Sum of wgt. {res}    165,038
+
+{txt}50%    {res}       16                      {txt}Mean          {res} 16.50623
+                        {txt}Largest       Std. dev.     {res} 10.57401
+{txt}75%    {res}       25           47.7
+{txt}90%    {res}       31           47.7       {txt}Variance      {res} 111.8097
+{txt}95%    {res}       34           47.7       {txt}Skewness      {res} .1296908
+{txt}99%    {res}       36           47.7       {txt}Kurtosis      {res} 1.887811
+{txt}
+{com}. replace exper=0 if exper<0
+{txt}(1,078 real changes made)
+
+{com}. 
+. 
+. **3.** Create a categorical variable that takes on 4 values: 1 "less than High School"; 2 "High School Diploma"; 3 "some Higher Education"; 4 "Bachelors"; 5 "Postgraduate". This variable should be based on the the `grade921 variable. You can find the value labels for this variable in this document: <https://data.nber.org/morg/docs/cpsx.pdf>. I suggest using the `recode` command, which allows you to create value labels while assigning values. Check the distributio of `exper` by education category. 
+. 
+. 
+. recode grade92 (31/38 = 1 "<HS") (39 = 2 "HS") (40/42 = 3 "HS+") (43 = 4 "BA") (44/46 = 5 "PG"), gen(educat)
+{txt}(165,038 differences between {bf:grade92} and {bf:educat})
+
+{com}. tab grade92 educat, m
+
+   {txt}Highest {c |}
+     grade {c |}      RECODE of grade92 (Highest grade completed)
+ completed {c |}       <HS         HS        HS+         BA         PG {c |}     Total
+{hline 11}{c +}{hline 55}{c +}{hline 10}
+        31 {c |}{res}       398          0          0          0          0 {txt}{c |}{res}       398 
+{txt}        32 {c |}{res}       578          0          0          0          0 {txt}{c |}{res}       578 
+{txt}        33 {c |}{res}     1,515          0          0          0          0 {txt}{c |}{res}     1,515 
+{txt}        34 {c |}{res}     1,571          0          0          0          0 {txt}{c |}{res}     1,571 
+{txt}        35 {c |}{res}     1,971          0          0          0          0 {txt}{c |}{res}     1,971 
+{txt}        36 {c |}{res}     2,198          0          0          0          0 {txt}{c |}{res}     2,198 
+{txt}        37 {c |}{res}     4,373          0          0          0          0 {txt}{c |}{res}     4,373 
+{txt}        38 {c |}{res}     2,440          0          0          0          0 {txt}{c |}{res}     2,440 
+{txt}        39 {c |}{res}         0     45,013          0          0          0 {txt}{c |}{res}    45,013 
+{txt}        40 {c |}{res}         0          0     30,934          0          0 {txt}{c |}{res}    30,934 
+{txt}        41 {c |}{res}         0          0      7,154          0          0 {txt}{c |}{res}     7,154 
+{txt}        42 {c |}{res}         0          0      9,708          0          0 {txt}{c |}{res}     9,708 
+{txt}        43 {c |}{res}         0          0          0     37,557          0 {txt}{c |}{res}    37,557 
+{txt}        44 {c |}{res}         0          0          0          0     14,804 {txt}{c |}{res}    14,804 
+{txt}        45 {c |}{res}         0          0          0          0      2,021 {txt}{c |}{res}     2,021 
+{txt}        46 {c |}{res}         0          0          0          0      2,803 {txt}{c |}{res}     2,803 
+{txt}{hline 11}{c +}{hline 55}{c +}{hline 10}
+     Total {c |}{res}    15,044     45,013     47,796     37,557     19,628 {txt}{c |}{res}   165,038 
+{txt}
+{com}. 
+. tab educat, sum(exper)
+
+  {txt}RECODE of {c |}
+    grade92 {c |}
+   (Highest {c |}
+      grade {c |}          Summary of exper
+ completed) {c |}        Mean   Std. dev.       Freq.
+{hline 12}{c +}{hline 36}
+        <HS {c |}  {res}  19.29665    12.82301      15,044
+  {txt}       HS {c |}  {res} 17.726435   11.044222      45,013
+  {txt}      HS+ {c |}  {res} 15.643589   10.806949      47,796
+  {txt}       BA {c |}  {res} 15.376841   9.3440749      37,557
+  {txt}       PG {c |}  {res} 15.900092   8.1569821      19,628
+{txt}{hline 12}{c +}{hline 36}
+      Total {c |}  {res} 16.514468   10.560511     165,038
+{txt}
+{com}. 
+. 
+. **4.** Create the variable `lnwage` equal to the (natural) log of weekly earnings. Create a figure that shows the predicted *linear* fit of `lwage` against `exper`, by `educat`. Try to place all 5 fitted lines in the same graph. 
+. 
+. 
+. gen lnwage = ln(earnwke)
+{txt}(49,686 missing values generated)
+
+{com}. twoway (lfit lnwage exper if educat==1) (lfit lnwage exper if educat==2)  (lfit lnwage exper if educat==3) (lfit lnwage exper if educat==4) (lfit lnwage exper if educat==5) , legend(order(1 "<HS" 2 "HS" 3 "HS+" 4 "BA" 5 "PG") pos(6) r(1)) xtitle(Years of experience) 
+{res}{txt}
+{com}. 
+. 
+. **5.** Estimate a linear regression model that allows the slope coefficient on `exper` and constant term to vary by education category (`educat`). Let the base (excluded) education category be 2 "High School diploma". 
+. 
+. reg lnwage ib2.educat##c.exper
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}   115,352
+{txt}{hline 13}{c +}{hline 34}   F(9, 115342)    = {res}  4039.95
+{txt}       Model {c |} {res} 17435.5509         9  1937.28343   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 55310.0589   115,342  .479530951   {txt}R-squared       ={res}    0.2397
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2396
+{txt}       Total {c |} {res} 72745.6098   115,351   .63064568   {txt}Root MSE        =   {res} .69248
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        lnwage{col 16}{c |} Coefficient{col 28}  Std. err.{col 40}      t{col 48}   P>|t|{col 56}     [95% con{col 69}f. interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}educat {c |}
+{space 10}<HS  {c |}{col 16}{res}{space 2}-.3882762{col 28}{space 2} .0178644{col 39}{space 1}  -21.73{col 48}{space 3}0.000{col 56}{space 4}-.4232902{col 69}{space 3}-.3532622
+{txt}{space 10}HS+  {c |}{col 16}{res}{space 2}-.0839435{col 28}{space 2} .0104229{col 39}{space 1}   -8.05{col 48}{space 3}0.000{col 56}{space 4}-.1043722{col 69}{space 3}-.0635149
+{txt}{space 11}BA  {c |}{col 16}{res}{space 2} .6145964{col 28}{space 2} .0109763{col 39}{space 1}   55.99{col 48}{space 3}0.000{col 56}{space 4} .5930831{col 69}{space 3} .6361097
+{txt}{space 11}PG  {c |}{col 16}{res}{space 2} .9055692{col 28}{space 2} .0141961{col 39}{space 1}   63.79{col 48}{space 3}0.000{col 56}{space 4}  .877745{col 69}{space 3} .9333933
+{txt}{space 14} {c |}
+{space 9}exper {c |}{col 16}{res}{space 2} .0182621{col 28}{space 2} .0003709{col 39}{space 1}   49.24{col 48}{space 3}0.000{col 56}{space 4} .0175351{col 69}{space 3} .0189891
+{txt}{space 14} {c |}
+educat#c.exper {c |}
+{space 10}<HS  {c |}{col 16}{res}{space 2}  .001037{col 28}{space 2} .0007627{col 39}{space 1}    1.36{col 48}{space 3}0.174{col 56}{space 4} -.000458{col 69}{space 3} .0025319
+{txt}{space 10}HS+  {c |}{col 16}{res}{space 2} .0095156{col 28}{space 2} .0005186{col 39}{space 1}   18.35{col 48}{space 3}0.000{col 56}{space 4} .0084991{col 69}{space 3} .0105321
+{txt}{space 11}BA  {c |}{col 16}{res}{space 2}-.0032067{col 28}{space 2} .0005743{col 39}{space 1}   -5.58{col 48}{space 3}0.000{col 56}{space 4}-.0043324{col 69}{space 3}-.0020811
+{txt}{space 11}PG  {c |}{col 16}{res}{space 2}-.0051215{col 28}{space 2} .0007698{col 39}{space 1}   -6.65{col 48}{space 3}0.000{col 56}{space 4}-.0066302{col 69}{space 3}-.0036128
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 2} 6.101809{col 28}{space 2} .0077485{col 39}{space 1}  787.48{col 48}{space 3}0.000{col 56}{space 4} 6.086622{col 69}{space 3} 6.116996
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. 
+. **6.** Show that after 13 years of experience, those with some Higer Education (but no Bachelors), out earn those with just a high school diploma. You can assume that there are is a 2 year difference between the experience (education). 
+. 
+. 
+. dis _b[exper]*14
+{res}.25566943
+{txt}
+{com}. dis (_b[exper] + _b[3.educat#exper])*12 + _b[3.educat]
+{res}.24938901
+{txt}
+{com}. 
+. 
+. dis _b[exper]*15
+{res}.27393153
+{txt}
+{com}. dis (_b[exper] + _b[3.educat#exper])*13 + _b[3.educat]
+{res}.27716672
+{txt}
+{com}. 
+. 
+. **7.** Use the post-estimation `test` command to test the null hypothesis: $H_0: 15\beta = 13(\beta+\gamma_3)+\psi_3$.
+. 
+. 
+. test exper*15 = (exper+3.educat#exper)*13+3.educat
+
+{p 0 7}{space 1}{text:( 1)}{space 1}{space 1}{res}- 3.educat + 2{res}*{res}exper - 13{res}*{res}3.educat#c.exper = 0{p_end}
+
+{txt}       F(  1,115342) ={res}    0.32
+{txt}{col 13}Prob > F ={res}    0.5734
+{txt}
+{com}. 
+. 
+. **8.** Estimate a transformed version of the above model allowing you to test the above hypothesis using the coefficient from a single regressor. That is, the resulting test should be a simple t-test of $H_0: \phi=0$, where $\phi$ is the coefficient on the interaction of `exper` and a dummy variable for `educat`=3. This will be easier to do if you estimate the model using only the relevant sample: those with High School diplomas and some Higher Education. I suggest avoiding the use of factor notation to create the dummy variables and interaction terms for this exercise. For example, the following should replicate the relevant coefficients from Q5.
+. 
+. 
+. gen hasHE = educat==3 if inlist(educat,2,3)
+{txt}(72,229 missing values generated)
+
+{com}. gen hasHEexp = hasHE*exper
+{txt}(72,229 missing values generated)
+
+{com}. 
+. reg lnwage exper hasHE hasHEexp
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    62,811
+{txt}{hline 13}{c +}{hline 34}   F(3, 62807)     = {res}  2860.46
+{txt}       Model {c |} {res} 4000.16053         3  1333.38684   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 29277.0845    62,807  .466143655   {txt}R-squared       ={res}    0.1202
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1202
+{txt}       Total {c |} {res} 33277.2451    62,810  .529808073   {txt}Root MSE        =   {res} .68275
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      lnwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}exper {c |}{col 14}{res}{space 2} .0182621{col 26}{space 2} .0003657{col 37}{space 1}   49.94{col 46}{space 3}0.000{col 54}{space 4} .0175453{col 67}{space 3} .0189789
+{txt}{space 7}hasHE {c |}{col 14}{res}{space 2}-.0839435{col 26}{space 2} .0102764{col 37}{space 1}   -8.17{col 46}{space 3}0.000{col 54}{space 4}-.1040852{col 67}{space 3}-.0638019
+{txt}{space 4}hasHEexp {c |}{col 14}{res}{space 2} .0095156{col 26}{space 2} .0005113{col 37}{space 1}   18.61{col 46}{space 3}0.000{col 54}{space 4} .0085134{col 67}{space 3} .0105178
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 6.101809{col 26}{space 2} .0076396{col 37}{space 1}  798.71{col 46}{space 3}0.000{col 54}{space 4} 6.086835{col 67}{space 3} 6.116782
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. 
+. 
+. gen experR = exper+hasHEexp*2/13
+{txt}(72,229 missing values generated)
+
+{com}. gen hasHER = hasHE-hasHEexp/13
+{txt}(72,229 missing values generated)
+
+{com}. reg lnwage experR hasHER hasHEexp
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    62,811
+{txt}{hline 13}{c +}{hline 34}   F(3, 62807)     = {res}  2860.46
+{txt}       Model {c |} {res} 4000.16052         3  1333.38684   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 29277.0845    62,807  .466143655   {txt}R-squared       ={res}    0.1202
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1202
+{txt}       Total {c |} {res} 33277.2451    62,810  .529808073   {txt}Root MSE        =   {res} .68275
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      lnwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}experR {c |}{col 14}{res}{space 2} .0182621{col 26}{space 2} .0003657{col 37}{space 1}   49.94{col 46}{space 3}0.000{col 54}{space 4} .0175453{col 67}{space 3} .0189789
+{txt}{space 6}hasHER {c |}{col 14}{res}{space 2}-.0839435{col 26}{space 2} .0102764{col 37}{space 1}   -8.17{col 46}{space 3}0.000{col 54}{space 4}-.1040852{col 67}{space 3}-.0638019
+{txt}{space 4}hasHEexp {c |}{col 14}{res}{space 2} .0002489{col 26}{space 2} .0004358{col 37}{space 1}    0.57{col 46}{space 3}0.568{col 54}{space 4}-.0006053{col 67}{space 3}  .001103
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 6.101809{col 26}{space 2} .0076396{col 37}{space 1}  798.71{col 46}{space 3}0.000{col 54}{space 4} 6.086835{col 67}{space 3} 6.116782
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. 
+. **9.** Verify that the F-statistic from Q7 is the square of the above T-statistic. 
+. 
+. 
+. dis (_b[hasHEexp]/_se[hasHEexp])^2
+{res}.32610143
+{txt}
+{com}. 
+. 
+. **10.** Use the restricted OLS approach to replicate the F-statistic and p-value from Q7. 
+. 
+. 
+. reg lnwage exper hasHE hasHEexp
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    62,811
+{txt}{hline 13}{c +}{hline 34}   F(3, 62807)     = {res}  2860.46
+{txt}       Model {c |} {res} 4000.16053         3  1333.38684   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 29277.0845    62,807  .466143655   {txt}R-squared       ={res}    0.1202
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1202
+{txt}       Total {c |} {res} 33277.2451    62,810  .529808073   {txt}Root MSE        =   {res} .68275
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      lnwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}exper {c |}{col 14}{res}{space 2} .0182621{col 26}{space 2} .0003657{col 37}{space 1}   49.94{col 46}{space 3}0.000{col 54}{space 4} .0175453{col 67}{space 3} .0189789
+{txt}{space 7}hasHE {c |}{col 14}{res}{space 2}-.0839435{col 26}{space 2} .0102764{col 37}{space 1}   -8.17{col 46}{space 3}0.000{col 54}{space 4}-.1040852{col 67}{space 3}-.0638019
+{txt}{space 4}hasHEexp {c |}{col 14}{res}{space 2} .0095156{col 26}{space 2} .0005113{col 37}{space 1}   18.61{col 46}{space 3}0.000{col 54}{space 4} .0085134{col 67}{space 3} .0105178
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 6.101809{col 26}{space 2} .0076396{col 37}{space 1}  798.71{col 46}{space 3}0.000{col 54}{space 4} 6.086835{col 67}{space 3} 6.116782
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. scalar RSSu = e(rss)
+{txt}
+{com}. scalar DOFu = e(df_r)
+{txt}
+{com}. reg lnwage experR hasHER 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    62,811
+{txt}{hline 13}{c +}{hline 34}   F(2, 62808)     = {res}  4290.58
+{txt}       Model {c |} {res} 4000.00851         2  2000.00425   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 29277.2366    62,808  .466138654   {txt}R-squared       ={res}    0.1202
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1202
+{txt}       Total {c |} {res} 33277.2451    62,810  .529808073   {txt}Root MSE        =   {res} .68274
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      lnwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}experR {c |}{col 14}{res}{space 2} .0182233{col 26}{space 2} .0003593{col 37}{space 1}   50.71{col 46}{space 3}0.000{col 54}{space 4}  .017519{col 67}{space 3} .0189277
+{txt}{space 6}hasHER {c |}{col 14}{res}{space 2}-.0882792{col 26}{space 2} .0069253{col 37}{space 1}  -12.75{col 46}{space 3}0.000{col 54}{space 4}-.1018527{col 67}{space 3}-.0747056
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 6.104077{col 26}{space 2} .0065255{col 37}{space 1}  935.42{col 46}{space 3}0.000{col 54}{space 4} 6.091287{col 67}{space 3} 6.116867
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. scalar RSSr = e(rss)
+{txt}
+{com}. scalar DOFr = e(df_r)
+{txt}
+{com}. 
+. scalar Fstat = ((RSSr-RSSu)/(DOFr-DOFu))/(RSSu/DOFu)
+{txt}
+{com}. scalar pval = Ftail(1,DOFu,Fstat)
+{txt}
+{com}. 
+. scalar list Fstat pval
+{txt}     Fstat = {res} .32612066
+{txt}      pval = {res}  .5679544
+{txt}
+{com}. 
+. 
+. **11.** Use the restricted OLS approach to test the following hypothesis corresponding to the model in Q5: H_0: \gamma_j = 0\qquad \text{c -(}for{c )-}\quad j=1,3,4,5. Compute the F-statistic and p-value. Verify your result using the post-estimation `test` command. 
+. 
+. 
+. reg lnwage ib2.educat##c.exper
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}   115,352
+{txt}{hline 13}{c +}{hline 34}   F(9, 115342)    = {res}  4039.95
+{txt}       Model {c |} {res} 17435.5509         9  1937.28343   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 55310.0589   115,342  .479530951   {txt}R-squared       ={res}    0.2397
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2396
+{txt}       Total {c |} {res} 72745.6098   115,351   .63064568   {txt}Root MSE        =   {res} .69248
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        lnwage{col 16}{c |} Coefficient{col 28}  Std. err.{col 40}      t{col 48}   P>|t|{col 56}     [95% con{col 69}f. interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}educat {c |}
+{space 10}<HS  {c |}{col 16}{res}{space 2}-.3882762{col 28}{space 2} .0178644{col 39}{space 1}  -21.73{col 48}{space 3}0.000{col 56}{space 4}-.4232902{col 69}{space 3}-.3532622
+{txt}{space 10}HS+  {c |}{col 16}{res}{space 2}-.0839435{col 28}{space 2} .0104229{col 39}{space 1}   -8.05{col 48}{space 3}0.000{col 56}{space 4}-.1043722{col 69}{space 3}-.0635149
+{txt}{space 11}BA  {c |}{col 16}{res}{space 2} .6145964{col 28}{space 2} .0109763{col 39}{space 1}   55.99{col 48}{space 3}0.000{col 56}{space 4} .5930831{col 69}{space 3} .6361097
+{txt}{space 11}PG  {c |}{col 16}{res}{space 2} .9055692{col 28}{space 2} .0141961{col 39}{space 1}   63.79{col 48}{space 3}0.000{col 56}{space 4}  .877745{col 69}{space 3} .9333933
+{txt}{space 14} {c |}
+{space 9}exper {c |}{col 16}{res}{space 2} .0182621{col 28}{space 2} .0003709{col 39}{space 1}   49.24{col 48}{space 3}0.000{col 56}{space 4} .0175351{col 69}{space 3} .0189891
+{txt}{space 14} {c |}
+educat#c.exper {c |}
+{space 10}<HS  {c |}{col 16}{res}{space 2}  .001037{col 28}{space 2} .0007627{col 39}{space 1}    1.36{col 48}{space 3}0.174{col 56}{space 4} -.000458{col 69}{space 3} .0025319
+{txt}{space 10}HS+  {c |}{col 16}{res}{space 2} .0095156{col 28}{space 2} .0005186{col 39}{space 1}   18.35{col 48}{space 3}0.000{col 56}{space 4} .0084991{col 69}{space 3} .0105321
+{txt}{space 11}BA  {c |}{col 16}{res}{space 2}-.0032067{col 28}{space 2} .0005743{col 39}{space 1}   -5.58{col 48}{space 3}0.000{col 56}{space 4}-.0043324{col 69}{space 3}-.0020811
+{txt}{space 11}PG  {c |}{col 16}{res}{space 2}-.0051215{col 28}{space 2} .0007698{col 39}{space 1}   -6.65{col 48}{space 3}0.000{col 56}{space 4}-.0066302{col 69}{space 3}-.0036128
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 2} 6.101809{col 28}{space 2} .0077485{col 39}{space 1}  787.48{col 48}{space 3}0.000{col 56}{space 4} 6.086622{col 69}{space 3} 6.116996
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. scalar RSSu = e(rss)
+{txt}
+{com}. scalar DOFu = e(df_r)
+{txt}
+{com}. reg lnwage ib2.educat exper 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}   115,352
+{txt}{hline 13}{c +}{hline 34}   F(5, 115346)    = {res}  7085.67
+{txt}       Model {c |} {res} 17093.4651         5  3418.69301   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 55652.1448   115,346  .482480058   {txt}R-squared       ={res}    0.2350
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2349
+{txt}       Total {c |} {res} 72745.6098   115,351   .63064568   {txt}Root MSE        =   {res} .69461
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      lnwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}educat {c |}
+{space 8}<HS  {c |}{col 14}{res}{space 2}-.3724213{col 26}{space 2} .0090073{col 37}{space 1}  -41.35{col 46}{space 3}0.000{col 54}{space 4}-.3900754{col 67}{space 3}-.3547671
+{txt}{space 8}HS+  {c |}{col 14}{res}{space 2} .0726614{col 26}{space 2} .0055618{col 37}{space 1}   13.06{col 46}{space 3}0.000{col 54}{space 4} .0617604{col 67}{space 3} .0835624
+{txt}{space 9}BA  {c |}{col 14}{res}{space 2} .5714202{col 26}{space 2} .0057563{col 37}{space 1}   99.27{col 46}{space 3}0.000{col 54}{space 4} .5601379{col 67}{space 3} .5827025
+{txt}{space 9}PG  {c |}{col 14}{res}{space 2} .8295498{col 26}{space 2} .0068114{col 37}{space 1}  121.79{col 46}{space 3}0.000{col 54}{space 4} .8161996{col 67}{space 3} .8428999
+{txt}{space 12} {c |}
+{space 7}exper {c |}{col 14}{res}{space 2} .0201711{col 26}{space 2} .0002025{col 37}{space 1}   99.60{col 46}{space 3}0.000{col 54}{space 4} .0197742{col 67}{space 3} .0205681
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 6.067685{col 26}{space 2} .0054116{col 37}{space 1} 1121.24{col 46}{space 3}0.000{col 54}{space 4} 6.057079{col 67}{space 3} 6.078292
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. scalar RSSr = e(rss)
+{txt}
+{com}. scalar DOFr = e(df_r)
+{txt}
+{com}. 
+. scalar Fstat = ((RSSr-RSSu)/(DOFr-DOFu))/(RSSu/DOFu)
+{txt}
+{com}. scalar pval = Ftail(DOFr-DOFu,DOFu,Fstat)
+{txt}
+{com}. 
+. scalar list Fstat pval
+{txt}     Fstat = {res} 178.34399
+{txt}      pval = {res} 1.32e-152
+{txt}
+{com}. 
+. ** verify
+. reg lnwage ib2.educat##c.exper
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}   115,352
+{txt}{hline 13}{c +}{hline 34}   F(9, 115342)    = {res}  4039.95
+{txt}       Model {c |} {res} 17435.5509         9  1937.28343   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 55310.0589   115,342  .479530951   {txt}R-squared       ={res}    0.2397
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2396
+{txt}       Total {c |} {res} 72745.6098   115,351   .63064568   {txt}Root MSE        =   {res} .69248
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        lnwage{col 16}{c |} Coefficient{col 28}  Std. err.{col 40}      t{col 48}   P>|t|{col 56}     [95% con{col 69}f. interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}educat {c |}
+{space 10}<HS  {c |}{col 16}{res}{space 2}-.3882762{col 28}{space 2} .0178644{col 39}{space 1}  -21.73{col 48}{space 3}0.000{col 56}{space 4}-.4232902{col 69}{space 3}-.3532622
+{txt}{space 10}HS+  {c |}{col 16}{res}{space 2}-.0839435{col 28}{space 2} .0104229{col 39}{space 1}   -8.05{col 48}{space 3}0.000{col 56}{space 4}-.1043722{col 69}{space 3}-.0635149
+{txt}{space 11}BA  {c |}{col 16}{res}{space 2} .6145964{col 28}{space 2} .0109763{col 39}{space 1}   55.99{col 48}{space 3}0.000{col 56}{space 4} .5930831{col 69}{space 3} .6361097
+{txt}{space 11}PG  {c |}{col 16}{res}{space 2} .9055692{col 28}{space 2} .0141961{col 39}{space 1}   63.79{col 48}{space 3}0.000{col 56}{space 4}  .877745{col 69}{space 3} .9333933
+{txt}{space 14} {c |}
+{space 9}exper {c |}{col 16}{res}{space 2} .0182621{col 28}{space 2} .0003709{col 39}{space 1}   49.24{col 48}{space 3}0.000{col 56}{space 4} .0175351{col 69}{space 3} .0189891
+{txt}{space 14} {c |}
+educat#c.exper {c |}
+{space 10}<HS  {c |}{col 16}{res}{space 2}  .001037{col 28}{space 2} .0007627{col 39}{space 1}    1.36{col 48}{space 3}0.174{col 56}{space 4} -.000458{col 69}{space 3} .0025319
+{txt}{space 10}HS+  {c |}{col 16}{res}{space 2} .0095156{col 28}{space 2} .0005186{col 39}{space 1}   18.35{col 48}{space 3}0.000{col 56}{space 4} .0084991{col 69}{space 3} .0105321
+{txt}{space 11}BA  {c |}{col 16}{res}{space 2}-.0032067{col 28}{space 2} .0005743{col 39}{space 1}   -5.58{col 48}{space 3}0.000{col 56}{space 4}-.0043324{col 69}{space 3}-.0020811
+{txt}{space 11}PG  {c |}{col 16}{res}{space 2}-.0051215{col 28}{space 2} .0007698{col 39}{space 1}   -6.65{col 48}{space 3}0.000{col 56}{space 4}-.0066302{col 69}{space 3}-.0036128
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 2} 6.101809{col 28}{space 2} .0077485{col 39}{space 1}  787.48{col 48}{space 3}0.000{col 56}{space 4} 6.086622{col 69}{space 3} 6.116996
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. test 1.educat#exper 3.educat#exper 4.educat#exper 5.educat#exper
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}1.educat#c.exper = 0{p_end}
+{p 0 7}{space 1}{text:( 2)}{space 1} 3.educat#c.exper = 0{p_end}
+{p 0 7}{space 1}{text:( 3)}{space 1} 4.educat#c.exper = 0{p_end}
+{p 0 7}{space 1}{text:( 4)}{space 1} 5.educat#c.exper = 0{p_end}
+
+{txt}       F(  4,115342) ={res}  178.34
+{txt}{col 13}Prob > F ={res}    0.0000
+{txt}
+{com}. 
+. 
+. **12.** Compute the relevant Chi-squared distributed test statistic and corresponding p-value for the above test, assuming $n$ is large (enough). 
+. 
+. 
+. scalar Cstat = Fstat*(DOFr-DOFu)
+{txt}
+{com}. scalar pval = chi2tail(DOFr-DOFu,Cstat)
+{txt}
+{com}. scalar list Cstat pval
+{txt}     Cstat = {res} 713.37597
+{txt}      pval = {res} 4.42e-153
+{txt}
+{com}. 
+. 
+. **13.** Using the data from Problem Set 2, estimate the simple linear regression model, 
+. 
+. use "$rootdir/problem-sets/ps-2/problem-set-2-data.dta", clear
+{txt}(PSID wage data 1976-82 from Baltagi and Khanti-Akom (1990))
+
+{com}. 
+. reg lwage educ female
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(2, 4162)      = {res}   732.99
+{txt}       Model {c |} {res} 231.021419         2   115.51071   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 655.883483     4,162  .157588535   {txt}R-squared       ={res}    0.2605
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2601
+{txt}       Total {c |} {res} 886.904902     4,164  .212993492   {txt}Root MSE        =   {res} .39697
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}educ {c |}{col 14}{res}{space 2} .0651382{col 26}{space 2} .0022066{col 37}{space 1}   29.52{col 46}{space 3}0.000{col 54}{space 4} .0608121{col 67}{space 3} .0694642
+{txt}{space 6}female {c |}{col 14}{res}{space 2}-.4737645{col 26}{space 2} .0194589{col 37}{space 1}  -24.35{col 46}{space 3}0.000{col 54}{space 4}-.5119143{col 67}{space 3}-.4356147
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}  5.89297{col 26}{space 2} .0290891{col 37}{space 1}  202.58{col 46}{space 3}0.000{col 54}{space 4}  5.83594{col 67}{space 3}     5.95
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. est sto ols
+{txt}
+{com}. estadd scalar sigma = e(rmse)
+
+{txt}added scalar:
+              e(sigma) =  {res}.39697422
+{txt}
+{com}. 
+. **14.** Estimate the Mincer equation using Maximum Likelihood. Take a look at <https://www.stata.com/manuals13/rmlexp.pdf>, the documentation for the `mlexp` command. It has a discussion on estimating the CLRM using ML.
+. 
+. mlexp (ln(normalden(lwage, {c -(}xb: educ female _cons{c )-}, exp({c -(}theta{c )-}))))
+{res}
+{txt}Initial:{col 15}Log likelihood = {res:-97095.356}
+Alternative:{col 15}Log likelihood = {res:-35297.969}
+Rescale:{col 15}Log likelihood = {res:-12999.606}
+Rescale eq:{col 15}Log likelihood = {res:-7350.6222}
+Iteration 0:{space 2}Log likelihood = {res:-7350.6222}  (not concave)
+Iteration 1:{space 2}Log likelihood = {res: -3936.054}  
+Iteration 2:{space 2}Log likelihood = {res:-2187.1092}  (backed up)
+Iteration 3:{space 2}Log likelihood = {res:-2073.0429}  
+Iteration 4:{space 2}Log likelihood = {res:-2060.4271}  
+Iteration 5:{space 2}Log likelihood = {res:-2060.4019}  
+Iteration 6:{space 2}Log likelihood = {res:-2060.4019}  
+
+Maximum likelihood estimation
+
+{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-2060.4019}{txt}{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:4,165}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}xb           {txt}{c |}
+{space 8}educ {c |}{col 14}{res}{space 2} .0651382{col 26}{space 2} .0022058{col 37}{space 1}   29.53{col 46}{space 3}0.000{col 54}{space 4}  .060815{col 67}{space 3} .0694614
+{txt}{space 6}female {c |}{col 14}{res}{space 2}-.4737645{col 26}{space 2} .0194519{col 37}{space 1}  -24.36{col 46}{space 3}0.000{col 54}{space 4}-.5118895{col 67}{space 3}-.4356396
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}  5.89297{col 26}{space 2} .0290786{col 37}{space 1}  202.66{col 46}{space 3}0.000{col 54}{space 4} 5.835977{col 67}{space 3} 5.949963
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+      /theta {c |}{col 14}{res}{space 2}-.9242442{col 26}{space 2} .0109566{col 37}{space 1}  -84.35{col 46}{space 3}0.000{col 54}{space 4}-.9457188{col 67}{space 3}-.9027696
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. ereturn list
+
+{txt}scalars:
+               e(rank) =  {res}4
+                  {txt}e(N) =  {res}4165
+                 {txt}e(ic) =  {res}6
+                  {txt}e(k) =  {res}4
+               {txt}e(k_eq) =  {res}2
+          {txt}e(converged) =  {res}1
+                 {txt}e(rc) =  {res}0
+                 {txt}e(ll) =  {res}-2060.40189888505
+              {txt}e(k_aux) =  {res}1
+               {txt}e(df_m) =  {res}4
+         {txt}e(k_eq_model) =  {res}0
+
+{txt}macros:
+            e(cmdline) : "{res}mlexp (ln(normalden(lwage, {c -(}xb: educ female _cons{c )-}, exp({c -(}theta{c )-})))){txt}"
+                e(cmd) : "{res}mlexp{txt}"
+            e(predict) : "{res}mlexp_p{txt}"
+          e(estat_cmd) : "{res}mlexp_estat{txt}"
+       e(marginsnotok) : "{res}SCores{txt}"
+          e(marginsok) : "{res}default xb{txt}"
+        e(marginsprop) : "{res}nochainrule{txt}"
+               e(lexp) : "{res}ln(normalden(lwage,{c -(}xb:{c )-},exp({c -(}theta:{c )-}))){txt}"
+             e(params) : "{res}xb:educ xb:female xb:_cons theta:_cons{txt}"
+                e(opt) : "{res}moptimize{txt}"
+                e(vce) : "{res}oim{txt}"
+          e(ml_method) : "{res}lf0{txt}"
+          e(technique) : "{res}nr{txt}"
+         e(properties) : "{res}b V{txt}"
+
+matrices:
+                  e(b) : {res} 1 x 4
+                  {txt}e(V) : {res} 4 x 4
+               {txt}e(init) : {res} 1 x 4
+               {txt}e(ilog) : {res} 1 x 20
+           {txt}e(gradient) : {res} 1 x 4
+
+{txt}functions:
+             e(sample)   
+
+{com}. nlcom (sigma: exp(_b[/theta]))
+
+       {txt}sigma: {res}exp(_b[/theta])
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}sigma {c |}{col 14}{res}{space 2} .3968312{col 26}{space 2} .0043479{col 37}{space 1}   91.27{col 46}{space 3}0.000{col 54}{space 4} .3883094{col 67}{space 3}  .405353
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. estadd scalar sigma = r(b)[1,1]
+
+{txt}added scalar:
+              e(sigma) =  {res}.39683123
+{txt}
+{com}. eststo ml
+{txt}
+{com}. 
+. 
+. **15.** Estimate the Mincer equation using Method of Moments. You can use the `gmm` command in Stata. Hint: the regressors will be their own instruments and use the `onestep` option.
+. 
+. gmm (lwage - {c -(}xb: educ female _cons{c )-}), instruments(educ female) onestep
+{res}
+{txt}Step {res}1
+{txt}Iteration 0:{space 2}GMM criterion Q(b) = {res: 44.629069}  
+Iteration 1:{space 2}GMM criterion Q(b) = {res: 2.101e-24}  
+Iteration 2:{space 2}GMM criterion Q(b) = {res: 1.368e-31}  
+
+note: model is exactly identified.
+{res}
+{txt}GMM estimation 
+
+{col 1}Number of parameters = {col 24}{res}  3
+{txt}{col 1}Number of moments    = {col 24}{res}  3
+{txt}{col 1}Initial weight matrix: {col 24}{res}Unadjusted{txt}{col 51}Number of obs{col 67}= {res}     4,165
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}educ {c |}{col 14}{res}{space 2} .0651382{col 26}{space 2} .0023187{col 37}{space 1}   28.09{col 46}{space 3}0.000{col 54}{space 4} .0605935{col 67}{space 3} .0696828
+{txt}{space 6}female {c |}{col 14}{res}{space 2}-.4737645{col 26}{space 2} .0177811{col 37}{space 1}  -26.64{col 46}{space 3}0.000{col 54}{space 4}-.5086148{col 67}{space 3}-.4389143
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}  5.89297{col 26}{space 2} .0300924{col 37}{space 1}  195.83{col 46}{space 3}0.000{col 54}{space 4}  5.83399{col 67}{space 3}  5.95195
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 4 4}{txt}Instruments for equation {res}1{txt}: {res}educ female _cons{p_end}
+{txt}
+{com}. eststo mm
+{txt}
+{com}. 
+. esttab ols ml mm, se drop(theta:_cons) scalar(N sigma) mtitle(OLS ML MM)
+{res}
+{txt}{hline 60}
+{txt}                      (1)             (2)             (3)   
+{txt}                      OLS              ML              MM   
+{txt}{hline 60}
+{res}main                                                        {txt}
+{txt}educ        {res}       0.0651***       0.0651***       0.0651***{txt}
+            {res} {ralign 12:{txt:(}0.00221{txt:)}}    {ralign 12:{txt:(}0.00221{txt:)}}    {ralign 12:{txt:(}0.00232{txt:)}}   {txt}
+
+{txt}female      {res}       -0.474***       -0.474***       -0.474***{txt}
+            {res} {ralign 12:{txt:(}0.0195{txt:)}}    {ralign 12:{txt:(}0.0195{txt:)}}    {ralign 12:{txt:(}0.0178{txt:)}}   {txt}
+
+{txt}_cons       {res}        5.893***        5.893***        5.893***{txt}
+            {res} {ralign 12:{txt:(}0.0291{txt:)}}    {ralign 12:{txt:(}0.0291{txt:)}}    {ralign 12:{txt:(}0.0301{txt:)}}   {txt}
+{txt}{hline 60}
+{txt}N           {res}         4165            4165            4165   {txt}
+{txt}sigma       {res}        0.397           0.397                   {txt}
+{txt}{hline 60}
+{txt}Standard errors in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+
+{com}. 
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick-ec910\problem-sets\ps-4\problem-set-4-log.txt
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}29 Oct 2024, 12:57:10
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

@@ -211,6 +211,14 @@ window.Quarto = {
     <a class="dropdown-item" href="./problem-set-3.html">
  <span class="dropdown-text">Problem Set 3</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-3-solutions.html">
+ <span class="dropdown-text">Problem Set 3 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-4.html">
+ <span class="dropdown-text">Problem Set 4</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -302,13 +310,13 @@ window.Quarto = {
 <p>The code has been provided for model 1. You can then modify the code for models 2-4.</p>
 <section id="preamble" class="level2">
 <h2 class="anchored" data-anchor-id="preamble">Preamble</h2>
-<div id="b1fb51b4" class="cell" data-execution_count="1">
+<div id="87d4fab4" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <style>div.jp-Notebook .datagrid-container {min-height: 448px; }</style>
 </div>
 </div>
 <p>You do not need to load data for this problem set.</p>
-<div id="288a4fd3" class="cell" data-execution_count="2">
+<div id="b421fe81" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">//or, to remove all stored values (including macros, matrices, scalars, etc.) </span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>*<span class="kw">clear</span> <span class="ot">all</span></span>
@@ -317,10 +325,10 @@ window.Quarto = {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>cd <span class="st">"$rootdir/problem-sets/ps-3"</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cap <span class="fu">log</span> <span class="kw">close</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">using</span> problem-<span class="kw">set</span>-3.txt, <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">using</span> problem-<span class="kw">set</span>-3-<span class="fu">log</span>.txt, <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>However, since we are going to generate random variables, we should set a seed. This ensures replicability of the exercise. The number you choose is arbitrary, it simply ensures that any algorithms used to generate (pseudo) random variables start at the same place.</p>
-<div id="0f76d9f7" class="cell" data-execution_count="3">
+<div id="014240f2" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> <span class="dv">seed</span> 981836</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -354,7 +362,7 @@ Y_t = \beta_1 + \beta_2X_t + \upsilon_t \qquad \text{with}\quad \upsilon_t\sim N
 <section id="simulation" class="level3">
 <h3 class="anchored" data-anchor-id="simulation">Simulation</h3>
 <p>Begin by designing a programme that takes the parameters of the model as arguments, generates the data, estimates the model, and then returns the stored values.</p>
-<div id="205181b4" class="cell" data-execution_count="4">
+<div id="c535e4bd" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cap prog <span class="kw">drop</span> mc1</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">program</span> <span class="kw">define</span> mc1, rclass</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">syntax</span> [, <span class="kw">obs</span>(integer 1) <span class="fu">s</span>(<span class="fu">real</span> 1) b1(<span class="fu">real</span> 0) b2(<span class="fu">real</span> 0)  sigma(<span class="fu">real</span> 1)]</span>
@@ -374,7 +382,7 @@ Y_t = \beta_1 + \beta_2X_t + \upsilon_t \qquad \text{with}\quad \upsilon_t\sim N
 </div>
 </div>
 <p>Use the the <code>simulate</code> command in Stata to estimate the model 100 times:</p>
-<div id="6505c806" class="cell" data-execution_count="5">
+<div id="4ff313ec" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">simulate</span> b1=<span class="fu">r</span>(b1) b2=<span class="fu">r</span>(b2) se2=<span class="fu">r</span>(se2) t2=<span class="fu">r</span>(t2), reps(100): mc1, <span class="kw">obs</span>(50) <span class="fu">s</span>(6) b1(4) b2(2) sigma(3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -389,7 +397,7 @@ Simulations (100): .........10.........20.........30.........40.........50.....
 </div>
 </div>
 <p>Calculate the bias and plot the distribution of the bias.</p>
-<div id="370122d7" class="cell" data-execution_count="6">
+<div id="c5013c8f" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> bias2=b2-2</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>su b1 b2 se2 t2</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>su bias2</span>
@@ -429,7 +437,7 @@ Var(\hat{\beta}_2) \neq \frac{\sigma^2}{Var(X_i)}
 \]</span></p>
 <section id="simulation-1" class="level3">
 <h3 class="anchored" data-anchor-id="simulation-1">Simulation</h3>
-<div id="ba4a76e1" class="cell" data-execution_count="7">
+<div id="31e55992" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cap prog <span class="kw">drop</span> mc2</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">program</span> <span class="kw">define</span> mc2, rclass</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">syntax</span> [, <span class="kw">obs</span>(integer 1) <span class="fu">s</span>(<span class="fu">real</span> 1) b1(<span class="fu">real</span> 0) b2(<span class="fu">real</span> 0) bias2(<span class="fu">real</span> 0) sigma(<span class="fu">real</span> 1) rho(<span class="fu">real</span> 0)]</span>
@@ -500,7 +508,7 @@ E\bigg[\frac{\sum_t \tilde{Y}_{t-1}\tilde{\upsilon}_t}{\sum_t \tilde{Y}_{t-1}^2}
 \]</span> When the regressor was <span class="math inline">\(X_t\)</span>, the above statement was true given the Law of Iterated Expectations. However, you can use Slutsky’s theorem and the WLLN to show that <span class="math inline">\(\hat{\beta}_2\rightarrow_p \beta_2\)</span>. This result relies on the fact that <span class="math inline">\(Y_{t-1}\)</span> is realized before <span class="math inline">\(\upsilon_t\)</span> which is iid. Thus, the bias goes to 0 as <span class="math inline">\(n\rightarrow \infty\)</span>.</p>
 <section id="simulation-2" class="level3">
 <h3 class="anchored" data-anchor-id="simulation-2">Simulation</h3>
-<div id="5cddfa40" class="cell" data-execution_count="8">
+<div id="ede4fc94" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>cap prog <span class="kw">drop</span> mc3</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">program</span> <span class="kw">define</span> mc3, rclass</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">syntax</span> [, <span class="kw">obs</span>(integer 1)  g1(<span class="fu">real</span> 0)  g2(<span class="fu">real</span> 0)  sigma(<span class="fu">real</span> 1)]</span>
@@ -567,7 +575,7 @@ Y_t = \beta_1 + \beta_2Y_{t-1} + \upsilon_t \text{where}\quad \upsilon_t = \rho 
 \]</span> As a result <span class="math inline">\(\hat{\beta}_2\)</span> is inconsistent.</p>
 <section id="simulation-3" class="level3">
 <h3 class="anchored" data-anchor-id="simulation-3">Simulation</h3>
-<div id="0133b374" class="cell" data-execution_count="9">
+<div id="07cd8a9e" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>cap prog <span class="kw">drop</span> mc4</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">program</span> <span class="kw">define</span> mc4, rclass</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">syntax</span> [, <span class="kw">obs</span>(integer 1)  g1(<span class="fu">real</span> 0)  g2(<span class="fu">real</span> 0)  sigma(<span class="fu">real</span> 1) rho(<span class="fu">real</span> 0) ]</span>
@@ -629,7 +637,7 @@ Simulations (100): .........10.........20.........30.........40.........50.....
 </section>
 <section id="postamble" class="level2">
 <h2 class="anchored" data-anchor-id="postamble">Postamble</h2>
-<div id="fa1ff03d" class="cell" data-execution_count="10">
+<div id="99bba2b9" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">close</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
