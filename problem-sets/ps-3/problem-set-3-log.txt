@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick-ec910\problem-sets\ps-3\problem-set-3-log.txt
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}29 Oct 2024, 13:10:57
+ {txt}opened on:  {res}31 Oct 2024, 08:28:29
 {p2colset 7 16 20 2}{...}
 
 {txt}{p2col :Command:}{res:mc1, obs(50) s(6) b1(4) b2(2) sigma(3)}{p_end}
@@ -29,10 +29,870 @@
 {hline 13}{c +}{hline 57}
 {space 7}bias2 {c |}{res}        100    .0419852     .271704  -.6348448   .6733029
 {txt}(bin={res}10{txt}, start={res}-.63484478{txt}, width={res}.13081477{txt})
-{res}      {txt}name:  {res}<unnamed>
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc1, obs(100) s(6) b1(4) b2(2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+(file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000005.tmp{rm}
+not found)
+{p_end}
+{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000005.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc1, obs(200) s(6) b1(4) b2(2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000005.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc1, obs(300) s(6) b1(4) b2(2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000005.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc1, obs(400) s(6) b1(4) b2(2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000005.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc1, obs(500) s(6) b1(4) b2(2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000005.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc1, obs(600) s(6) b1(4) b2(2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000005.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc1, obs(700) s(6) b1(4) b2(2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000005.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc1, obs(800) s(6) b1(4) b2(2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000005.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc1, obs(900) s(6) b1(4) b2(2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000005.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc1, obs(1000) s(6) b1(4) b2(2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000005.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{smcl}
+{res}{sf}{ul off}{smcl}
+{txt}{sf}{ul off}{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc2, obs(50) s(6) b1(4) b2(2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}b2 {c |}{res}        100    1.975448    .2406981   1.466939   2.656462
+{txt}{space 10}t2 {c |}{res}        100    8.010763      1.3815   4.681076   10.78957
+{txt}{space 9}se2 {c |}{res}        100    .2500731    .0286469   .2042868   .3313515
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}bias2 {c |}{res}        100   -.0245523    .2406981  -.5330607   .6564617
+{txt}(bin={res}10{txt}, start={res}-.53306067{txt}, width={res}.11895224{txt})
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc2, obs(100) s(6) b1(4) b2(2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+(file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000009.tmp{rm}
+not found)
+{p_end}
+{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000009.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc2, obs(200) s(6) b1(4) b2(2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000009.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc2, obs(300) s(6) b1(4) b2(2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000009.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc2, obs(400) s(6) b1(4) b2(2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000009.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc2, obs(500) s(6) b1(4) b2(2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000009.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc2, obs(600) s(6) b1(4) b2(2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000009.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc2, obs(700) s(6) b1(4) b2(2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000009.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc2, obs(800) s(6) b1(4) b2(2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000009.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc2, obs(900) s(6) b1(4) b2(2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000009.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc2, obs(1000) s(6) b1(4) b2(2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_000009.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{smcl}
+{res}{sf}{ul off}{smcl}
+{txt}{sf}{ul off}{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc3, obs(50) b1(4) b2(0.2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}b2 {c |}{res}        100     .167145    .1275283  -.1321701   .4612297
+{txt}{space 10}t2 {c |}{res}        100    1.213486    .9468185  -.9446563   3.532131
+{txt}{space 9}se2 {c |}{res}        100    .1400517    .0042463   .1278178   .1539907
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}bias2 {c |}{res}        100    -.032855    .1275283  -.3321701   .2612297
+{txt}(bin={res}10{txt}, start={res}-.33217007{txt}, width={res}.05933998{txt})
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc3, obs(100) b1(4) b2(0.2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+(file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000d.tmp{rm}
+not found)
+{p_end}
+{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000d.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc3, obs(200) b1(4) b2(0.2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000d.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc3, obs(300) b1(4) b2(0.2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000d.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc3, obs(400) b1(4) b2(0.2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000d.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc3, obs(500) b1(4) b2(0.2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000d.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc3, obs(600) b1(4) b2(0.2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000d.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc3, obs(700) b1(4) b2(0.2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000d.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc3, obs(800) b1(4) b2(0.2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000d.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc3, obs(900) b1(4) b2(0.2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000d.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc3, obs(1000) b1(4) b2(0.2) sigma(3)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000d.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{smcl}
+{res}{sf}{ul off}{smcl}
+{txt}{sf}{ul off}{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc4, obs(50) b1(4) b2(0.2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}b2 {c |}{res}        100    .3424452    .1554043  -.1707231   .6607195
+{txt}{space 10}t2 {c |}{res}        100    2.666883    1.363437  -1.216084   6.210446
+{txt}{space 9}se2 {c |}{res}        100    .1323436    .0083629   .1063884   .1438691
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}bias2 {c |}{res}        100    .1424452    .1554043  -.3707231   .4607195
+{txt}(bin={res}10{txt}, start={res}-.37072313{txt}, width={res}.08314427{txt})
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc4, obs(100) b1(4) b2(0.2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+(file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000h.tmp{rm}
+not found)
+{p_end}
+{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000h.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc4, obs(200) b1(4) b2(0.2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000h.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc4, obs(300) b1(4) b2(0.2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000h.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc4, obs(400) b1(4) b2(0.2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000h.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc4, obs(500) b1(4) b2(0.2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000h.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc4, obs(600) b1(4) b2(0.2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000h.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc4, obs(700) b1(4) b2(0.2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000h.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc4, obs(800) b1(4) b2(0.2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000h.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc4, obs(900) b1(4) b2(0.2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000h.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:mc4, obs(1000) b1(4) b2(0.2) sigma(3) rho(0.2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b1:}{res:r(b1)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :b2:}{res:r(b2)}{p_end}
+{p2colset 11 16 20 2}{...}
+{p2col :se2:}{res:r(se2)}{p_end}
+{p2colset 12 16 20 2}{...}
+{p2col :t2:}{res:r(t2)}{p_end}
+
+{res}{text}Simulations ({result:100}){text}: {res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}10{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}20{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}30{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}40{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}50{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}60{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}70{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}80{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}90{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}.{res}{text}100{text} done
+{res}{txt}{p 0 4 2}
+file {bf}
+C:\Users\neil_\AppData\Local\Temp\ST_715c_00000h.tmp{rm}
+saved
+as .dta format
+{p_end}
+{res}{smcl}
+{res}{sf}{ul off}{smcl}
+{txt}{sf}{ul off}      name:  {res}<unnamed>
        {txt}log:  {res}C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick-ec910\problem-sets\ps-3\problem-set-3-log.txt
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}29 Oct 2024, 13:11:01
+ {txt}closed on:  {res}31 Oct 2024, 09:41:31
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

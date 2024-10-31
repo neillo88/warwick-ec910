@@ -89,7 +89,7 @@ $$
 $$
 R\hat{\beta}|X \sim N(r,\sigma^2 R(X'X)^{-1}R')
 $$ 
-Frpm Handout 3, we know the asymptotic distribution of $\hat{\beta}$ is normal, even if the (conditional) finite sample distribution of $u$ is not. Applying the Delta Method (see Handout 2) to this result, 
+From Handout 3, we know the asymptotic distribution of $\hat{\beta}$ is normal, even if the (conditional) finite sample distribution of $u$ is not. Applying the Delta Method (see Handout 2) to this result, 
 
 $$
   \sqrt{n} (R\hat{\beta}_n-R\beta)\rightarrow_d N(0,\sigma^2R(E[X_1X_1'])^{-1}R')\qquad\text{as}\quad n\rightarrow\infty
@@ -117,8 +117,7 @@ $$
 $$
 \frac{c'\hat{\beta}-r}{\sqrt{\sigma^2 c'(X'X)^{-1}c}}|X \overset{H_0}{\sim} N(0,1)
 $$ 
-Note, this statement is only true under $H_0$, while the former is
-true always (under CLRM assumptions).
+Note, this statement is only true under $H_0$, while the former is true always (under CLRM assumptions).
 
 When evaluating against the alternative hypothesis, $H_1: c'\beta\neq r$, the valid two-sided rejection rule is given by, 
 
@@ -137,7 +136,7 @@ $$
 =& Pr(|Z|>z_{1-\alpha/2})
 \end{aligned}
 $$
-For asymmetric distributions, this is not the case, and you must write the two rejection case separately. 
+For asymmetric distributions, this is not the case, and you must write the two rejection cases separately. 
 
 This test is valid for the true $\sigma^2$, the homoskedastic variance of the error term. We typically do not know this variance and need to replace it with the estimator, 
 
@@ -156,27 +155,27 @@ First-off, substitue back in $\sigma^2$
 $$
 \text{T-stat} = \frac{c'\hat{\beta}-r}{\sqrt{\sigma^2 c'(X'X)^{-1}c}}\times\sqrt{\frac{s^2}{\sigma^2}}
 $$
-The T-statistic can be rewritten as the Z-statistic (which had a standard normal distribution under $H_0$) multiplied by the square-root of the ratio of $s^2$ and $\sigma^2$. Consider the distribution of this ratio:
+The T-statistic can be rewritten as the Z-statistic (which has a standard normal distribution under $H_0$) multiplied by the square-root of the ratio of $s^2$ and $\sigma^2$. Consider the distribution of this ratio:
 
 $$
   \frac{s^2}{\sigma^2} = \frac{1}{n-k} \frac{\hat{u}'\hat{u}}{\sigma^2}
 $$
-We know that $\hat{u} = M_XY = M_X u$, where $M_X$ is idempotent and symmetric. Therefore,  
+We know that $\hat{u} = M_X Y = M_X u$, where $M_X$ is idempotent and symmetric. Therefore,  
 
 $$
-  \frac{s^2}{\sigma^2} = \frac{1}{n-k} \frac{u'M_xu}{\sigma^2}=\frac{1}{n-k} \bigg(\frac{u}{\sigma}\bigg)'M_x\bigg(\frac{u}{\sigma}\bigg)
+  \frac{s^2}{\sigma^2} = \frac{1}{n-k} \frac{u'M_Xu}{\sigma^2}=\frac{1}{n-k} \bigg(\frac{u}{\sigma}\bigg)'M_X\bigg(\frac{u}{\sigma}\bigg)
 $$
 By the properties of symmetric matrices (see Linear Algebra notes), $M_X$ has a eigenvector decomposition
 
 $$
-M_X = C\Lambda C' \qquad\text{where} \quad CC' = I_n
+M_X = C\Lambda C' \qquad\text{where} \quad CC' = C'C = I_n
 $$
 Moreover, since $M_X$ is idempotent, all eigenvalues are $\lambda_j\in\{0,1\}$ for $j=1,...,n$. This implies that, 
 
 $$
 rank(M_X) = tr(M_X) = \sum_{j=1}^n\lambda_j
 $$
-We know that the $rank(M_x) = rank(I_n-P_X) = rank(I_n)-rank(P_X) = n-rank(X) = n-k$. Therefore, $M_x$ has $n-k$ non-zero eigenvalues. Applying this eigenvector decomposition, we get that,
+We know that the $rank(M_X) = rank(I_n-P_X) = rank(I_n)-rank(P_X) = n-rank(X) = n-k$. Therefore, $M_X$ has $n-k$ non-zero eigenvalues. Applying this eigenvector decomposition, we get that,
 $$
   \frac{s^2}{\sigma^2} = \frac{1}{n-k} \bigg(\frac{u}{\sigma}\bigg)'C\Lambda C'\bigg(\frac{u}{\sigma}\bigg) = \frac{1}{n-k} \bigg(\frac{C'u}{\sigma}\bigg)'\Lambda \bigg(\frac{C'u}{\sigma}\bigg)
 $$
@@ -192,10 +191,10 @@ Thus,
 $$
   \frac{s^2}{\sigma^2} =  \frac{1}{n-k} Z'\Lambda Z = \frac{1}{n-k}\sum_{j=1}^n \lambda_jZ_j^2
 $$
-Thus, under the $H_0$, the T-statistic's distribution can be described by the ratio of two distributions,
+Under the $H_0$, the T-statistic's distribution can be described by the ratio of two random variables: $Z\sim N(0,1)$ and $W\sim\chi^2_{n-k}$.
 
 $$
-\text{T-stat} = \frac{Z}{\sqrt{\chi^2_{n-k}/(n-k)}} = T_{n-k}
+\text{T-stat} = \frac{Z}{\sqrt{W/(n-k)}} \sim T_{n-k}
 $$
 This distribution is known as the $t$-distribution, with $n-k$ degrees of freedom (dof). Note, the degrees of freedom correspond to the rank of the $M_X$ matrix, since this determines the number of squared standard normal distributions summed in the denominator. 
 
@@ -234,7 +233,7 @@ We will follow similar steps to above. For any non-random $q\times k$ matrix $R$
 $$
 R\hat{\beta}|X \sim N(R\beta,\sigma^2 R(X'X)^{-1}R')
 $$ 
-This statement is true always, while **under $H_0: R\beta = r$**, 
+Under the CLRM assumptions, this statement is true always, while **under $H_0: R\beta = r$**, 
 
 $$
 R\hat{\beta}|X \overset{H_0}{\sim} N(r,\sigma^2 R(X'X)^{-1}R')
@@ -251,7 +250,7 @@ We can prove this result as follows.
   Suppose $U\sim N(0,\Omega)$. Then, $\Omega$ is a positive-definite, symmetric variance-covariance matrix. By symmetry, this matrix has an eigenvector decomposition, 
   
   $$
-  \Omega = C\Lambda C' \qquad\text{where} \quad CC' = I_n
+  \Omega = C\Lambda C' \qquad\text{where} \quad CC' = C'C =I_n
   $$
   Given it's positive definiteness, all eigenvalues in $\lambda$ are strictly positive. We can therefore define, 
   
@@ -273,14 +272,14 @@ and
 $$
   \Omega^{-1/2} = C\Lambda^{-1/2}C' \qquad \text{since}\quad C\Lambda^{-1/2}C'C\Lambda^{-1/2}C' = C\Lambda C' = \Omega^{-1}
 $$
-Therefore, 
+This allows us to standardize the distribution of $U$. 
 
 $$
 \Omega^{-1/2}U \sim N(0,\Omega^{-1/2}\Omega\Omega^{-1/2}) = N(0,I_q)
 $$
 and 
 $$
-U'\Omega^{-1}U  = \sum_{j=1}^qZ_i^2\sim \chi^2_q
+(\Omega^{-1/2}U)'\Omega^{-1/2}U =  U'\Omega^{-1}U  = \sum_{j=1}^qZ_i^2\sim \chi^2_q
 $$
 :::
 
@@ -314,7 +313,7 @@ Note, for $q=1$, the F-statistic is given by the square of the T-statistic.
 As before, the replacement of $\sigma^2$ with $s^2$ has no baring on the asymptotic distribution of the test. Since, $p \lim (s_n^2/\sigma^2) = 1$, 
 
 $$
-\text{F-stat} \rightarrow_d \chi^2_{q}\qquad \text{as}\quad n\rightarrow\infty
+\text{F-stat} \rightarrow_d \chi^2_{q}/q\qquad \text{as}\quad n\rightarrow\infty
 $$
 
 ## Restricted OLS
@@ -398,6 +397,7 @@ You can estimate the restricted model by imposing the restrictions of $H_0$ on t
 $$
 	(Y-X_4) = \gamma_1 + \gamma_2(X_2+X_3) + \gamma_5(X_5-X_4) + \varepsilon
 $$
+
 ### Testing full model
 
 In the unique case where the hypothesis is given by, 
@@ -406,13 +406,13 @@ $$
 H_0: \beta_2 = ... = \beta_k = 0
 $$
 
-And the model includes a constant (i.e. $X_1 = \mathbf{1}$). Then, the restricted model amounts to a regression of $Y$ on a constant.
+And the model includes a constant (i.e. $X_1 = \mathbf{1}$). Then, the restricted model amounts to a regression of $Y$ on a constant: $Y = \beta_1 + u$.
 
 $$
   RSS_R = (Y-\bar{Y})'(Y-\bar{Y}) = TSS
 $$
 
-The F-statistic can be written in terms of $R^2$ (of the unrestricted model), 
+In this *unique* case, the F-statistic can be written in terms of $R^2$ (of the unrestricted model), 
 
 $$
   \text{F-stat} = \frac{R^2/(k-1)}{(1 - R^2)/(n-k)}

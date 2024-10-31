@@ -81,7 +81,7 @@ sum exper, det
 replace exper=0 if exper<0
 ```
 
-**3.** Create a categorical variable that takes on 4 values: 1 "less than High School"; 2 "High School Diploma"; 3 "some Higher Education"; 4 "Bachelors"; 5 "Postgraduate". This variable should be based on the the `grade921 variable. You can find the value labels for this variable in this document: <https://data.nber.org/morg/docs/cpsx.pdf>. I suggest using the `recode` command, which allows you to create value labels while assigning values. Check the distributio of `exper` by education category. 
+**3.** Create a categorical variable that takes on 4 values: 1 "less than High School"; 2 "High School Diploma"; 3 "some Higher Education"; 4 "Bachelors"; 5 "Postgraduate". This variable should be based on the the `grade92` variable. You can find the value labels for this variable in this document: <https://data.nber.org/morg/docs/cpsx.pdf>. I suggest using the `recode` command, which allows you to create value labels while assigning values. Check the distributio of `exper` by education category. 
 
 ```{stata}
 recode grade92 (31/38 = 1 "<HS") (39 = 2 "HS") (40/42 = 3 "HS+") (43 = 4 "BA") (44/46 = 5 "PG"), gen(educat)
