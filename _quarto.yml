@@ -1,7 +1,7 @@
 project:
   type: website
   output-dir: docs
-  
+    
 website:
   title: "EC910"
   navbar:
@@ -44,6 +44,8 @@ website:
             text: Dummy Variables
           - href: material-linearalgebra.qmd
             text: Linear Algebra
+          - href: material-inference.qmd
+            text: Statistical Inference
           
 
 bibliography: references.bib
@@ -59,4 +61,6 @@ format:
 editor: source
 
 execute:
-  freeze: auto
+  freeze: auto            # true is the option to not re-render anything new. 
+
+

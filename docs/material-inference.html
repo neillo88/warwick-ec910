@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Quantitative Methods: Econometrics B – EC910</title>
+<title>material-inference – EC910</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -91,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -196,54 +225,212 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#welcome-to-metrics-b" id="toc-welcome-to-metrics-b" class="nav-link active" data-scroll-target="#welcome-to-metrics-b">Welcome to ’Metrics B!</a></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
+  <li><a href="#statistical-inference" id="toc-statistical-inference" class="nav-link active" data-scroll-target="#statistical-inference">Statistical Inference</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link" data-scroll-target="#set-up">Set-up</a></li>
+  <li><a href="#confidence-interval" id="toc-confidence-interval" class="nav-link" data-scroll-target="#confidence-interval">Confidence interval</a></li>
+  <li><a href="#hypothesis-tests" id="toc-hypothesis-tests" class="nav-link" data-scroll-target="#hypothesis-tests">Hypothesis tests</a>
+  <ul class="collapse">
+  <li><a href="#two-sided-hypothesis-tests" id="toc-two-sided-hypothesis-tests" class="nav-link" data-scroll-target="#two-sided-hypothesis-tests">Two-sided hypothesis tests</a></li>
+  <li><a href="#one-sided-hypothesis-tests" id="toc-one-sided-hypothesis-tests" class="nav-link" data-scroll-target="#one-sided-hypothesis-tests">One-sided hypothesis tests</a></li>
+  </ul></li>
+  <li><a href="#p-values" id="toc-p-values" class="nav-link" data-scroll-target="#p-values">P-values</a></li>
+  <li><a href="#statistical-power" id="toc-statistical-power" class="nav-link" data-scroll-target="#statistical-power">Statistical Power</a></li>
+  </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="material-inference.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Quantitative Methods: Econometrics B</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="welcome-to-metrics-b" class="level2">
-<h2 class="anchored" data-anchor-id="welcome-to-metrics-b">Welcome to ’Metrics B!</h2>
-<p>This is not the official module website. The <a href="https://moodle.warwick.ac.uk/course/view.php?id=64258">EC910 (or EC987, 2024/25)</a> Moodle-page is the primary source of communication and resources for this module. All material available on this website can be found there.</p>
-<p>I designed this website as a means of testing out the Quarto package, developed by RStudio.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> This was partly as a way to develop my own skills and better incorporate the R language into the module. However, there are also accessibility benefits to this approach. Mathematical notation published in pdf’s using LaTeX cannot be read by a screen reader, while LaTeX published in html can. In addition, the website has built-in dark-mode option (see top-right toggle). For those who prefer pdf (for printing and notetaking), each page contains a unique downloadable link.</p>
-<p><strong>Please let me know if you find any mistakes in my notes or code.</strong> In addition, I welcome suggestions on how to improve the R (or Stata) code provided in this module. I will endeavor to do my best to acknowledge the many people who have contributed to this material and my wider knowledge of this subject.</p>
+<section id="statistical-inference" class="level1">
+<h1>Statistical Inference</h1>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This note reviews material that should be familiar from undergraduate texts. However, we will borrow the notation from Handouts 1-4 to make it relevant to this module.</p>
+<p>The note reviews the following topics:</p>
+<ul>
+<li><p>confidence intervals;</p></li>
+<li><p>simple hypothesis tests;</p></li>
+<li><p>p-values;</p></li>
+<li><p>statistical power.</p></li>
+</ul>
+<p>It does not cover (multiple) linear hypotheses, which is the subject of Handout 4.</p>
 </section>
-<section id="acknowledgements" class="level2">
-<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
-<p>I am building off material developed by Prof.&nbsp;Wiji Arulampalam, who taught this module from 2011-2024. Since arriving at Warwick in 2021, I have learned so much from Prof.&nbsp;Arulampalam’s expertise and years of research and professional experience. More importantly, I have so enjoyed working alongside her as both colleague and friend. I wish her well in her retirement.</p>
-<p>I have also borrowed from material developed by Prof.&nbsp;Vadim Marmer (Vancouver School of Economics, UBC) who taught the Econometrics module I attended during my own Master’s degree. I was the teaching assistant for this module from 2017-2019 and developed some additional notes found here. I am hugely indebted to Prof.&nbsp;Marmer, whose teaching and professional guidance have been foundational to my academic career.</p>
-<p><strong>I hope you enjoy this module!</strong></p>
-<p><a href="https://warwick.ac.uk/fac/soc/economics/staff/nlloyd/">Neil Lloyd</a></p>
+<section id="set-up" class="level2">
+<h2 class="anchored" data-anchor-id="set-up">Set-up</h2>
+<p>Consider the model, <span class="math display">\[
+  Y = \beta_1X_1 + X_2\beta_2 +u
+\]</span> where <span class="math inline">\(\beta_1\)</span> is a scalar. We know that under CLRM 1-6,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p><span class="math display">\[
+  \hat{\beta}_1 |X\sim N(\beta_1,\sigma^2/(X_1'M_2X_1))
+\]</span> We can write <span class="math inline">\(\sigma^2(X_1'M_2X_1)^{-1}\)</span> as a fraction in this way, since <span class="math inline">\(\hat{\beta}_1\)</span> is a scalar.</p>
+<p>Let us define,</p>
+<p><span class="math display">\[
+\begin{aligned}
+V =&amp; \sigma^2/(X_1'M_2X_1) \\
+\text{and}\quad\hat{V} =&amp; s^2/(X_1'M_2X_1)
+\end{aligned}
+\]</span> Where the difference is that in <span class="math inline">\(\hat{V}\)</span> includes, <span class="math inline">\(s^2\)</span>, the estimator for <span class="math inline">\(\sigma^2\)</span>. Thus,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\hat{\beta}_1-\beta_1}{\sqrt{V}} &amp; \sim N(0,1) \\
+\text{and}\quad\frac{\hat{\beta}_1-\beta_1}{\sqrt{\hat{V}}} &amp; \sim T_{n-k}
+\end{aligned}
+\]</span></p>
+</section>
+<section id="confidence-interval" class="level2">
+<h2 class="anchored" data-anchor-id="confidence-interval">Confidence interval</h2>
+<p>Here we are going to descibe the the confidence interval (CI) for a single estimator. You can expand this to the vector case, but must then consider the joint distribution of the estimators.</p>
+<p>Given the unknown population parameter, <span class="math inline">\(\beta_1\)</span>, we want to define the CI such that,</p>
+<p><span class="math display">\[
+Pr(\beta_1 \in CI_{1-\alpha}|X) = 1-\alpha
+\]</span> We know that <span class="math inline">\((\hat{\beta}_1-\beta_1)/\sqrt{V} \sim N(0,1)\)</span>. Therefore, using the percentiles of the standard normal distribution, we can say that,</p>
+<p><span class="math display">\[
+\begin{aligned}
+1-\alpha =&amp; Pr\bigg(z_{\alpha/2}\leq \frac{\hat{\beta}_1-\beta_1}{\sqrt{V}} \leq z_{1-\alpha/2}\bigg) \\
+=&amp; Pr\big(z_{\alpha/2}\sqrt{V}\leq \hat{\beta}_1-\beta_1 \leq z_{1-\alpha/2}\sqrt{V}\big) \\
+=&amp; Pr\big(z_{\alpha/2}\sqrt{V}-\hat{\beta}_1\leq -\beta_1 \leq z_{1-\alpha/2}\sqrt{V}-\hat{\beta}_1\big) \\
+=&amp; Pr\big(\hat{\beta}_1-z_{1-\alpha/2}\sqrt{V}\leq \beta_1 \leq \hat{\beta}_1-z_{\alpha/2}\sqrt{V}\big)
+\end{aligned}
+\]</span> Pay careful attention to the switch from lines 3 to 4. The multiplying of the inequalities by -1 switches the upper and lower thresholds.</p>
+<p><strong>In this case</strong>, we can use the symmetry of the normal distribution. Since the normal distribution is symmetric, <span class="math inline">\(-z_{\alpha/2} =  z_{1-\alpha/2}\)</span>. This gives us the symmetric CI:</p>
+<p><span class="math display">\[
+CI_{1-\alpha}= \big[\hat{\beta}_1-z_{1-\alpha/2}\sqrt{V},\hat{\beta}_1+z_{1-\alpha/2}\sqrt{V}\big]
+\]</span> However, not all distributions are symmetric. For example, can you solve the confidence interval of <span class="math inline">\(\sigma^2\)</span>, using the estimator <span class="math inline">\(s^2\)</span>?</p>
+<p>Since, the t-distribution is also symmetric, we can define the a very similar CI using <span class="math inline">\(\hat{V}\)</span>:</p>
+<p><span class="math display">\[
+CI_{1-\alpha}= \big[\hat{\beta}_1-t_{n-k,1-\alpha/2}\sqrt{V},\hat{\beta}_1+t_{n-k,1-\alpha/2}\sqrt{V}\big]
+\]</span> where <span class="math inline">\(t_{n-k,1-\alpha/2}\)</span> is the <span class="math inline">\(1-\alpha/2\)</span> percentile of the t-distribution (with <span class="math inline">\(n-k\)</span> dof).</p>
+</section>
+<section id="hypothesis-tests" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-tests">Hypothesis tests</h2>
+<p>We will consider both two-sided and one-sided hypothesis tests. The former are actually simpler than the latter, since they (typically) involve sharp null hypotheses.</p>
+<section id="two-sided-hypothesis-tests" class="level3">
+<h3 class="anchored" data-anchor-id="two-sided-hypothesis-tests">Two-sided hypothesis tests</h3>
+<p>Consider the two-sided hypothesis:</p>
+<p><span class="math display">\[
+\begin{aligned}
+  &amp;H_0: \beta_1 = r \\
+  \text{against}\quad &amp;H_1: \beta_1 \neq r
+\end{aligned}
+\]</span> Here, <span class="math inline">\(r\)</span> is just a constant (i.e.&nbsp;non-random scalar). For example, <span class="math inline">\(r=0\)</span> is a simple test for whether <span class="math inline">\(\beta_1\)</span> is statistically significant.</p>
+<p>A test requires a rejection rule that determines when you reject <span class="math inline">\(H_0\)</span> based on the value of the test-statistic. Consider, the T-statistic:</p>
+<p><span class="math display">\[
+  \text{T-stat} = \frac{\hat{\beta}_1-r}{\sqrt{\hat{V}}}
+\]</span> Under <span class="math inline">\(H_0: \beta_1=r\)</span>, implying that the T-statistic has a t-distribution. Note, it has this distribution only under <span class="math inline">\(H_0\)</span>. The statistic is a R.V. with infinite support. It has the continuous distribution over the real line, meaning that with a non-zero probability it can take on any value. If this is the case, any realization of the statistic (in by implication the estimator <span class="math inline">\(\hat{\beta}_1\)</span>) is consistent with <span class="math inline">\(H_0\)</span>.</p>
+<p>The goal is to control the probability of type 1 errors: the probability of rejecting <span class="math inline">\(H_0\)</span> when it is true. We do so, be choosing a significance level <span class="math inline">\(\alpha\)</span> which will determine the size of the test.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>Consider the rejection rule:</p>
+<ul>
+<li>Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(\text{T-stat}\leq t_{n-k,\alpha/2}\)</span> or <span class="math inline">\(\text{T-stat}\geq t_{n-k,1-\alpha/2}\)</span>.</li>
+</ul>
+<p>The probability of a type 1 error is:</p>
+<p><span class="math display">\[
+\begin{aligned}
+Pr(\text{Reject}\;H_0|\beta_1 = r,X) =&amp; Pr(\text{T-stat}\leq t_{n-k,\alpha/2}|\beta_1 = r,X) \\
+&amp;+Pr(\text{T-stat}\geq t_{n-k,1-\alpha/2}|\beta_1 = r,X) \\
+=&amp;\alpha/2+\alpha/2 \\
+=&amp;\alpha
+\end{aligned}
+\]</span> This test has size <span class="math inline">\(\alpha\)</span>. Moreover, given the symmetry of the t-distribution, we can write the rejection rule as:</p>
+<ul>
+<li>Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(|\text{T-stat}|\geq t_{n-k,1-\alpha/2}\)</span>.</li>
+</ul>
+</section>
+<section id="one-sided-hypothesis-tests" class="level3">
+<h3 class="anchored" data-anchor-id="one-sided-hypothesis-tests">One-sided hypothesis tests</h3>
+<p>Consider the one-sided hypothesis:</p>
+<p><span class="math display">\[
+\begin{aligned}
+  &amp;H_0: \beta_1 \leq r \\
+  \text{against}\quad &amp;H_1: \beta_1 &gt; r
+\end{aligned}
+\]</span> The null hypothesis is no longer sharp. Any value of <span class="math inline">\(\leq\)</span> satisifies the null. It therefore becomes more difficult to think about the size of the test.</p>
+<p>Consider the rejection rule:</p>
+<ul>
+<li>Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(\text{T-stat}\geq t_{n-k,1-\alpha}\)</span>.</li>
+</ul>
+<p>We reject <span class="math inline">\(H_0\)</span> is the value of the test statistic is much greater than the <span class="math inline">\(1-\alpha\)</span> percentile of the t-distribution. Does this test have the right size?</p>
+<p><span class="math display">\[
+\begin{aligned}
+Pr(\text{Reject}\;H_0|\beta_1 \leq r,X) =&amp; Pr(\text{T-stat}\geq t_{n-k,1-\alpha}|\beta_1 \leq r,X) \\
+\leq&amp;Pr(\text{T-stat}\geq t_{n-k,1-\alpha}|\beta_1 = r,X) \\
+=&amp;\alpha
+\end{aligned}
+\]</span> The inequality appears, because for values of <span class="math inline">\(\beta_1&lt;r\)</span>, the probability of rejection is strictly <span class="math inline">\(&lt;\alpha\)</span>. This is not a problem, so long as for the threshold case <span class="math inline">\(\beta_1 = r\)</span>, the probability is still <span class="math inline">\(\leq\alpha\)</span>.</p>
+</section>
+</section>
+<section id="p-values" class="level2">
+<h2 class="anchored" data-anchor-id="p-values">P-values</h2>
+<p>The p-value of a test corresponds to the smallest significance level (i.e.&nbsp;<span class="math inline">\(\alpha\)</span>) at which you reject <span class="math inline">\(H_0\)</span>. It is an incredibly useful value to compute, because it can be used a rejection rule:</p>
+<ul>
+<li>Reject <span class="math inline">\(H_0\)</span> if p-value <span class="math inline">\(\leq \alpha\)</span>.</li>
+</ul>
+<p>This provides you with a rejection rule that is independent of the distribution of the test-statistic. The critical values of a test-statistic will depend on the distribution, but the p-value not.</p>
+<p>In the above two-sided test, the p-value is given by</p>
+<p><span class="math display">\[
+\text{p-value} = 2\times(1-T_{n-k}(|\text{T-stat}|))
+\]</span> where <span class="math inline">\(T_{n-k}(\cdot)\)</span> is the CDF of the t-distribution (with <span class="math inline">\(n-k\)</span> dof).</p>
+<p>For the one-sided test we considered, it would be:</p>
+<p><span class="math display">\[
+\text{p-value} = 1-T_{n-k}(\text{T-stat})
+\]</span></p>
+<p>While the p-value is computed using the CDF of the test-statistic, and is a value <span class="math inline">\(\in[0,1]\)</span>, <strong>it is not a probability</strong>. However, since it is a function of the test-statistic, it is a random variable.</p>
+<p>One interesting feature of the p-value is that it has a uniform distribution. Consider, the probability that the p-value is less than some value <span class="math inline">\(\rho\)</span>. We will use the one-sided test to simplify things.</p>
+<p><span class="math display">\[
+\begin{aligned}
+Pr(\text{p-value}\leq\rho|X,\beta_1=r) =&amp; Pr(1-T_{n-k}(\text{T-stat})\leq\rho|X,\beta_1=r) \\
+=&amp;Pr(T_{n-k}(\text{T-stat})\geq 1-\rho|X,\beta_1 = r) \\
+=&amp;Pr(\text{T-stat}\geq T_{n-k}^{-1}(1-\rho)|X,\beta_1 = r) \\
+=&amp;1-T_{n-k}\big(T_{n-k}^{-1}(1-\rho)\big) \\
+=&amp; 1-(1-\rho) \\
+=&amp;\rho
+\end{aligned}
+\]</span> Thus, the p-value has the characteristic of a uniformly distributed random variable: for <span class="math inline">\(X\sim U(0,1)\Rightarrow Pr(X\leq x) = x\)</span>.</p>
+<p>This fact is used to evaluate p-hacking and publication bias in published research. By collecting and plotting the distribution of p-values from published research, you can test how much the distribution varies from uniform.</p>
+</section>
+<section id="statistical-power" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-power">Statistical Power</h2>
+<p>Stastical power refers to the probability of rejecting <span class="math inline">\(H_0\)</span> for a given value of the unknown parameter, which need not correspond to the value under the null hypothesis. Consider the sharp null from the two-sided test: <span class="math inline">\(H_0:\beta_1 = r\)</span>. Suppose, the true value of <span class="math inline">\(\beta_1\)</span> is some other value <span class="math inline">\(\kappa\)</span>.</p>
+<p><span class="math display">\[
+Pr(\text{Reject}\;H_0|\beta_1 = \kappa,X) =Pr(|\text{T-stat}|\geq t_{n-k,1-\alpha/2}|\beta_1 = \kappa,X)
+\]</span> The T-statistic has a t-distribution only under the null hypothesis (<span class="math inline">\(H_0\)</span> is true). If <span class="math inline">\(\beta_1=\kappa\neq r\)</span>, then this probability is not <span class="math inline">\(\alpha\)</span>. <span class="math display">\[
+\begin{aligned}
+Pr(\text{Reject}\;H_0|\beta_1 = \kappa,X) =&amp; Pr\bigg(\frac{\hat{\beta}_1-r}{\sqrt{\hat{V}}}\leq t_{n-k,\alpha/2}\bigg|\beta_1 = \kappa,X\bigg) \\
+&amp;+Pr\bigg(\frac{\hat{\beta}_1-r}{\sqrt{\hat{V}}}\geq t_{n-k,1-\alpha/2}\bigg|\beta_1 = \kappa,X\bigg) \\
+=&amp; Pr\bigg(\frac{\hat{\beta}_1-\kappa}{\sqrt{\hat{V}}}+\frac{\kappa-r}{\sqrt{\hat{V}}}\leq t_{n-k,\alpha/2}\bigg|\beta_1 = \kappa,X\bigg) \\
+&amp;+Pr\bigg(\frac{\hat{\beta}_1-\kappa}{\sqrt{\hat{V}}}+\frac{\kappa-r}{\sqrt{\hat{V}}}\geq t_{n-k,1-\alpha/2}\bigg|\beta_1 = \kappa,X\bigg) \\
+=&amp; Pr\bigg(\frac{\hat{\beta}_1-\kappa}{\sqrt{\hat{V}}}\leq t_{n-k,\alpha/2}-\frac{\kappa-r}{\sqrt{\hat{V}}}\bigg|\beta_1 = \kappa,X\bigg) \\
+&amp;+Pr\bigg(\frac{\hat{\beta}_1-\kappa}{\sqrt{\hat{V}}}\geq t_{n-k,1-\alpha/2}-\frac{\kappa-r}{\sqrt{\hat{V}}}\bigg|\beta_1 = \kappa,X\bigg)
+\end{aligned}
+\]</span> Under the condition that <span class="math inline">\(\beta_1 = \kappa\)</span>, <span class="math display">\[
+\frac{\hat{\beta}_1-\kappa}{\sqrt{\hat{V}}}\sim T_{n-k}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+Pr(\text{Reject}\;H_0|\beta_1 = \kappa,X) =&amp; Pr\bigg(T\leq t_{n-k,\alpha/2}-\frac{\kappa-r}{\sqrt{\hat{V}}}\bigg|\beta_1 = \kappa,X\bigg) \\
+&amp;+Pr\bigg(T\geq t_{n-k,1-\alpha/2}-\frac{\kappa-r}{\sqrt{\hat{V}}}\bigg|\beta_1 = \kappa,X\bigg) \\
+&amp;\geq \alpha
+\end{aligned}
+\]</span></p>
+<p>We know that this probability is at least as large as <span class="math inline">\(\alpha\)</span>, the probability of a type 1 error. As a function of <span class="math inline">\(\kappa\)</span>, this probability will tend towards 1, as <span class="math inline">\(\kappa\)</span> moves further from the null hypothesis. For a two-sided test, it does so symmetrically, creating a bell-shaped function in the case of the normal and t-distributions. Note, as <span class="math inline">\(|\kappa-r|\)</span> increases, the one probability increases, while the other decreases. Regardless, the power increases because the one probability increases faster than the other decreases. This is a result of the bell-shaped t-distribution.</p>
+<p>For a one-sided test, the power function will asymptote to 1 only on the side of rejection. We say that a test is uniformly more powerful, if has greater statistical power for all possible values of the parameter.</p>
+<p>When comparing tests that have the same distribution, the difference in power will arise from the variance of the estimator <span class="math inline">\(\hat{V}\)</span>. A more efficient estimator, will yield a more power test.</p>
 
 
+</section>
 </section>
 
 
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>In Handout 4 we showed that <span class="math inline">\(\beta_1\)</span> can be written as <span class="math inline">\(c'\beta\)</span> where <span class="math inline">\(c = \begin{bmatrix}1 &amp; 0 &amp; \dots &amp;0\end{bmatrix}'\)</span>. Therefore, it must be that <span class="math inline">\((X_1'M_2X_1)^{-1} = c'(X'X)^{-1}c\)</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>We say that a test has size <span class="math inline">\(\alpha\)</span> if the probability of a type 1 error is <span class="math inline">\(\leq \alpha\)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
