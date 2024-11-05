@@ -11,7 +11,7 @@ format:
 Consider a set of $k$ $n$-dimensional vectors $\{X_{1},X_{2},...,X_{k}\}$. These vectors are,
 
 ::: {#def-linind1} 
-*linearly dependent* if there exists a set of scalars $\{a_{1},a_{2},\dots,a_{k}\}$ such that
+*linearly dependent* if there exists a set of scalars $\{a_{1},a_{2},\cdots,a_{k}\}$ such that
 
  $$
  a_1X_1 + a_2X_2+\ldots+a_kX_k=0
@@ -23,13 +23,13 @@ where at least one $a_i\neq0$.
 Alternatively, they are,
 
 ::: {#def-linind2} 
-*linearly independent* if the only set of scalars $\{a_{1},a_{2},\dots,a_{k}\}$ that satisfies the above condition is $a_1,a_2,\dots,a_k=0$.
+*linearly independent* if the only set of scalars $\{a_{1},a_{2},\cdots,a_{k}\}$ that satisfies the above condition is $a_1,a_2,\cdots,a_k=0$.
 ::: 
 
-If we collect these $k$ column-vectors in a matrix, $X=[X_1\;X_2 \dots X_k]$, then the linear dependence condition can be written as,
+If we collect these $k$ column-vectors in a matrix, $X=[X_1\;X_2 \cdots X_k]$, then the linear dependence condition can be written as,
 
 $$
-a_1X_1 + a_2X_2+\ldots+a_kX_k=\begin{bmatrix} X_1\;X_2 \dots X_k\end{bmatrix}\begin{bmatrix}a_1\\a_2\\\vdots\\a_k\end{bmatrix}=Xa = 0
+a_1X_1 + a_2X_2+\ldots+a_kX_k=\begin{bmatrix} X_1\;X_2 \cdots X_k\end{bmatrix}\begin{bmatrix}a_1\\a_2\\\vdots\\a_k\end{bmatrix}=Xa = 0
 $$
 
 Given any $n\times k$ matrix $X$, its columns are,
@@ -68,7 +68,7 @@ A *vector space*, denoted $\mathcal{V}$, refers to a set of vectors which is clo
 :::
 
 ::: {#def-basis}
-A set of $k$ linearly independent vectors, $\{X_1,X_2,\dots,X_k\}$, forms a *basis* for vector space $\mathcal{V}$ if $\forall\;y\in\mathcal{V}$ there exists a set of $k$ scalars such that,
+A set of $k$ linearly independent vectors, $\{X_1,X_2,\cdots,X_k\}$, forms a *basis* for vector space $\mathcal{V}$ if $\forall\;y\in\mathcal{V}$ there exists a set of $k$ scalars such that,
  $$
  y=X_1b_1+X_2b_2+\ldots+X_kb_k
  $$
@@ -328,7 +328,7 @@ for any $m\times n$ matrix A,
 $$
   A = \begin{bmatrix}a_1' \\ a_2' \\ \vdots \\ a_m'\end{bmatrix}
 $$
-where $a_i\in R^n\;\forall i=1,\dots,m$ and, 
+where $a_i\in R^n\;\forall i=1,\cdots,m$ and, 
 
 $$
   Ax = \begin{bmatrix}a_1'x \\ a_2'x \\ \vdots \\ a_m'x\end{bmatrix}
@@ -338,8 +338,8 @@ Note, $f(x)=Ax\in R^m$, a $m\times 1$ vector. We can then define,
 
 $$
   \begin{aligned}
-  \frac{\partial Ax}{\partial x'} & = \begin{bmatrix}\frac{\partial a_1'x}{\partial x_1} & \frac{\partial a_1'x}{\partial x_2} & \dots & \frac{\partial a_1'x}{\partial x_n}\\ \frac{\partial a_2'x}{\partial x_1} & \frac{\partial a_2'x}{\partial x_2} & \dots & \frac{\partial a_2'x}{\partial x_n}\\ \vdots & \vdots & \ddots & \vdots\\ \frac{\partial a_m'x}{\partial x_1} & \frac{\partial a_m'x}{\partial x_2} & \dots & \frac{\partial a_m'x}{\partial x_n}\\ \end{bmatrix} \\
-  & = \begin{bmatrix} a_{11} & a_{12} & \dots & a_{1n} \\ a_{21} & a_{22} & \dots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots\\ a_{m1} & a_{m2} & \dots & a_{mn} \\ \end{bmatrix} \\
+  \frac{\partial Ax}{\partial x'} & = \begin{bmatrix}\frac{\partial a_1'x}{\partial x_1} & \frac{\partial a_1'x}{\partial x_2} & \cdots & \frac{\partial a_1'x}{\partial x_n}\\ \frac{\partial a_2'x}{\partial x_1} & \frac{\partial a_2'x}{\partial x_2} & \cdots & \frac{\partial a_2'x}{\partial x_n}\\ \vdots & \vdots & \ddots & \vdots\\ \frac{\partial a_m'x}{\partial x_1} & \frac{\partial a_m'x}{\partial x_2} & \cdots & \frac{\partial a_m'x}{\partial x_n}\\ \end{bmatrix} \\
+  & = \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots\\ a_{m1} & a_{m2} & \cdots & a_{mn} \\ \end{bmatrix} \\
   & = A
   \end{aligned}
 $$

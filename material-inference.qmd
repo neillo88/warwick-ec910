@@ -30,7 +30,7 @@ $$
 $$
 where $\beta_1$ is a scalar. We know that under CLRM 1-6,[^1]
 
-[^1]: In Handout 4 we showed that $\beta_1$ can be written as $c'\beta$ where $c = \begin{bmatrix}1 & 0 & \dots &0\end{bmatrix}'$. Therefore, it must be that $(X_1'M_2X_1)^{-1} = c'(X'X)^{-1}c$
+[^1]: In Handout 4 we showed that $\beta_1$ can be written as $c'\beta$ where $c = \begin{bmatrix}1 & 0 & \cdots &0\end{bmatrix}'$. Therefore, it must be that $(X_1'M_2X_1)^{-1} = c'(X'X)^{-1}c$
 
 $$
   \hat{\beta}_1 |X\sim N(\beta_1,\sigma^2/(X_1'M_2X_1)) 

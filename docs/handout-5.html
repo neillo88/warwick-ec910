@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Panel Data Models – EC910</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">EC910</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lecture-handouts" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lecture Handouts</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lecture-handouts">    
+        <li>
+    <a class="dropdown-item" href="./handout-1.html">
+ <span class="dropdown-text">Handout 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-2.html">
+ <span class="dropdown-text">Handout 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-3.html">
+ <span class="dropdown-text">Handout 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-4.html">
+ <span class="dropdown-text">Handout 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-5.html">
+ <span class="dropdown-text">Handout 5</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-problem-sets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Problem Sets</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-problem-sets">    
+        <li>
+    <a class="dropdown-item" href="./problem-sets/ps-1/problem-set-1.html">
+ <span class="dropdown-text">Problem Set 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-sets/ps-1/problem-set-1-solutions.html">
+ <span class="dropdown-text">Problem Set 1 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-2.html">
+ <span class="dropdown-text">Problem Set 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-2-solutions.html">
+ <span class="dropdown-text">Problem Set 2 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-3.html">
+ <span class="dropdown-text">Problem Set 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-3-solutions.html">
+ <span class="dropdown-text">Problem Set 3 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-4.html">
+ <span class="dropdown-text">Problem Set 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-4-solutions.html">
+ <span class="dropdown-text">Problem Set 4 (Solutions)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-additional-material" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Additional Material</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-additional-material">    
+        <li>
+    <a class="dropdown-item" href="./material-cef.html">
+ <span class="dropdown-text">Conditional Expectation Function</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./material-interpretation.html">
+ <span class="dropdown-text">Interpreting Linear Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./material-dummy.html">
+ <span class="dropdown-text">Dummy Variables</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./material-linearalgebra.html">
+ <span class="dropdown-text">Linear Algebra</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./material-inference.html">
+ <span class="dropdown-text">Statistical Inference</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a></li>
+  <li><a href="#model-specification" id="toc-model-specification" class="nav-link" data-scroll-target="#model-specification"><span class="header-section-number">2</span> Model Specification</a>
+  <ul class="collapse">
+  <li><a href="#unobserved-heterogeneity" id="toc-unobserved-heterogeneity" class="nav-link" data-scroll-target="#unobserved-heterogeneity"><span class="header-section-number">2.1</span> Unobserved heterogeneity</a></li>
+  </ul></li>
+  <li><a href="#exogeneity" id="toc-exogeneity" class="nav-link" data-scroll-target="#exogeneity"><span class="header-section-number">3</span> Exogeneity</a>
+  <ul class="collapse">
+  <li><a href="#strict-exogeneity" id="toc-strict-exogeneity" class="nav-link" data-scroll-target="#strict-exogeneity"><span class="header-section-number">3.1</span> Strict exogeneity</a></li>
+  <li><a href="#weak-exogeneity" id="toc-weak-exogeneity" class="nav-link" data-scroll-target="#weak-exogeneity"><span class="header-section-number">3.2</span> Weak exogeneity</a></li>
+  <li><a href="#contemporaneous-exogeneity" id="toc-contemporaneous-exogeneity" class="nav-link" data-scroll-target="#contemporaneous-exogeneity"><span class="header-section-number">3.3</span> Contemporaneous exogeneity</a></li>
+  </ul></li>
+  <li><a href="#basic-model" id="toc-basic-model" class="nav-link" data-scroll-target="#basic-model"><span class="header-section-number">4</span> Basic model</a></li>
+  <li><a href="#pooled-ols" id="toc-pooled-ols" class="nav-link" data-scroll-target="#pooled-ols"><span class="header-section-number">5</span> Pooled OLS</a></li>
+  <li><a href="#between-group-estimator" id="toc-between-group-estimator" class="nav-link" data-scroll-target="#between-group-estimator"><span class="header-section-number">6</span> Between-Group estimator</a></li>
+  <li><a href="#generalized-least-squares" id="toc-generalized-least-squares" class="nav-link" data-scroll-target="#generalized-least-squares"><span class="header-section-number">7</span> Generalized Least Squares</a>
+  <ul class="collapse">
+  <li><a href="#feasible-gls" id="toc-feasible-gls" class="nav-link" data-scroll-target="#feasible-gls"><span class="header-section-number">7.1</span> Feasible GLS</a></li>
+  </ul></li>
+  <li><a href="#within-group-estimator" id="toc-within-group-estimator" class="nav-link" data-scroll-target="#within-group-estimator"><span class="header-section-number">8</span> Within-Group Estimator</a></li>
+  <li><a href="#conditional-variance" id="toc-conditional-variance" class="nav-link" data-scroll-target="#conditional-variance"><span class="header-section-number">9</span> Conditional variance</a>
+  <ul class="collapse">
+  <li><a href="#consistency-and-asymptotic-distribution" id="toc-consistency-and-asymptotic-distribution" class="nav-link" data-scroll-target="#consistency-and-asymptotic-distribution"><span class="header-section-number">9.1</span> Consistency and asymptotic distribution</a></li>
+  <li><a href="#fixed-effects-estimator" id="toc-fixed-effects-estimator" class="nav-link" data-scroll-target="#fixed-effects-estimator"><span class="header-section-number">9.2</span> Fixed-effects estimator</a></li>
+  </ul></li>
+  <li><a href="#first-difference-estimator" id="toc-first-difference-estimator" class="nav-link" data-scroll-target="#first-difference-estimator"><span class="header-section-number">10</span> First-Difference Estimator</a></li>
+  <li><a href="#wu-hausman-test" id="toc-wu-hausman-test" class="nav-link" data-scroll-target="#wu-hausman-test"><span class="header-section-number">11</span> Wu-Hausman Test</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="handout-5.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Panel Data Models</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1</span> Overview</h2>
+<p>In this handout we will see how to test <strong>static linear</strong> panel data models. We will review a number of estimators for these models, including:</p>
+<ul>
+<li>within-group;</li>
+<li>first differences;</li>
+<li>between-group;</li>
+<li>and feasible GLS.</li>
+</ul>
+<p>Further reading can be found in:</p>
+<ul>
+<li>Section 21 of <span class="citation" data-cites="cameron2005">Cameron and Trivedi (<a href="#ref-cameron2005" role="doc-biblioref">2005</a>)</span></li>
+<li>Section 10.1-10.3 of <span class="citation" data-cites="verbeek2017">Verbeek (<a href="#ref-verbeek2017" role="doc-biblioref">2017</a>)</span></li>
+</ul>
+</section>
+<section id="model-specification" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="model-specification"><span class="header-section-number">2</span> Model Specification</h2>
+<p>A static linear model has the form,</p>
+<p><span class="math display">\[
+  Y_{it} = X_{it}'\beta + \alpha_i + \varepsilon_{it}
+\]</span></p>
+<p>for <span class="math inline">\(i=1,..,n\)</span> and <span class="math inline">\(t = 1,...,T\)</span>. We will restrict this discussion to models where <span class="math inline">\(T\)</span> is fixed. Asymptotically, this means that as <span class="math inline">\(n\)</span> increases <span class="math inline">\(T\)</span> remains fixed.</p>
+<p>If collect all <span class="math inline">\(T\)</span> observations of unit <span class="math inline">\(i\)</span>, we can describe them by the model,</p>
+<p><span class="math display">\[
+  Y_{i} = X_{i}'\beta + \alpha_i\ell + \varepsilon_i
+\]</span> where <span class="math inline">\(Y_i\)</span> is a <span class="math inline">\(T\times 1\)</span> random vector; <span class="math inline">\(X_i\)</span> a <span class="math inline">\(T\times k\)</span> random matrix; and <span class="math inline">\(\ell\)</span> a <span class="math inline">\(T\times 1\)</span> vector of <span class="math inline">\(1\)</span>’s.</p>
+<p>This model has placed no restriction on the values of the outcome variable, <span class="math inline">\(Y_i\)</span>, and regressors, <span class="math inline">\(X_i\)</span>. In particular, the regressors may include time-varying as well as time-invariant variables.</p>
+<p>We can extend this specification to include a linear or non-linear trend in time; for example, <span class="math inline">\(\phi t\)</span>. However, the more common option is to include a very flexible time trend using fixed effects:</p>
+<p><span class="math display">\[
+  \delta_t = \sum_{j=1}^T \delta_j \mathbf{1}\{t = j\}
+\]</span> Time fixed-effects are essentially a dummy variable for each time-period. This flexible function - sometimes referred to as saturated - can approximate any functional form of the underlying time trend. Models that include both <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(\delta_t\)</span> are referred to as <strong>two-way fixed-effects</strong> models.</p>
+<section id="unobserved-heterogeneity" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="unobserved-heterogeneity"><span class="header-section-number">2.1</span> Unobserved heterogeneity</h3>
+<p>The term <span class="math inline">\(\alpha_i\)</span> is particularly important. It represents time-invariant unobservables or <strong>unobserved heterogeneity</strong> across <span class="math inline">\(i\)</span>. I strongly recommend you read the discussion on pages 285-286 of <span class="citation" data-cites="wooldridge2010">Wooldridge (<a href="#ref-wooldridge2010" role="doc-biblioref">2010</a>)</span>.</p>
+<p>The <span class="math inline">\(\alpha_i\)</span> is unobserved, and therefore is a component of the error term <span class="math inline">\(\upsilon_{it} = \alpha_i + \varepsilon_{it}\)</span>. The time-invariant component of the error is <em>permanent</em>; often referred to as unobserved heterogeneity or individual effect. The time-varying component is <em>transient</em>; sometimes referred to as the idiosyncratic error.</p>
+<p>As with the time-varying part of the error term, <span class="math inline">\(\alpha_{i}\)</span> is <span class="math inline">\(random\)</span>. We should not think of <span class="math inline">\(\alpha_i\)</span> as a unit-specific intercept, since then it is just a non-random parameter. This would imply that the correlation between <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(X_i\)</span> is by definition 0.</p>
+<p>Given the model specification, we must consider all three components - <span class="math inline">\(\{X_i,\alpha_i,\varepsilon_{it}\}\)</span> - when making assumptions regarding exogeneity. <strong>We will make all assumptions conditional on <span class="math inline">\(\alpha_i\)</span>.</strong> This is consistent with the idea that <span class="math inline">\(\alpha_i\)</span> is a permanent shock, and is therefore realized before <span class="math inline">\(\varepsilon_it\)</span>.</p>
+<p>If we do not condition on <span class="math inline">\(\alpha_i\)</span>, then when we evaluate <span class="math inline">\(E[Y_i|X_i]\)</span>, we also need to consider both <span class="math inline">\(E[\varepsilon_i|X_i]\)</span> and <span class="math inline">\(E[\alpha_i|X_i]\)</span>; not just <span class="math inline">\(E[\varepsilon_i|X_i,\alpha_i]\)</span>. Moreover, in general it will be that case that <span class="math inline">\(E[\alpha_i|X_i]\neq E[\alpha_i]\)</span> (i.e., not mean independent). For example, <span class="math inline">\(\alpha_i\)</span> may represent unobserved ability in a wage equation. This will correlated with regressors like education.</p>
+</section>
+</section>
+<section id="exogeneity" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="exogeneity"><span class="header-section-number">3</span> Exogeneity</h2>
+<p>Having assumed that the samples are independent across <span class="math inline">\(i\)</span>, we can define mean independence of the transient error term component for unit <span class="math inline">\(i\)</span>. There are three potential assumptions we can make:</p>
+<ol type="1">
+<li>Strict exogeneity:</li>
+</ol>
+<p><span class="math display">\[
+  E[\varepsilon_i|X_i,\alpha_i] = 0
+\]</span> or, <span class="math display">\[
+  E[\varepsilon_{it}|X_{i1},X_{i2},...,X_{iT},\alpha_i] = 0\qquad \forall\;t
+\]</span> 2. Weak or sequential exogeneity:</p>
+<p><span class="math display">\[
+  E[\varepsilon_{it}|X_{i1},X_{i2},...,X_{it},\alpha_i] = 0\qquad \forall\;t
+\]</span> Exogeneity with respect to the past sequence of regressors (or predetermined regressors).</p>
+<ol start="3" type="1">
+<li>Contemporaneous exogeneity:</li>
+</ol>
+<p><span class="math display">\[
+  E[\varepsilon_{it}|X_{it},\alpha_i] = 0\qquad \forall\;t
+\]</span> Exogeneity only with respect to the contemporaneous value of <span class="math inline">\(X_i\)</span>.</p>
+<section id="strict-exogeneity" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="strict-exogeneity"><span class="header-section-number">3.1</span> Strict exogeneity</h3>
+<p>Strict exogeneity is a very strong assumption. It implies that <span class="math inline">\(X\)</span> is uncorrelated with past, current, and future values of the transient error term (conditional on <span class="math inline">\(\alpha_i\)</span>): <span class="math inline">\(E[X_{it},\varepsilon_{is}|\alpha_i] = 0\;\forall\;t,s\)</span>. Crucially, <span class="math inline">\(X_{it}\)</span> cannot respond to the history of idiosyncratic shocks <span class="math inline">\(\varepsilon_{i1},\varepsilon_{i2},...,\varepsilon_{it}\)</span>.</p>
+<p>This assumption is required for unbiasedness of the linear estimator, but not for consistency. Under strict exogeneity,</p>
+<p><span class="math display">\[
+E[Y_{it}|X_i,\alpha_i] = E[Y_{it}|X_{it},\alpha_i] = X_{it}'\beta + \alpha_i
+\]</span> The first equality implies that once you control for <span class="math inline">\(X_{it}\)</span>, there is no additional partial effect of <span class="math inline">\(X_{is}\)</span> (<span class="math inline">\(\forall\;s\neq t\)</span>) on (the mean of) <span class="math inline">\(Y_{it}\)</span>. This assumption relates to the assumed <em>static</em> nature of the model: the model includes not lags or leads among the regressors.</p>
+<p>It would be violated if the set of regressors included a lagged dependent variable. The assumption is also violated if the regressors are endogenous.</p>
+</section>
+<section id="weak-exogeneity" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="weak-exogeneity"><span class="header-section-number">3.2</span> Weak exogeneity</h3>
+<p>Weak exogeneity, also referred to as sequential exogeneity, implies that the error term is uncorrelated with past and contemporaneous values of the regressors:</p>
+<p><span class="math display">\[
+E[X_{is}\varepsilon_{it}] = 0 \qquad\forall\;s=1,...,t
+\]</span> In the static linear model, it also implies that,</p>
+<p><span class="math display">\[
+E[Y_{it}|X_i,\alpha_i] = E[Y_{it}|X_{it},\alpha_i] = X_{it}'\beta + \alpha_i
+\]</span></p>
+<p>This structure can permit a lagged dependent variable amongst the regressors (assuming there is no serial correlation of the error term). However, the assumption remains violated if the regressors are endogenous.</p>
+</section>
+<section id="contemporaneous-exogeneity" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="contemporaneous-exogeneity"><span class="header-section-number">3.3</span> Contemporaneous exogeneity</h3>
+<p>This assumption implies that the error term is only uncorrelated with regressors in the same time period,</p>
+<p><span class="math display">\[
+E[X_{it}\varepsilon_{it}] = 0
+\]</span> Regardless, it still implies that, <span class="math display">\[
+E[Y_{it}|X_i,\alpha_i] = E[Y_{it}|X_{it},\alpha_i] = X_{it}'\beta + \alpha_i
+\]</span></p>
+</section>
+</section>
+<section id="basic-model" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="basic-model"><span class="header-section-number">4</span> Basic model</h2>
+<p>We begin by describe a basic model under the Static Linear Panel Model (SLPM) assumptions,</p>
+<p><strong>SLPM 1</strong>: The model is static and linear in parameters:</p>
+<p><span class="math display">\[
+Y_{it} = X_{it}'\beta + \alpha_i + \varepsilon_{it}
+\]</span></p>
+<p><strong>SLPM 2:</strong> Balanced panel: we observe each <span class="math inline">\(i\)</span> in all <span class="math inline">\(T\)</span> time periods.</p>
+<p><strong>SLPM 3:</strong> Independent sampling along the cross-sectional dimension (<span class="math inline">\(i\)</span>).</p>
+<p><strong>SLPM 4:</strong> Strict exogeneity: <span class="math inline">\(E[\varepsilon_{it}|X_i,\alpha_i] = 0\; \forall\;t\)</span></p>
+<p><strong>SLPM 5:</strong> Conditional homoskedasticity and serial uncorrelatedness of the transient error term component.</p>
+<p><span class="math display">\[
+Var(\varepsilon_i|X_i,\alpha_i) = \begin{bmatrix}\sigma^2_\varepsilon &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; \sigma^2_\varepsilon &amp; &amp; \\ \vdots &amp; &amp; \ddots &amp; \\ 0 &amp; &amp; &amp; \sigma^2_\varepsilon \end{bmatrix} = \sigma^2_\varepsilon I_T
+\]</span> Assumptions 4 &amp; 5 are referred to as a ‘classical error term’ structure.</p>
+<p>Under assumptions 1-5:</p>
+<ul>
+<li><p><span class="math inline">\(E[Y_i|X_i,\alpha_i]  = X_i'\beta + \alpha_i\ell\)</span></p></li>
+<li><p><span class="math inline">\(Var(Y_i|X_i,\alpha_i) = \sigma^2_{\varepsilon}I_T\)</span></p></li>
+</ul>
+<p>At this stage, the unanswered question is how to deal with the unobservables <span class="math inline">\(\alpha_i\)</span> in the equation. Generally, there are two approaches:</p>
+<ol type="1">
+<li><p>Assume away the relationship between <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(X_i\)</span>.</p></li>
+<li><p>Remove <span class="math inline">\(\alpha_i\)</span> from the equation prior to estimator; for example, within-group estimator and first-difference.</p></li>
+</ol>
+<p>Adopting approach (1), we will review the pooled OLS, between-group, and (feasible) Generalized Least Squares (GLS) estimators. Under approach (2), will review the within-group and first-difference estimators.</p>
+</section>
+<section id="pooled-ols" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="pooled-ols"><span class="header-section-number">5</span> Pooled OLS</h2>
+<p>We can ‘assume away’ the relationship between <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(X_i\)</span>. Specifically, we will assume conditional mean independence:</p>
+<ul>
+<li><strong>CLPM 6</strong> <span class="math inline">\(E[\alpha_i|X_i] = E[\alpha_i|X_{i1},X_{i2},...,X_{iT}] = E[\alpha_i]=0\)</span></li>
+</ul>
+<p>As in the CLRM, the assumption that the unconditional mean of <span class="math inline">\(\alpha_i\)</span> is zero is not binding given the inclusion of a constant among the regressors. We will of course, need to assume that there is no perfect colinearity among the regressors.</p>
+<ul>
+<li><strong>CLPM 7</strong> <span class="math inline">\(rank(X)=k\)</span></li>
+</ul>
+<p>In addition, we will need to make assumptions concerning <span class="math inline">\(\alpha_i\)</span>. First, mean independence,</p>
+<p>This implies uncorrelatedness. Under this assumptions, the model can be written as,</p>
+<p><span class="math display">\[
+  Y_{it} = X_{it}'\beta + \upsilon_{it}
+\]</span> where <span class="math inline">\(E[\upsilon_{i}|X_i]=0\)</span>. Alternatively, we can stack all <span class="math inline">\(nT\)</span> observations together,</p>
+<p><span class="math display">\[
+  Y = X\beta + \upsilon
+\]</span></p>
+<p>Second, we need to make an assumption regarding the variance of the unobserved heterogeneity:</p>
+<ul>
+<li><strong>CLPM 8</strong> <span class="math inline">\(Var(\alpha_i|X_i) = \sigma^2_\alpha\)</span></li>
+</ul>
+<p>Under these assumptions, the error term <span class="math inline">\(\upsilon_i = \alpha_i\ell + \varepsilon_i\)</span> has the variance,</p>
+<p><span class="math display">\[
+Var(\upsilon_i |X_i) = E[\upsilon_i\upsilon_i' |X_i] = \sigma^2_\alpha\ell\ell' + \sigma^2_\varepsilon I_T = \Omega
+\]</span> For all <span class="math inline">\(s\neq t\)</span> the <span class="math inline">\(Cov(\upsilon_{it},\upsilon_{is}) = \sigma^2_\alpha\)</span>. And the diagonal elements are given by <span class="math inline">\(\sigma^2_\alpha + \sigma^2_\varepsilon\)</span>.</p>
+<p>Under these assumptions, the OLS estimator,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\hat{\beta}^{OLS} =&amp; (X'X)^{-1}X'Y \\
+=&amp; \beta + (X'X)^{-1}X'\upsilon \\
+=&amp; \beta + \big(\sum_iX_i'X_i\big)^{-1}\sum_iX_i'\upsilon_i
+\end{aligned}
+\]</span> is both unbiased and consistent. This is because,</p>
+<p><span class="math display">\[
+p \lim\frac{1}{n}\sum_iX_i'\upsilon_i = \sum_{t=1}^Tp \lim\frac{1}{n}\sum_{i=1}^nX_{it}\upsilon_{it} = \sum_{t=1}^TE[X_{it}\upsilon_{it}]=0
+\]</span> The asymptotic distribution is given by,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sqrt{n}(\hat{\beta}^{OLS}-\beta) =&amp; \bigg(\frac{1}{n}\sum_iX_i'X_i\bigg)^{-1}\frac{1}{\sqrt{n}}\sum_iX_i'\upsilon_i \\
+\rightarrow_d&amp; N(0,V^{-1}\Sigma V^{-1})
+\end{aligned}
+\]</span> where,</p>
+<ul>
+<li><p><span class="math inline">\(V = E[X_i'X_i]\)</span></p></li>
+<li><p><span class="math inline">\(\Sigma = E[X_i'\Omega X_i]\)</span></p></li>
+</ul>
+<p>We say that the approximate distribution of the pooled OLS estimator is given by,</p>
+<p><span class="math display">\[
+\hat{\beta}^{OLS} \overset{a}{\sim} N\bigg(\beta, \big(\sum_iX_i'X_i\big)^{-1}\sum_iX_i'\Omega X_i\big(\sum_iX_i'X_i\big)^{-1}\bigg)
+\]</span></p>
+<p>However, it is NOT efficient. Moreover, the usual homoskedastic estimator for the variance will be biased and inconsistent. Unobserved heterogeneity will result in a serial correlation that is not accountant for by the standard estimator.</p>
+</section>
+<section id="between-group-estimator" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="between-group-estimator"><span class="header-section-number">6</span> Between-Group estimator</h2>
+<p>An alternative to pooled OLS, is to collapse the multiple observations of unit <span class="math inline">\(i\)</span> into a single cross-section aggregate. This transforms the model into,</p>
+<p><span class="math display">\[
+\bar{Y}_{i} = \bar{X}_{i}'\beta+\bar{\upsilon}_{i}
+\]</span> where <span class="math inline">\(\bar{\upsilon}_{i} = \alpha_i + \bar{\varepsilon}_i\)</span>. The variane of this error term is,</p>
+<p><span class="math display">\[
+E[\bar{\upsilon}_i^2|X_i] = \sigma^2_\alpha + \frac{\sigma^2_\varepsilon}{T}
+\]</span> The OLS estimator for <span class="math inline">\(\beta\)</span> is given by,</p>
+<p><span class="math display">\[
+\hat{\beta}^{BG} = (\bar{X}'\bar{X})^{-1}\bar{X}'\bar{Y} = \big(\sum_i\bar{X}_i\bar{X}_i'\big)^{-1}\sum_i\bar{X}_i\bar{Y}_i
+\]</span></p>
+<p>Since the variance term is homoskedastic, the standard homoskedastic variance estimator will unbiased and consistent. This approach removes the problem of serially correlated error terms across repeated observations of <span class="math inline">\(i\)</span> in pooled OLS by collapsing all observations to a single observation. However, it also reduces the information in the data and is therefore less efficient.</p>
+</section>
+<section id="generalized-least-squares" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="generalized-least-squares"><span class="header-section-number">7</span> Generalized Least Squares</h2>
+<p>This final approach takes seriously the structure of the composite error-term variance-covariance matrix,</p>
+<p><span class="math display">\[
+E[\upsilon_i\upsilon_i' |X_i] = \begin{bmatrix}
+\sigma^2_\alpha+\sigma^2_\varepsilon &amp; \sigma^2_\alpha &amp; \cdots &amp; \sigma^2_\alpha \\ \sigma^2_\alpha &amp; \sigma^2_\alpha+\sigma^2_\varepsilon &amp;  &amp; \\
+\vdots &amp; &amp; \ddots &amp; \\
+\sigma^2_\alpha &amp;  &amp;  &amp; \sigma^2_\alpha+\sigma^2_\varepsilon
+\end{bmatrix}
+\]</span> The <span class="math inline">\(nT\times nT\)</span> matrix, E[’ |X] is a block-diagonal matrix in which the off-diagonal values are <span class="math inline">\(E[\upsilon_{it}\upsilon_{js} |X]=\sigma^2_\alpha\)</span> only for <span class="math inline">\(i=j\)</span> and <span class="math inline">\(s\neq t\)</span>; and zero otherwise.</p>
+<p>The Generalized Least Squares solution say that if we transform the model in the following way, the resulting error term will be classical.</p>
+<p><span class="math display">\[
+\underbrace{Y_{it}-\theta \bar{Y}_i}_{Y_{it}^+} = \underbrace{(X_{it}-\theta\bar{X}_i)}_{X_{it}^+}'\beta + \nu_{it}
+\]</span> where,</p>
+<p><span class="math display">\[
+\theta = 1- \frac{\sigma_\varepsilon}{\sqrt{T\sigma^2_\alpha+\sigma^2_\varepsilon}}
+\]</span></p>
+<p>Consider the transformed error term <span class="math inline">\(\nu\)</span>,</p>
+<p><span class="math display">\[
+\nu_{it} = \upsilon_{it}-\theta\bar{\upsilon}_i = (1-\theta)\alpha_i + \varepsilon_{it}-\frac{\theta}{T}\sum_t\varepsilon_{it}
+\]</span></p>
+<p>The serial correlation of this error term is 0. Consider, for <span class="math inline">\(t\neq s\)</span> <span class="math display">\[
+\begin{aligned}
+E[\nu_{it}\nu_{is}|X_i] =&amp; E\big[\big((1-\theta)\alpha_i + \varepsilon_{it}-\frac{\theta}{T}\sum_{t'}\varepsilon_{it'}\big)\big((1-\theta)\alpha_i + \varepsilon_{is}-\frac{\theta}{T}\sum_{t'}\varepsilon_{it'}\big)|X_i\big] \\
+=&amp;(1-\theta)^2\sigma^2_\alpha  -2\frac{\theta}{T}\sigma^2_\varepsilon+\frac{\theta^2}{T^2}\sum_{t'}\sigma^2_\varepsilon \\
+=&amp;\frac{\sigma^2_\varepsilon \sigma^2_\alpha}{T\sigma^2_\alpha+\sigma^2_\varepsilon} + \frac{\theta(\theta-2)}{T}\sigma^2_\varepsilon \\
+=&amp;\frac{\sigma^2_\varepsilon \sigma^2_\alpha}{T\sigma^2_\alpha+\sigma^2_\varepsilon} - \frac{\sigma^2_\varepsilon}{T}\bigg(1-\frac{\sigma_\varepsilon}{\sqrt{T\sigma^2_\alpha+\sigma^2_\varepsilon}}\bigg)\bigg(1+\frac{\sigma_\varepsilon}{\sqrt{T\sigma^2_\alpha+\sigma^2_\varepsilon}}\bigg) \\
+=&amp; \frac{\sigma^2_\varepsilon \sigma^2_\alpha}{T\sigma^2_\alpha+\sigma^2_\varepsilon}-\frac{\sigma^2_\varepsilon}{T}\bigg(1-\frac{\sigma^2_\varepsilon}{T\sigma^2_\alpha+\sigma^2_\varepsilon}\bigg) \\
+=&amp;\frac{\sigma^2_\varepsilon \sigma^2_\alpha}{T\sigma^2_\alpha+\sigma^2_\varepsilon}-\frac{\sigma^2_\varepsilon \sigma^2_\alpha}{T\sigma^2_\alpha+\sigma^2_\varepsilon} \\
+=&amp;0
+\end{aligned}
+\]</span> The GLS estimator is then given by,</p>
+<p><span class="math display">\[
+  \hat{\beta}^{GLS} = \big[\sum_iX_i^{+'}X_i^+\big]^{-1}\sum_iX_i^{+'}Y_i^+
+\]</span></p>
+<p>You can show that <span class="math inline">\(\hat{\beta}^{GLS}\)</span> is a weighted average of <span class="math inline">\(\hat{\beta}^{WG}\)</span> and <span class="math inline">\(\hat{\beta}^{BG}\)</span>. Also, take note of the fact that as <span class="math inline">\(T\rightarrow\infty\)</span>, <span class="math inline">\(\theta\rightarrow 1\)</span>. Thus, <span class="math inline">\(\hat{\beta}_{GLS}\rightarrow \hat{\beta}^{WG}\)</span> as <span class="math inline">\(T\rightarrow\infty\)</span>. In addition, if if <span class="math inline">\(\sigma^2_\alpha=0\)</span>, then <span class="math inline">\(\theta = 0\)</span> and <span class="math inline">\(\hat{\beta}^{GLS}=\hat{\beta}^{OLS}\)</span>, the pooled OLS estimator.</p>
+<p>However, this estimator is NOT feasible. This is because we do not observe <span class="math inline">\(\{\sigma^2_\alpha,\sigma^2_\varepsilon\}\)</span>.</p>
+<section id="feasible-gls" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="feasible-gls"><span class="header-section-number">7.1</span> Feasible GLS</h3>
+<p>A feasible version of the GLS estimator is given by the following steps:</p>
+<ol type="1">
+<li><p>Estimate <span class="math inline">\(\sigma^2_\varepsilon\)</span> using the WG estimator.</p></li>
+<li><p>Use the pooled OLS or BG estimator then estimate <span class="math inline">\(\sigma^2_\alpha\)</span>, using the value of <span class="math inline">\(\sigma^2_\varepsilon\)</span> from step 1. For example, the RSS from pooled OLS (divided by <span class="math inline">\(nT-k\)</span>) is a consistent estimator for <span class="math inline">\(\sigma^2_\varepsilon+\sigma^2_\alpha\)</span>. Similar, the RSS from BG estimator (divided by <span class="math inline">\(n-k\)</span>) is a consistent estimator for <span class="math inline">\(\sigma^2_\varepsilon/T+\sigma^2_\alpha\)</span>.</p></li>
+<li><p>Using the estimated <span class="math inline">\(\{\hat{\sigma}^2_\alpha,\hat{\sigma}^2_\varepsilon\}\)</span>, compute the transformed model and estimate using <span class="math inline">\(\hat{\beta}^{FGLS}\)</span> using OLS.</p></li>
+</ol>
+</section>
+</section>
+<section id="within-group-estimator" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="within-group-estimator"><span class="header-section-number">8</span> Within-Group Estimator</h2>
+<p>The approach taken here is to transform the linear model such that <span class="math inline">\(\alpha_i\)</span> is eliminate from the equation. Having done so, we do not need to make any assumption regarding <span class="math inline">\(E[\alpha_i|X_i]\)</span>.</p>
+<p>Here we will exploit the fact that <span class="math inline">\(\alpha_i\)</span> is time-invariant. We begin by computing the unit-level average of the model. For the left-hand side,</p>
+<p><span class="math display">\[
+\bar{Y}_i = \frac{1}{T}\sum_{t=1}^T Y_{it}
+\]</span> and the right-hand side, <span class="math display">\[
+\frac{1}{T}\sum_{t=1}^T \big(X_{it}'\beta + \alpha_i + \varepsilon_{it}\big) = \bar{X}_{i}'\beta + \alpha_i + \bar{\varepsilon}_{i}
+\]</span> Next, subtract this from each value, to create a demeaned expression</p>
+<p><span class="math display">\[
+\underbrace{Y_{it}-\bar{Y}_i}_{\tilde{Y}_{it}} = \underbrace{(X_{it}-\bar{X}_i)'\beta}_{\tilde{X}_{it}'\beta}+\underbrace{\alpha_{i}-\alpha_i}_{=0}+ \underbrace{\varepsilon_{it}-\bar{\varepsilon}_i}_{\tilde{\varepsilon}_{it}}
+\]</span> The permanent error-term component drops out precisely because it is time-invariant. The transformed model is given by,</p>
+<p><span class="math display">\[
+\tilde{Y}_{it} = \tilde{X}_{it}'\beta+\tilde{\varepsilon}_{it}
+\]</span></p>
+<p>This model can be estimated by OLS. The solution is given by,</p>
+<p><span class="math display">\[
+\hat{\beta}^{WG} = (\tilde{X}'\tilde{X})^{-1}\tilde{X}'\tilde{Y} = (\sum_{i=1}^n\tilde{X}_i'\tilde{X}_i)^{-1}\sum_{i=1}^n\tilde{X}_i'\tilde{Y}_i
+\]</span> where <span class="math inline">\(\tilde{X}_i\)</span> is a <span class="math inline">\(T\times k\)</span> matrix. <strong>Note, this is different to the standard cross-section expression$.</strong></p>
+<p>This solution assumes that the <span class="math inline">\(k\times k\)</span> matrix <span class="math inline">\(\sum_{i=1}^n\tilde{X}_i'\tilde{X}_i\)</span> is invertible. We must therefore assume,</p>
+<ul>
+<li><strong>SLPM 7^b</strong>: <span class="math inline">\(rank(\tilde{X})=k\)</span></li>
+</ul>
+<p>Given that <span class="math inline">\(\tilde{X}\)</span> is the within-group demeaned vale of <span class="math inline">\(X\)</span>, this implies the regressors must all be time-varying. In addition, if the model includes a time trend (including time-FEs), the included variables cannot vary uniformly with time. An example of this is age. If all units’ age values increase by the same amount each period, then</p>
+<p><span class="math display">\[
+\tilde{age}_{it} = age_{it}-\bar{age}_i = t - \bar{t}
+\]</span> This is because an individuals age can be expressed as a time-invariant value of their year of birth <span class="math inline">\(yob_i\)</span> plus a linear time-trend that has a unit-specific intercept. The demeaned value of age is perfectly colinear with a demeaned linear time-trend. It would also be perfectly colinear with a higher-order polynomial time-trend or year FEs.</p>
+<p><span class="math display">\[
+  \tilde{X}_i = \begin{bmatrix}
+  \tilde{X}_{i11} &amp; \tilde{X}_{i12} &amp; \cdots &amp; \tilde{X}_{i1k} \\
+  \tilde{X}_{i21} &amp; \tilde{X}_{i22} &amp;  &amp; \\
+  \vdots &amp;  &amp; \ddots &amp; \\
+  \tilde{X}_{iT1} &amp;  &amp;  &amp; \tilde{X}_{iTk}
+  \end{bmatrix} = \begin{bmatrix}\tilde{X}_{i1}' \\ \tilde{X}_{i2}' \\ \vdots \\ \tilde{X}_{iT}'\end{bmatrix}
+\]</span></p>
+<p><span class="math inline">\(\tilde{X}_i'\tilde{X}_i\)</span> is therefore a <span class="math inline">\(k\times k\)</span> matrix, which can be expressed as,</p>
+<p><span class="math display">\[
+\tilde{X}_i'\tilde{X}_i = \sum_{t=1}^T \tilde{X}_{it}\tilde{X}_{it}' = \begin{bmatrix} \sum_{t}\tilde{X}_{it1}^2 &amp; \sum_{t}\tilde{X}_{it1}\tilde{X}_{it2} &amp; \cdots &amp; \sum_{t}\tilde{X}_{it1}\tilde{X}_{itk} \\ \sum_{t}\tilde{X}_{it2}\tilde{X}_{it1} &amp; \sum_{t}\tilde{X}_{it2}^2 &amp;  &amp; \\ \vdots &amp; &amp; \ddots &amp; \\ \sum_{t}\tilde{X}_{itk}\tilde{X}_{it1} &amp; &amp; &amp; \sum_{t}\tilde{X}_{itk}^2 \end{bmatrix}
+\]</span></p>
+<p>Finally, we can express <span class="math inline">\(\tilde{X}'\tilde{X}\)</span> as,</p>
+<p><span class="math display">\[
+\tilde{X}'\tilde{X} = \sum_{i=1}^n \tilde{X}_i'\tilde{X}_i = \begin{bmatrix} \sum_i\big(\sum_{t}\tilde{X}_{it1}^2\big) &amp; \sum_i\big(\sum_{t}\tilde{X}_{it1}\tilde{X}_{it2}\big) &amp; \cdots &amp; \sum_i\big(\sum_{t}\tilde{X}_{it1}\tilde{X}_{itk}\big) \\ \sum_i\big(\sum_{t}\tilde{X}_{it2}\tilde{X}_{it1}\big) &amp; \sum_i\big(\sum_{t}\tilde{X}_{it2}^2\big) &amp;  &amp; \\ \vdots &amp; &amp; \ddots &amp; \\ \sum_i\big(\sum_{t}\tilde{X}_{itk}\tilde{X}_{it1}\big) &amp; &amp; &amp; \sum_i\big(\sum_{t}\tilde{X}_{itk}^2\big) \end{bmatrix}
+\]</span></p>
+<p>We can use the same method to describe <span class="math inline">\(\sum_{i=1}^n\tilde{X}_i'\tilde{Y}_i\)</span>, a <span class="math inline">\(k\times 1\)</span> vector. Substituting in the definition of <span class="math inline">\(\tilde{Y}_i\)</span> from the transformed model, we get that,</p>
+<p><span class="math display">\[
+\hat{\beta}^{WG} = \beta +  (\sum_{i=1}^n\tilde{X}_i'\tilde{X}_i)^{-1}\sum_{i=1}^n\tilde{X}_i'\tilde{\varepsilon}_i
+\]</span></p>
+</section>
+<section id="conditional-variance" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="conditional-variance"><span class="header-section-number">9</span> Conditional variance</h2>
+<p>Given the demeaning of the model, the error term is no longer uncorrelated across <span class="math inline">\(t\)</span> for the same <span class="math inline">\(i\)</span>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+E[\tilde{\varepsilon}_{is}\tilde{\varepsilon}_{it}|X] =&amp;E[(\varepsilon_{is}-\bar{\varepsilon}_{i})(\varepsilon_{it}-\bar{\varepsilon}_{i})|X] \\
+=&amp;E\bigg[\bigg(\varepsilon_{is}-\frac{1}{T}\sum_{s'}\varepsilon_{is'}\bigg)\bigg(\varepsilon_{it}-\frac{1}{T}\sum_{s'}\varepsilon_{it'}\bigg)\bigg| X_i\bigg] \\
+=&amp;\begin{cases} \sigma^2_{\varepsilon}(1-1/T) \qquad \text{for}\quad s=t \\
+-\sigma^2_{\varepsilon}/T \qquad \text{for}\quad s\neq t
+\end{cases}
+\end{aligned}
+\]</span> The off-diagonal elements for the same <span class="math inline">\(i\)</span> are the same for all time-periods. Collected together, this creates a block diagonal matrix, where covariance terms are zero for across different units.</p>
+<p><span class="math display">\[
+E[\tilde{\varepsilon}_{is}\tilde{\varepsilon}_{it}X]= \begin{bmatrix}
+\Omega &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; \Omega &amp; &amp; \\
+\vdots &amp; &amp; \ddots &amp; \\
+0 &amp; &amp; &amp; \Omega
+\end{bmatrix}
+\]</span> with each <span class="math inline">\(T\times T\)</span> <span class="math inline">\(\Omega\)</span> matrix given by,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\Omega=&amp; E[\tilde{\varepsilon}_{i}\tilde{\varepsilon}_{i}'|X_i] \\
+=&amp;
+\begin{bmatrix}
+\sigma^2_{\varepsilon}(1-1/T) &amp; -\sigma^2_{\varepsilon}/T &amp; \cdots &amp; -\sigma^2_{\varepsilon}/T \\
+-\sigma^2_{\varepsilon}/T &amp; \sigma^2_{\varepsilon}(1-1/T) &amp; &amp; \\
+\vdots &amp; &amp; \ddots &amp; \\
+-\sigma^2_{\varepsilon}/T &amp; &amp; &amp; \sigma^2_{\varepsilon}(1-1/T)
+\end{bmatrix} \\
+=&amp;\sigma^{2}_\varepsilon M_\ell
+\end{aligned}
+\]</span> where <span class="math inline">\(M_\ell = I_T-\frac{\ell\ell'}{T}\)</span> for the <span class="math inline">\(T\times 1\)</span> vector of ones <span class="math inline">\(\ell\)</span>. This follows from the fact that <span class="math inline">\(\tilde{\varepsilon}_{i} = M_\ell\varepsilon_{i}\)</span>. Which implies that,</p>
+<p><span class="math display">\[
+\begin{aligned}
+E[\tilde{\varepsilon}_{i}\tilde{\varepsilon}_{i}'|X_i] =&amp; E[M_\ell\varepsilon_{i}\varepsilon_{i}'M_\ell'|X_i] \\
+=&amp;M_\ell E[\varepsilon_{i}\varepsilon_{i}'|X_i]M_\ell \\
+=&amp; M_\ell\sigma^2_\varepsilon I_T M_\ell \\
+=&amp;\sigma^{2}_\varepsilon M_\ell
+\end{aligned}
+\]</span> Thus, <span class="math display">\[
+E[\tilde{\varepsilon}_{is}\tilde{\varepsilon}_{it}|X]= \sigma^{2}_\varepsilon\begin{bmatrix}
+M_\ell &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; M_\ell &amp; &amp; \\
+\vdots &amp; &amp; \ddots &amp; \\
+0 &amp; &amp; &amp; M_\ell
+\end{bmatrix} = \sigma^{2}_\varepsilon M_{n\cdot\ell}
+\]</span> where the <span class="math inline">\(rank(M_{n\cdot\ell})=nT-n\)</span>. This follows from the fact that each <span class="math inline">\(M_\ell\)</span> has <span class="math inline">\(rank(M_\ell)=T-1\)</span>. The matrix <span class="math inline">\(M_{n\cdot\ell}\)</span> is a <span class="math inline">\(nT\times nT\)</span> matrix: a block diagonal matrix of <span class="math inline">\(n\)</span> <span class="math inline">\(M_\ell\)</span> matrices. With this we can now solve for the conditional variance of the WG estimator.</p>
+<p><span class="math display">\[
+\begin{aligned}
+Var(\hat{\beta}^{WG}|X) =&amp; (\tilde{X}'\tilde{X})^{-1}\tilde{X}'E[\tilde{\varepsilon}_{is}\tilde{\varepsilon}_{it}|X]\tilde{X}(\tilde{X}'\tilde{X})^{-1} \\
+=&amp; \sigma^2_\varepsilon(\tilde{X}'\tilde{X})^{-1}\tilde{X}'M_{n\cdot\ell}\tilde{X}(\tilde{X}'\tilde{X})^{-1} \\
+=&amp; \sigma^2_\varepsilon(\tilde{X}'\tilde{X})^{-1}
+\end{aligned}
+\]</span> The final line follows from the fact that <span class="math inline">\(\tilde{X}=M_{n\cdot\ell}X\)</span> and <span class="math inline">\(M_{n\cdot\ell}\)</span> is an idempotent (orthogonal) projection matrix.</p>
+<p>An unbiased and consistent estimator for <span class="math inline">\(\sigma^2_\varepsilon\)</span> is given by,</p>
+<p><span class="math display">\[
+\hat{\sigma}^2_\varepsilon = \frac{RSS}{dof}=\frac{\sum_{i=1}^n\sum_{t=1}^T\big(Y_{it}-\bar{Y}_i-(X_{it}-\bar{X}_i)'\hat{\beta}^{WG}\big)^2}{nT-n-k}
+\]</span> The residual degrees of freedom is equal to <span class="math inline">\(nT-n-k\)</span>, not <span class="math inline">\(nT-k\)</span>. While there are <span class="math inline">\(nT\)</span> observations and <span class="math inline">\(k\)</span> parameters, we must deduct the <span class="math inline">\(n\)</span> unit-level means computed. Another way to see this is to use the above projection matrix decomposition:</p>
+<p><span class="math display">\[
+\begin{aligned}
+RSS =&amp; \hat{\varepsilon}'\hat{\varepsilon} \\
+=&amp; \tilde{Y}'(I_{nT}-\tilde{X}(\tilde{X}'\tilde{X})^{-1}\tilde{X}')\tilde{Y} \\
+=&amp; Y'M_{n\ell}(I_{nT}-M_{n\ell}X(X'M_{n\ell}X)^{-1}X'M_{n\ell})M_{n\ell}Y \\
+=&amp; Y'\underbrace{(M_{n\ell}-M_{n\ell}X(X'M_{n\ell}X)^{-1}X'M_{n\ell})}_{M_+}Y
+\end{aligned}
+\]</span> This new matrix <span class="math inline">\(M_+\)</span> is also an idempotent projection matrix, with rank <span class="math inline">\(rank(M_+) = ran(M_{n\ell})-min{rank(M_{n\ell}),rank(X)} = nT-n-k\)</span>. As we saw with the CLRM, this term with have a <span class="math inline">\(\chi^2\)</span> distribution with dof equal to the rank of the orthogonal projection matrix.</p>
+<section id="consistency-and-asymptotic-distribution" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="consistency-and-asymptotic-distribution"><span class="header-section-number">9.1</span> Consistency and asymptotic distribution</h3>
+<p>Under assumptions SLPM 1-6; especially 4 &amp; 5, <span class="math inline">\(\hat{\beta}^{WG}\)</span> is consistent,</p>
+<p><span class="math display">\[
+\hat{\beta}^{WG}\rightarrow_p \beta \qquad \text{as}\quad n\rightarrow\infty
+\]</span> and asymptotically normal,</p>
+<p><span class="math display">\[
+\hat{\beta}^{WG}\overset{a}{\sim} N\big(\beta,\sigma^2_{\varepsilon}\big(\sum_i\tilde{X}_i'\tilde{X}_i\big)^{-1}\big)
+\]</span></p>
+<p>Both results require that <span class="math inline">\(E[\tilde{X}_i,\tilde{\varepsilon}_i]=0\)</span>. This is maintained by strict exogeneity (CLPM 4), which states that in addition to <span class="math inline">\(E[X_{is},\varepsilon_{it}]=0\;\forall\;s,t\)</span>,</p>
+<p><span class="math display">\[
+  E[\bar{X}_i,\bar{\varepsilon}_i]=0
+\]</span> This would not be true under the weak exogeneity assumption.</p>
+</section>
+<section id="fixed-effects-estimator" class="level3" data-number="9.2">
+<h3 data-number="9.2" class="anchored" data-anchor-id="fixed-effects-estimator"><span class="header-section-number">9.2</span> Fixed-effects estimator</h3>
+<p>The above estimator is sometimes referred to as the (unit) Fixed-Effects estimator. This not not mean that <span class="math inline">\(\alpha_i\)</span> is non-random. It simply means that the within-group estimator is also given by a fixed-effects model. Consider the model,</p>
+<p><span class="math display">\[
+Y_{it} = \sum_{j=1}^n\phi_j\mathbf{1}\{i = j\}+X_{it}'\beta + \upsilon_{it}
+\]</span></p>
+<p>This model includes a dummy variable for each unit. For each unit, only one dummy variable can be =1, the dummy variable with parameter <span class="math inline">\(\phi_i\)</span>. Thus, the expression <span class="math inline">\(\sum_{j=1}^n\phi_j\mathbf{1}\{i = j\}=\phi_i\)</span> for any <span class="math inline">\(i\)</span>. The model can therefore be written as, <span class="math display">\[
+Y_{it} = \phi_i+X_{it}'\beta + \upsilon_{it}
+\]</span></p>
+<p>This looks very similar to our SLPM, but with the distinguishing feature that <span class="math inline">\(\phi_i\)</span> is taken as a population parameter. This is sometimes referred as a unit-specific constant.</p>
+<p>Including a constant for each <span class="math inline">\(i\)</span> has the same effect as demeaning the model. This alternative approach is referred to as the Least Squares Dummy Variable (LSDV) method.</p>
+<p><span class="math display">\[
+\hat{\beta}^{WG} = \hat{\beta}^{LSDV}
+\]</span> This equivalence can be shown using Frisch Waugh Lovell Theorem (or partitioned regression). The LSDV estimator can be computed in two steps. First, regress each regressor and outcome on a setting of unit level dummies.</p>
+<p><span class="math display">\[
+X_{k} = \sum_{j=1}^n\phi_j\mathbf{1}\{i = j\} + \xi
+\]</span> Each <span class="math inline">\(\mathbf{1}\{i = j\}\)</span> corresponds to a dummy variable where <span class="math inline">\(T\)</span> values are =1 (for unit <span class="math inline">\(i\)</span>), and the remainder 0. Next, use the residuals in the main equation. The residual from the regression is given by,</p>
+<p><span class="math display">\[
+M_{n\cdot\ell}X_k  = \tilde{X}_{k}
+\]</span> Thus, we regression is given by,</p>
+<p><span class="math display">\[
+M_{n\cdot\ell}Y = \tilde{Y} = M_{n\cdot\ell}X\beta + \varepsilon = \tilde{X}\beta + \varepsilon
+\]</span> Employing the LSDV approach, one can estimated the unit-FE as,</p>
+<p><span class="math display">\[
+\hat{\phi}_i = \bar{Y}_i - \bar{X}_i'\hat{\beta}^{LSDV}
+\]</span></p>
+<p>While this estimator is unbiased, <span class="math inline">\(E[\hat{\phi}_i|X_i]=\phi\)</span>, it is NOT consistent for fixed <span class="math inline">\(T\)</span>. It is only consistent if <span class="math inline">\(T\rightarrow \infty\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>.</p>
+<p>The equivalene of these approaches also explains why the degrees of freedom in the residual is <span class="math inline">\(nT-n-k\)</span>. By including <span class="math inline">\(n\)</span> dummy variables, the number of parameters we need to estimate is <span class="math inline">\(n+k\)</span>.</p>
+</section>
+</section>
+<section id="first-difference-estimator" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="first-difference-estimator"><span class="header-section-number">10</span> First-Difference Estimator</h2>
+<p>As with the WG estimator, he first-difference (FD) estimator removes <span class="math inline">\(\alpha_i\)</span> from the model through differencing. However, this time the transformation is just difference over time:</p>
+<p><span class="math display">\[
+\underbrace{Y_{it}-Y_{it-1}}_{\tilde{Y}_{it}} = \underbrace{(X_{it}-X_{it-1})'\beta}_{\tilde{X}_{it}'\beta}+\underbrace{\alpha_{i}-\alpha_i}_{=0}+ \underbrace{\varepsilon_{it}-\varepsilon_{it-1}}_{\tilde{\varepsilon}_{it}}
+\]</span> The estimation sample will include 1 less period: <span class="math inline">\(t=2,...,T\)</span> for each <span class="math inline">\(i\)</span>.</p>
+<p>Under CLPM 1-6, <span class="math inline">\(\hat{\beta}^{FD}\)</span> is consistent and asympotitcally normal. However, we need to account for the error term structure. This is because,</p>
+<p><span class="math display">\[
+E[\tilde{\varepsilon}_{is}\tilde{\varepsilon}_{it}] =\begin{cases}E[(\varepsilon_{is}-\varepsilon_{is-1})(\varepsilon_{it}-\varepsilon_{it-1})] = 2\sigma^2_{\varepsilon} \quad \text{for}\;s=t \\
+E[(\varepsilon_{is}-\varepsilon_{is-1})(\varepsilon_{it}-\varepsilon_{it-1})] = -\sigma^2_{\varepsilon} \quad \text{for}\;s=t-1 \\
+0 \quad \text{otherwise}\end{cases}
+\]</span></p>
+<p>This is a MA(1) error term structure, in which the first-order correlation is non-zero.</p>
+<p>For <span class="math inline">\(T=2\)</span>, you can show that,</p>
+<p><span class="math display">\[
+\hat{\beta}^{WG} = \hat{\beta}^{FD}
+\]</span></p>
+<p>You can also show that if you apply GLS to the first-differenced equation, you get the WG estimator (for <span class="math inline">\(T\geq2\)</span>).</p>
+</section>
+<section id="wu-hausman-test" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="wu-hausman-test"><span class="header-section-number">11</span> Wu-Hausman Test</h2>
+<p>The Wu-Hausman test is used to test the exogeneity assumption underlying a particular estimator. You need two estimators: <span class="math inline">\(\{\hat{\beta}_1, \hat{\beta}_2\}\)</span> such that,</p>
+<ul>
+<li><p>Under <span class="math inline">\(H_0: \beta_1=\beta_2\)</span></p></li>
+<li><p><span class="math inline">\(\hat{\beta}_1\)</span> is consistent</p></li>
+<li><p><span class="math inline">\(\hat{\beta}_2\)</span> is consistent</p></li>
+<li><p><span class="math inline">\(Var(\hat{\beta}_1|X)&lt;Var(\hat{\beta}_2|X)\)</span>: the former is more efficient</p></li>
+<li><p>Under <span class="math inline">\(H_1:  \beta_1\neq\beta_2\)</span></p></li>
+<li><p><span class="math inline">\(\hat{\beta}_1\)</span> is inconsistent</p></li>
+<li><p><span class="math inline">\(\hat{\beta}_2\)</span> is consistent</p></li>
+</ul>
+<p>The test statistic is given by,</p>
+<p><span class="math display">\[
+  \text{Stat} = (\hat{\beta}_2-\hat{\beta}_1)'\big(Var(\hat{\beta}_2-\hat{\beta}_1|X)\big)^{-1}(\hat{\beta}_2-\hat{\beta}_1)
+\]</span> Under <span class="math inline">\(H_0\)</span>, this statistic converges in distribution to <span class="math inline">\(\Chi_k\)</span>, where <span class="math inline">\(k\)</span> is the number of regressors. The inner matrix is the inverse of the variance-covariance matrix.</p>
+<p><span class="math display">\[
+\begin{aligned}
+Var(\hat{\beta}_2-\hat{\beta}_1|X) =&amp; Var(\hat{\beta}_2|X) + Var(\hat{\beta}_1|X)-2 Cov(\hat{\beta}_2,\hat{\beta}_1|X) \\
+=&amp;Var(\hat{\beta}_2|X)-Var(\hat{\beta}_1|X)
+\end{aligned}
+\]</span> Line 2 follows from line 1, because of a result demonstrated by Hausman (1978):</p>
+<p><span class="math display">\[
+0 = Cov(\hat{\beta}_1,\hat{\beta}_1-\hat{\beta}_2) = Var(\hat{\beta}_1)-Cov(\hat{\beta}_1,\hat{\beta}_2)
+\]</span> This result holds in cases where the variances of the respectively estimators can be ranked: i.e.&nbsp;one estimator is more efficient than the other. As a result, the <span class="math inline">\(Var(\hat{\beta}_2-\hat{\beta}_1|X)\)</span> matrix is positive definite. This implies that it’s inverse exists.</p>
+<p>This test can be applied in this setting to test the null: <span class="math inline">\(H_0: E[X_{it}\alpha_i] = 0\)</span> (i.e.&nbsp;uncorrelatedness). This condition must hold for the (F)GLS estimator to be consistent. If <span class="math inline">\(H_0\)</span> is false, then we know that the WG estimator is consistent, but that it is less efficient. To test this hypothesis we use the coefficients from the FGLS and WG estimators. Of course, this means that you can only test for restrictions on time-varying regressors (a restriction of WG estimator).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-cameron2005" class="csl-entry" role="listitem">
+Cameron, A Colin, and Pravin K Trivedi. 2005. <em>Microeconometrics: Methods and Applications</em>. Cambridge university press.
+</div>
+<div id="ref-verbeek2017" class="csl-entry" role="listitem">
+Verbeek, Marno. 2017. <em>A Guide to Modern Econometrics</em>. John Wiley &amp; Sons.
+</div>
+<div id="ref-wooldridge2010" class="csl-entry" role="listitem">
+Wooldridge, Jeffrey M. 2010. <em>Econometric Analysis of Cross Section and Panel Data</em>. MIT press.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>This restriction can be dropped using Mundlak’s correction.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

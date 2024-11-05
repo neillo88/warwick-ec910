@@ -255,12 +255,12 @@ We can prove this result as follows.
   Given it's positive definiteness, all eigenvalues in $\lambda$ are strictly positive. We can therefore define, 
   
   $$
-  \Lambda^{1/2} = \begin{bmatrix}\lambda_1^{1/2} & 0 & \dots & 0 \\ 0 & \lambda_2^{1/2} &  & \\
+  \Lambda^{1/2} = \begin{bmatrix}\lambda_1^{1/2} & 0 & \cdots & 0 \\ 0 & \lambda_2^{1/2} &  & \\
   \vdots & & \ddots & \\ 0 & & & \lambda_q^{1/2}\end{bmatrix}
   $$
   Likewise, 
   $$
-  \Lambda^{-1/2} = \begin{bmatrix}\lambda_1^{-1/2} & 0 & \dots & 0 \\ 0 & \lambda_2^{-1/2} &  & \\
+  \Lambda^{-1/2} = \begin{bmatrix}\lambda_1^{-1/2} & 0 & \cdots & 0 \\ 0 & \lambda_2^{-1/2} &  & \\
   \vdots & & \ddots & \\ 0 & & & \lambda_q^{-1/2}\end{bmatrix}
   $$
 This allows us to define, 

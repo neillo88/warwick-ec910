@@ -164,6 +164,10 @@ window.Quarto = {
     <a class="dropdown-item" href="./handout-4.html">
  <span class="dropdown-text">Handout 4</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-5.html">
+ <span class="dropdown-text">Handout 5</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -198,6 +202,10 @@ window.Quarto = {
         <li>
     <a class="dropdown-item" href="./problem-set-4.html">
  <span class="dropdown-text">Problem Set 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-4-solutions.html">
+ <span class="dropdown-text">Problem Set 4 (Solutions)</span></a>
   </li>  
     </ul>
   </li>
@@ -336,7 +344,7 @@ window.Quarto = {
 <p>For a sample of <span class="math inline">\(n\)</span> observations, we can stack the unit-level linear regression equation into a vector,</p>
 <p><span class="math display">\[
 Y =\underbrace{\begin{bmatrix}Y_1 \\ Y_2 \\ \vdots \\ Y_n \end{bmatrix}}_{n\times 1} = \underbrace{\begin{bmatrix}X_1'\beta \\ X_2'\beta \\ \vdots \\ X_n'\beta\end{bmatrix}}_{n\times 1}  + \underbrace{\begin{bmatrix}\varepsilon_1 \\ \varepsilon_2 \\ \vdots \\ \varepsilon_n\end{bmatrix}}_{n\times 1}  
-= \underbrace{\begin{bmatrix}X_{11} &amp; X_{12} &amp; \dots &amp; X_{1k}\\ X_{21} &amp; X_{22} &amp;&amp; \\ \vdots &amp; &amp; \ddots &amp; \\ X_{n1} &amp; &amp; &amp; X_{nk} \end{bmatrix}}_{n\times k} \underbrace{\begin{bmatrix}\beta_1 \\ \beta_2 \\ \vdots \\ \beta_k\end{bmatrix}}_{k\times 1} + \begin{bmatrix}\varepsilon_1 \\ \varepsilon_2 \\ \vdots \\ \varepsilon_n\end{bmatrix} = X\beta + \varepsilon
+= \underbrace{\begin{bmatrix}X_{11} &amp; X_{12} &amp; \cdots &amp; X_{1k}\\ X_{21} &amp; X_{22} &amp;&amp; \\ \vdots &amp; &amp; \ddots &amp; \\ X_{n1} &amp; &amp; &amp; X_{nk} \end{bmatrix}}_{n\times k} \underbrace{\begin{bmatrix}\beta_1 \\ \beta_2 \\ \vdots \\ \beta_k\end{bmatrix}}_{k\times 1} + \begin{bmatrix}\varepsilon_1 \\ \varepsilon_2 \\ \vdots \\ \varepsilon_n\end{bmatrix} = X\beta + \varepsilon
 \]</span> Notice, in matrix notation, you lose the transpose from <span class="math inline">\(X_i'\beta\)</span>. Apart from the absence of the <span class="math inline">\(i\)</span> subscript, this is a useful way of knowing the dimension of the equation (in my notes). You MUST always write <span class="math inline">\(X\beta\)</span> and not <span class="math inline">\(\beta X\)</span>. For the scalar case, <span class="math inline">\(X_i'\beta = \beta'X_i\)</span>, but for the vector case <span class="math inline">\(\beta X\)</span> is not defined since <span class="math inline">\(\beta\)</span> is <span class="math inline">\(k\times 1\)</span> and <span class="math inline">\(X\)</span> is <span class="math inline">\(n\times k\)</span>.</p>
 </section>
 </section>

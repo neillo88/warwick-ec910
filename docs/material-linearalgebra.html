@@ -144,6 +144,10 @@ window.Quarto = {
     <a class="dropdown-item" href="./handout-4.html">
  <span class="dropdown-text">Handout 4</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-5.html">
+ <span class="dropdown-text">Handout 5</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -178,6 +182,10 @@ window.Quarto = {
         <li>
     <a class="dropdown-item" href="./problem-set-4.html">
  <span class="dropdown-text">Problem Set 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-4-solutions.html">
+ <span class="dropdown-text">Problem Set 4 (Solutions)</span></a>
   </li>  
     </ul>
   </li>
@@ -256,7 +264,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="linear-dependence">Linear Dependence</h2>
 <p>Consider a set of <span class="math inline">\(k\)</span> <span class="math inline">\(n\)</span>-dimensional vectors <span class="math inline">\(\{X_{1},X_{2},...,X_{k}\}\)</span>. These vectors are,</p>
 <div id="def-linind1" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 1</strong></span> <em>linearly dependent</em> if there exists a set of scalars <span class="math inline">\(\{a_{1},a_{2},\dots,a_{k}\}\)</span> such that</p>
+<p><span class="theorem-title"><strong>Definition 1</strong></span> <em>linearly dependent</em> if there exists a set of scalars <span class="math inline">\(\{a_{1},a_{2},\cdots,a_{k}\}\)</span> such that</p>
 <p><span class="math display">\[
 a_1X_1 + a_2X_2+\ldots+a_kX_k=0
 \]</span></p>
@@ -264,11 +272,11 @@ a_1X_1 + a_2X_2+\ldots+a_kX_k=0
 </div>
 <p>Alternatively, they are,</p>
 <div id="def-linind2" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 2</strong></span> <em>linearly independent</em> if the only set of scalars <span class="math inline">\(\{a_{1},a_{2},\dots,a_{k}\}\)</span> that satisfies the above condition is <span class="math inline">\(a_1,a_2,\dots,a_k=0\)</span>.</p>
+<p><span class="theorem-title"><strong>Definition 2</strong></span> <em>linearly independent</em> if the only set of scalars <span class="math inline">\(\{a_{1},a_{2},\cdots,a_{k}\}\)</span> that satisfies the above condition is <span class="math inline">\(a_1,a_2,\cdots,a_k=0\)</span>.</p>
 </div>
-<p>If we collect these <span class="math inline">\(k\)</span> column-vectors in a matrix, <span class="math inline">\(X=[X_1\;X_2 \dots X_k]\)</span>, then the linear dependence condition can be written as,</p>
+<p>If we collect these <span class="math inline">\(k\)</span> column-vectors in a matrix, <span class="math inline">\(X=[X_1\;X_2 \cdots X_k]\)</span>, then the linear dependence condition can be written as,</p>
 <p><span class="math display">\[
-a_1X_1 + a_2X_2+\ldots+a_kX_k=\begin{bmatrix} X_1\;X_2 \dots X_k\end{bmatrix}\begin{bmatrix}a_1\\a_2\\\vdots\\a_k\end{bmatrix}=Xa = 0
+a_1X_1 + a_2X_2+\ldots+a_kX_k=\begin{bmatrix} X_1\;X_2 \cdots X_k\end{bmatrix}\begin{bmatrix}a_1\\a_2\\\vdots\\a_k\end{bmatrix}=Xa = 0
 \]</span></p>
 <p>Given any <span class="math inline">\(n\times k\)</span> matrix <span class="math inline">\(X\)</span>, its columns are,</p>
 <div id="def-lindep1" class="theorem definition">
@@ -295,7 +303,7 @@ a_1X_1 + a_2X_2+\ldots+a_kX_k=\begin{bmatrix} X_1\;X_2 \dots X_k\end{bmatrix}\be
 <p><span class="theorem-title"><strong>Definition 6</strong></span> A <em>vector space</em>, denoted <span class="math inline">\(\mathcal{V}\)</span>, refers to a set of vectors which is closed under finite addition and scalar multiplication.</p>
 </div>
 <div id="def-basis" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 7</strong></span> A set of <span class="math inline">\(k\)</span> linearly independent vectors, <span class="math inline">\(\{X_1,X_2,\dots,X_k\}\)</span>, forms a <em>basis</em> for vector space <span class="math inline">\(\mathcal{V}\)</span> if <span class="math inline">\(\forall\;y\in\mathcal{V}\)</span> there exists a set of <span class="math inline">\(k\)</span> scalars such that, <span class="math display">\[
+<p><span class="theorem-title"><strong>Definition 7</strong></span> A set of <span class="math inline">\(k\)</span> linearly independent vectors, <span class="math inline">\(\{X_1,X_2,\cdots,X_k\}\)</span>, forms a <em>basis</em> for vector space <span class="math inline">\(\mathcal{V}\)</span> if <span class="math inline">\(\forall\;y\in\mathcal{V}\)</span> there exists a set of <span class="math inline">\(k\)</span> scalars such that, <span class="math display">\[
 y=X_1b_1+X_2b_2+\ldots+X_kb_k
 \]</span></p>
 </div>
@@ -473,14 +481,14 @@ f(x) = A'x
 \]</span> for any <span class="math inline">\(m\times n\)</span> matrix A,</p>
 <p><span class="math display">\[
   A = \begin{bmatrix}a_1' \\ a_2' \\ \vdots \\ a_m'\end{bmatrix}
-\]</span> where <span class="math inline">\(a_i\in R^n\;\forall i=1,\dots,m\)</span> and,</p>
+\]</span> where <span class="math inline">\(a_i\in R^n\;\forall i=1,\cdots,m\)</span> and,</p>
 <p><span class="math display">\[
   Ax = \begin{bmatrix}a_1'x \\ a_2'x \\ \vdots \\ a_m'x\end{bmatrix}
 \]</span> Note, <span class="math inline">\(f(x)=Ax\in R^m\)</span>, a <span class="math inline">\(m\times 1\)</span> vector. We can then define,</p>
 <p><span class="math display">\[
   \begin{aligned}
-  \frac{\partial Ax}{\partial x'} &amp; = \begin{bmatrix}\frac{\partial a_1'x}{\partial x_1} &amp; \frac{\partial a_1'x}{\partial x_2} &amp; \dots &amp; \frac{\partial a_1'x}{\partial x_n}\\ \frac{\partial a_2'x}{\partial x_1} &amp; \frac{\partial a_2'x}{\partial x_2} &amp; \dots &amp; \frac{\partial a_2'x}{\partial x_n}\\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\ \frac{\partial a_m'x}{\partial x_1} &amp; \frac{\partial a_m'x}{\partial x_2} &amp; \dots &amp; \frac{\partial a_m'x}{\partial x_n}\\ \end{bmatrix} \\
-  &amp; = \begin{bmatrix} a_{11} &amp; a_{12} &amp; \dots &amp; a_{1n} \\ a_{21} &amp; a_{22} &amp; \dots &amp; a_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\ a_{m1} &amp; a_{m2} &amp; \dots &amp; a_{mn} \\ \end{bmatrix} \\
+  \frac{\partial Ax}{\partial x'} &amp; = \begin{bmatrix}\frac{\partial a_1'x}{\partial x_1} &amp; \frac{\partial a_1'x}{\partial x_2} &amp; \cdots &amp; \frac{\partial a_1'x}{\partial x_n}\\ \frac{\partial a_2'x}{\partial x_1} &amp; \frac{\partial a_2'x}{\partial x_2} &amp; \cdots &amp; \frac{\partial a_2'x}{\partial x_n}\\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\ \frac{\partial a_m'x}{\partial x_1} &amp; \frac{\partial a_m'x}{\partial x_2} &amp; \cdots &amp; \frac{\partial a_m'x}{\partial x_n}\\ \end{bmatrix} \\
+  &amp; = \begin{bmatrix} a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\ a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn} \\ \end{bmatrix} \\
   &amp; = A
   \end{aligned}
 \]</span></p>

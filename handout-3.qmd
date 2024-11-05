@@ -45,7 +45,7 @@ As we saw, we can stack each observation into a column vector:
 
 $$
 Y =\underbrace{\begin{bmatrix}Y_1 \\ Y_2 \\ \vdots \\ Y_n \end{bmatrix}}_{n\times 1} = \underbrace{\begin{bmatrix}X_1'\beta \\ X_2'\beta \\ \vdots \\ X_n'\beta\end{bmatrix}}_{n\times 1}  + \underbrace{\begin{bmatrix}u_1 \\ u_2 \\ \vdots \\ u_n\end{bmatrix}}_{n\times 1}  
-= \underbrace{\begin{bmatrix}X_{11} & X_{12} & \dots & X_{1k}\\ X_{21} & X_{22} && \\ \vdots & & \ddots & \\ X_{n1} & & & X_{nk} \end{bmatrix}}_{n\times k} \underbrace{\begin{bmatrix}\beta_1 \\ \beta_2 \\ \vdots \\ \beta_k\end{bmatrix}}_{k\times 1} + \begin{bmatrix}u_1 \\ u_2 \\ \vdots \\ u_n\end{bmatrix} = X\beta + u
+= \underbrace{\begin{bmatrix}X_{11} & X_{12} & \cdots & X_{1k}\\ X_{21} & X_{22} && \\ \vdots & & \ddots & \\ X_{n1} & & & X_{nk} \end{bmatrix}}_{n\times k} \underbrace{\begin{bmatrix}\beta_1 \\ \beta_2 \\ \vdots \\ \beta_k\end{bmatrix}}_{k\times 1} + \begin{bmatrix}u_1 \\ u_2 \\ \vdots \\ u_n\end{bmatrix} = X\beta + u
 $$
 
 where $X$ is now a $n\times k$ random matrix, but $\beta$ remains a non-random k-vector of population parameters.
@@ -161,7 +161,7 @@ The variance of the estimator depends on the variance of the error term, the une
 Under the assumption CLRM 3 of homoskedasticity,
 
 $$
-Var(u|X) = \sigma^2 I_n = \begin{bmatrix}\sigma^2& 0 & \dots & 0 \\
+Var(u|X) = \sigma^2 I_n = \begin{bmatrix}\sigma^2& 0 & \cdots & 0 \\
 0 & \sigma^2 & & \\
 \vdots & & \ddots & \\
 0 & & & \sigma^2\end{bmatrix}
@@ -180,7 +180,7 @@ $$
 If we made a different assumption of heteroskedasticty (CLRM 3), then
 
 $$
-Var(u|X) = \begin{bmatrix}\sigma^2_1& 0 & \dots & 0 \\
+Var(u|X) = \begin{bmatrix}\sigma^2_1& 0 & \cdots & 0 \\
 0 & \sigma^2_2 & & \\
 \vdots & & \ddots & \\
 0 & & & \sigma^2_n\end{bmatrix} = \Omega
