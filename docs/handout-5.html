@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Panel Data Models – EC910</title>
+<title>Linear Panel Data Models – EC910</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -254,7 +254,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a></li>
-  <li><a href="#model-specification" id="toc-model-specification" class="nav-link" data-scroll-target="#model-specification"><span class="header-section-number">2</span> Model Specification</a>
+  <li><a href="#panel-data-regression-model" id="toc-panel-data-regression-model" class="nav-link" data-scroll-target="#panel-data-regression-model"><span class="header-section-number">2</span> Panel Data Regression Model</a>
   <ul class="collapse">
   <li><a href="#unobserved-heterogeneity" id="toc-unobserved-heterogeneity" class="nav-link" data-scroll-target="#unobserved-heterogeneity"><span class="header-section-number">2.1</span> Unobserved heterogeneity</a></li>
   </ul></li>
@@ -264,21 +264,22 @@ window.Quarto = {
   <li><a href="#weak-exogeneity" id="toc-weak-exogeneity" class="nav-link" data-scroll-target="#weak-exogeneity"><span class="header-section-number">3.2</span> Weak exogeneity</a></li>
   <li><a href="#contemporaneous-exogeneity" id="toc-contemporaneous-exogeneity" class="nav-link" data-scroll-target="#contemporaneous-exogeneity"><span class="header-section-number">3.3</span> Contemporaneous exogeneity</a></li>
   </ul></li>
-  <li><a href="#basic-model" id="toc-basic-model" class="nav-link" data-scroll-target="#basic-model"><span class="header-section-number">4</span> Basic model</a></li>
+  <li><a href="#static-linear-panel-model" id="toc-static-linear-panel-model" class="nav-link" data-scroll-target="#static-linear-panel-model"><span class="header-section-number">4</span> Static Linear Panel Model</a></li>
   <li><a href="#pooled-ols" id="toc-pooled-ols" class="nav-link" data-scroll-target="#pooled-ols"><span class="header-section-number">5</span> Pooled OLS</a></li>
-  <li><a href="#between-group-estimator" id="toc-between-group-estimator" class="nav-link" data-scroll-target="#between-group-estimator"><span class="header-section-number">6</span> Between-Group estimator</a></li>
+  <li><a href="#between-group" id="toc-between-group" class="nav-link" data-scroll-target="#between-group"><span class="header-section-number">6</span> Between Group</a></li>
   <li><a href="#generalized-least-squares" id="toc-generalized-least-squares" class="nav-link" data-scroll-target="#generalized-least-squares"><span class="header-section-number">7</span> Generalized Least Squares</a>
   <ul class="collapse">
   <li><a href="#feasible-gls" id="toc-feasible-gls" class="nav-link" data-scroll-target="#feasible-gls"><span class="header-section-number">7.1</span> Feasible GLS</a></li>
   </ul></li>
-  <li><a href="#within-group-estimator" id="toc-within-group-estimator" class="nav-link" data-scroll-target="#within-group-estimator"><span class="header-section-number">8</span> Within-Group Estimator</a></li>
-  <li><a href="#conditional-variance" id="toc-conditional-variance" class="nav-link" data-scroll-target="#conditional-variance"><span class="header-section-number">9</span> Conditional variance</a>
+  <li><a href="#within-group" id="toc-within-group" class="nav-link" data-scroll-target="#within-group"><span class="header-section-number">8</span> Within Group</a>
   <ul class="collapse">
-  <li><a href="#consistency-and-asymptotic-distribution" id="toc-consistency-and-asymptotic-distribution" class="nav-link" data-scroll-target="#consistency-and-asymptotic-distribution"><span class="header-section-number">9.1</span> Consistency and asymptotic distribution</a></li>
-  <li><a href="#fixed-effects-estimator" id="toc-fixed-effects-estimator" class="nav-link" data-scroll-target="#fixed-effects-estimator"><span class="header-section-number">9.2</span> Fixed-effects estimator</a></li>
+  <li><a href="#conditional-variance" id="toc-conditional-variance" class="nav-link" data-scroll-target="#conditional-variance"><span class="header-section-number">8.1</span> Conditional variance</a></li>
+  <li><a href="#consistency-and-asymptotic-distribution" id="toc-consistency-and-asymptotic-distribution" class="nav-link" data-scroll-target="#consistency-and-asymptotic-distribution"><span class="header-section-number">8.2</span> Consistency and asymptotic distribution</a></li>
+  <li><a href="#fixed-effects" id="toc-fixed-effects" class="nav-link" data-scroll-target="#fixed-effects"><span class="header-section-number">8.3</span> Fixed Effects</a></li>
   </ul></li>
-  <li><a href="#first-difference-estimator" id="toc-first-difference-estimator" class="nav-link" data-scroll-target="#first-difference-estimator"><span class="header-section-number">10</span> First-Difference Estimator</a></li>
-  <li><a href="#wu-hausman-test" id="toc-wu-hausman-test" class="nav-link" data-scroll-target="#wu-hausman-test"><span class="header-section-number">11</span> Wu-Hausman Test</a></li>
+  <li><a href="#first-difference" id="toc-first-difference" class="nav-link" data-scroll-target="#first-difference"><span class="header-section-number">9</span> First Difference</a></li>
+  <li><a href="#wu-hausman-test" id="toc-wu-hausman-test" class="nav-link" data-scroll-target="#wu-hausman-test"><span class="header-section-number">10</span> Wu-Hausman Test</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">11</span> References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="handout-5.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -287,7 +288,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Panel Data Models</h1>
+<h1 class="title">Linear Panel Data Models</h1>
 </div>
 
 
@@ -306,12 +307,13 @@ window.Quarto = {
 
 <section id="overview" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1</span> Overview</h2>
-<p>In this handout we will see how to test <strong>static linear</strong> panel data models. We will review a number of estimators for these models, including:</p>
+<p>In this handout we will see how to test <strong>static linear</strong> panel data regression models. We will review a number of estimators for these models, including a range of potential estimators:</p>
 <ul>
-<li>within-group;</li>
-<li>first differences;</li>
+<li>pooled OLS;</li>
 <li>between-group;</li>
-<li>and feasible GLS.</li>
+<li>feasible GLS;</li>
+<li>within-group;</li>
+<li>and first differences.</li>
 </ul>
 <p>Further reading can be found in:</p>
 <ul>
@@ -319,13 +321,14 @@ window.Quarto = {
 <li>Section 10.1-10.3 of <span class="citation" data-cites="verbeek2017">Verbeek (<a href="#ref-verbeek2017" role="doc-biblioref">2017</a>)</span></li>
 </ul>
 </section>
-<section id="model-specification" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="model-specification"><span class="header-section-number">2</span> Model Specification</h2>
-<p>A static linear model has the form,</p>
+<section id="panel-data-regression-model" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="panel-data-regression-model"><span class="header-section-number">2</span> Panel Data Regression Model</h2>
+<p>The basic, linear panel-data-regression model is given by,</p>
 <p><span class="math display">\[
   Y_{it} = X_{it}'\beta + \alpha_i + \varepsilon_{it}
 \]</span></p>
-<p>for <span class="math inline">\(i=1,..,n\)</span> and <span class="math inline">\(t = 1,...,T\)</span>. We will restrict this discussion to models where <span class="math inline">\(T\)</span> is fixed. Asymptotically, this means that as <span class="math inline">\(n\)</span> increases <span class="math inline">\(T\)</span> remains fixed.</p>
+<p>for <span class="math inline">\(i=1,..,n\)</span> and <span class="math inline">\(t = 1,...,T\)</span>. By basic, we mean <em>static</em>. The contrast would be dynamic panel data models, which include lag(s) (and/or leads) of the outcome variable on the right-hand side. In dynamic models, the long-run (equilibrium) relationship between outcome and regressors differs from the short-run (or contemporaneous) relationship. This is the result of including a lagged dependent variable. This static model, can incorporate lags (and/or leads) of regressors; although, you may then need to consider carefully the exogeneity assumption if strict exogeneity does not apply.</p>
+<p>For the purposes of this discussion, we will treat <span class="math inline">\(T\)</span> as fixed. As <span class="math inline">\(n\)</span> increases, <span class="math inline">\(T\)</span> remains fixed, implying that the asymptotics concern only <span class="math inline">\(n\)</span>.</p>
 <p>If collect all <span class="math inline">\(T\)</span> observations of unit <span class="math inline">\(i\)</span>, we can describe them by the model,</p>
 <p><span class="math display">\[
   Y_{i} = X_{i}'\beta + \alpha_i\ell + \varepsilon_i
@@ -337,10 +340,10 @@ window.Quarto = {
 \]</span> Time fixed-effects are essentially a dummy variable for each time-period. This flexible function - sometimes referred to as saturated - can approximate any functional form of the underlying time trend. Models that include both <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(\delta_t\)</span> are referred to as <strong>two-way fixed-effects</strong> models.</p>
 <section id="unobserved-heterogeneity" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="unobserved-heterogeneity"><span class="header-section-number">2.1</span> Unobserved heterogeneity</h3>
-<p>The term <span class="math inline">\(\alpha_i\)</span> is particularly important. It represents time-invariant unobservables or <strong>unobserved heterogeneity</strong> across <span class="math inline">\(i\)</span>. I strongly recommend you read the discussion on pages 285-286 of <span class="citation" data-cites="wooldridge2010">Wooldridge (<a href="#ref-wooldridge2010" role="doc-biblioref">2010</a>)</span>.</p>
-<p>The <span class="math inline">\(\alpha_i\)</span> is unobserved, and therefore is a component of the error term <span class="math inline">\(\upsilon_{it} = \alpha_i + \varepsilon_{it}\)</span>. The time-invariant component of the error is <em>permanent</em>; often referred to as unobserved heterogeneity or individual effect. The time-varying component is <em>transient</em>; sometimes referred to as the idiosyncratic error.</p>
-<p>As with the time-varying part of the error term, <span class="math inline">\(\alpha_{i}\)</span> is <span class="math inline">\(random\)</span>. We should not think of <span class="math inline">\(\alpha_i\)</span> as a unit-specific intercept, since then it is just a non-random parameter. This would imply that the correlation between <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(X_i\)</span> is by definition 0.</p>
-<p>Given the model specification, we must consider all three components - <span class="math inline">\(\{X_i,\alpha_i,\varepsilon_{it}\}\)</span> - when making assumptions regarding exogeneity. <strong>We will make all assumptions conditional on <span class="math inline">\(\alpha_i\)</span>.</strong> This is consistent with the idea that <span class="math inline">\(\alpha_i\)</span> is a permanent shock, and is therefore realized before <span class="math inline">\(\varepsilon_it\)</span>.</p>
+<p>The term <span class="math inline">\(\alpha_i\)</span> is particularly important. It represents an unobserved individual effect or <strong>unobserved heterogeneity</strong>. I strongly recommend you read the discussion on pages 285-286 of <span class="citation" data-cites="wooldridge2010">Wooldridge (<a href="#ref-wooldridge2010" role="doc-biblioref">2010</a>)</span>. You should not refer to <span class="math inline">\(\alpha_i\)</span> as individual <strong>fixed-effects</strong>.</p>
+<p>The language of fixed-effects comes from models where <span class="math inline">\(\alpha_i\)</span> is a unit-specific (population) parameter. As a parameter, it is by definition non-random. This would imply that the correlation between <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(X_i\)</span> is by definition 0. Here <span class="math inline">\(\alpha_i\)</span> is an unobserved random variable. <span class="citation" data-cites="wooldridge2010">Wooldridge (<a href="#ref-wooldridge2010" role="doc-biblioref">2010</a>)</span> refers to it as an unobserved effects model (UEM). The term random effects model is often used to describe UEM models where the individual effect is (mean) independent.</p>
+<p>The <span class="math inline">\(\alpha_i\)</span> is unobserved, and therefore is a component of the <strong>composite error term</strong> <span class="math inline">\(\upsilon_{it} = \alpha_i + \varepsilon_{it}\)</span>. The time-invariant component (<span class="math inline">\(\alpha_i\)</span>) of the error is <em>permanent</em>, while the time-varying component (<span class="math inline">\(\varepsilon_{it}\)</span>) is <em>transient</em>; also referred to as the idiosyncratic error.</p>
+<p>Given the model, we must consider all three components on the right-hand side - <span class="math inline">\(\{X_i,\alpha_i,\varepsilon_{it}\}\)</span> - when making assumptions regarding exogeneity. <strong>We will make all assumptions conditional on <span class="math inline">\(\alpha_i\)</span>.</strong> This is consistent with the idea that <span class="math inline">\(\alpha_i\)</span> is a permanent shock, and is therefore realized before <span class="math inline">\(\varepsilon_it\)</span>.</p>
 <p>If we do not condition on <span class="math inline">\(\alpha_i\)</span>, then when we evaluate <span class="math inline">\(E[Y_i|X_i]\)</span>, we also need to consider both <span class="math inline">\(E[\varepsilon_i|X_i]\)</span> and <span class="math inline">\(E[\alpha_i|X_i]\)</span>; not just <span class="math inline">\(E[\varepsilon_i|X_i,\alpha_i]\)</span>. Moreover, in general it will be that case that <span class="math inline">\(E[\alpha_i|X_i]\neq E[\alpha_i]\)</span> (i.e., not mean independent). For example, <span class="math inline">\(\alpha_i\)</span> may represent unobserved ability in a wage equation. This will correlated with regressors like education.</p>
 </section>
 </section>
@@ -394,44 +397,42 @@ E[Y_{it}|X_i,\alpha_i] = E[Y_{it}|X_{it},\alpha_i] = X_{it}'\beta + \alpha_i
 \]</span></p>
 </section>
 </section>
-<section id="basic-model" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="basic-model"><span class="header-section-number">4</span> Basic model</h2>
-<p>We begin by describe a basic model under the Static Linear Panel Model (SLPM) assumptions,</p>
-<p><strong>SLPM 1</strong>: The model is static and linear in parameters:</p>
+<section id="static-linear-panel-model" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="static-linear-panel-model"><span class="header-section-number">4</span> Static Linear Panel Model</h2>
+<p>We begin by describing the core assumptions underlying the static (or basic) panel data regression model (SLPM) assumptions. Many of these will be familiar to you</p>
+<p><strong>SLPM 1</strong>: The model is static and linear in parameters with a composite error term made up of a time-invariant and time-varying component:</p>
 <p><span class="math display">\[
 Y_{it} = X_{it}'\beta + \alpha_i + \varepsilon_{it}
 \]</span></p>
-<p><strong>SLPM 2:</strong> Balanced panel: we observe each <span class="math inline">\(i\)</span> in all <span class="math inline">\(T\)</span> time periods.</p>
-<p><strong>SLPM 3:</strong> Independent sampling along the cross-sectional dimension (<span class="math inline">\(i\)</span>).</p>
-<p><strong>SLPM 4:</strong> Strict exogeneity: <span class="math inline">\(E[\varepsilon_{it}|X_i,\alpha_i] = 0\; \forall\;t\)</span></p>
-<p><strong>SLPM 5:</strong> Conditional homoskedasticity and serial uncorrelatedness of the transient error term component.</p>
+<p><strong>SLPM 2:</strong> Strict exogeneity: <span class="math inline">\(E[\varepsilon_{it}|X_i,\alpha_i] = 0\; \forall\;t\)</span></p>
+<p><strong>SLPM 3:</strong> Conditional homoskedasticity and serial uncorrelatedness of the transient error term component.</p>
 <p><span class="math display">\[
 Var(\varepsilon_i|X_i,\alpha_i) = \begin{bmatrix}\sigma^2_\varepsilon &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; \sigma^2_\varepsilon &amp; &amp; \\ \vdots &amp; &amp; \ddots &amp; \\ 0 &amp; &amp; &amp; \sigma^2_\varepsilon \end{bmatrix} = \sigma^2_\varepsilon I_T
-\]</span> Assumptions 4 &amp; 5 are referred to as a ‘classical error term’ structure.</p>
-<p>Under assumptions 1-5:</p>
+\]</span></p>
+<p>Together, assumptions 2 &amp; 3 are referred to as a ‘classical error term’ structure. Of course, since the model is linear, we need a rank condition. Without placing any additional assumptions on the variation of <span class="math inline">\(X_{it}\)</span>, we need to assume that:</p>
+<p><strong>SLPM 4:</strong> <span class="math inline">\(rank(X) = k\)</span></p>
+<p>Next, we need to consider sampling.</p>
+<p><strong>SLPM 5:</strong> Independent sampling along the cross-sectional dimension (<span class="math inline">\(i\)</span>).</p>
+<p><strong>SLPM 6:</strong> Balanced panel: we observe each <span class="math inline">\(i\)</span> in all <span class="math inline">\(T\)</span> time periods.</p>
+<p>Under assumptions 1-3, and 4-5:</p>
 <ul>
 <li><p><span class="math inline">\(E[Y_i|X_i,\alpha_i]  = X_i'\beta + \alpha_i\ell\)</span></p></li>
 <li><p><span class="math inline">\(Var(Y_i|X_i,\alpha_i) = \sigma^2_{\varepsilon}I_T\)</span></p></li>
 </ul>
 <p>At this stage, the unanswered question is how to deal with the unobservables <span class="math inline">\(\alpha_i\)</span> in the equation. Generally, there are two approaches:</p>
 <ol type="1">
-<li><p>Assume away the relationship between <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(X_i\)</span>.</p></li>
-<li><p>Remove <span class="math inline">\(\alpha_i\)</span> from the equation prior to estimator; for example, within-group estimator and first-difference.</p></li>
+<li><p>assume away the relationship between <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(X_i\)</span>;</p></li>
+<li><p>or remove <span class="math inline">\(\alpha_i\)</span> from the equation prior to estimator.</p></li>
 </ol>
-<p>Adopting approach (1), we will review the pooled OLS, between-group, and (feasible) Generalized Least Squares (GLS) estimators. Under approach (2), will review the within-group and first-difference estimators.</p>
+<p>Adopting approach (1), we will review the pooled OLS, between-group, and (feasible) Generalized Least Squares (GLS) estimators. Under approach (2), will review the within-group, fixed effects, and first-difference estimators.</p>
 </section>
 <section id="pooled-ols" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="pooled-ols"><span class="header-section-number">5</span> Pooled OLS</h2>
 <p>We can ‘assume away’ the relationship between <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(X_i\)</span>. Specifically, we will assume conditional mean independence:</p>
 <ul>
-<li><strong>CLPM 6</strong> <span class="math inline">\(E[\alpha_i|X_i] = E[\alpha_i|X_{i1},X_{i2},...,X_{iT}] = E[\alpha_i]=0\)</span></li>
+<li><strong>SLPM 7</strong> <span class="math inline">\(E[\alpha_i|X_i] = E[\alpha_i|X_{i1},X_{i2},...,X_{iT}] = E[\alpha_i]=0\)</span></li>
 </ul>
-<p>As in the CLRM, the assumption that the unconditional mean of <span class="math inline">\(\alpha_i\)</span> is zero is not binding given the inclusion of a constant among the regressors. We will of course, need to assume that there is no perfect colinearity among the regressors.</p>
-<ul>
-<li><strong>CLPM 7</strong> <span class="math inline">\(rank(X)=k\)</span></li>
-</ul>
-<p>In addition, we will need to make assumptions concerning <span class="math inline">\(\alpha_i\)</span>. First, mean independence,</p>
-<p>This implies uncorrelatedness. Under this assumptions, the model can be written as,</p>
+<p>As in the CLRM, the assumption that the unconditional mean of <span class="math inline">\(\alpha_i\)</span> is zero is not binding given the inclusion of a constant among the regressors. This also implies uncorrelatedness: <span class="math inline">\(E[X_i\alpha_i]=0\)</span>. Under this assumptions, the model can be written as,</p>
 <p><span class="math display">\[
   Y_{it} = X_{it}'\beta + \upsilon_{it}
 \]</span> where <span class="math inline">\(E[\upsilon_{i}|X_i]=0\)</span>. Alternatively, we can stack all <span class="math inline">\(nT\)</span> observations together,</p>
@@ -440,12 +441,12 @@ Var(\varepsilon_i|X_i,\alpha_i) = \begin{bmatrix}\sigma^2_\varepsilon &amp; 0 &a
 \]</span></p>
 <p>Second, we need to make an assumption regarding the variance of the unobserved heterogeneity:</p>
 <ul>
-<li><strong>CLPM 8</strong> <span class="math inline">\(Var(\alpha_i|X_i) = \sigma^2_\alpha\)</span></li>
+<li><strong>SLPM 8</strong> <span class="math inline">\(Var(\alpha_i|X_i) = \sigma^2_\alpha\)</span></li>
 </ul>
 <p>Under these assumptions, the error term <span class="math inline">\(\upsilon_i = \alpha_i\ell + \varepsilon_i\)</span> has the variance,</p>
 <p><span class="math display">\[
-Var(\upsilon_i |X_i) = E[\upsilon_i\upsilon_i' |X_i] = \sigma^2_\alpha\ell\ell' + \sigma^2_\varepsilon I_T = \Omega
-\]</span> For all <span class="math inline">\(s\neq t\)</span> the <span class="math inline">\(Cov(\upsilon_{it},\upsilon_{is}) = \sigma^2_\alpha\)</span>. And the diagonal elements are given by <span class="math inline">\(\sigma^2_\alpha + \sigma^2_\varepsilon\)</span>.</p>
+Var(\upsilon_i |X_i) = E[\upsilon_i\upsilon_i' |X_i] = \sigma^2_\alpha\ell\ell' + \sigma^2_\varepsilon I_T = \Sigma
+\]</span> For all <span class="math inline">\(s\neq t\)</span> the <span class="math inline">\(E[\upsilon_{it},\upsilon_{is}] = \sigma^2_\alpha\)</span>. And the diagonal elements are given by <span class="math inline">\(\sigma^2_\alpha + \sigma^2_\varepsilon\)</span>.</p>
 <p>Under these assumptions, the OLS estimator,</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -460,21 +461,22 @@ p \lim\frac{1}{n}\sum_iX_i'\upsilon_i = \sum_{t=1}^Tp \lim\frac{1}{n}\sum_{i=1}^
 <p><span class="math display">\[
 \begin{aligned}
 \sqrt{n}(\hat{\beta}^{OLS}-\beta) =&amp; \bigg(\frac{1}{n}\sum_iX_i'X_i\bigg)^{-1}\frac{1}{\sqrt{n}}\sum_iX_i'\upsilon_i \\
-\rightarrow_d&amp; N(0,V^{-1}\Sigma V^{-1})
+\rightarrow_d&amp; N(0,V^{-1}\Omega V^{-1})
 \end{aligned}
 \]</span> where,</p>
 <ul>
 <li><p><span class="math inline">\(V = E[X_i'X_i]\)</span></p></li>
-<li><p><span class="math inline">\(\Sigma = E[X_i'\Omega X_i]\)</span></p></li>
+<li><p><span class="math inline">\(\Omega = E[X_i'\Sigma X_i]\)</span></p></li>
 </ul>
 <p>We say that the approximate distribution of the pooled OLS estimator is given by,</p>
 <p><span class="math display">\[
-\hat{\beta}^{OLS} \overset{a}{\sim} N\bigg(\beta, \big(\sum_iX_i'X_i\big)^{-1}\sum_iX_i'\Omega X_i\big(\sum_iX_i'X_i\big)^{-1}\bigg)
+\hat{\beta}^{OLS} \overset{a}{\sim} N\bigg(\beta, \big(\sum_iX_i'X_i\big)^{-1}\sum_iX_i'\Sigma X_i\big(\sum_iX_i'X_i\big)^{-1}\bigg)
 \]</span></p>
-<p>However, it is NOT efficient. Moreover, the usual homoskedastic estimator for the variance will be biased and inconsistent. Unobserved heterogeneity will result in a serial correlation that is not accountant for by the standard estimator.</p>
+<p>Note, the variance is not homoskedastic. You must therefore estimate heteroskedastic (or clustered) standard errors. The usual homoskedastic estimator for the variance will be biased and inconsistent. Unobserved heterogeneity will result in a serial correlation across the error terms that is not accountant for by the standard estimator.</p>
+<p>For this reason, <strong>pooled OLS is NOT efficient</strong>.</p>
 </section>
-<section id="between-group-estimator" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="between-group-estimator"><span class="header-section-number">6</span> Between-Group estimator</h2>
+<section id="between-group" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="between-group"><span class="header-section-number">6</span> Between Group</h2>
 <p>An alternative to pooled OLS, is to collapse the multiple observations of unit <span class="math inline">\(i\)</span> into a single cross-section aggregate. This transforms the model into,</p>
 <p><span class="math display">\[
 \bar{Y}_{i} = \bar{X}_{i}'\beta+\bar{\upsilon}_{i}
@@ -485,19 +487,33 @@ E[\bar{\upsilon}_i^2|X_i] = \sigma^2_\alpha + \frac{\sigma^2_\varepsilon}{T}
 <p><span class="math display">\[
 \hat{\beta}^{BG} = (\bar{X}'\bar{X})^{-1}\bar{X}'\bar{Y} = \big(\sum_i\bar{X}_i\bar{X}_i'\big)^{-1}\sum_i\bar{X}_i\bar{Y}_i
 \]</span></p>
-<p>Since the variance term is homoskedastic, the standard homoskedastic variance estimator will unbiased and consistent. This approach removes the problem of serially correlated error terms across repeated observations of <span class="math inline">\(i\)</span> in pooled OLS by collapsing all observations to a single observation. However, it also reduces the information in the data and is therefore less efficient.</p>
+<p>Since the variance term is now homoskedastic, the standard homoskedastic variance estimator will unbiased and consistent. This approach removes the problem of serially correlated error terms across repeated observations of <span class="math inline">\(i\)</span> in pooled OLS by collapsing all observations to a single observation. However, it also reduces the information in the data and is therefore less efficient.</p>
 </section>
 <section id="generalized-least-squares" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="generalized-least-squares"><span class="header-section-number">7</span> Generalized Least Squares</h2>
-<p>This final approach takes seriously the structure of the composite error-term variance-covariance matrix,</p>
+<p>The efficient solution is to account for the error term structure in the estimation using Generalized Least Squares. The structure of the composite error-term variance-covariance matrix is,</p>
 <p><span class="math display">\[
-E[\upsilon_i\upsilon_i' |X_i] = \begin{bmatrix}
+\Sigma = \begin{bmatrix}
 \sigma^2_\alpha+\sigma^2_\varepsilon &amp; \sigma^2_\alpha &amp; \cdots &amp; \sigma^2_\alpha \\ \sigma^2_\alpha &amp; \sigma^2_\alpha+\sigma^2_\varepsilon &amp;  &amp; \\
 \vdots &amp; &amp; \ddots &amp; \\
 \sigma^2_\alpha &amp;  &amp;  &amp; \sigma^2_\alpha+\sigma^2_\varepsilon
 \end{bmatrix}
-\]</span> The <span class="math inline">\(nT\times nT\)</span> matrix, E[’ |X] is a block-diagonal matrix in which the off-diagonal values are <span class="math inline">\(E[\upsilon_{it}\upsilon_{js} |X]=\sigma^2_\alpha\)</span> only for <span class="math inline">\(i=j\)</span> and <span class="math inline">\(s\neq t\)</span>; and zero otherwise.</p>
-<p>The Generalized Least Squares solution say that if we transform the model in the following way, the resulting error term will be classical.</p>
+\]</span> The <span class="math inline">\(nT\times nT\)</span> matrix, <span class="math inline">\(E[\upsilon\upsilon' |X]\)</span>, is a block-diagonal matrix in which the off-diagonal values are <span class="math inline">\(E[\upsilon_{it}\upsilon_{js} |X]=\sigma^2_\alpha\)</span> only for <span class="math inline">\(i=j\)</span> and <span class="math inline">\(s\neq t\)</span>; and zero otherwise. We can describe this matrix using a Kronecker-product operator:</p>
+<p><span class="math display">\[
+E[\upsilon\upsilon' |X] = \begin{bmatrix}
+\Sigma &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; \Sigma &amp;  &amp; \\
+\vdots &amp; &amp; \ddots &amp; \\
+0 &amp;  &amp;  &amp; \Sigma
+\end{bmatrix} = I_{n}\otimes \Sigma  
+\]</span> In this <span class="math inline">\(nT\times nT\)</span> matrix, eacg off-diagonal element is a <span class="math inline">\(T\times T\)</span> matrix of 0’s, representing the cross-unit (<span class="math inline">\(i\)</span>) covariance terms.</p>
+<p>The Generalized Least Squares solution solves the following least squares problem:</p>
+<p><span class="math display">\[
+\hat{\beta}^{GLS} = \underset{b}{\arg \max} \quad (Y-Xb)'\Sigma^{-1}(Y-Xb)
+\]</span> which can be written as,</p>
+<p><span class="math display">\[
+\hat{\beta}^{GLS} = \underset{b}{\arg \max} \quad (Y^+-X^+b)'(Y^+-X^+b)
+\]</span> where <span class="math inline">\([Y^+,X^+]=[\Sigma^{-1/2}Y,\Sigma^{-1/2}X]\)</span>. In this instance, the net result of this linear transform of the model is give by,</p>
 <p><span class="math display">\[
 \underbrace{Y_{it}-\theta \bar{Y}_i}_{Y_{it}^+} = \underbrace{(X_{it}-\theta\bar{X}_i)}_{X_{it}^+}'\beta + \nu_{it}
 \]</span> where,</p>
@@ -522,21 +538,22 @@ E[\nu_{it}\nu_{is}|X_i] =&amp; E\big[\big((1-\theta)\alpha_i + \varepsilon_{it}-
 <p><span class="math display">\[
   \hat{\beta}^{GLS} = \big[\sum_iX_i^{+'}X_i^+\big]^{-1}\sum_iX_i^{+'}Y_i^+
 \]</span></p>
-<p>You can show that <span class="math inline">\(\hat{\beta}^{GLS}\)</span> is a weighted average of <span class="math inline">\(\hat{\beta}^{WG}\)</span> and <span class="math inline">\(\hat{\beta}^{BG}\)</span>. Also, take note of the fact that as <span class="math inline">\(T\rightarrow\infty\)</span>, <span class="math inline">\(\theta\rightarrow 1\)</span>. Thus, <span class="math inline">\(\hat{\beta}_{GLS}\rightarrow \hat{\beta}^{WG}\)</span> as <span class="math inline">\(T\rightarrow\infty\)</span>. In addition, if if <span class="math inline">\(\sigma^2_\alpha=0\)</span>, then <span class="math inline">\(\theta = 0\)</span> and <span class="math inline">\(\hat{\beta}^{GLS}=\hat{\beta}^{OLS}\)</span>, the pooled OLS estimator.</p>
+<p>You can show that <span class="math inline">\(\hat{\beta}^{GLS}\)</span> is a weighted average of <span class="math inline">\(\hat{\beta}^{BG}\)</span> and <span class="math inline">\(\hat{\beta}^{WG}\)</span> (see below). Also, take note of the fact that as <span class="math inline">\(T\rightarrow\infty\)</span>, <span class="math inline">\(\theta\rightarrow 1\)</span>. Thus, <span class="math inline">\(\hat{\beta}_{GLS}\rightarrow \hat{\beta}^{WG}\)</span> as <span class="math inline">\(T\rightarrow\infty\)</span>. In addition, if if <span class="math inline">\(\sigma^2_\alpha=0\)</span>, then <span class="math inline">\(\theta = 0\)</span> and <span class="math inline">\(\hat{\beta}^{GLS}=\hat{\beta}^{OLS}\)</span>, the pooled OLS estimator.</p>
 <p>However, this estimator is NOT feasible. This is because we do not observe <span class="math inline">\(\{\sigma^2_\alpha,\sigma^2_\varepsilon\}\)</span>.</p>
 <section id="feasible-gls" class="level3" data-number="7.1">
 <h3 data-number="7.1" class="anchored" data-anchor-id="feasible-gls"><span class="header-section-number">7.1</span> Feasible GLS</h3>
 <p>A feasible version of the GLS estimator is given by the following steps:</p>
 <ol type="1">
-<li><p>Estimate <span class="math inline">\(\sigma^2_\varepsilon\)</span> using the WG estimator.</p></li>
+<li><p>Estimate <span class="math inline">\(\sigma^2_\varepsilon\)</span> using the WG estimator (see below).</p></li>
 <li><p>Use the pooled OLS or BG estimator then estimate <span class="math inline">\(\sigma^2_\alpha\)</span>, using the value of <span class="math inline">\(\sigma^2_\varepsilon\)</span> from step 1. For example, the RSS from pooled OLS (divided by <span class="math inline">\(nT-k\)</span>) is a consistent estimator for <span class="math inline">\(\sigma^2_\varepsilon+\sigma^2_\alpha\)</span>. Similar, the RSS from BG estimator (divided by <span class="math inline">\(n-k\)</span>) is a consistent estimator for <span class="math inline">\(\sigma^2_\varepsilon/T+\sigma^2_\alpha\)</span>.</p></li>
-<li><p>Using the estimated <span class="math inline">\(\{\hat{\sigma}^2_\alpha,\hat{\sigma}^2_\varepsilon\}\)</span>, compute the transformed model and estimate using <span class="math inline">\(\hat{\beta}^{FGLS}\)</span> using OLS.</p></li>
+<li><p>Using the estimated <span class="math inline">\(\{\hat{\sigma}^2_\alpha,\hat{\sigma}^2_\varepsilon\}\)</span>, compute the transformed model (using <span class="math inline">\(\hat{\theta}\)</span>) and estimate using <span class="math inline">\(\hat{\beta}^{FGLS}\)</span> using OLS.</p></li>
 </ol>
+<p>In Stata, this estimator is referred to as the random effects estimtor within the <code>xtreg</code> package: <code>xtreg , re</code>.</p>
 </section>
 </section>
-<section id="within-group-estimator" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="within-group-estimator"><span class="header-section-number">8</span> Within-Group Estimator</h2>
-<p>The approach taken here is to transform the linear model such that <span class="math inline">\(\alpha_i\)</span> is eliminate from the equation. Having done so, we do not need to make any assumption regarding <span class="math inline">\(E[\alpha_i|X_i]\)</span>.</p>
+<section id="within-group" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="within-group"><span class="header-section-number">8</span> Within Group</h2>
+<p>The second approach to dealing with unobserved heterogeneity is to transform the model in such a way that <span class="math inline">\(\alpha_i\)</span> is eliminated. Having done so, we do not need to make any assumption regarding <span class="math inline">\(E[\alpha_i|X_i]\)</span>.</p>
 <p>Here we will exploit the fact that <span class="math inline">\(\alpha_i\)</span> is time-invariant. We begin by computing the unit-level average of the model. For the left-hand side,</p>
 <p><span class="math display">\[
 \bar{Y}_i = \frac{1}{T}\sum_{t=1}^T Y_{it}
@@ -552,10 +569,10 @@ E[\nu_{it}\nu_{is}|X_i] =&amp; E\big[\big((1-\theta)\alpha_i + \varepsilon_{it}-
 <p>This model can be estimated by OLS. The solution is given by,</p>
 <p><span class="math display">\[
 \hat{\beta}^{WG} = (\tilde{X}'\tilde{X})^{-1}\tilde{X}'\tilde{Y} = (\sum_{i=1}^n\tilde{X}_i'\tilde{X}_i)^{-1}\sum_{i=1}^n\tilde{X}_i'\tilde{Y}_i
-\]</span> where <span class="math inline">\(\tilde{X}_i\)</span> is a <span class="math inline">\(T\times k\)</span> matrix. <strong>Note, this is different to the standard cross-section expression$.</strong></p>
-<p>This solution assumes that the <span class="math inline">\(k\times k\)</span> matrix <span class="math inline">\(\sum_{i=1}^n\tilde{X}_i'\tilde{X}_i\)</span> is invertible. We must therefore assume,</p>
+\]</span> where <span class="math inline">\(\tilde{X}_i\)</span> is a <span class="math inline">\(T\times k\)</span> matrix. <strong>Note, this is different to the standard cross-section expression.</strong></p>
+<p>This solution assumes that the <span class="math inline">\(k\times k\)</span> matrix <span class="math inline">\(\sum_{i=1}^n\tilde{X}_i'\tilde{X}_i\)</span> is invertible. We must therefore make a modified rank assumption,</p>
 <ul>
-<li><strong>SLPM 7^b</strong>: <span class="math inline">\(rank(\tilde{X})=k\)</span></li>
+<li><strong>SLPM 4’</strong>: <span class="math inline">\(rank(\tilde{X})=k\)</span></li>
 </ul>
 <p>Given that <span class="math inline">\(\tilde{X}\)</span> is the within-group demeaned vale of <span class="math inline">\(X\)</span>, this implies the regressors must all be time-varying. In addition, if the model includes a time trend (including time-FEs), the included variables cannot vary uniformly with time. An example of this is age. If all units’ age values increase by the same amount each period, then</p>
 <p><span class="math display">\[
@@ -581,9 +598,8 @@ E[\nu_{it}\nu_{is}|X_i] =&amp; E\big[\big((1-\theta)\alpha_i + \varepsilon_{it}-
 <p><span class="math display">\[
 \hat{\beta}^{WG} = \beta +  (\sum_{i=1}^n\tilde{X}_i'\tilde{X}_i)^{-1}\sum_{i=1}^n\tilde{X}_i'\tilde{\varepsilon}_i
 \]</span></p>
-</section>
-<section id="conditional-variance" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="conditional-variance"><span class="header-section-number">9</span> Conditional variance</h2>
+<section id="conditional-variance" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="conditional-variance"><span class="header-section-number">8.1</span> Conditional variance</h3>
 <p>Given the demeaning of the model, the error term is no longer uncorrelated across <span class="math inline">\(t\)</span> for the same <span class="math inline">\(i\)</span>:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -593,18 +609,10 @@ E[\tilde{\varepsilon}_{is}\tilde{\varepsilon}_{it}|X] =&amp;E[(\varepsilon_{is}-
 -\sigma^2_{\varepsilon}/T \qquad \text{for}\quad s\neq t
 \end{cases}
 \end{aligned}
-\]</span> The off-diagonal elements for the same <span class="math inline">\(i\)</span> are the same for all time-periods. Collected together, this creates a block diagonal matrix, where covariance terms are zero for across different units.</p>
-<p><span class="math display">\[
-E[\tilde{\varepsilon}_{is}\tilde{\varepsilon}_{it}X]= \begin{bmatrix}
-\Omega &amp; 0 &amp; \cdots &amp; 0 \\
-0 &amp; \Omega &amp; &amp; \\
-\vdots &amp; &amp; \ddots &amp; \\
-0 &amp; &amp; &amp; \Omega
-\end{bmatrix}
-\]</span> with each <span class="math inline">\(T\times T\)</span> <span class="math inline">\(\Omega\)</span> matrix given by,</p>
+\]</span> The off-diagonal elements for the same <span class="math inline">\(i\)</span> are the same for all time-periods. Together, this gives us the <span class="math inline">\(T\times T\)</span> matrix,</p>
 <p><span class="math display">\[
 \begin{aligned}
-\Omega=&amp; E[\tilde{\varepsilon}_{i}\tilde{\varepsilon}_{i}'|X_i] \\
+\Sigma=&amp; E[\tilde{\varepsilon}_{i}\tilde{\varepsilon}_{i}'|X_i] \\
 =&amp;
 \begin{bmatrix}
 \sigma^2_{\varepsilon}(1-1/T) &amp; -\sigma^2_{\varepsilon}/T &amp; \cdots &amp; -\sigma^2_{\varepsilon}/T \\
@@ -622,21 +630,17 @@ E[\tilde{\varepsilon}_{i}\tilde{\varepsilon}_{i}'|X_i] =&amp; E[M_\ell\varepsilo
 =&amp; M_\ell\sigma^2_\varepsilon I_T M_\ell \\
 =&amp;\sigma^{2}_\varepsilon M_\ell
 \end{aligned}
-\]</span> Thus, <span class="math display">\[
-E[\tilde{\varepsilon}_{is}\tilde{\varepsilon}_{it}|X]= \sigma^{2}_\varepsilon\begin{bmatrix}
-M_\ell &amp; 0 &amp; \cdots &amp; 0 \\
-0 &amp; M_\ell &amp; &amp; \\
-\vdots &amp; &amp; \ddots &amp; \\
-0 &amp; &amp; &amp; M_\ell
-\end{bmatrix} = \sigma^{2}_\varepsilon M_{n\cdot\ell}
-\]</span> where the <span class="math inline">\(rank(M_{n\cdot\ell})=nT-n\)</span>. This follows from the fact that each <span class="math inline">\(M_\ell\)</span> has <span class="math inline">\(rank(M_\ell)=T-1\)</span>. The matrix <span class="math inline">\(M_{n\cdot\ell}\)</span> is a <span class="math inline">\(nT\times nT\)</span> matrix: a block diagonal matrix of <span class="math inline">\(n\)</span> <span class="math inline">\(M_\ell\)</span> matrices. With this we can now solve for the conditional variance of the WG estimator.</p>
+\]</span></p>
+<p>Thus, <span class="math display">\[
+E[\tilde{\varepsilon}\tilde{\varepsilon}'|X]=I_{n}\otimes \Sigma = \sigma^{2}_\varepsilon I_{n}\otimes M_\ell
+\]</span> where the <span class="math inline">\(rank(I_{n}\otimes M_\ell)=nT-n\)</span>. This follows from the fact that each <span class="math inline">\(M_\ell\)</span> has <span class="math inline">\(rank(M_\ell)=T-1\)</span>. The matrix <span class="math inline">\(M_{I_{n}\otimes M_\ell}\)</span> is a <span class="math inline">\(nT\times nT\)</span> matrix: a block diagonal matrix of <span class="math inline">\(n\)</span> <span class="math inline">\(M_\ell\)</span> matrices. With this we can now solve for the conditional variance of the WG estimator.</p>
 <p><span class="math display">\[
 \begin{aligned}
 Var(\hat{\beta}^{WG}|X) =&amp; (\tilde{X}'\tilde{X})^{-1}\tilde{X}'E[\tilde{\varepsilon}_{is}\tilde{\varepsilon}_{it}|X]\tilde{X}(\tilde{X}'\tilde{X})^{-1} \\
-=&amp; \sigma^2_\varepsilon(\tilde{X}'\tilde{X})^{-1}\tilde{X}'M_{n\cdot\ell}\tilde{X}(\tilde{X}'\tilde{X})^{-1} \\
+=&amp; \sigma^2_\varepsilon(\tilde{X}'\tilde{X})^{-1}\tilde{X}'(I_{n}\otimes M_\ell)\tilde{X}(\tilde{X}'\tilde{X})^{-1} \\
 =&amp; \sigma^2_\varepsilon(\tilde{X}'\tilde{X})^{-1}
 \end{aligned}
-\]</span> The final line follows from the fact that <span class="math inline">\(\tilde{X}=M_{n\cdot\ell}X\)</span> and <span class="math inline">\(M_{n\cdot\ell}\)</span> is an idempotent (orthogonal) projection matrix.</p>
+\]</span> The final line follows from the fact that <span class="math inline">\(\tilde{X}=(I_{n}\otimes M_\ell)X\)</span> and <span class="math inline">\(I_{n}\otimes M_\ell\)</span> is, itself, an idempotent projection matrix.</p>
 <p>An unbiased and consistent estimator for <span class="math inline">\(\sigma^2_\varepsilon\)</span> is given by,</p>
 <p><span class="math display">\[
 \hat{\sigma}^2_\varepsilon = \frac{RSS}{dof}=\frac{\sum_{i=1}^n\sum_{t=1}^T\big(Y_{it}-\bar{Y}_i-(X_{it}-\bar{X}_i)'\hat{\beta}^{WG}\big)^2}{nT-n-k}
@@ -648,10 +652,11 @@ RSS =&amp; \hat{\varepsilon}'\hat{\varepsilon} \\
 =&amp; Y'M_{n\ell}(I_{nT}-M_{n\ell}X(X'M_{n\ell}X)^{-1}X'M_{n\ell})M_{n\ell}Y \\
 =&amp; Y'\underbrace{(M_{n\ell}-M_{n\ell}X(X'M_{n\ell}X)^{-1}X'M_{n\ell})}_{M_+}Y
 \end{aligned}
-\]</span> This new matrix <span class="math inline">\(M_+\)</span> is also an idempotent projection matrix, with rank <span class="math inline">\(rank(M_+) = ran(M_{n\ell})-min{rank(M_{n\ell}),rank(X)} = nT-n-k\)</span>. As we saw with the CLRM, this term with have a <span class="math inline">\(\chi^2\)</span> distribution with dof equal to the rank of the orthogonal projection matrix.</p>
-<section id="consistency-and-asymptotic-distribution" class="level3" data-number="9.1">
-<h3 data-number="9.1" class="anchored" data-anchor-id="consistency-and-asymptotic-distribution"><span class="header-section-number">9.1</span> Consistency and asymptotic distribution</h3>
-<p>Under assumptions SLPM 1-6; especially 4 &amp; 5, <span class="math inline">\(\hat{\beta}^{WG}\)</span> is consistent,</p>
+\]</span> This new matrix <span class="math inline">\(M_+\)</span> is also an idempotent projection matrix, with rank <span class="math inline">\(rank(M_+) = rank(M_{n\ell})-\min\{rank(M_{n\ell}),rank(X)\} = nT-n-k\)</span>. As we saw with the CLRM, this term with have a <span class="math inline">\(\chi^2\)</span> distribution with dof equal to the rank of the projection matrix.</p>
+</section>
+<section id="consistency-and-asymptotic-distribution" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="consistency-and-asymptotic-distribution"><span class="header-section-number">8.2</span> Consistency and asymptotic distribution</h3>
+<p>Under assumptions SLPM 1-6, <span class="math inline">\(\hat{\beta}^{WG}\)</span> is consistent,</p>
 <p><span class="math display">\[
 \hat{\beta}^{WG}\rightarrow_p \beta \qquad \text{as}\quad n\rightarrow\infty
 \]</span> and asymptotically normal,</p>
@@ -663,17 +668,18 @@ RSS =&amp; \hat{\varepsilon}'\hat{\varepsilon} \\
   E[\bar{X}_i,\bar{\varepsilon}_i]=0
 \]</span> This would not be true under the weak exogeneity assumption.</p>
 </section>
-<section id="fixed-effects-estimator" class="level3" data-number="9.2">
-<h3 data-number="9.2" class="anchored" data-anchor-id="fixed-effects-estimator"><span class="header-section-number">9.2</span> Fixed-effects estimator</h3>
-<p>The above estimator is sometimes referred to as the (unit) Fixed-Effects estimator. This not not mean that <span class="math inline">\(\alpha_i\)</span> is non-random. It simply means that the within-group estimator is also given by a fixed-effects model. Consider the model,</p>
+<section id="fixed-effects" class="level3" data-number="8.3">
+<h3 data-number="8.3" class="anchored" data-anchor-id="fixed-effects"><span class="header-section-number">8.3</span> Fixed Effects</h3>
+<p>In Stata’s <code>xtreg</code> package, the WG estimator is referred to as the Fixed Effects (FE) estimator. This not not mean that <span class="math inline">\(\alpha_i\)</span> is non-random. It simply means that the WG estimator is equivalent to the OLS estimator for a (individual/unit) fixed effects model. Consider the model,</p>
 <p><span class="math display">\[
 Y_{it} = \sum_{j=1}^n\phi_j\mathbf{1}\{i = j\}+X_{it}'\beta + \upsilon_{it}
 \]</span></p>
-<p>This model includes a dummy variable for each unit. For each unit, only one dummy variable can be =1, the dummy variable with parameter <span class="math inline">\(\phi_i\)</span>. Thus, the expression <span class="math inline">\(\sum_{j=1}^n\phi_j\mathbf{1}\{i = j\}=\phi_i\)</span> for any <span class="math inline">\(i\)</span>. The model can therefore be written as, <span class="math display">\[
+<p>This model includes a dummy variable for each unit. For each unit, only one dummy variable can be =1, the dummy variable with parameter <span class="math inline">\(\phi_i\)</span>. Thus, the expression <span class="math inline">\(\sum_{j=1}^n\phi_j\mathbf{1}\{i = j\}=\phi_i\)</span> for any <span class="math inline">\(i\)</span>. The model can therefore be written as,</p>
+<p><span class="math display">\[
 Y_{it} = \phi_i+X_{it}'\beta + \upsilon_{it}
 \]</span></p>
-<p>This looks very similar to our SLPM, but with the distinguishing feature that <span class="math inline">\(\phi_i\)</span> is taken as a population parameter. This is sometimes referred as a unit-specific constant.</p>
-<p>Including a constant for each <span class="math inline">\(i\)</span> has the same effect as demeaning the model. This alternative approach is referred to as the Least Squares Dummy Variable (LSDV) method.</p>
+<p>This looks very similar to our SLPM, but with the distinguishing feature that <span class="math inline">\(\phi_i\)</span> is taken as a non-random population parameter. This is sometimes referred as a unit-specific constant.</p>
+<p>Including a dummy variable each <span class="math inline">\(i\)</span> has the same effect as demeaning the model prior to estimation (as with WG). This approach is referred to as the Least Squares Dummy Variable (LSDV) method.</p>
 <p><span class="math display">\[
 \hat{\beta}^{WG} = \hat{\beta}^{LSDV}
 \]</span> This equivalence can be shown using Frisch Waugh Lovell Theorem (or partitioned regression). The LSDV estimator can be computed in two steps. First, regress each regressor and outcome on a setting of unit level dummies.</p>
@@ -681,10 +687,10 @@ Y_{it} = \phi_i+X_{it}'\beta + \upsilon_{it}
 X_{k} = \sum_{j=1}^n\phi_j\mathbf{1}\{i = j\} + \xi
 \]</span> Each <span class="math inline">\(\mathbf{1}\{i = j\}\)</span> corresponds to a dummy variable where <span class="math inline">\(T\)</span> values are =1 (for unit <span class="math inline">\(i\)</span>), and the remainder 0. Next, use the residuals in the main equation. The residual from the regression is given by,</p>
 <p><span class="math display">\[
-M_{n\cdot\ell}X_k  = \tilde{X}_{k}
+(I_n\otimes M_\ell)X_k  = \tilde{X}_{k}
 \]</span> Thus, we regression is given by,</p>
 <p><span class="math display">\[
-M_{n\cdot\ell}Y = \tilde{Y} = M_{n\cdot\ell}X\beta + \varepsilon = \tilde{X}\beta + \varepsilon
+(I_n\otimes M_\ell)Y = \tilde{Y} = (I_n\otimes M_\ell)X\beta + \varepsilon = \tilde{X}\beta + \varepsilon
 \]</span> Employing the LSDV approach, one can estimated the unit-FE as,</p>
 <p><span class="math display">\[
 \hat{\phi}_i = \bar{Y}_i - \bar{X}_i'\hat{\beta}^{LSDV}
@@ -693,15 +699,18 @@ M_{n\cdot\ell}Y = \tilde{Y} = M_{n\cdot\ell}X\beta + \varepsilon = \tilde{X}\bet
 <p>The equivalene of these approaches also explains why the degrees of freedom in the residual is <span class="math inline">\(nT-n-k\)</span>. By including <span class="math inline">\(n\)</span> dummy variables, the number of parameters we need to estimate is <span class="math inline">\(n+k\)</span>.</p>
 </section>
 </section>
-<section id="first-difference-estimator" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="first-difference-estimator"><span class="header-section-number">10</span> First-Difference Estimator</h2>
-<p>As with the WG estimator, he first-difference (FD) estimator removes <span class="math inline">\(\alpha_i\)</span> from the model through differencing. However, this time the transformation is just difference over time:</p>
+<section id="first-difference" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="first-difference"><span class="header-section-number">9</span> First Difference</h2>
+<p>As with the WG estimator, he first-difference (FD) estimator removes <span class="math inline">\(\alpha_i\)</span> from the model through differencing. However, this time the transformation is just a single difference:</p>
 <p><span class="math display">\[
-\underbrace{Y_{it}-Y_{it-1}}_{\tilde{Y}_{it}} = \underbrace{(X_{it}-X_{it-1})'\beta}_{\tilde{X}_{it}'\beta}+\underbrace{\alpha_{i}-\alpha_i}_{=0}+ \underbrace{\varepsilon_{it}-\varepsilon_{it-1}}_{\tilde{\varepsilon}_{it}}
-\]</span> The estimation sample will include 1 less period: <span class="math inline">\(t=2,...,T\)</span> for each <span class="math inline">\(i\)</span>.</p>
-<p>Under CLPM 1-6, <span class="math inline">\(\hat{\beta}^{FD}\)</span> is consistent and asympotitcally normal. However, we need to account for the error term structure. This is because,</p>
+\underbrace{Y_{it}-Y_{it-1}}_{\Delta Y_{it}} = \underbrace{(X_{it}-X_{it-1})'\beta}_{\Delta X_{it}'\beta}+\underbrace{\alpha_{i}-\alpha_i}_{=0}+ \underbrace{\varepsilon_{it}-\varepsilon_{it-1}}_{\Delta \varepsilon_{it}}
+\]</span> As a result, the estimation sample will include 1 less period: <span class="math inline">\(t=2,...,T\)</span> for each <span class="math inline">\(i\)</span>. In addition, we must make a modified rank assumption,</p>
+<ul>
+<li><strong>SLPM 4”</strong>: <span class="math inline">\(rank(\tilde{X})=k\)</span></li>
+</ul>
+<p>Under SLPM 1-6, <span class="math inline">\(\hat{\beta}^{FD}\)</span> is consistent and asympotitcally normal. However, we need to account for the error term structure. This is because,</p>
 <p><span class="math display">\[
-E[\tilde{\varepsilon}_{is}\tilde{\varepsilon}_{it}] =\begin{cases}E[(\varepsilon_{is}-\varepsilon_{is-1})(\varepsilon_{it}-\varepsilon_{it-1})] = 2\sigma^2_{\varepsilon} \quad \text{for}\;s=t \\
+E[\Delta \varepsilon_{is}\Delta \varepsilon_{it}] =\begin{cases}E[(\varepsilon_{is}-\varepsilon_{is-1})(\varepsilon_{it}-\varepsilon_{it-1})] = 2\sigma^2_{\varepsilon} \quad \text{for}\;s=t \\
 E[(\varepsilon_{is}-\varepsilon_{is-1})(\varepsilon_{it}-\varepsilon_{it-1})] = -\sigma^2_{\varepsilon} \quad \text{for}\;s=t-1 \\
 0 \quad \text{otherwise}\end{cases}
 \]</span></p>
@@ -712,8 +721,8 @@ E[(\varepsilon_{is}-\varepsilon_{is-1})(\varepsilon_{it}-\varepsilon_{it-1})] = 
 \]</span></p>
 <p>You can also show that if you apply GLS to the first-differenced equation, you get the WG estimator (for <span class="math inline">\(T\geq2\)</span>).</p>
 </section>
-<section id="wu-hausman-test" class="level2" data-number="11">
-<h2 data-number="11" class="anchored" data-anchor-id="wu-hausman-test"><span class="header-section-number">11</span> Wu-Hausman Test</h2>
+<section id="wu-hausman-test" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="wu-hausman-test"><span class="header-section-number">10</span> Wu-Hausman Test</h2>
 <p>The Wu-Hausman test is used to test the exogeneity assumption underlying a particular estimator. You need two estimators: <span class="math inline">\(\{\hat{\beta}_1, \hat{\beta}_2\}\)</span> such that,</p>
 <ul>
 <li><p>Under <span class="math inline">\(H_0: \beta_1=\beta_2\)</span></p></li>
@@ -727,7 +736,7 @@ E[(\varepsilon_{is}-\varepsilon_{is-1})(\varepsilon_{it}-\varepsilon_{it-1})] = 
 <p>The test statistic is given by,</p>
 <p><span class="math display">\[
   \text{Stat} = (\hat{\beta}_2-\hat{\beta}_1)'\big(Var(\hat{\beta}_2-\hat{\beta}_1|X)\big)^{-1}(\hat{\beta}_2-\hat{\beta}_1)
-\]</span> Under <span class="math inline">\(H_0\)</span>, this statistic converges in distribution to <span class="math inline">\(\Chi_k\)</span>, where <span class="math inline">\(k\)</span> is the number of regressors. The inner matrix is the inverse of the variance-covariance matrix.</p>
+\]</span> Under <span class="math inline">\(H_0\)</span>, this statistic converges in distribution to <span class="math inline">\(\chi_k\)</span>, where <span class="math inline">\(k\)</span> is the number of regressors. The inner matrix is the inverse of the variance-covariance matrix.</p>
 <p><span class="math display">\[
 \begin{aligned}
 Var(\hat{\beta}_2-\hat{\beta}_1|X) =&amp; Var(\hat{\beta}_2|X) + Var(\hat{\beta}_1|X)-2 Cov(\hat{\beta}_2,\hat{\beta}_1|X) \\
@@ -736,15 +745,18 @@ Var(\hat{\beta}_2-\hat{\beta}_1|X) =&amp; Var(\hat{\beta}_2|X) + Var(\hat{\beta}
 \]</span> Line 2 follows from line 1, because of a result demonstrated by Hausman (1978):</p>
 <p><span class="math display">\[
 0 = Cov(\hat{\beta}_1,\hat{\beta}_1-\hat{\beta}_2) = Var(\hat{\beta}_1)-Cov(\hat{\beta}_1,\hat{\beta}_2)
-\]</span> This result holds in cases where the variances of the respectively estimators can be ranked: i.e.&nbsp;one estimator is more efficient than the other. As a result, the <span class="math inline">\(Var(\hat{\beta}_2-\hat{\beta}_1|X)\)</span> matrix is positive definite. This implies that it’s inverse exists.</p>
+\]</span> This result only holds in cases where the variances of the respectively estimators can be ranked: i.e.&nbsp;one estimator is more efficient than the other. As a result, the <span class="math inline">\(Var(\hat{\beta}_2-\hat{\beta}_1|X)\)</span> matrix is positive definite.</p>
 <p>This test can be applied in this setting to test the null: <span class="math inline">\(H_0: E[X_{it}\alpha_i] = 0\)</span> (i.e.&nbsp;uncorrelatedness). This condition must hold for the (F)GLS estimator to be consistent. If <span class="math inline">\(H_0\)</span> is false, then we know that the WG estimator is consistent, but that it is less efficient. To test this hypothesis we use the coefficients from the FGLS and WG estimators. Of course, this means that you can only test for restrictions on time-varying regressors (a restriction of WG estimator).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+</section>
+<section id="references" class="level2" data-number="11">
+
 
 
 
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-cameron2005" class="csl-entry" role="listitem">
 Cameron, A Colin, and Pravin K Trivedi. 2005. <em>Microeconometrics: Methods and Applications</em>. Cambridge university press.
 </div>

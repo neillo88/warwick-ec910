@@ -1,5 +1,5 @@
 ---
-title: Panel Data Models
+title: Linear Panel Data Models
 format:
   html:
     toc-depth: 3           # Set the depth of the table of contents
@@ -18,27 +18,31 @@ format:
 
 ## Overview
 
-In this handout we will see how to test **static linear** panel data models. We will review a number of estimators for these models, including:
+In this handout we will see how to test **static linear** panel data regression models. We will review a number of estimators for these models, including a range of potential estimators:
 
--   within-group;
--   first differences;
+-   pooled OLS;
 -   between-group;
--   and feasible GLS.
+-   feasible GLS;
+-   within-group;
+-   and first differences.
+
 
 Further reading can be found in:
 
 -   Section 21 of @cameron2005
 -   Section 10.1-10.3 of @verbeek2017
 
-## Model Specification
+## Panel Data Regression Model
 
-A static linear model has the form, 
+The basic, linear panel-data-regression model is given by, 
 
 $$
   Y_{it} = X_{it}'\beta + \alpha_i + \varepsilon_{it}
 $$
 
-for $i=1,..,n$ and $t = 1,...,T$. We will restrict this discussion to models where $T$ is fixed. Asymptotically, this means that as $n$ increases $T$ remains fixed. 
+for $i=1,..,n$ and $t = 1,...,T$. By basic, we mean *static*. The contrast would be dynamic panel data models, which include lag(s) (and/or leads) of the outcome variable on the right-hand side. In dynamic models, the long-run (equilibrium) relationship between outcome and regressors differs from the short-run (or contemporaneous) relationship. This is the result of including a lagged dependent variable. This static model, can incorporate lags (and/or leads) of regressors; although, you may then need to consider carefully the exogeneity assumption if strict exogeneity does not apply.  
+
+For the purposes of this discussion, we will treat $T$ as fixed. As $n$ increases, $T$ remains fixed, implying that the asymptotics concern only $n$. 
 
 If collect all $T$ observations of unit $i$, we can describe them by the model, 
 
@@ -46,6 +50,8 @@ $$
   Y_{i} = X_{i}'\beta + \alpha_i\ell + \varepsilon_i
 $$
 where $Y_i$ is a $T\times 1$ random vector; $X_i$ a $T\times k$ random matrix; and $\ell$ a $T\times 1$ vector of $1$'s. 
+
+
 
 This model has placed no restriction on the values of the outcome variable, $Y_i$, and regressors, $X_i$. In particular, the regressors may include time-varying as well as time-invariant variables. 
 
@@ -58,14 +64,13 @@ Time fixed-effects are essentially a dummy variable for each time-period. This f
 
 ### Unobserved heterogeneity
 
-The term $\alpha_i$ is particularly important. It represents time-invariant unobservables or **unobserved heterogeneity** across $i$. I strongly recommend you read the discussion on pages 285-286 of @wooldridge2010. 
+The term $\alpha_i$ is particularly important. It represents an unobserved individual effect or **unobserved heterogeneity**. I strongly recommend you read the discussion on pages 285-286 of @wooldridge2010. You should not refer to $\alpha_i$ as individual **fixed-effects**. 
 
-The $\alpha_i$ is unobserved, and therefore is a component of the error term $\upsilon_{it} = \alpha_i + \varepsilon_{it}$. The time-invariant component of the error is *permanent*; often referred to as unobserved heterogeneity or individual effect. The time-varying component is *transient*; sometimes referred to as the idiosyncratic error.  
+The language of fixed-effects comes from models where $\alpha_i$ is a unit-specific (population) parameter. As a parameter, it is by definition non-random. This would imply that the correlation between $\alpha_i$ and $X_i$ is by definition 0. Here $\alpha_i$ is an unobserved random variable. @wooldridge2010 refers to it as an unobserved effects model (UEM). The term random effects model is often used to describe UEM models where the individual effect is (mean) independent.  
 
+The $\alpha_i$ is unobserved, and therefore is a component of the **composite error term** $\upsilon_{it} = \alpha_i + \varepsilon_{it}$. The time-invariant component ($\alpha_i$) of the error is *permanent*, while the time-varying component ($\varepsilon_{it}$) is *transient*; also referred to as the idiosyncratic error.  
 
-As with the time-varying part of the error term, $\alpha_{i}$ is $random$. We should not think of $\alpha_i$ as a unit-specific intercept, since then it is just a non-random parameter. This would imply that the correlation between $\alpha_i$ and $X_i$ is by definition 0. 
-
-Given the model specification, we must consider all three components - $\{X_i,\alpha_i,\varepsilon_{it}\}$ - when making assumptions regarding exogeneity. **We will make all assumptions conditional on $\alpha_i$.** This is consistent with the idea that $\alpha_i$ is a permanent shock, and is therefore realized before $\varepsilon_it$. 
+Given the model, we must consider all three components on the right-hand side - $\{X_i,\alpha_i,\varepsilon_{it}\}$ - when making assumptions regarding exogeneity. **We will make all assumptions conditional on $\alpha_i$.** This is consistent with the idea that $\alpha_i$ is a permanent shock, and is therefore realized before $\varepsilon_it$. 
 
 If we do not condition on $\alpha_i$, then when we evaluate $E[Y_i|X_i]$, we also need to consider both $E[\varepsilon_i|X_i]$ and $E[\alpha_i|X_i]$; not just $E[\varepsilon_i|X_i,\alpha_i]$. Moreover, in general it will be that case that $E[\alpha_i|X_i]\neq E[\alpha_i]$ (i.e., not mean independent). For example, $\alpha_i$ may represent unobserved ability in a wage equation. This will correlated with regressors like education. 
 
@@ -136,30 +141,36 @@ $$
 E[Y_{it}|X_i,\alpha_i] = E[Y_{it}|X_{it},\alpha_i] = X_{it}'\beta + \alpha_i
 $$
 
-## Basic model
+## Static Linear Panel Model
 
-We begin by describe a basic model under the Static Linear Panel Model (SLPM) assumptions,
+We begin by describing the core assumptions underlying the static (or basic) panel data regression model (SLPM) assumptions. Many of these will be familiar to you 
 
-**SLPM 1**: The model is static and linear in parameters:
+**SLPM 1**: The model is static and linear in parameters with a composite error term made up of a time-invariant and time-varying component:
 
 $$
 Y_{it} = X_{it}'\beta + \alpha_i + \varepsilon_{it}
 $$
 
-**SLPM 2:** Balanced panel: we observe each $i$ in all $T$ time periods.  
+**SLPM 2:** Strict exogeneity: $E[\varepsilon_{it}|X_i,\alpha_i] = 0\; \forall\;t$
 
-**SLPM 3:** Independent sampling along the cross-sectional dimension ($i$). 
-
-**SLPM 4:** Strict exogeneity: $E[\varepsilon_{it}|X_i,\alpha_i] = 0\; \forall\;t$
-
-**SLPM 5:** Conditional homoskedasticity and serial uncorrelatedness of the transient error term component. 
+**SLPM 3:** Conditional homoskedasticity and serial uncorrelatedness of the transient error term component. 
 
 $$
 Var(\varepsilon_i|X_i,\alpha_i) = \begin{bmatrix}\sigma^2_\varepsilon & 0 & \cdots & 0 \\ 0 & \sigma^2_\varepsilon & & \\ \vdots & & \ddots & \\ 0 & & & \sigma^2_\varepsilon \end{bmatrix} = \sigma^2_\varepsilon I_T
 $$
-Assumptions 4 & 5 are referred to as a 'classical error term' structure.
 
-Under assumptions 1-5:
+Together, assumptions 2 & 3 are referred to as a 'classical error term' structure. Of course, since the model is linear, we need a rank condition. Without placing any additional assumptions on the variation of $X_{it}$, we need to assume that:
+
+**SLPM 4:** $rank(X) = k$
+
+Next, we need to consider sampling. 
+
+**SLPM 5:** Independent sampling along the cross-sectional dimension ($i$). 
+
+**SLPM 6:** Balanced panel: we observe each $i$ in all $T$ time periods.  
+
+
+Under assumptions 1-3, and 4-5:
 
 -    $E[Y_i|X_i,\alpha_i]  = X_i'\beta + \alpha_i\ell$
 
@@ -167,26 +178,19 @@ Under assumptions 1-5:
 
 At this stage, the unanswered question is how to deal with the unobservables $\alpha_i$ in the equation. Generally, there are two approaches:
 
-1.    Assume away the relationship between $\alpha_i$ and $X_i$.
+1.    assume away the relationship between $\alpha_i$ and $X_i$;
 
-2.    Remove $\alpha_i$ from the equation prior to estimator; for example, within-group estimator and first-difference.  
+2.    or remove $\alpha_i$ from the equation prior to estimator.  
 
-Adopting approach (1), we will review the pooled OLS, between-group, and (feasible) Generalized Least Squares (GLS) estimators. Under approach (2), will review the within-group and first-difference estimators. 
+Adopting approach (1), we will review the pooled OLS, between-group, and (feasible) Generalized Least Squares (GLS) estimators. Under approach (2), will review the within-group, fixed effects, and first-difference estimators. 
 
 ## Pooled OLS
 
 We can 'assume away' the relationship between $\alpha_i$ and $X_i$. Specifically, we will assume conditional mean independence:
 
--   **CLPM 6** $E[\alpha_i|X_i] = E[\alpha_i|X_{i1},X_{i2},...,X_{iT}] = E[\alpha_i]=0$
+-   **SLPM 7** $E[\alpha_i|X_i] = E[\alpha_i|X_{i1},X_{i2},...,X_{iT}] = E[\alpha_i]=0$
 
-As in the CLRM, the assumption that the unconditional mean of $\alpha_i$ is zero is not binding given the inclusion of a constant among the regressors. We will of course, need to assume that there is no perfect colinearity among the regressors.  
-
--   **CLPM 7** $rank(X)=k$
-
-In addition, we will need to make assumptions concerning $\alpha_i$. First, mean independence,
-
-
-This implies uncorrelatedness. Under this assumptions, the model can be written as, 
+As in the CLRM, the assumption that the unconditional mean of $\alpha_i$ is zero is not binding given the inclusion of a constant among the regressors. This also implies uncorrelatedness: $E[X_i\alpha_i]=0$. Under this assumptions, the model can be written as, 
 
 $$
   Y_{it} = X_{it}'\beta + \upsilon_{it}
@@ -199,14 +203,14 @@ $$
 
 Second, we need to make an assumption regarding the variance of the unobserved heterogeneity:
 
--   **CLPM 8** $Var(\alpha_i|X_i) = \sigma^2_\alpha$
+-   **SLPM 8** $Var(\alpha_i|X_i) = \sigma^2_\alpha$
 
 Under these assumptions, the error term $\upsilon_i = \alpha_i\ell + \varepsilon_i$ has the variance, 
 
 $$
-Var(\upsilon_i |X_i) = E[\upsilon_i\upsilon_i' |X_i] = \sigma^2_\alpha\ell\ell' + \sigma^2_\varepsilon I_T = \Omega
+Var(\upsilon_i |X_i) = E[\upsilon_i\upsilon_i' |X_i] = \sigma^2_\alpha\ell\ell' + \sigma^2_\varepsilon I_T = \Sigma
 $$
-For all $s\neq t$ the $Cov(\upsilon_{it},\upsilon_{is}) = \sigma^2_\alpha$. And the diagonal elements are given by $\sigma^2_\alpha + \sigma^2_\varepsilon$.
+For all $s\neq t$ the $E[\upsilon_{it},\upsilon_{is}] = \sigma^2_\alpha$. And the diagonal elements are given by $\sigma^2_\alpha + \sigma^2_\varepsilon$.
 
 
 Under these assumptions, the OLS estimator,
@@ -228,27 +232,27 @@ The asymptotic distribution is given by,
 $$
 \begin{aligned}
 \sqrt{n}(\hat{\beta}^{OLS}-\beta) =& \bigg(\frac{1}{n}\sum_iX_i'X_i\bigg)^{-1}\frac{1}{\sqrt{n}}\sum_iX_i'\upsilon_i \\
-\rightarrow_d& N(0,V^{-1}\Sigma V^{-1})
+\rightarrow_d& N(0,V^{-1}\Omega V^{-1})
 \end{aligned}
 $$
 where, 
 
 -   $V = E[X_i'X_i]$
 
--   $\Sigma = E[X_i'\Omega X_i]$
+-   $\Omega = E[X_i'\Sigma X_i]$
 
 We say that the approximate distribution of the pooled OLS estimator is given by, 
 
 $$
-\hat{\beta}^{OLS} \overset{a}{\sim} N\bigg(\beta, \big(\sum_iX_i'X_i\big)^{-1}\sum_iX_i'\Omega X_i\big(\sum_iX_i'X_i\big)^{-1}\bigg)
+\hat{\beta}^{OLS} \overset{a}{\sim} N\bigg(\beta, \big(\sum_iX_i'X_i\big)^{-1}\sum_iX_i'\Sigma X_i\big(\sum_iX_i'X_i\big)^{-1}\bigg)
 $$
 
+Note, the variance is not homoskedastic. You must therefore estimate heteroskedastic (or clustered) standard errors. The usual homoskedastic estimator for the variance will be biased and inconsistent. Unobserved heterogeneity will result in a serial correlation across the error terms that is not accountant for by the standard estimator. 
+
+For this reason, **pooled OLS is NOT efficient**. 
 
 
-However, it is NOT efficient. Moreover, the usual homoskedastic estimator for the variance will be biased and inconsistent. Unobserved heterogeneity will result in a serial correlation that is not accountant for by the standard estimator. 
-
-
-## Between-Group estimator
+## Between Group
 
 An alternative to pooled OLS, is to collapse the multiple observations of unit $i$ into a single cross-section aggregate. This transforms the model into, 
 
@@ -266,22 +270,42 @@ $$
 \hat{\beta}^{BG} = (\bar{X}'\bar{X})^{-1}\bar{X}'\bar{Y} = \big(\sum_i\bar{X}_i\bar{X}_i'\big)^{-1}\sum_i\bar{X}_i\bar{Y}_i
 $$
 
-Since the variance term is homoskedastic, the standard homoskedastic variance estimator will unbiased and consistent. This approach removes the problem of serially correlated error terms across repeated observations of $i$ in pooled OLS by collapsing all observations to a single observation. However, it also reduces the information in the data and is therefore less efficient. 
+Since the variance term is now homoskedastic, the standard homoskedastic variance estimator will unbiased and consistent. This approach removes the problem of serially correlated error terms across repeated observations of $i$ in pooled OLS by collapsing all observations to a single observation. However, it also reduces the information in the data and is therefore less efficient. 
 
 ## Generalized Least Squares
 
-This final approach takes seriously the structure of the composite error-term variance-covariance matrix, 
+The efficient solution is to account for the error term structure in the estimation using Generalized Least Squares. The structure of the composite error-term variance-covariance matrix is, 
 
 $$
-E[\upsilon_i\upsilon_i' |X_i] = \begin{bmatrix}
+\Sigma = \begin{bmatrix}
 \sigma^2_\alpha+\sigma^2_\varepsilon & \sigma^2_\alpha & \cdots & \sigma^2_\alpha \\ \sigma^2_\alpha & \sigma^2_\alpha+\sigma^2_\varepsilon &  & \\
 \vdots & & \ddots & \\ 
 \sigma^2_\alpha &  &  & \sigma^2_\alpha+\sigma^2_\varepsilon
 \end{bmatrix}
 $$
-The $nT\times nT$ matrix, E[\upsilon\upsilon' |X] is a block-diagonal matrix in which the off-diagonal values are $E[\upsilon_{it}\upsilon_{js} |X]=\sigma^2_\alpha$ only for $i=j$ and $s\neq t$; and zero otherwise. 
+The $nT\times nT$ matrix, $E[\upsilon\upsilon' |X]$, is a block-diagonal matrix in which the off-diagonal values are $E[\upsilon_{it}\upsilon_{js} |X]=\sigma^2_\alpha$ only for $i=j$ and $s\neq t$; and zero otherwise. We can describe this matrix using a Kronecker-product operator:
 
-The Generalized Least Squares solution say that if we transform the model in the following way, the resulting error term will be classical. 
+$$
+E[\upsilon\upsilon' |X] = \begin{bmatrix}
+\Sigma & 0 & \cdots & 0 \\
+0 & \Sigma &  & \\
+\vdots & & \ddots & \\ 
+0 &  &  & \Sigma
+\end{bmatrix} = I_{n}\otimes \Sigma  
+$$
+In this $nT\times nT$ matrix, eacg off-diagonal element is a $T\times T$ matrix of 0's, representing the cross-unit ($i$) covariance terms.
+
+The Generalized Least Squares solution solves the following least squares problem:
+
+$$
+\hat{\beta}^{GLS} = \underset{b}{\arg \max} \quad (Y-Xb)'\Sigma^{-1}(Y-Xb)
+$$
+which can be written as, 
+
+$$
+\hat{\beta}^{GLS} = \underset{b}{\arg \max} \quad (Y^+-X^+b)'(Y^+-X^+b)
+$$
+where $[Y^+,X^+]=[\Sigma^{-1/2}Y,\Sigma^{-1/2}X]$. In this instance, the net result of this linear transform of the model is give by, 
 
 $$
 \underbrace{Y_{it}-\theta \bar{Y}_i}_{Y_{it}^+} = \underbrace{(X_{it}-\theta\bar{X}_i)}_{X_{it}^+}'\beta + \nu_{it}
@@ -316,7 +340,7 @@ $$
   \hat{\beta}^{GLS} = \big[\sum_iX_i^{+'}X_i^+\big]^{-1}\sum_iX_i^{+'}Y_i^+
 $$
 
-You can show that $\hat{\beta}^{GLS}$ is a weighted average of $\hat{\beta}^{WG}$ and $\hat{\beta}^{BG}$. Also, take note of the fact that as $T\rightarrow\infty$, $\theta\rightarrow 1$. Thus, $\hat{\beta}_{GLS}\rightarrow \hat{\beta}^{WG}$ as $T\rightarrow\infty$. In addition, if if $\sigma^2_\alpha=0$, then $\theta = 0$ and $\hat{\beta}^{GLS}=\hat{\beta}^{OLS}$, the pooled OLS estimator. 
+You can show that $\hat{\beta}^{GLS}$ is a weighted average of $\hat{\beta}^{BG}$ and $\hat{\beta}^{WG}$ (see below). Also, take note of the fact that as $T\rightarrow\infty$, $\theta\rightarrow 1$. Thus, $\hat{\beta}_{GLS}\rightarrow \hat{\beta}^{WG}$ as $T\rightarrow\infty$. In addition, if if $\sigma^2_\alpha=0$, then $\theta = 0$ and $\hat{\beta}^{GLS}=\hat{\beta}^{OLS}$, the pooled OLS estimator. 
 
 However, this estimator is NOT feasible. This is because we do not observe $\{\sigma^2_\alpha,\sigma^2_\varepsilon\}$. 
 
@@ -324,15 +348,17 @@ However, this estimator is NOT feasible. This is because we do not observe $\{\s
 
 A feasible version of the GLS estimator is given by the following steps:
 
-1.    Estimate $\sigma^2_\varepsilon$ using the WG estimator.
+1.    Estimate $\sigma^2_\varepsilon$ using the WG estimator (see below).
 
 2.    Use the pooled OLS or BG estimator then estimate $\sigma^2_\alpha$, using the value of $\sigma^2_\varepsilon$ from step 1. For example, the RSS from pooled OLS (divided by $nT-k$) is a consistent estimator for $\sigma^2_\varepsilon+\sigma^2_\alpha$. Similar, the RSS from BG estimator (divided by $n-k$) is a consistent estimator for $\sigma^2_\varepsilon/T+\sigma^2_\alpha$.
 
-3.    Using the estimated $\{\hat{\sigma}^2_\alpha,\hat{\sigma}^2_\varepsilon\}$, compute the transformed model and estimate using $\hat{\beta}^{FGLS}$ using OLS. 
+3.    Using the estimated $\{\hat{\sigma}^2_\alpha,\hat{\sigma}^2_\varepsilon\}$, compute the transformed model (using $\hat{\theta}$) and estimate using $\hat{\beta}^{FGLS}$ using OLS. 
 
-## Within-Group Estimator
+In Stata, this estimator is referred to as the random effects estimtor within the `xtreg` package: `xtreg , re`.
 
-The approach taken here is to transform the linear model such that $\alpha_i$ is eliminate from the equation. Having done so, we do not need to make any assumption regarding $E[\alpha_i|X_i]$. 
+## Within Group
+
+The second approach to dealing with unobserved heterogeneity is to transform the model in such a way that $\alpha_i$ is eliminated. Having done so, we do not need to make any assumption regarding $E[\alpha_i|X_i]$. 
 
 Here we will exploit the fact that $\alpha_i$ is time-invariant. We begin by computing the unit-level average of the model. For the left-hand side,
 
@@ -359,11 +385,11 @@ This model can be estimated by OLS. The solution is given by,
 $$
 \hat{\beta}^{WG} = (\tilde{X}'\tilde{X})^{-1}\tilde{X}'\tilde{Y} = (\sum_{i=1}^n\tilde{X}_i'\tilde{X}_i)^{-1}\sum_{i=1}^n\tilde{X}_i'\tilde{Y}_i
 $$
-where $\tilde{X}_i$ is a $T\times k$ matrix. **Note, this is different to the standard cross-section expression$.**
+where $\tilde{X}_i$ is a $T\times k$ matrix. **Note, this is different to the standard cross-section expression.**
 
-This solution assumes that the $k\times k$ matrix $\sum_{i=1}^n\tilde{X}_i'\tilde{X}_i$ is invertible. We must therefore assume, 
+This solution assumes that the $k\times k$ matrix $\sum_{i=1}^n\tilde{X}_i'\tilde{X}_i$ is invertible. We must therefore make a modified rank assumption, 
 
--   **SLPM 7^b**: $rank(\tilde{X})=k$
+-   **SLPM 4'**: $rank(\tilde{X})=k$
 
 Given that $\tilde{X}$ is the within-group demeaned vale of $X$, this implies the regressors must all be time-varying. In addition, if the model includes a time trend (including time-FEs), the included variables cannot vary uniformly with time. An example of this is age. If all units' age values increase by the same amount each period, then 
 
@@ -400,7 +426,7 @@ $$
 \hat{\beta}^{WG} = \beta +  (\sum_{i=1}^n\tilde{X}_i'\tilde{X}_i)^{-1}\sum_{i=1}^n\tilde{X}_i'\tilde{\varepsilon}_i
 $$
 
-## Conditional variance 
+### Conditional variance 
 
 Given the demeaning of the model, the error term is no longer uncorrelated across $t$ for the same $i$:
 
@@ -413,21 +439,11 @@ E[\tilde{\varepsilon}_{is}\tilde{\varepsilon}_{it}|X] =&E[(\varepsilon_{is}-\bar
 \end{cases}
 \end{aligned}
 $$
-The off-diagonal elements for the same $i$ are the same for all time-periods. Collected together, this creates a block diagonal matrix, where covariance terms are zero for across different units. 
-
-$$
-E[\tilde{\varepsilon}_{is}\tilde{\varepsilon}_{it}X]= \begin{bmatrix}
-\Omega & 0 & \cdots & 0 \\ 
-0 & \Omega & & \\
-\vdots & & \ddots & \\
-0 & & & \Omega
-\end{bmatrix}
-$$
-with each $T\times T$ $\Omega$ matrix given by, 
+The off-diagonal elements for the same $i$ are the same for all time-periods. Together, this gives us the $T\times T$ matrix, 
 
 $$
 \begin{aligned}
-\Omega=& E[\tilde{\varepsilon}_{i}\tilde{\varepsilon}_{i}'|X_i] \\
+\Sigma=& E[\tilde{\varepsilon}_{i}\tilde{\varepsilon}_{i}'|X_i] \\
 =&
 \begin{bmatrix}
 \sigma^2_{\varepsilon}(1-1/T) & -\sigma^2_{\varepsilon}/T & \cdots & -\sigma^2_{\varepsilon}/T \\ 
@@ -448,25 +464,21 @@ E[\tilde{\varepsilon}_{i}\tilde{\varepsilon}_{i}'|X_i] =& E[M_\ell\varepsilon_{i
 =&\sigma^{2}_\varepsilon M_\ell
 \end{aligned}
 $$
+
 Thus, 
 $$
-E[\tilde{\varepsilon}_{is}\tilde{\varepsilon}_{it}|X]= \sigma^{2}_\varepsilon\begin{bmatrix}
-M_\ell & 0 & \cdots & 0 \\ 
-0 & M_\ell & & \\
-\vdots & & \ddots & \\
-0 & & & M_\ell
-\end{bmatrix} = \sigma^{2}_\varepsilon M_{n\cdot\ell}
+E[\tilde{\varepsilon}\tilde{\varepsilon}'|X]=I_{n}\otimes \Sigma = \sigma^{2}_\varepsilon I_{n}\otimes M_\ell
 $$
-where the $rank(M_{n\cdot\ell})=nT-n$. This follows from the fact that each $M_\ell$ has $rank(M_\ell)=T-1$. The matrix $M_{n\cdot\ell}$ is a $nT\times nT$ matrix: a block diagonal matrix of $n$ $M_\ell$ matrices. With this we can now solve for the conditional variance of the WG estimator. 
+where the $rank(I_{n}\otimes M_\ell)=nT-n$. This follows from the fact that each $M_\ell$ has $rank(M_\ell)=T-1$. The matrix $M_{I_{n}\otimes M_\ell}$ is a $nT\times nT$ matrix: a block diagonal matrix of $n$ $M_\ell$ matrices. With this we can now solve for the conditional variance of the WG estimator. 
 
 $$
 \begin{aligned}
 Var(\hat{\beta}^{WG}|X) =& (\tilde{X}'\tilde{X})^{-1}\tilde{X}'E[\tilde{\varepsilon}_{is}\tilde{\varepsilon}_{it}|X]\tilde{X}(\tilde{X}'\tilde{X})^{-1} \\
-=& \sigma^2_\varepsilon(\tilde{X}'\tilde{X})^{-1}\tilde{X}'M_{n\cdot\ell}\tilde{X}(\tilde{X}'\tilde{X})^{-1} \\
+=& \sigma^2_\varepsilon(\tilde{X}'\tilde{X})^{-1}\tilde{X}'(I_{n}\otimes M_\ell)\tilde{X}(\tilde{X}'\tilde{X})^{-1} \\
 =& \sigma^2_\varepsilon(\tilde{X}'\tilde{X})^{-1}
 \end{aligned}
 $$
-The final line follows from the fact that $\tilde{X}=M_{n\cdot\ell}X$ and $M_{n\cdot\ell}$ is an idempotent (orthogonal) projection matrix. 
+The final line follows from the fact that $\tilde{X}=(I_{n}\otimes M_\ell)X$ and $I_{n}\otimes M_\ell$ is, itself, an idempotent projection matrix. 
 
 An unbiased and consistent estimator for $\sigma^2_\varepsilon$ is given by, 
 
@@ -483,13 +495,11 @@ RSS =& \hat{\varepsilon}'\hat{\varepsilon} \\
 =& Y'\underbrace{(M_{n\ell}-M_{n\ell}X(X'M_{n\ell}X)^{-1}X'M_{n\ell})}_{M_+}Y
 \end{aligned}
 $$
-This new matrix $M_+$ is also an idempotent projection matrix, with rank $rank(M_+) = ran(M_{n\ell})-min{rank(M_{n\ell}),rank(X)} = nT-n-k$. As we saw with the CLRM, this term with have a $\chi^2$ distribution with dof equal to the rank of the orthogonal projection matrix. 
-
-
+This new matrix $M_+$ is also an idempotent projection matrix, with rank $rank(M_+) = rank(M_{n\ell})-\min\{rank(M_{n\ell}),rank(X)\} = nT-n-k$. As we saw with the CLRM, this term with have a $\chi^2$ distribution with dof equal to the rank of the projection matrix. 
 
 ### Consistency and asymptotic distribution
 
-Under assumptions SLPM 1-6; especially 4 & 5, $\hat{\beta}^{WG}$ is consistent,
+Under assumptions SLPM 1-6, $\hat{\beta}^{WG}$ is consistent,
 
 $$
 \hat{\beta}^{WG}\rightarrow_p \beta \qquad \text{as}\quad n\rightarrow\infty
@@ -507,22 +517,23 @@ $$
 $$
 This would not be true under the weak exogeneity assumption. 
 
-### Fixed-effects estimator
+### Fixed Effects
 
-The above estimator is sometimes referred to as the (unit) Fixed-Effects estimator. This not not mean that $\alpha_i$ is non-random. It simply means that the within-group estimator is also given by a fixed-effects model. Consider the model, 
+In Stata's `xtreg` package, the WG estimator is referred to as the Fixed Effects (FE) estimator. This not not mean that $\alpha_i$ is non-random. It simply means that the WG estimator is equivalent to the OLS estimator for a (individual/unit) fixed effects model. Consider the model, 
 
 $$
 Y_{it} = \sum_{j=1}^n\phi_j\mathbf{1}\{i = j\}+X_{it}'\beta + \upsilon_{it}
 $$
 
 This model includes a dummy variable for each unit. For each unit, only one dummy variable can be =1, the dummy variable with parameter $\phi_i$. Thus, the expression $\sum_{j=1}^n\phi_j\mathbf{1}\{i = j\}=\phi_i$ for any $i$. The model can therefore be written as, 
+
 $$
 Y_{it} = \phi_i+X_{it}'\beta + \upsilon_{it}
 $$
 
-This looks very similar to our SLPM, but with the distinguishing feature that $\phi_i$ is taken as a population parameter. This is sometimes referred as a unit-specific constant.
+This looks very similar to our SLPM, but with the distinguishing feature that $\phi_i$ is taken as a non-random population parameter. This is sometimes referred as a unit-specific constant.
 
-Including a constant for each $i$ has the same effect as demeaning the model. This alternative approach is referred to as the Least Squares Dummy Variable (LSDV) method.  
+Including a dummy variable each $i$ has the same effect as demeaning the model prior to estimation (as with WG). This approach is referred to as the Least Squares Dummy Variable (LSDV) method.  
 
 $$
 \hat{\beta}^{WG} = \hat{\beta}^{LSDV}
@@ -535,12 +546,12 @@ $$
 Each $\mathbf{1}\{i = j\}$ corresponds to a dummy variable where $T$ values are =1 (for unit $i$), and the remainder 0. Next, use the residuals in the main equation. The residual from the regression is given by, 
 
 $$
-M_{n\cdot\ell}X_k  = \tilde{X}_{k}
+(I_n\otimes M_\ell)X_k  = \tilde{X}_{k}
 $$
 Thus, we regression is given by, 
 
 $$
- M_{n\cdot\ell}Y = \tilde{Y} = M_{n\cdot\ell}X\beta + \varepsilon = \tilde{X}\beta + \varepsilon
+ (I_n\otimes M_\ell)Y = \tilde{Y} = (I_n\otimes M_\ell)X\beta + \varepsilon = \tilde{X}\beta + \varepsilon
 $$
 Employing the LSDV approach, one can estimated the unit-FE as, 
 
@@ -552,20 +563,22 @@ While this estimator is unbiased, $E[\hat{\phi}_i|X_i]=\phi$, it is NOT consiste
 
 The equivalene of these approaches also explains why the degrees of freedom in the residual is $nT-n-k$. By including $n$ dummy variables, the number of parameters we need to estimate is $n+k$. 
 
-## First-Difference Estimator
+## First Difference
 
-As with the WG estimator, he first-difference (FD) estimator removes $\alpha_i$ from the model through differencing. However, this time the transformation is just difference over time:
+As with the WG estimator, he first-difference (FD) estimator removes $\alpha_i$ from the model through differencing. However, this time the transformation is just a single difference:
 
-
-$$
-\underbrace{Y_{it}-Y_{it-1}}_{\tilde{Y}_{it}} = \underbrace{(X_{it}-X_{it-1})'\beta}_{\tilde{X}_{it}'\beta}+\underbrace{\alpha_{i}-\alpha_i}_{=0}+ \underbrace{\varepsilon_{it}-\varepsilon_{it-1}}_{\tilde{\varepsilon}_{it}}
-$$
-The estimation sample will include 1 less period: $t=2,...,T$ for each $i$. 
-
-Under CLPM 1-6, $\hat{\beta}^{FD}$ is consistent and asympotitcally normal. However, we need to account for the error term structure. This is because, 
 
 $$
-E[\tilde{\varepsilon}_{is}\tilde{\varepsilon}_{it}] =\begin{cases}E[(\varepsilon_{is}-\varepsilon_{is-1})(\varepsilon_{it}-\varepsilon_{it-1})] = 2\sigma^2_{\varepsilon} \quad \text{for}\;s=t \\
+\underbrace{Y_{it}-Y_{it-1}}_{\Delta Y_{it}} = \underbrace{(X_{it}-X_{it-1})'\beta}_{\Delta X_{it}'\beta}+\underbrace{\alpha_{i}-\alpha_i}_{=0}+ \underbrace{\varepsilon_{it}-\varepsilon_{it-1}}_{\Delta \varepsilon_{it}}
+$$
+As a result, the estimation sample will include 1 less period: $t=2,...,T$ for each $i$. In addition, we must make a modified rank assumption, 
+
+-   **SLPM 4"**: $rank(\tilde{X})=k$
+
+Under SLPM 1-6, $\hat{\beta}^{FD}$ is consistent and asympotitcally normal. However, we need to account for the error term structure. This is because, 
+
+$$
+E[\Delta \varepsilon_{is}\Delta \varepsilon_{it}] =\begin{cases}E[(\varepsilon_{is}-\varepsilon_{is-1})(\varepsilon_{it}-\varepsilon_{it-1})] = 2\sigma^2_{\varepsilon} \quad \text{for}\;s=t \\
 E[(\varepsilon_{is}-\varepsilon_{is-1})(\varepsilon_{it}-\varepsilon_{it-1})] = -\sigma^2_{\varepsilon} \quad \text{for}\;s=t-1 \\
 0 \quad \text{otherwise}\end{cases} 
 $$
@@ -585,11 +598,13 @@ You can also show that if you apply GLS to the first-differenced equation, you g
 The Wu-Hausman test is used to test the exogeneity assumption underlying a particular estimator. You need two estimators: $\{\hat{\beta}_1, \hat{\beta}_2\}$ such that, 
 
 -   Under $H_0: \beta_1=\beta_2$
+  
   -   $\hat{\beta}_1$ is consistent 
   -   $\hat{\beta}_2$ is consistent
   -   $Var(\hat{\beta}_1|X)<Var(\hat{\beta}_2|X)$: the former is more efficient
   
 -   Under $H_1:  \beta_1\neq\beta_2$
+
   -   $\hat{\beta}_1$ is inconsistent 
   -   $\hat{\beta}_2$ is consistent
 
@@ -598,7 +613,7 @@ The test statistic is given by,
 $$
   \text{Stat} = (\hat{\beta}_2-\hat{\beta}_1)'\big(Var(\hat{\beta}_2-\hat{\beta}_1|X)\big)^{-1}(\hat{\beta}_2-\hat{\beta}_1)
 $$
-Under $H_0$, this statistic converges in distribution to $\Chi_k$, where $k$ is the number of regressors. The inner matrix is the inverse of the variance-covariance matrix. 
+Under $H_0$, this statistic converges in distribution to $\chi_k$, where $k$ is the number of regressors. The inner matrix is the inverse of the variance-covariance matrix. 
 
 $$
 \begin{aligned}
@@ -611,8 +626,10 @@ Line 2 follows from line 1, because of a result demonstrated by Hausman (1978):
 $$
 0 = Cov(\hat{\beta}_1,\hat{\beta}_1-\hat{\beta}_2) = Var(\hat{\beta}_1)-Cov(\hat{\beta}_1,\hat{\beta}_2)
 $$
-This result holds in cases where the variances of the respectively estimators can be ranked: i.e. one estimator is more efficient than the other. As a result, the $Var(\hat{\beta}_2-\hat{\beta}_1|X)$ matrix is positive definite. This implies that it's inverse exists. 
+This result only holds in cases where the variances of the respectively estimators can be ranked: i.e. one estimator is more efficient than the other. As a result, the $Var(\hat{\beta}_2-\hat{\beta}_1|X)$ matrix is positive definite.
 
 This test can be applied in this setting to test the null: $H_0: E[X_{it}\alpha_i] = 0$ (i.e. uncorrelatedness). This condition must hold for the (F)GLS estimator to be consistent. If $H_0$ is false, then we know that the WG estimator is consistent, but that it is less efficient. To test this hypothesis we use the coefficients from the FGLS and WG estimators. Of course, this means that you can only test for restrictions on time-varying regressors (a restriction of WG estimator).[^1]
 
 [^1]: This restriction can be dropped using Mundlak's correction. 
+
+## References
