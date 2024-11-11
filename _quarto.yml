@@ -37,7 +37,9 @@ website:
           - href: problem-set-4.qmd
             text: Problem Set 4
           - href: problem-set-4-solutions.qmd
-            text: Problem Set 4 (Solutions)             
+            text: Problem Set 4 (Solutions)
+          - href: problem-set-5.qmd
+            text: Problem Set 5
       - text: Additional Material
         menu:
           - href: material-cef.qmd

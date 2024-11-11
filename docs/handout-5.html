@@ -207,6 +207,10 @@ window.Quarto = {
     <a class="dropdown-item" href="./problem-set-4-solutions.html">
  <span class="dropdown-text">Problem Set 4 (Solutions)</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-5.html">
+ <span class="dropdown-text">Problem Set 5</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -277,7 +281,10 @@ window.Quarto = {
   <li><a href="#consistency-and-asymptotic-distribution" id="toc-consistency-and-asymptotic-distribution" class="nav-link" data-scroll-target="#consistency-and-asymptotic-distribution"><span class="header-section-number">8.2</span> Consistency and asymptotic distribution</a></li>
   <li><a href="#fixed-effects" id="toc-fixed-effects" class="nav-link" data-scroll-target="#fixed-effects"><span class="header-section-number">8.3</span> Fixed Effects</a></li>
   </ul></li>
-  <li><a href="#first-difference" id="toc-first-difference" class="nav-link" data-scroll-target="#first-difference"><span class="header-section-number">9</span> First Difference</a></li>
+  <li><a href="#first-difference" id="toc-first-difference" class="nav-link" data-scroll-target="#first-difference"><span class="header-section-number">9</span> First Difference</a>
+  <ul class="collapse">
+  <li><a href="#ols-vs-gls" id="toc-ols-vs-gls" class="nav-link" data-scroll-target="#ols-vs-gls"><span class="header-section-number">9.1</span> OLS vs GLS</a></li>
+  </ul></li>
   <li><a href="#wu-hausman-test" id="toc-wu-hausman-test" class="nav-link" data-scroll-target="#wu-hausman-test"><span class="header-section-number">10</span> Wu-Hausman Test</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">11</span> References</a></li>
   </ul>
@@ -331,7 +338,7 @@ window.Quarto = {
 <p>For the purposes of this discussion, we will treat <span class="math inline">\(T\)</span> as fixed. As <span class="math inline">\(n\)</span> increases, <span class="math inline">\(T\)</span> remains fixed, implying that the asymptotics concern only <span class="math inline">\(n\)</span>.</p>
 <p>If collect all <span class="math inline">\(T\)</span> observations of unit <span class="math inline">\(i\)</span>, we can describe them by the model,</p>
 <p><span class="math display">\[
-  Y_{i} = X_{i}'\beta + \alpha_i\ell + \varepsilon_i
+  Y_{i} = X_{i}\beta + \alpha_i\ell + \varepsilon_i
 \]</span> where <span class="math inline">\(Y_i\)</span> is a <span class="math inline">\(T\times 1\)</span> random vector; <span class="math inline">\(X_i\)</span> a <span class="math inline">\(T\times k\)</span> random matrix; and <span class="math inline">\(\ell\)</span> a <span class="math inline">\(T\times 1\)</span> vector of <span class="math inline">\(1\)</span>’s.</p>
 <p>This model has placed no restriction on the values of the outcome variable, <span class="math inline">\(Y_i\)</span>, and regressors, <span class="math inline">\(X_i\)</span>. In particular, the regressors may include time-varying as well as time-invariant variables.</p>
 <p>We can extend this specification to include a linear or non-linear trend in time; for example, <span class="math inline">\(\phi t\)</span>. However, the more common option is to include a very flexible time trend using fixed effects:</p>
@@ -370,11 +377,10 @@ window.Quarto = {
 <section id="strict-exogeneity" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="strict-exogeneity"><span class="header-section-number">3.1</span> Strict exogeneity</h3>
 <p>Strict exogeneity is a very strong assumption. It implies that <span class="math inline">\(X\)</span> is uncorrelated with past, current, and future values of the transient error term (conditional on <span class="math inline">\(\alpha_i\)</span>): <span class="math inline">\(E[X_{it},\varepsilon_{is}|\alpha_i] = 0\;\forall\;t,s\)</span>. Crucially, <span class="math inline">\(X_{it}\)</span> cannot respond to the history of idiosyncratic shocks <span class="math inline">\(\varepsilon_{i1},\varepsilon_{i2},...,\varepsilon_{it}\)</span>.</p>
-<p>This assumption is required for unbiasedness of the linear estimator, but not for consistency. Under strict exogeneity,</p>
+<p>Under strict exogeneity,</p>
 <p><span class="math display">\[
 E[Y_{it}|X_i,\alpha_i] = E[Y_{it}|X_{it},\alpha_i] = X_{it}'\beta + \alpha_i
-\]</span> The first equality implies that once you control for <span class="math inline">\(X_{it}\)</span>, there is no additional partial effect of <span class="math inline">\(X_{is}\)</span> (<span class="math inline">\(\forall\;s\neq t\)</span>) on (the mean of) <span class="math inline">\(Y_{it}\)</span>. This assumption relates to the assumed <em>static</em> nature of the model: the model includes not lags or leads among the regressors.</p>
-<p>It would be violated if the set of regressors included a lagged dependent variable. The assumption is also violated if the regressors are endogenous.</p>
+\]</span> The first equality implies that once you control for <span class="math inline">\(X_{it}\)</span>, there is no additional partial effect of <span class="math inline">\(X_{is}\)</span> (<span class="math inline">\(\forall\;s\neq t\)</span>) on (the mean of) <span class="math inline">\(Y_{it}\)</span>. This assumption relates to the assumed <em>static</em> nature of the model: the model includes not lags (or leads) of the dependent variable.</p>
 </section>
 <section id="weak-exogeneity" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="weak-exogeneity"><span class="header-section-number">3.2</span> Weak exogeneity</h3>
@@ -414,9 +420,9 @@ Var(\varepsilon_i|X_i,\alpha_i) = \begin{bmatrix}\sigma^2_\varepsilon &amp; 0 &a
 <p>Next, we need to consider sampling.</p>
 <p><strong>SLPM 5:</strong> Independent sampling along the cross-sectional dimension (<span class="math inline">\(i\)</span>).</p>
 <p><strong>SLPM 6:</strong> Balanced panel: we observe each <span class="math inline">\(i\)</span> in all <span class="math inline">\(T\)</span> time periods.</p>
-<p>Under assumptions 1-3, and 4-5:</p>
+<p>Under assumptions 1-6:</p>
 <ul>
-<li><p><span class="math inline">\(E[Y_i|X_i,\alpha_i]  = X_i'\beta + \alpha_i\ell\)</span></p></li>
+<li><p><span class="math inline">\(E[Y_i|X_i,\alpha_i]  = X_i\beta + \alpha_i\ell\)</span></p></li>
 <li><p><span class="math inline">\(Var(Y_i|X_i,\alpha_i) = \sigma^2_{\varepsilon}I_T\)</span></p></li>
 </ul>
 <p>At this stage, the unanswered question is how to deal with the unobservables <span class="math inline">\(\alpha_i\)</span> in the equation. Generally, there are two approaches:</p>
@@ -480,7 +486,7 @@ p \lim\frac{1}{n}\sum_iX_i'\upsilon_i = \sum_{t=1}^Tp \lim\frac{1}{n}\sum_{i=1}^
 <p>An alternative to pooled OLS, is to collapse the multiple observations of unit <span class="math inline">\(i\)</span> into a single cross-section aggregate. This transforms the model into,</p>
 <p><span class="math display">\[
 \bar{Y}_{i} = \bar{X}_{i}'\beta+\bar{\upsilon}_{i}
-\]</span> where <span class="math inline">\(\bar{\upsilon}_{i} = \alpha_i + \bar{\varepsilon}_i\)</span>. The variane of this error term is,</p>
+\]</span> where <span class="math inline">\(\bar{\upsilon}_{i} = \alpha_i + \bar{\varepsilon}_i\)</span>. The variance of this error term is,</p>
 <p><span class="math display">\[
 E[\bar{\upsilon}_i^2|X_i] = \sigma^2_\alpha + \frac{\sigma^2_\varepsilon}{T}
 \]</span> The OLS estimator for <span class="math inline">\(\beta\)</span> is given by,</p>
@@ -509,20 +515,20 @@ E[\upsilon\upsilon' |X] = \begin{bmatrix}
 \]</span> In this <span class="math inline">\(nT\times nT\)</span> matrix, eacg off-diagonal element is a <span class="math inline">\(T\times T\)</span> matrix of 0’s, representing the cross-unit (<span class="math inline">\(i\)</span>) covariance terms.</p>
 <p>The Generalized Least Squares solution solves the following least squares problem:</p>
 <p><span class="math display">\[
-\hat{\beta}^{GLS} = \underset{b}{\arg \max} \quad (Y-Xb)'\Sigma^{-1}(Y-Xb)
+\hat{\beta}^{GLS} = \underset{b}{\arg \min} \quad (Y-Xb)'(I_n\otimes\Sigma^{-1})(Y-Xb)
 \]</span> which can be written as,</p>
 <p><span class="math display">\[
-\hat{\beta}^{GLS} = \underset{b}{\arg \max} \quad (Y^+-X^+b)'(Y^+-X^+b)
+\hat{\beta}^{GLS} = \underset{b}{\arg \min} \quad (Y^+-X^+b)'(Y^+-X^+b)
 \]</span> where <span class="math inline">\([Y^+,X^+]=[\Sigma^{-1/2}Y,\Sigma^{-1/2}X]\)</span>. In this instance, the net result of this linear transform of the model is give by,</p>
 <p><span class="math display">\[
-\underbrace{Y_{it}-\theta \bar{Y}_i}_{Y_{it}^+} = \underbrace{(X_{it}-\theta\bar{X}_i)}_{X_{it}^+}'\beta + \nu_{it}
+\underbrace{Y_{it}-\theta \bar{Y}_i}_{Y_{it}^+} = \underbrace{(X_{it}-\theta\bar{X}_i)'}_{X_{it}^{+'}}\beta + \upsilon_{it}^+
 \]</span> where,</p>
 <p><span class="math display">\[
 \theta = 1- \frac{\sigma_\varepsilon}{\sqrt{T\sigma^2_\alpha+\sigma^2_\varepsilon}}
 \]</span></p>
 <p>Consider the transformed error term <span class="math inline">\(\nu\)</span>,</p>
 <p><span class="math display">\[
-\nu_{it} = \upsilon_{it}-\theta\bar{\upsilon}_i = (1-\theta)\alpha_i + \varepsilon_{it}-\frac{\theta}{T}\sum_t\varepsilon_{it}
+\upsilon_{it}^+ = \upsilon_{it}-\theta\bar{\upsilon}_i = (1-\theta)\alpha_i + \varepsilon_{it}-\frac{\theta}{T}\sum_t\varepsilon_{it}
 \]</span></p>
 <p>The serial correlation of this error term is 0. Consider, for <span class="math inline">\(t\neq s\)</span> <span class="math display">\[
 \begin{aligned}
@@ -644,7 +650,7 @@ Var(\hat{\beta}^{WG}|X) =&amp; (\tilde{X}'\tilde{X})^{-1}\tilde{X}'E[\tilde{\var
 <p>An unbiased and consistent estimator for <span class="math inline">\(\sigma^2_\varepsilon\)</span> is given by,</p>
 <p><span class="math display">\[
 \hat{\sigma}^2_\varepsilon = \frac{RSS}{dof}=\frac{\sum_{i=1}^n\sum_{t=1}^T\big(Y_{it}-\bar{Y}_i-(X_{it}-\bar{X}_i)'\hat{\beta}^{WG}\big)^2}{nT-n-k}
-\]</span> The residual degrees of freedom is equal to <span class="math inline">\(nT-n-k\)</span>, not <span class="math inline">\(nT-k\)</span>. While there are <span class="math inline">\(nT\)</span> observations and <span class="math inline">\(k\)</span> parameters, we must deduct the <span class="math inline">\(n\)</span> unit-level means computed. Another way to see this is to use the above projection matrix decomposition:</p>
+\]</span> The residual degrees of freedom is equal to <span class="math inline">\(nT-n-k\)</span>, not <span class="math inline">\(nT-k\)</span>. While there are <span class="math inline">\(nT\)</span> observations and <span class="math inline">\(k\)</span> parameters, we must deduct the <span class="math inline">\(n\)</span> unit-level means computed. Another way to see this is to use the above projection matrix decomposition. For the purpose of this decomposition, denote <span class="math inline">\(I_{n}\otimes M_\ell=M_{n\ell}\)</span> an idempotent (orthogonal) projection matrix. Then,</p>
 <p><span class="math display">\[
 \begin{aligned}
 RSS =&amp; \hat{\varepsilon}'\hat{\varepsilon} \\
@@ -706,20 +712,48 @@ X_{k} = \sum_{j=1}^n\phi_j\mathbf{1}\{i = j\} + \xi
 \underbrace{Y_{it}-Y_{it-1}}_{\Delta Y_{it}} = \underbrace{(X_{it}-X_{it-1})'\beta}_{\Delta X_{it}'\beta}+\underbrace{\alpha_{i}-\alpha_i}_{=0}+ \underbrace{\varepsilon_{it}-\varepsilon_{it-1}}_{\Delta \varepsilon_{it}}
 \]</span> As a result, the estimation sample will include 1 less period: <span class="math inline">\(t=2,...,T\)</span> for each <span class="math inline">\(i\)</span>. In addition, we must make a modified rank assumption,</p>
 <ul>
-<li><strong>SLPM 4”</strong>: <span class="math inline">\(rank(\tilde{X})=k\)</span></li>
+<li><strong>SLPM 4”</strong>: <span class="math inline">\(rank(\Delta X)=k\)</span></li>
 </ul>
+<p>This transformation can be describe using the linear transformation (i.e.&nbsp;matrix) <span class="math inline">\(D\)</span>:</p>
+<p><span class="math display">\[
+D = \begin{bmatrix}-1 &amp; 1 &amp; 0&amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; -1 &amp; 1&amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; 0 &amp; -1&amp; 1 &amp;  &amp;  \\
+\vdots &amp; \vdots &amp; &amp; \ddots &amp; \ddots &amp;  \\
+0 &amp; 0 &amp; &amp;  &amp; -1 &amp; 1 \\
+\end{bmatrix}
+\]</span> <span class="math inline">\(D\)</span> is a <span class="math inline">\((T-1)\times T\)</span> matrix. When applied to <span class="math inline">\(Y_i\)</span> or <span class="math inline">\(X_i\)</span>, it reduces the number of observations by 1. Note, we assume here that the data is sorted by <span class="math inline">\(t\)</span>. Thus, <span class="math inline">\(DX_i\)</span> is a <span class="math inline">\((T-1)\times k\)</span> matrix of first-differences. The model can therefore be expressed as,</p>
+<p><span class="math display">\[
+DY_i = DX_i\beta+D\varepsilon_{it}
+\]</span></p>
 <p>Under SLPM 1-6, <span class="math inline">\(\hat{\beta}^{FD}\)</span> is consistent and asympotitcally normal. However, we need to account for the error term structure. This is because,</p>
 <p><span class="math display">\[
-E[\Delta \varepsilon_{is}\Delta \varepsilon_{it}] =\begin{cases}E[(\varepsilon_{is}-\varepsilon_{is-1})(\varepsilon_{it}-\varepsilon_{it-1})] = 2\sigma^2_{\varepsilon} \quad \text{for}\;s=t \\
-E[(\varepsilon_{is}-\varepsilon_{is-1})(\varepsilon_{it}-\varepsilon_{it-1})] = -\sigma^2_{\varepsilon} \quad \text{for}\;s=t-1 \\
+E[\Delta \varepsilon_{is}\Delta \varepsilon_{it}|X_i] =\begin{cases}E[(\varepsilon_{is}-\varepsilon_{is-1})(\varepsilon_{it}-\varepsilon_{it-1})|X_i] = 2\sigma^2_{\varepsilon} \quad \text{for}\;s=t \\
+E[(\varepsilon_{is}-\varepsilon_{is-1})(\varepsilon_{it}-\varepsilon_{it-1})|X_i] = -\sigma^2_{\varepsilon} \quad \text{for}\;s=t-1 \\
 0 \quad \text{otherwise}\end{cases}
 \]</span></p>
-<p>This is a MA(1) error term structure, in which the first-order correlation is non-zero.</p>
-<p>For <span class="math inline">\(T=2\)</span>, you can show that,</p>
+<p>This is a MA(1) error term structure, in which the first-order correlation is non-zero. Using the linear transformation <span class="math inline">\(D\)</span>, we can express this as,</p>
+<p>E[D <em>{i}(D </em>{i})’|X_i] = ^2_{}DD’</p>
+<section id="ols-vs-gls" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="ols-vs-gls"><span class="header-section-number">9.1</span> OLS vs GLS</h3>
+<p>The OLS estimator is given by,</p>
 <p><span class="math display">\[
-\hat{\beta}^{WG} = \hat{\beta}^{FD}
+\hat{\beta}^{FD} = \bigg(\sum_{i=1}^n(DX_i)'DX_i\bigg)^{-1}\sum_{i=1}^n(DX_i)'DY_i
+\]</span> For <span class="math inline">\(T=2\)</span>, you can show that,</p>
+<p><span class="math display">\[
+\hat{\beta}^{FD}=\hat{\beta}^{WG}
 \]</span></p>
-<p>You can also show that if you apply GLS to the first-differenced equation, you get the WG estimator (for <span class="math inline">\(T\geq2\)</span>).</p>
+<p>As scene above, the error term is not homoskedastic, which makes this estimator inefficient. The efficient GLS estimator is given by,</p>
+<p><span class="math display">\[
+\hat{\beta}^{GLS} = \underset{b}{\arg \min} \sum_{i=1}^n (DY_i-DX_ib)'(\sigma^2_\varepsilon DD')^{-1}(DY_i-DX_ib)
+\]</span> Since the scalar <span class="math inline">\(\sigma^2_\varepsilon\)</span> can be ignored, the GLS solution is given by,</p>
+<p><span class="math display">\[
+\hat{\beta}^{GLS} = \bigg(\sum_{i=1}^nX_i'D'(DD')^{-1}DX_i\bigg)^{-1}\sum_{i=1}^nX_i'D'(DD')^{-1}DY_i
+\]</span> It turns out that,</p>
+<p><span class="math display">\[
+D'(DD')^{-1}D = M_\ell
+\]</span> This result holds for <span class="math inline">\(T\geq 2\)</span>. The GLS estimator for first differences is equivalent to the Within-Group estimator.</p>
+</section>
 </section>
 <section id="wu-hausman-test" class="level2" data-number="10">
 <h2 data-number="10" class="anchored" data-anchor-id="wu-hausman-test"><span class="header-section-number">10</span> Wu-Hausman Test</h2>

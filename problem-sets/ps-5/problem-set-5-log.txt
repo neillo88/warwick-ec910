@@ -1,0 +1,425 @@
+{smcl}
+{res}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick-ec910\problem-sets\ps-5\problem-set-5-log.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}11 Nov 2024, 14:07:07
+{txt}(PSID wage data 1976-82 from Baltagi and Khanti-Akom (1990))
+{res}
+{col 1}{txt:Panel variable: }{res:id}{txt: (strongly balanced)}
+{p 1 16 2}{txt:Time variable: }{res:t}{txt:, }{res:{bind:1}}{txt: to }{res:{bind:7}}{p_end}
+{txt}{col 10}Delta: {res}1 unit
+
+{txt}Contains data from {res}problem-set-5-data.dta
+{txt} Observations:{res}         4,165                  PSID wage data 1976-82 from
+                                                Baltagi and Khanti-Akom (1990)
+{txt}    Variables:{res}            14                  11 Nov 2024 11:19
+                                              (_dta has notes)
+{txt}{hline}
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+{hline}
+{p 0 48}{res}{bind:exper          }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}years of full-time work experience{p_end}
+{p 0 48}{bind:weeks          }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}weeks worked{p_end}
+{p 0 48}{bind:occup          }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}occupation; occ==1 if in a blue-collar occupation{p_end}
+{p 0 48}{bind:industry       }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}industry; ind==1 if working in a manufacturing industry{p_end}
+{p 0 48}{bind:south          }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}residence; south==1 if in the South area{p_end}
+{p 0 48}{bind:smsa           }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}smsa==1 if in the Standard metropolitan statistical area{p_end}
+{p 0 48}{bind:ms             }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}marital status{p_end}
+{p 0 48}{bind:female         }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}female or male{p_end}
+{p 0 48}{bind:union          }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}if wage set be a union contract{p_end}
+{p 0 48}{bind:educ           }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}years of education{p_end}
+{p 0 48}{bind:black          }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}black{p_end}
+{p 0 48}{bind:lwage          }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}log wage{p_end}
+{p 0 48}{bind:id             }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:t              }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{txt}{hline}
+Sorted by: {res}id  t
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}id {c |}{res}      4,165         298    171.7821          1        595
+{txt}{space 11}t {c |}{res}      4,165           4     2.00024          1          7
+{txt}{space 7}lwage {c |}{res}      4,165    6.676346    .4615122    4.60517      8.537
+{txt}{space 8}educ {c |}{res}      4,165    12.84538    2.787995          4         17
+{txt}{space 7}exper {c |}{res}      4,165    19.85378    10.96637          1         51
+{txt}{hline 13}{c +}{hline 57}
+{space 7}weeks {c |}{res}      4,165    46.81152    5.129098          5         52
+{txt}{space 7}south {c |}{res}      4,165    .2902761    .4539442          0          1
+
+      {txt}id:  {res}1{txt}, {res}2{txt}, ..., {res}595                                    {txt}n ={res}        595
+       {txt}t:  {res}1, 2, ..., 7                                      {txt}T ={res}          7
+           {txt}Delta(t) = {res}1 unit
+           {txt}Span(t)  = {res}7 periods
+           {txt}(id*t uniquely identifies each observation)
+
+Distribution of T_i:   min      5%     25%       50%       75%     95%     max
+                    {res}     7       7       7         7         7       7       7
+
+{txt}{col 6}Freq.  Percent    Cum. {c |}  Pattern
+ {hline 27}{c +}{c -}{c -}{hline 7}
+{res}      595    100.00  100.00{txt} {c |}  {res}1111111
+{txt} {hline 27}{c +}{c -}{c -}{hline 7}
+{res}      595    100.00        {txt} {c |}  {res}XXXXXXX
+
+{txt}Variable         {c |}      Mean   Std. dev.       Min        Max {c |}    Observations
+{hline 17}{c +}{hline 44}{c +}{hline 16}
+id{col 10}overall {c |} {res}      298   171.7821          1        595{txt} {c |}{col 69}N =    4165
+{col 10}between {c |}{col 31}{res}  171.906          1        595{txt} {c |}{col 69}n =     595
+{col 10}within  {c |}{col 31}{res}        0        298        298{txt} {c |}     T =       7
+{col 18}{c |}{col 63}{c |}
+t{col 10}overall {c |} {res}        4    2.00024          1          7{txt} {c |}{col 69}N =    4165
+{col 10}between {c |}{col 31}{res}        0          4          4{txt} {c |}{col 69}n =     595
+{col 10}within  {c |}{col 31}{res}  2.00024          1          7{txt} {c |}     T =       7
+{col 18}{c |}{col 63}{c |}
+lwage{col 10}overall {c |} {res} 6.676346   .4615122    4.60517      8.537{txt} {c |}{col 69}N =    4165
+{col 10}between {c |}{col 31}{res} .3942387     5.3364   7.813596{txt} {c |}{col 69}n =     595
+{col 10}within  {c |}{col 31}{res} .2404023   4.781808   8.621092{txt} {c |}     T =       7
+{col 18}{c |}{col 63}{c |}
+educ{col 10}overall {c |} {res} 12.84538   2.787995          4         17{txt} {c |}{col 69}N =    4165
+{col 10}between {c |}{col 31}{res} 2.790006          4         17{txt} {c |}{col 69}n =     595
+{col 10}within  {c |}{col 31}{res}        0   12.84538   12.84538{txt} {c |}     T =       7
+{col 18}{c |}{col 63}{c |}
+exper{col 10}overall {c |} {res} 19.85378   10.96637          1         51{txt} {c |}{col 69}N =    4165
+{col 10}between {c |}{col 31}{res} 10.79018          4         48{txt} {c |}{col 69}n =     595
+{col 10}within  {c |}{col 31}{res}  2.00024   16.85378   22.85378{txt} {c |}     T =       7
+{col 18}{c |}{col 63}{c |}
+weeks{col 10}overall {c |} {res} 46.81152   5.129098          5         52{txt} {c |}{col 69}N =    4165
+{col 10}between {c |}{col 31}{res} 3.284016   31.57143   51.57143{txt} {c |}{col 69}n =     595
+{col 10}within  {c |}{col 31}{res} 3.941881    12.2401   63.66867{txt} {c |}     T =       7
+{col 18}{c |}{col 63}{c |}
+south{col 10}overall {c |} {res} .2902761   .4539442          0          1{txt} {c |}{col 69}N =    4165
+{col 10}between {c |}{col 31}{res} .4489462          0          1{txt} {c |}{col 69}n =     595
+{col 10}within  {c |}{col 31}{res} .0693042  -.5668667   1.147419{txt} {c |}     T =       7
+{res}
+                  {txt}Overall             Between            Within
+    south {c |}    Freq.  Percent      Freq.  Percent        Percent
+{hline 10}{c +}{hline 53}
+        0 {c |}{res}    2956     70.97       428     71.93          98.66
+{txt}        1 {c |}{res}    1209     29.03       182     30.59          94.90
+{txt}{hline 10}{c +}{hline 53}
+    Total {c |}{res}    4165    100.00       610    102.52          97.54
+                               {txt}(n = {res}595{txt})
+
+residence; {c |}
+  south==1 {c |}  residence; south==1
+ if in the {c |} if in the South area
+South area {c |}         0          1 {c |}     Total
+{hline 11}{c +}{hline 22}{c +}{hline 10}
+         0 {c |}{res}     2,527          8 {txt}{c |}{res}     2,535 
+           {txt}{c |}{res}     99.68       0.32 {txt}{c |}{res}    100.00 
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+         1 {c |}{res}         8      1,027 {txt}{c |}{res}     1,035 
+           {txt}{c |}{res}      0.77      99.23 {txt}{c |}{res}    100.00 
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+     Total {c |}{res}     2,535      1,035 {txt}{c |}{res}     3,570 
+           {txt}{c |}{res}     71.01      28.99 {txt}{c |}{res}    100.00 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     4,165
+{txt}{hline 13}{c +}{hline 34}   F(4, 4160)      = {res}   411.62
+{txt}       Model {c |} {res} 251.491445         4  62.8728612   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 635.413457     4,160  .152743619   {txt}R-squared       ={res}    0.2836
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2829
+{txt}       Total {c |} {res} 886.904902     4,164  .212993492   {txt}Root MSE        =   {res} .39082
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}exper {c |}{col 14}{res}{space 2}  .044675{col 26}{space 2} .0023929{col 37}{space 1}   18.67{col 46}{space 3}0.000{col 54}{space 4} .0399838{col 67}{space 3} .0493663
+{txt}{space 7}expsq {c |}{col 14}{res}{space 2} -.715631{col 26}{space 2} .0527938{col 37}{space 1}  -13.56{col 46}{space 3}0.000{col 54}{space 4}-.8191351{col 67}{space 3}-.6121268
+{txt}{space 7}weeks {c |}{col 14}{res}{space 2}  .005827{col 26}{space 2} .0011827{col 37}{space 1}    4.93{col 46}{space 3}0.000{col 54}{space 4} .0035084{col 67}{space 3} .0081456
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0760407{col 26}{space 2} .0022266{col 37}{space 1}   34.15{col 46}{space 3}0.000{col 54}{space 4} .0716754{col 67}{space 3}  .080406
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 4.907961{col 26}{space 2} .0673297{col 37}{space 1}   72.89{col 46}{space 3}0.000{col 54}{space 4} 4.775959{col 67}{space 3} 5.039963
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Between regression (regression on group means)  Number of obs     = {res}     4,165
+{txt}Group variable: {res}id                              {txt}Number of groups  = {res}       595
+
+{txt}R-squared:                                      Obs per group:
+     Within  = {res}0.1357                                         {txt}min = {res}         7
+{txt}     Between = {res}0.3264                                         {txt}avg = {res}       7.0
+{txt}     Overall = {res}0.2723                                         {txt}max = {res}         7
+
+                                                {txt}F({res}4{txt},{res}590{txt})          =  {res}    71.48
+{txt}sd(u_i + avg(e_i.)) = {res}.324656                   {txt}Prob > F          =     {res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}exper {c |}{col 14}{res}{space 2}  .038153{col 26}{space 2} .0056967{col 37}{space 1}    6.70{col 46}{space 3}0.000{col 54}{space 4} .0269647{col 67}{space 3} .0493412
+{txt}{space 7}expsq {c |}{col 14}{res}{space 2} -.631272{col 26}{space 2} .1256812{col 37}{space 1}   -5.02{col 46}{space 3}0.000{col 54}{space 4}-.8781089{col 67}{space 3} -.384435
+{txt}{space 7}weeks {c |}{col 14}{res}{space 2} .0130903{col 26}{space 2} .0040659{col 37}{space 1}    3.22{col 46}{space 3}0.001{col 54}{space 4} .0051048{col 67}{space 3} .0210757
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0737838{col 26}{space 2} .0048985{col 37}{space 1}   15.06{col 46}{space 3}0.000{col 54}{space 4} .0641632{col 67}{space 3} .0834044
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 4.683039{col 26}{space 2} .2100989{col 37}{space 1}   22.29{col 46}{space 3}0.000{col 54}{space 4} 4.270407{col 67}{space 3} 5.095672
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Random-effects GLS regression                   Number of obs     = {res}     4,165
+{txt}Group variable: {res}id                              {txt}Number of groups  = {res}       595
+
+{txt}R-squared:                                      Obs per group:
+     Within  = {res}0.6340                                         {txt}min = {res}         7
+{txt}     Between = {res}0.1716                                         {txt}avg = {res}       7.0
+{txt}     Overall = {res}0.1830                                         {txt}max = {res}         7
+
+                                                {txt}Wald chi2({res}4{txt})      =  {res}  3012.45
+{txt}corr(u_i, X) = {res}0{txt} (assumed)                      Prob > chi2       =     {res}0.0000
+{txt}theta        = {res}.82280511
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}exper {c |}{col 14}{res}{space 2} .0888609{col 26}{space 2} .0028178{col 37}{space 1}   31.54{col 46}{space 3}0.000{col 54}{space 4} .0833382{col 67}{space 3} .0943837
+{txt}{space 7}expsq {c |}{col 14}{res}{space 2} -.772565{col 26}{space 2} .0622619{col 37}{space 1}  -12.41{col 46}{space 3}0.000{col 54}{space 4} -.894596{col 67}{space 3}-.6505339
+{txt}{space 7}weeks {c |}{col 14}{res}{space 2} .0009658{col 26}{space 2} .0007433{col 37}{space 1}    1.30{col 46}{space 3}0.194{col 54}{space 4} -.000491{col 67}{space 3} .0024226
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .1117099{col 26}{space 2} .0060572{col 37}{space 1}   18.44{col 46}{space 3}0.000{col 54}{space 4} .0998381{col 67}{space 3} .1235818
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 3.829366{col 26}{space 2} .0936336{col 37}{space 1}   40.90{col 46}{space 3}0.000{col 54}{space 4} 3.645848{col 67}{space 3} 4.012885
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} .31951859
+     {txt}sigma_e {c |} {res} .15220316
+         {txt}rho {c |} {res} .81505521{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+{p 0 6 2}note: {bf:educ} omitted because of collinearity.{p_end}
+{res}
+{txt}Fixed-effects (within) regression{col 49}Number of obs{col 67}={col 69}{res}     4,165
+{txt}Group variable: {res}id{txt}{col 49}Number of groups{col 67}={col 69}{res}       595
+
+{txt}R-squared:{col 49}Obs per group:
+     Within  = {res}0.6566{col 63}{txt}min{col 67}={col 69}{res}         7
+{txt}     Between = {res}0.0276{col 63}{txt}avg{col 67}={col 69}{res}       7.0
+{txt}     Overall = {res}0.0476{col 63}{txt}max{col 67}={col 69}{res}         7
+
+{txt}{col 49}F({res}3{txt}, {res}3567{txt}){col 67}={col 70}{res}  2273.74
+{txt}corr(u_i, Xb) = {res}-0.9107{txt}{col 49}Prob > F{col 67}={col 73}{res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}exper {c |}{col 14}{res}{space 2} .1137879{col 26}{space 2} .0024689{col 37}{space 1}   46.09{col 46}{space 3}0.000{col 54}{space 4} .1089473{col 67}{space 3} .1186284
+{txt}{space 7}expsq {c |}{col 14}{res}{space 2}-.4243693{col 26}{space 2} .0546316{col 37}{space 1}   -7.77{col 46}{space 3}0.000{col 54}{space 4}-.5314816{col 67}{space 3} -.317257
+{txt}{space 7}weeks {c |}{col 14}{res}{space 2} .0008359{col 26}{space 2} .0005997{col 37}{space 1}    1.39{col 46}{space 3}0.163{col 54}{space 4}-.0003399{col 67}{space 3} .0020116
+{txt}{space 8}educ {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}_cons {c |}{col 14}{res}{space 2} 4.596396{col 26}{space 2} .0389061{col 37}{space 1}  118.14{col 46}{space 3}0.000{col 54}{space 4} 4.520116{col 67}{space 3} 4.672677
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} 1.0362039
+     {txt}sigma_e {c |} {res} .15220316
+         {txt}rho {c |} {res} .97888036{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+F test that all u_i=0: F({res}594{txt}, {res}3567{txt}) = {res}53.12{col 62}{txt}Prob > F = {res}0.0000
+{txt}{p 0 6 2}note: {bf:educ} omitted because of collinearity.{p_end}
+{res}
+{txt}{col 1}Linear regression, absorbing indicators{col 52}{lalign 17:Number of obs}{col 69} = {res}{ralign 7:4,165}
+{txt}{col 1}Absorbed variable: {res:id}{col 52}{lalign 17:No. of categories}{col 69} = {res}{ralign 7:595}
+{txt}{col 52}{lalign 17:F({res:3}, {res:3567})}{col 69} = {res}{ralign 7:2273.74}
+{txt}{col 52}{lalign 17:Prob > F}{col 69} = {res}{ralign 7:0.0000}
+{txt}{col 52}{lalign 17:R-squared}{col 69} = {res}{ralign 7:0.9068}
+{txt}{col 52}{lalign 17:Adj R-squared}{col 69} = {res}{ralign 7:0.8912}
+{txt}{col 52}{lalign 17:Root MSE}{col 69} = {res}{ralign 7:0.1522}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}exper {c |}{col 14}{res}{space 2} .1137879{col 26}{space 2} .0024689{col 37}{space 1}   46.09{col 46}{space 3}0.000{col 54}{space 4} .1089473{col 67}{space 3} .1186284
+{txt}{space 7}expsq {c |}{col 14}{res}{space 2}-.4243693{col 26}{space 2} .0546316{col 37}{space 1}   -7.77{col 46}{space 3}0.000{col 54}{space 4}-.5314816{col 67}{space 3} -.317257
+{txt}{space 7}weeks {c |}{col 14}{res}{space 2} .0008359{col 26}{space 2} .0005997{col 37}{space 1}    1.39{col 46}{space 3}0.163{col 54}{space 4}-.0003399{col 67}{space 3} .0020116
+{txt}{space 8}educ {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}_cons {c |}{col 14}{res}{space 2} 4.596396{col 26}{space 2} .0389061{col 37}{space 1}  118.14{col 46}{space 3}0.000{col 54}{space 4} 4.520116{col 67}{space 3} 4.672677
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+F test of absorbed indicators: F({res}594{txt}, {res}3567{txt}) = {res}53.118{col 62}{txt} Prob > F = {res}0.000
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     3,570
+{txt}{hline 13}{c +}{hline 34}   F(3, 3567)      = {res}   337.12
+{txt}       Model {c |} {res} 33.3371458         3  11.1123819   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res}  117.57812     3,567  .032962747   {txt}R-squared       ={res}    0.2209
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2202
+{txt}       Total {c |} {res} 150.915266     3,570  .042273184   {txt}Root MSE        =   {res} .18156
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     D.lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}exper {c |}
+{space 9}D1. {c |}{col 14}{res}{space 2} .1170654{col 26}{space 2} .0063106{col 37}{space 1}   18.55{col 46}{space 3}0.000{col 54}{space 4} .1046927{col 67}{space 3} .1294381
+{txt}{space 12} {c |}
+{space 7}expsq {c |}
+{space 9}D1. {c |}{col 14}{res}{space 2}-.5321208{col 26}{space 2} .1392741{col 37}{space 1}   -3.82{col 46}{space 3}0.000{col 54}{space 4}-.8051857{col 67}{space 3} -.259056
+{txt}{space 12} {c |}
+{space 7}weeks {c |}
+{space 9}D1. {c |}{col 14}{res}{space 2}-.0002683{col 26}{space 2} .0005648{col 37}{space 1}   -0.47{col 46}{space 3}0.635{col 54}{space 4}-.0013757{col 67}{space 3} .0008392
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}theta = .82280511
+
+{txt}{hline 60}
+{txt}                      (1)             (2)             (3)   
+{txt}                      OLS              BG            FGLS   
+{txt}{hline 60}
+{txt}exper       {res}       0.0447***       0.0382***       0.0889***{txt}
+            {res} {ralign 12:{txt:(}0.00239{txt:)}}    {ralign 12:{txt:(}0.00570{txt:)}}    {ralign 12:{txt:(}0.00282{txt:)}}   {txt}
+
+{txt}expsq       {res}       -0.716***       -0.631***       -0.773***{txt}
+            {res} {ralign 12:{txt:(}0.0528{txt:)}}    {ralign 12:{txt:(}0.126{txt:)}}    {ralign 12:{txt:(}0.0623{txt:)}}   {txt}
+
+{txt}weeks       {res}      0.00583***       0.0131**      0.000966   {txt}
+            {res} {ralign 12:{txt:(}0.00118{txt:)}}    {ralign 12:{txt:(}0.00407{txt:)}}    {ralign 12:{txt:(}0.000743{txt:)}}   {txt}
+
+{txt}educ        {res}       0.0760***       0.0738***        0.112***{txt}
+            {res} {ralign 12:{txt:(}0.00223{txt:)}}    {ralign 12:{txt:(}0.00490{txt:)}}    {ralign 12:{txt:(}0.00606{txt:)}}   {txt}
+
+{txt}_cons       {res}        4.908***        4.683***        3.829***{txt}
+            {res} {ralign 12:{txt:(}0.0673{txt:)}}    {ralign 12:{txt:(}0.210{txt:)}}    {ralign 12:{txt:(}0.0936{txt:)}}   {txt}
+{txt}{hline 60}
+{txt}N           {res}         4165            4165            4165   {txt}
+{txt}r2          {res}        0.284           0.326                   {txt}
+{txt}r2_o        {res}                        0.272           0.183   {txt}
+{txt}r2_b        {res}                        0.326           0.172   {txt}
+{txt}r2_w        {res}                        0.136           0.634   {txt}
+{txt}sigma_u     {res}                                        0.320   {txt}
+{txt}sigma_e     {res}                                        0.152   {txt}
+{txt}rho         {res}                                        0.815   {txt}
+{txt}{hline 60}
+{txt}Standard errors in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+{res}
+{txt}{hline 60}
+{txt}                      (1)             (2)             (3)   
+{txt}                       WG            LSDV              FD   
+{txt}{hline 60}
+{txt}exper       {res}        0.114***        0.114***        0.117***{txt}
+            {res} {ralign 12:{txt:(}0.00247{txt:)}}    {ralign 12:{txt:(}0.00247{txt:)}}    {ralign 12:{txt:(}0.00631{txt:)}}   {txt}
+
+{txt}expsq       {res}       -0.424***       -0.424***       -0.532***{txt}
+            {res} {ralign 12:{txt:(}0.0546{txt:)}}    {ralign 12:{txt:(}0.0546{txt:)}}    {ralign 12:{txt:(}0.139{txt:)}}   {txt}
+
+{txt}weeks       {res}     0.000836        0.000836       -0.000268   {txt}
+            {res} {ralign 12:{txt:(}0.000600{txt:)}}    {ralign 12:{txt:(}0.000600{txt:)}}    {ralign 12:{txt:(}0.000565{txt:)}}   {txt}
+
+{txt}educ        {res}            0               0                   {txt}
+            {res} {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}                   {txt}
+
+{txt}_cons       {res}        4.596***        4.596***                {txt}
+            {res} {ralign 12:{txt:(}0.0389{txt:)}}    {ralign 12:{txt:(}0.0389{txt:)}}                   {txt}
+{txt}{hline 60}
+{txt}N           {res}         4165            4165            3570   {txt}
+{txt}r2          {res}        0.657           0.907           0.221   {txt}
+{txt}r2_o        {res}       0.0476                                   {txt}
+{txt}r2_b        {res}       0.0276                                   {txt}
+{txt}r2_w        {res}        0.657                                   {txt}
+{txt}sigma_u     {res}        1.036                                   {txt}
+{txt}sigma_e     {res}        0.152                                   {txt}
+{txt}rho         {res}        0.979                                   {txt}
+{txt}{hline 60}
+{txt}Standard errors in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+
+{col 18}{hline 4} Coefficients {hline 4}
+{col 14}{c |}{col 21}(b){col 34}(B){col 49}(b-B){col 59}sqrt(diag(V_b-V_B))
+{col 14}{c |}{col 17}     WG     {col 30}    FGLS    {col 46}Difference{col 63}Std. err.
+{hline 13}{c +}{hline 64}
+{space 7}exper {c |}{res}{col 18} .1137879{col 31} .0888609{col 47} .0249269{col 63} .0012778
+{txt}{space 7}expsq {c |}{res}{col 18}-.4243693{col 31} -.772565{col 47} .3481957{col 63} .0284727
+{txt}{space 7}weeks {c |}{res}{col 18} .0008359{col 31} .0009658{col 47}-.0001299{col 63} .0001108
+{txt}{hline 13}{c BT}{hline 64}
+{ralign 78:b = Consistent under H0 and Ha; obtained from {bf:xtreg}.}
+{ralign 78:B = Inconsistent under Ha, efficient under H0; obtained from {bf:xtreg}.}
+
+Test of H0: Difference in coefficients not systematic
+
+{ralign 11:chi2({res:3})} = (b-B)'[(V_b-V_B)^(-1)](b-B)
+{ralign 11:} = {res:{ralign 7:1513.02}}
+{ralign 11:Prob > chi2} = {res:{ralign 7:0.0000}}
+{res}
+{txt}Random-effects GLS regression                   Number of obs     = {res}     4,165
+{txt}Group variable: {res}id                              {txt}Number of groups  = {res}       595
+
+{txt}R-squared:                                      Obs per group:
+     Within  = {res}0.6566                                         {txt}min = {res}         7
+{txt}     Between = {res}0.3264                                         {txt}avg = {res}       7.0
+{txt}     Overall = {res}0.4160                                         {txt}max = {res}         7
+
+                                                {txt}Wald chi2({res}7{txt})      =  {res}  7107.12
+{txt}corr(u_i, X) = {res}0{txt} (assumed)                      Prob > chi2       =     {res}0.0000
+{txt}theta        = {res}.82280511
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       lwage{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}exper {c |}{col 14}{res}{space 2} .1137879{col 26}{space 2} .0024689{col 37}{space 1}   46.09{col 46}{space 3}0.000{col 54}{space 4} .1089489{col 67}{space 3} .1186268
+{txt}{space 7}expsq {c |}{col 14}{res}{space 2}-.4243693{col 26}{space 2} .0546316{col 37}{space 1}   -7.77{col 46}{space 3}0.000{col 54}{space 4}-.5314452{col 67}{space 3}-.3172934
+{txt}{space 7}weeks {c |}{col 14}{res}{space 2} .0008359{col 26}{space 2} .0005997{col 37}{space 1}    1.39{col 46}{space 3}0.163{col 54}{space 4}-.0003395{col 67}{space 3} .0020112
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0737838{col 26}{space 2} .0048985{col 37}{space 1}   15.06{col 46}{space 3}0.000{col 54}{space 4} .0641829{col 67}{space 3} .0833846
+{txt}{space 5}avexper {c |}{col 14}{res}{space 2}-.0756349{col 26}{space 2} .0062087{col 37}{space 1}  -12.18{col 46}{space 3}0.000{col 54}{space 4}-.0878036{col 67}{space 3}-.0634662
+{txt}{space 5}avexpsq {c |}{col 14}{res}{space 2}-.2069027{col 26}{space 2} .1370415{col 37}{space 1}   -1.51{col 46}{space 3}0.131{col 54}{space 4}-.4754991{col 67}{space 3} .0616937
+{txt}{space 5}avweeks {c |}{col 14}{res}{space 2} .0122544{col 26}{space 2} .0041099{col 37}{space 1}    2.98{col 46}{space 3}0.003{col 54}{space 4} .0041991{col 67}{space 3} .0203097
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 4.683039{col 26}{space 2} .2100989{col 37}{space 1}   22.29{col 46}{space 3}0.000{col 54}{space 4} 4.271253{col 67}{space 3} 5.094826
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} .31951859
+     {txt}sigma_e {c |} {res} .15220316
+         {txt}rho {c |} {res} .81505521{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+{res}
+{txt}{hline 76}
+{txt}                      (1)             (2)             (3)             (4)   
+{txt}                       WG            LSDV              FD        Mundlack   
+{txt}{hline 76}
+{txt}exper       {res}        0.114***        0.114***        0.117***        0.114***{txt}
+            {res} {ralign 12:{txt:(}0.00247{txt:)}}    {ralign 12:{txt:(}0.00247{txt:)}}    {ralign 12:{txt:(}0.00631{txt:)}}    {ralign 12:{txt:(}0.00247{txt:)}}   {txt}
+
+{txt}expsq       {res}       -0.424***       -0.424***       -0.532***       -0.424***{txt}
+            {res} {ralign 12:{txt:(}0.0546{txt:)}}    {ralign 12:{txt:(}0.0546{txt:)}}    {ralign 12:{txt:(}0.139{txt:)}}    {ralign 12:{txt:(}0.0546{txt:)}}   {txt}
+
+{txt}weeks       {res}     0.000836        0.000836       -0.000268        0.000836   {txt}
+            {res} {ralign 12:{txt:(}0.000600{txt:)}}    {ralign 12:{txt:(}0.000600{txt:)}}    {ralign 12:{txt:(}0.000565{txt:)}}    {ralign 12:{txt:(}0.000600{txt:)}}   {txt}
+
+{txt}educ        {res}            0               0                          0.0738***{txt}
+            {res} {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}                    {ralign 12:{txt:(}0.00490{txt:)}}   {txt}
+
+{txt}avexper     {res}                                                      -0.0756***{txt}
+            {res}                                                 {ralign 12:{txt:(}0.00621{txt:)}}   {txt}
+
+{txt}avexpsq     {res}                                                       -0.207   {txt}
+            {res}                                                 {ralign 12:{txt:(}0.137{txt:)}}   {txt}
+
+{txt}avweeks     {res}                                                       0.0123** {txt}
+            {res}                                                 {ralign 12:{txt:(}0.00411{txt:)}}   {txt}
+
+{txt}_cons       {res}        4.596***        4.596***                        4.683***{txt}
+            {res} {ralign 12:{txt:(}0.0389{txt:)}}    {ralign 12:{txt:(}0.0389{txt:)}}                    {ralign 12:{txt:(}0.210{txt:)}}   {txt}
+{txt}{hline 76}
+{txt}N           {res}         4165            4165            3570            4165   {txt}
+{txt}r2          {res}        0.657           0.907           0.221                   {txt}
+{txt}r2_o        {res}       0.0476                                           0.416   {txt}
+{txt}r2_b        {res}       0.0276                                           0.326   {txt}
+{txt}r2_w        {res}        0.657                                           0.657   {txt}
+{txt}sigma_u     {res}        1.036                                           0.320   {txt}
+{txt}sigma_e     {res}        0.152                                           0.152   {txt}
+{txt}rho         {res}        0.979                                           0.815   {txt}
+{txt}{hline 76}
+{txt}Standard errors in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+
+{p 0 8}Note: the rank of the differenced variance matrix ({result:3}) does not equal the number of coefficients being tested ({result:4}); be sure this is what you expect, or there may be problems computing the test.  Examine the output of your estimators for anything unexpected and possibly consider scaling your variables so that the coefficients are on a similar scale.
+
+{col 18}{hline 4} Coefficients {hline 4}
+{col 14}{c |}{col 21}(b){col 34}(B){col 49}(b-B){col 59}sqrt(diag(V_b-V_B))
+{col 14}{c |}{col 17}    MUN     {col 30}    FGLS    {col 46}Difference{col 63}Std. err.
+{hline 13}{c +}{hline 64}
+{space 7}exper {c |}{res}{col 18} .1137879{col 31} .0888609{col 47} .0249269{col 63} .0012778
+{txt}{space 7}expsq {c |}{res}{col 18}-.4243693{col 31} -.772565{col 47} .3481957{col 63} .0284727
+{txt}{space 7}weeks {c |}{res}{col 18} .0008359{col 31} .0009658{col 47}-.0001299{col 63} .0001108
+{txt}{space 8}educ {c |}{res}{col 18} .0737838{col 31} .1117099{col 47}-.0379262{col 63} .0009972
+{txt}{hline 13}{c BT}{hline 64}
+{ralign 78:b = Consistent under H0 and Ha; obtained from {bf:xtreg}.}
+{ralign 78:B = Inconsistent under Ha, efficient under H0; obtained from {bf:xtreg}.}
+
+Test of H0: Difference in coefficients not systematic
+
+{ralign 11:chi2({res:3})} = (b-B)'[(V_b-V_B)^(-1)](b-B)
+{ralign 11:} = {res:{ralign 7:1513.02}}
+{ralign 11:Prob > chi2} = {res:{ralign 7:0.0000}}
+(V_b-V_B is not positive definite)
+{res}{txt}(output written to {browse  `"problem-set-5-results.csv"'})
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick-ec910\problem-sets\ps-5\problem-set-5-log.txt
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}11 Nov 2024, 14:07:10
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

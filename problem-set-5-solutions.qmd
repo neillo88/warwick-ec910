@@ -1,0 +1,173 @@
+---
+format:
+    html: default
+    pdf: default
+jupyter: nbstata  
+---
+
+# Problem Set 5 (SOLUTIONS)
+
+This problem set will revise some of the material covered in Handout 5 on panel data models. This will require you to familiarize yourself with Stata's panel-data commands. 
+
+```{stata}
+*| eval: false
+help xtset
+help xttab
+help xtreg
+```
+
+You will be using a dataset that comes with Stata: psidextract.dta. The data is a correct version of the PSID sample in Cornwell and Rupert (1988), found in Baltagi and Khanti-Akom (1990). It includes a sample of 595 individuals observed for the years 1976-82. 
+
+## Preamble
+
+```{stata}
+*| echo: false
+global rootdir "C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick-ec910"
+```
+
+Create a do-file for this problem set and include a preamble that sets the directory and opens the data. For example, 
+```{stata}
+clear 
+//or, to remove all stored values (including macros, matrices, scalars, etc.) 
+*clear all
+
+* Replace $rootdir with the relevant path to on your local harddrive.
+cd "$rootdir/problem-sets/ps-5"
+
+cap log close
+log using problem-set-5-log.txt, replace
+
+use problem-set-5-data.dta, clear
+```
+
+
+## Questions
+
+**1.** Set the unit identifier and time variable using `xtset`. Note, you can also use `tsset` for this task. This will allow you to use `xt` package commands.  
+
+```{stata}
+xtset id t
+```
+
+**2.** Describe and summarise the variables in the dataset using the normal `describe` and `summarize` commands.
+
+```{stata}
+des 
+sum id t lwage ed exper weeks south
+```
+
+**3.** Describe and summarise the variables in the dataset using the panel commands: `xtdescribe` and `xtsummarize`. Comment on the information provided. 
+
+```{stata}
+xtdescribe 
+xtsum id t lwage ed exper weeks south
+```
+
+**4.** Use the command `xttab` and `xtrans, freq` to describe transitions over time in the variable `south`. 
+
+```{stata}
+xttab south
+xttrans south, freq
+```
+
+**5.** Create the variable: `expsq=exper^2/1000`. Why would you scale the variable in this way?
+
+```{stata}
+gen expsq=exp*exp/1000
+```
+
+**6.** Estimate the following model using pooled OLS, between-group, feasible GLS, within-group, LSDV, and first-difference. For the first-difference estimator, you can define a first-difference in Stata using the time-series operator: `D.variable`.
+
+$$
+\ln(Wage_{it}) = \beta_1 + \beta_2 Exper_{it} + \beta_3 Exper^2_{it} + \beta_4 Weeks_{it} + \beta_5 Eduyrs_{it} + \varepsilon_{it}
+$$
+With each model, store the results using `estimates store`. For example, 
+
+```{stata}
+*| eval: false
+
+* clear existing stored estimates
+est clear
+
+* Pooled OLS
+regress lwage exper expsq weeks ed
+est store OlS
+
+* alternatively, 
+eststo OLS: regress lwage exper expsq weeks ed
+```
+
+```{stata}
+est clear
+* Pooled-OLS
+eststo OLS: regress lwage exper expsq weeks ed
+
+* Between-group
+eststo BG: xtreg lwage exper expsq weeks ed, be
+
+* Feasible-GLS
+eststo FGLS: xtreg lwage exper expsq weeks ed, re theta
+
+* Within-group
+eststo WG: xtreg lwage exper expsq weeks ed, fe 
+
+* LSDV
+eststo LSDV: areg lwage exper expsq weeks ed, absorb(id)
+
+* First-differnce
+eststo FD: reg D.(lwage exper expsq weeks), noconst
+```
+
+**7.** Using the formula from Handout 5, replicate the value of $\theta$ reported above by the FGLS estimator. Note, you will need to use the stored values of $\sigma^2_{\varepsilon}$ and $\sigma^2_{\alpha}$.
+
+```{stata}
+qui xtreg lwage exper expsq weeks ed, re theta
+display "theta = "  1 - sqrt(e(sigma_e)^2 / (7*e(sigma_u)^2+e(sigma_e)^2))
+```
+
+**8.** Make a table of the computed estimates. You can either use `estimates table` or `esttab`. The latter is part of the `estout` package, which you may need to install: `ssc install estout`. 
+
+```{stata}
+esttab OLS BG FGLS, se scalar(N r2 r2_o r2_b r2_w sigma_u sigma_e rho) mtitle("OLS" "BG" "FGLS")
+esttab WG LSDV FD, se scalar(N r2 r2_o r2_b r2_w sigma_u sigma_e rho) rename(D.exper exper D.expsq expsq D.weeks weeks) mtitle("WG" "LSDV" "FD")
+```
+
+**9.** Perform a Hausman test comparing the results of the FLGS and WG estimators. You should use the `hausman` command, with the option `sigmamore`. Be sure to get the order of the estimates correct. What do you learn from the test?
+
+```{stata}
+hausman WG FGLS, sigmamore
+```
+
+**10.** Estimate FGLS for the model below:
+
+$$
+\begin{aligned}
+\ln(Wage_{it}) =& \beta_1 + \beta_2 Exper_{it} + \beta_3 Exper^2_{it} + \beta_4 Weeks_{it} + \beta_5 Eduyrs_{it} \\
+&+ \gamma_2 \overline{Exper}_{i} + \gamma_3 \overline{Exper^2}_{i} + \gamma_4 \overline{Weeks}_{i}+\varepsilon_{it}
+\end{aligned}
+$$
+You will need to manually create the variables: $\{\overline{Exper}_{i}, \overline{Exper^2}_{i},\overline{Weeks}_{i}\}$ - the individual-level averages of each variable. This is referred to as the Mundlack correction. Once you have estimated the model, repeat the Hausman test comparing these results with those of the WG estimator. What is the significance of the Mundlack correction?
+
+```{stata}
+foreach var in exper expsq weeks{
+	bys id: egen av`var' = mean(`var')     
+}
+
+eststo MUN: xtreg lwage exper expsq weeks ed avexper avexpsq avweeks, re theta
+
+esttab WG LSDV FD MUN, se scalar(N r2 r2_o r2_b r2_w sigma_u sigma_e rho) rename(D.exper exper D.expsq expsq D.weeks weeks) mtitle("WG" "LSDV" "FD" "Mundlack")
+
+hausman MUN FGLS, sigmamore
+```
+
+**11.** Export the results as a single CSV/Excel file. You can use `esttab` for .csv or `outreg2` for .xlsx.
+
+```{stata}
+esttab using "problem-set-5-results.csv", replace se scalar(N r2 r2_o r2_b r2_w sigma_u sigma_e rho) rename(D.exper exper D.expsq expsq D.weeks weeks) mtitle("OLS" "BG" "FGLS" "WG" "LSDV" "FD" "Mundlack")
+```
+
+## Postamble
+
+```{stata}
+log close
+```

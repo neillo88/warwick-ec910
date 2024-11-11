@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>problem-set-5-solutions – EC910</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">EC910</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lecture-handouts" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lecture Handouts</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lecture-handouts">    
+        <li>
+    <a class="dropdown-item" href="./handout-1.html">
+ <span class="dropdown-text">Handout 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-2.html">
+ <span class="dropdown-text">Handout 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-3.html">
+ <span class="dropdown-text">Handout 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-4.html">
+ <span class="dropdown-text">Handout 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-5.html">
+ <span class="dropdown-text">Handout 5</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-problem-sets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Problem Sets</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-problem-sets">    
+        <li>
+    <a class="dropdown-item" href="./problem-sets/ps-1/problem-set-1.html">
+ <span class="dropdown-text">Problem Set 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-sets/ps-1/problem-set-1-solutions.html">
+ <span class="dropdown-text">Problem Set 1 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-2.html">
+ <span class="dropdown-text">Problem Set 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-2-solutions.html">
+ <span class="dropdown-text">Problem Set 2 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-3.html">
+ <span class="dropdown-text">Problem Set 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-3-solutions.html">
+ <span class="dropdown-text">Problem Set 3 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-4.html">
+ <span class="dropdown-text">Problem Set 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-4-solutions.html">
+ <span class="dropdown-text">Problem Set 4 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-5.html">
+ <span class="dropdown-text">Problem Set 5</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-additional-material" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Additional Material</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-additional-material">    
+        <li>
+    <a class="dropdown-item" href="./material-cef.html">
+ <span class="dropdown-text">Conditional Expectation Function</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./material-interpretation.html">
+ <span class="dropdown-text">Interpreting Linear Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./material-dummy.html">
+ <span class="dropdown-text">Dummy Variables</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./material-linearalgebra.html">
+ <span class="dropdown-text">Linear Algebra</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./material-inference.html">
+ <span class="dropdown-text">Statistical Inference</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#problem-set-5-solutions" id="toc-problem-set-5-solutions" class="nav-link active" data-scroll-target="#problem-set-5-solutions">Problem Set 5 (SOLUTIONS)</a>
+  <ul class="collapse">
+  <li><a href="#preamble" id="toc-preamble" class="nav-link" data-scroll-target="#preamble">Preamble</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
+  <li><a href="#postamble" id="toc-postamble" class="nav-link" data-scroll-target="#postamble">Postamble</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="problem-set-5-solutions.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="problem-set-5-solutions" class="level1">
+<h1>Problem Set 5 (SOLUTIONS)</h1>
+<p>This problem set will revise some of the material covered in Handout 5 on panel data models. This will require you to familiarize yourself with Stata’s panel-data commands.</p>
+<div id="a62dbb0d" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">help</span> xtset</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">help</span> <span class="kw">xttab</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">help</span> <span class="kw">xtreg</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You will be using a dataset that comes with Stata: psidextract.dta. The data is a correct version of the PSID sample in Cornwell and Rupert (1988), found in Baltagi and Khanti-Akom (1990). It includes a sample of 595 individuals observed for the years 1976-82.</p>
+<section id="preamble" class="level2">
+<h2 class="anchored" data-anchor-id="preamble">Preamble</h2>
+<div id="c9dd204b" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<style>div.jp-Notebook .datagrid-container {min-height: 448px; }</style>
+</div>
+</div>
+<p>Create a do-file for this problem set and include a preamble that sets the directory and opens the data. For example,</p>
+<div id="9a76e1cd" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">//or, to remove all stored values (including macros, matrices, scalars, etc.) </span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>*<span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>* Replace <span class="ot">$rootdir</span> with the relevant path to <span class="kw">on</span> your <span class="kw">local</span> harddrive.</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>cd <span class="st">"$rootdir/problem-sets/ps-5"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>cap <span class="fu">log</span> <span class="kw">close</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">using</span> problem-<span class="kw">set</span>-5-<span class="fu">log</span>.txt, <span class="kw">replace</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> problem-<span class="kw">set</span>-5-<span class="kw">data</span>.dta, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick
+&gt; -ec910\problem-sets\ps-5
+-------------------------------------------------------------------------------
+      name:  &lt;unnamed&gt;
+       log:  C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\we
+&gt; bsite\warwick-ec910\problem-sets\ps-5\problem-set-5-log.txt
+  log type:  smcl
+ opened on:  11 Nov 2024, 12:44:56
+(PSID wage data 1976-82 from Baltagi and Khanti-Akom (1990))</code></pre>
+</div>
+</div>
+</section>
+<section id="questions" class="level2">
+<h2 class="anchored" data-anchor-id="questions">Questions</h2>
+<p><strong>1.</strong> Set the unit identifier and time variable using <code>xtset</code>. Note, you can also use <code>tsset</code> for this task. This will allow you to use <code>xt</code> package commands.</p>
+<div id="e194b17a" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>xtset id t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Panel variable: id (strongly balanced)
+ Time variable: t, 1 to 7
+         Delta: 1 unit</code></pre>
+</div>
+</div>
+<p><strong>2.</strong> Describe and summarise the variables in the dataset using the normal <code>describe</code> and <code>summarize</code> commands.</p>
+<div id="f26c5163" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">des</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">sum</span> id t lwage ed exper weeks south</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Contains data from problem-set-5-data.dta
+ Observations:         4,165                  PSID wage data 1976-82 from
+                                                Baltagi and Khanti-Akom (1990)
+    Variables:            14                  11 Nov 2024 11:19
+                                              (_dta has notes)
+-------------------------------------------------------------------------------
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+-------------------------------------------------------------------------------
+exper           float   %9.0g                 years of full-time work
+                                                experience
+weeks           float   %9.0g                 weeks worked
+occup           float   %9.0g                 occupation; occ==1 if in a
+                                                blue-collar occupation
+industry        float   %9.0g                 industry; ind==1 if working in a
+                                                manufacturing industry
+south           float   %9.0g                 residence; south==1 if in the
+                                                South area
+smsa            float   %9.0g                 smsa==1 if in the Standard
+                                                metropolitan statistical area
+ms              float   %9.0g                 marital status
+female          float   %9.0g                 female or male
+union           float   %9.0g                 if wage set be a union contract
+educ            float   %9.0g                 years of education
+black           float   %9.0g                 black
+lwage           float   %9.0g                 log wage
+id              float   %9.0g                 
+t               float   %9.0g                 
+-------------------------------------------------------------------------------
+Sorted by: id  t
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+          id |      4,165         298    171.7821          1        595
+           t |      4,165           4     2.00024          1          7
+       lwage |      4,165    6.676346    .4615122    4.60517      8.537
+        educ |      4,165    12.84538    2.787995          4         17
+       exper |      4,165    19.85378    10.96637          1         51
+-------------+---------------------------------------------------------
+       weeks |      4,165    46.81152    5.129098          5         52
+       south |      4,165    .2902761    .4539442          0          1</code></pre>
+</div>
+</div>
+<p><strong>3.</strong> Describe and summarise the variables in the dataset using the panel commands: <code>xtdescribe</code> and <code>xtsummarize</code>. Comment on the information provided.</p>
+<div id="59463e44" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>xtdescribe </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">xtsum</span> id t lwage ed exper weeks south</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+      id:  1, 2, ..., 595                                    n =        595
+       t:  1, 2, ..., 7                                      T =          7
+           Delta(t) = 1 unit
+           Span(t)  = 7 periods
+           (id*t uniquely identifies each observation)
+
+Distribution of T_i:   min      5%     25%       50%       75%     95%     max
+                         7       7       7         7         7       7       7
+
+     Freq.  Percent    Cum. |  Pattern
+ ---------------------------+---------
+      595    100.00  100.00 |  1111111
+ ---------------------------+---------
+      595    100.00         |  XXXXXXX
+
+Variable         |      Mean   Std. dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+id       overall |       298   171.7821          1        595 |     N =    4165
+         between |              171.906          1        595 |     n =     595
+         within  |                    0        298        298 |     T =       7
+                 |                                            |
+t        overall |         4    2.00024          1          7 |     N =    4165
+         between |                    0          4          4 |     n =     595
+         within  |              2.00024          1          7 |     T =       7
+                 |                                            |
+lwage    overall |  6.676346   .4615122    4.60517      8.537 |     N =    4165
+         between |             .3942387     5.3364   7.813596 |     n =     595
+         within  |             .2404023   4.781808   8.621092 |     T =       7
+                 |                                            |
+educ     overall |  12.84538   2.787995          4         17 |     N =    4165
+         between |             2.790006          4         17 |     n =     595
+         within  |                    0   12.84538   12.84538 |     T =       7
+                 |                                            |
+exper    overall |  19.85378   10.96637          1         51 |     N =    4165
+         between |             10.79018          4         48 |     n =     595
+         within  |              2.00024   16.85378   22.85378 |     T =       7
+                 |                                            |
+weeks    overall |  46.81152   5.129098          5         52 |     N =    4165
+         between |             3.284016   31.57143   51.57143 |     n =     595
+         within  |             3.941881    12.2401   63.66867 |     T =       7
+                 |                                            |
+south    overall |  .2902761   .4539442          0          1 |     N =    4165
+         between |             .4489462          0          1 |     n =     595
+         within  |             .0693042  -.5668667   1.147419 |     T =       7</code></pre>
+</div>
+</div>
+<p><strong>4.</strong> Use the command <code>xttab</code> and <code>xtrans, freq</code> to describe transitions over time in the variable <code>south</code>.</p>
+<div id="95fb4ad3" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">xttab</span> south</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">xttrans</span> south, freq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+                  Overall             Between            Within
+    south |    Freq.  Percent      Freq.  Percent        Percent
+----------+-----------------------------------------------------
+        0 |    2956     70.97       428     71.93          98.66
+        1 |    1209     29.03       182     30.59          94.90
+----------+-----------------------------------------------------
+    Total |    4165    100.00       610    102.52          97.54
+                               (n = 595)
+
+residence; |
+  south==1 |  residence; south==1
+ if in the | if in the South area
+South area |         0          1 |     Total
+-----------+----------------------+----------
+         0 |     2,527          8 |     2,535 
+           |     99.68       0.32 |    100.00 
+-----------+----------------------+----------
+         1 |         8      1,027 |     1,035 
+           |      0.77      99.23 |    100.00 
+-----------+----------------------+----------
+     Total |     2,535      1,035 |     3,570 
+           |     71.01      28.99 |    100.00 </code></pre>
+</div>
+</div>
+<p><strong>5.</strong> Create the variable: <code>expsq=exper^2/1000</code>. Why would you scale the variable in this way?</p>
+<div id="cad1bc06" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> expsq=<span class="fu">exp</span>*<span class="fu">exp</span>/1000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>6.</strong> Estimate the following model using pooled OLS, between-group, feasible GLS, within-group, LSDV, and first-difference. For the first-difference estimator, you can define a first-difference in Stata using the time-series operator: <code>D.variable</code>.</p>
+<p><span class="math display">\[
+\ln(Wage_{it}) = \beta_1 + \beta_2 Exper_{it} + \beta_3 Exper^2_{it} + \beta_4 Weeks_{it} + \beta_5 Eduyrs_{it} + \varepsilon_{it}
+\]</span> With each model, store the results using <code>estimates store</code>. For example,</p>
+<div id="4e76e7eb" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>* <span class="kw">clear</span> existing stored <span class="kw">estimates</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="kw">clear</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>* Pooled OLS</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> lwage exper expsq weeks ed</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="kw">store</span> OlS</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>* alternatively, </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>eststo OLS: <span class="kw">regress</span> lwage exper expsq weeks ed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="6924f489" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="kw">clear</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>* Pooled-OLS</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>eststo OLS: <span class="kw">regress</span> lwage exper expsq weeks ed</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>* Between-<span class="fu">group</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>eststo BG: <span class="kw">xtreg</span> lwage exper expsq weeks ed, <span class="kw">be</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>* Feasible-GLS</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>eststo FGLS: <span class="kw">xtreg</span> lwage exper expsq weeks ed, re theta</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>* Within-<span class="fu">group</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>eststo WG: <span class="kw">xtreg</span> lwage exper expsq weeks ed, <span class="kw">fe</span> </span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>* LSDV</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>eststo LSDV: <span class="kw">areg</span> lwage exper expsq weeks ed, absorb(id)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>* First-differnce</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>eststo FD: <span class="kw">reg</span> D.(lwage exper expsq weeks), noconst</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+      Source |       SS           df       MS      Number of obs   =     4,165
+-------------+----------------------------------   F(4, 4160)      =    411.62
+       Model |  251.491445         4  62.8728612   Prob &gt; F        =    0.0000
+    Residual |  635.413457     4,160  .152743619   R-squared       =    0.2836
+-------------+----------------------------------   Adj R-squared   =    0.2829
+       Total |  886.904902     4,164  .212993492   Root MSE        =    .39082
+
+------------------------------------------------------------------------------
+       lwage | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       exper |    .044675   .0023929    18.67   0.000     .0399838    .0493663
+       expsq |   -.715631   .0527938   -13.56   0.000    -.8191351   -.6121268
+       weeks |    .005827   .0011827     4.93   0.000     .0035084    .0081456
+        educ |   .0760407   .0022266    34.15   0.000     .0716754     .080406
+       _cons |   4.907961   .0673297    72.89   0.000     4.775959    5.039963
+------------------------------------------------------------------------------
+
+Between regression (regression on group means)  Number of obs     =      4,165
+Group variable: id                              Number of groups  =        595
+
+R-squared:                                      Obs per group:
+     Within  = 0.1357                                         min =          7
+     Between = 0.3264                                         avg =        7.0
+     Overall = 0.2723                                         max =          7
+
+                                                F(4,590)          =      71.48
+sd(u_i + avg(e_i.)) = .324656                   Prob &gt; F          =     0.0000
+
+------------------------------------------------------------------------------
+       lwage | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       exper |    .038153   .0056967     6.70   0.000     .0269647    .0493412
+       expsq |   -.631272   .1256812    -5.02   0.000    -.8781089    -.384435
+       weeks |   .0130903   .0040659     3.22   0.001     .0051048    .0210757
+        educ |   .0737838   .0048985    15.06   0.000     .0641632    .0834044
+       _cons |   4.683039   .2100989    22.29   0.000     4.270407    5.095672
+------------------------------------------------------------------------------
+
+Random-effects GLS regression                   Number of obs     =      4,165
+Group variable: id                              Number of groups  =        595
+
+R-squared:                                      Obs per group:
+     Within  = 0.6340                                         min =          7
+     Between = 0.1716                                         avg =        7.0
+     Overall = 0.1830                                         max =          7
+
+                                                Wald chi2(4)      =    3012.45
+corr(u_i, X) = 0 (assumed)                      Prob &gt; chi2       =     0.0000
+theta        = .82280511
+
+------------------------------------------------------------------------------
+       lwage | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       exper |   .0888609   .0028178    31.54   0.000     .0833382    .0943837
+       expsq |   -.772565   .0622619   -12.41   0.000     -.894596   -.6505339
+       weeks |   .0009658   .0007433     1.30   0.194     -.000491    .0024226
+        educ |   .1117099   .0060572    18.44   0.000     .0998381    .1235818
+       _cons |   3.829366   .0936336    40.90   0.000     3.645848    4.012885
+-------------+----------------------------------------------------------------
+     sigma_u |  .31951859
+     sigma_e |  .15220316
+         rho |  .81505521   (fraction of variance due to u_i)
+------------------------------------------------------------------------------
+note: educ omitted because of collinearity.
+
+Fixed-effects (within) regression               Number of obs     =      4,165
+Group variable: id                              Number of groups  =        595
+
+R-squared:                                      Obs per group:
+     Within  = 0.6566                                         min =          7
+     Between = 0.0276                                         avg =        7.0
+     Overall = 0.0476                                         max =          7
+
+                                                F(3, 3567)        =    2273.74
+corr(u_i, Xb) = -0.9107                         Prob &gt; F          =     0.0000
+
+------------------------------------------------------------------------------
+       lwage | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       exper |   .1137879   .0024689    46.09   0.000     .1089473    .1186284
+       expsq |  -.4243693   .0546316    -7.77   0.000    -.5314816    -.317257
+       weeks |   .0008359   .0005997     1.39   0.163    -.0003399    .0020116
+        educ |          0  (omitted)
+       _cons |   4.596396   .0389061   118.14   0.000     4.520116    4.672677
+-------------+----------------------------------------------------------------
+     sigma_u |  1.0362039
+     sigma_e |  .15220316
+         rho |  .97888036   (fraction of variance due to u_i)
+------------------------------------------------------------------------------
+F test that all u_i=0: F(594, 3567) = 53.12                  Prob &gt; F = 0.0000
+note: educ omitted because of collinearity.
+
+Linear regression, absorbing indicators            Number of obs     =   4,165
+Absorbed variable: id                              No. of categories =     595
+                                                   F(3, 3567)        = 2273.74
+                                                   Prob &gt; F          =  0.0000
+                                                   R-squared         =  0.9068
+                                                   Adj R-squared     =  0.8912
+                                                   Root MSE          =  0.1522
+
+------------------------------------------------------------------------------
+       lwage | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       exper |   .1137879   .0024689    46.09   0.000     .1089473    .1186284
+       expsq |  -.4243693   .0546316    -7.77   0.000    -.5314816    -.317257
+       weeks |   .0008359   .0005997     1.39   0.163    -.0003399    .0020116
+        educ |          0  (omitted)
+       _cons |   4.596396   .0389061   118.14   0.000     4.520116    4.672677
+------------------------------------------------------------------------------
+F test of absorbed indicators: F(594, 3567) = 53.118          Prob &gt; F = 0.000
+
+      Source |       SS           df       MS      Number of obs   =     3,570
+-------------+----------------------------------   F(3, 3567)      =    337.12
+       Model |  33.3371458         3  11.1123819   Prob &gt; F        =    0.0000
+    Residual |   117.57812     3,567  .032962747   R-squared       =    0.2209
+-------------+----------------------------------   Adj R-squared   =    0.2202
+       Total |  150.915266     3,570  .042273184   Root MSE        =    .18156
+
+------------------------------------------------------------------------------
+     D.lwage | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       exper |
+         D1. |   .1170654   .0063106    18.55   0.000     .1046927    .1294381
+             |
+       expsq |
+         D1. |  -.5321208   .1392741    -3.82   0.000    -.8051857    -.259056
+             |
+       weeks |
+         D1. |  -.0002683   .0005648    -0.47   0.635    -.0013757    .0008392
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<p><strong>7.</strong> Using the formula from Handout 5, replicate the value of <span class="math inline">\(\theta\)</span> reported above by the FGLS estimator. Note, you will need to use the stored values of <span class="math inline">\(\sigma^2_{\varepsilon}\)</span> and <span class="math inline">\(\sigma^2_{\alpha}\)</span>.</p>
+<div id="4dc2a91d" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">xtreg</span> lwage exper expsq weeks ed, re theta</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="st">"theta = "</span>  1 - <span class="fu">sqrt</span>(<span class="fu">e</span>(sigma_e)^2 / (7*<span class="fu">e</span>(sigma_u)^2+<span class="fu">e</span>(sigma_e)^2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>theta = .82280511</code></pre>
+</div>
+</div>
+<p><strong>8.</strong> Make a table of the computed estimates. You can either use <code>estimates table</code> or <code>esttab</code>. The latter is part of the <code>estout</code> package, which you may need to install: <code>ssc install estout</code>.</p>
+<div id="337bf3f1" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>esttab OLS BG FGLS, se <span class="fu">scalar</span>(<span class="kw">N</span> r2 r2_o r2_b r2_w sigma_u sigma_e rho) mtitle(<span class="st">"OLS"</span> <span class="st">"BG"</span> <span class="st">"FGLS"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>esttab WG LSDV FD, se <span class="fu">scalar</span>(<span class="kw">N</span> r2 r2_o r2_b r2_w sigma_u sigma_e rho) <span class="kw">rename</span>(D.exper exper D.expsq expsq D.weeks weeks) mtitle(<span class="st">"WG"</span> <span class="st">"LSDV"</span> <span class="st">"FD"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+------------------------------------------------------------
+                      (1)             (2)             (3)   
+                      OLS              BG            FGLS   
+------------------------------------------------------------
+exper              0.0447***       0.0382***       0.0889***
+                (0.00239)       (0.00570)       (0.00282)   
+
+expsq              -0.716***       -0.631***       -0.773***
+                 (0.0528)         (0.126)        (0.0623)   
+
+weeks             0.00583***       0.0131**      0.000966   
+                (0.00118)       (0.00407)      (0.000743)   
+
+educ               0.0760***       0.0738***        0.112***
+                (0.00223)       (0.00490)       (0.00606)   
+
+_cons               4.908***        4.683***        3.829***
+                 (0.0673)         (0.210)        (0.0936)   
+------------------------------------------------------------
+N                    4165            4165            4165   
+r2                  0.284           0.326                   
+r2_o                                0.272           0.183   
+r2_b                                0.326           0.172   
+r2_w                                0.136           0.634   
+sigma_u                                             0.320   
+sigma_e                                             0.152   
+rho                                                 0.815   
+------------------------------------------------------------
+Standard errors in parentheses
+* p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001
+
+------------------------------------------------------------
+                      (1)             (2)             (3)   
+                       WG            LSDV              FD   
+------------------------------------------------------------
+exper               0.114***        0.114***        0.117***
+                (0.00247)       (0.00247)       (0.00631)   
+
+expsq              -0.424***       -0.424***       -0.532***
+                 (0.0546)        (0.0546)         (0.139)   
+
+weeks            0.000836        0.000836       -0.000268   
+               (0.000600)      (0.000600)      (0.000565)   
+
+educ                    0               0                   
+                      (.)             (.)                   
+
+_cons               4.596***        4.596***                
+                 (0.0389)        (0.0389)                   
+------------------------------------------------------------
+N                    4165            4165            3570   
+r2                  0.657           0.907           0.221   
+r2_o               0.0476                                   
+r2_b               0.0276                                   
+r2_w                0.657                                   
+sigma_u             1.036                                   
+sigma_e             0.152                                   
+rho                 0.979                                   
+------------------------------------------------------------
+Standard errors in parentheses
+* p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001</code></pre>
+</div>
+</div>
+<p><strong>9.</strong> Perform a Hausman test comparing the results of the FLGS and WG estimators. You should use the <code>hausman</code> command, with the option <code>sigmamore</code>. Be sure to get the order of the estimates correct. What do you learn from the test?</p>
+<div id="ec1535b7" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">hausman</span> WG FGLS, sigmamore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+                 ---- Coefficients ----
+             |      (b)          (B)            (b-B)     sqrt(diag(V_b-V_B))
+             |       WG          FGLS        Difference       Std. err.
+-------------+----------------------------------------------------------------
+       exper |    .1137879     .0888609        .0249269        .0012778
+       expsq |   -.4243693     -.772565        .3481957        .0284727
+       weeks |    .0008359     .0009658       -.0001299        .0001108
+------------------------------------------------------------------------------
+                          b = Consistent under H0 and Ha; obtained from xtreg.
+           B = Inconsistent under Ha, efficient under H0; obtained from xtreg.
+
+Test of H0: Difference in coefficients not systematic
+
+    chi2(3) = (b-B)'[(V_b-V_B)^(-1)](b-B)
+            = 1513.02
+Prob &gt; chi2 =  0.0000</code></pre>
+</div>
+</div>
+<p><strong>10.</strong> Estimate FGLS for the model below:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\ln(Wage_{it}) =&amp; \beta_1 + \beta_2 Exper_{it} + \beta_3 Exper^2_{it} + \beta_4 Weeks_{it} + \beta_5 Eduyrs_{it} \\
+&amp;+ \gamma_2 \overline{Exper}_{i} + \gamma_3 \overline{Exper^2}_{i} + \gamma_4 \overline{Weeks}_{i}+\varepsilon_{it}
+\end{aligned}
+\]</span> You will need to manually create the variables: <span class="math inline">\(\{\overline{Exper}_{i}, \overline{Exper^2}_{i},\overline{Weeks}_{i}\}\)</span> - the individual-level averages of each variable. This is referred to as the Mundlack correction. Once you have estimated the model, repeat the Hausman test comparing these results with those of the WG estimator. What is the significance of the Mundlack correction?</p>
+<div id="60a8fece" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> <span class="kw">var</span> <span class="kw">in</span> exper expsq weeks{</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">bys</span> id: <span class="kw">egen</span> av<span class="ot">`var'</span> = <span class="kw">mean</span>(<span class="ot">`var'</span>)     </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>eststo MUN: <span class="kw">xtreg</span> lwage exper expsq weeks ed avexper avexpsq avweeks, re theta</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>esttab WG LSDV FD MUN, se <span class="fu">scalar</span>(<span class="kw">N</span> r2 r2_o r2_b r2_w sigma_u sigma_e rho) <span class="kw">rename</span>(D.exper exper D.expsq expsq D.weeks weeks) mtitle(<span class="st">"WG"</span> <span class="st">"LSDV"</span> <span class="st">"FD"</span> <span class="st">"Mundlack"</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="kw">hausman</span> MUN FGLS, sigmamore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Random-effects GLS regression                   Number of obs     =      4,165
+Group variable: id                              Number of groups  =        595
+
+R-squared:                                      Obs per group:
+     Within  = 0.6566                                         min =          7
+     Between = 0.3264                                         avg =        7.0
+     Overall = 0.4160                                         max =          7
+
+                                                Wald chi2(7)      =    7107.12
+corr(u_i, X) = 0 (assumed)                      Prob &gt; chi2       =     0.0000
+theta        = .82280511
+
+------------------------------------------------------------------------------
+       lwage | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       exper |   .1137879   .0024689    46.09   0.000     .1089489    .1186268
+       expsq |  -.4243693   .0546316    -7.77   0.000    -.5314452   -.3172934
+       weeks |   .0008359   .0005997     1.39   0.163    -.0003395    .0020112
+        educ |   .0737838   .0048985    15.06   0.000     .0641829    .0833846
+     avexper |  -.0756349   .0062087   -12.18   0.000    -.0878036   -.0634662
+     avexpsq |  -.2069027   .1370415    -1.51   0.131    -.4754991    .0616937
+     avweeks |   .0122544   .0041099     2.98   0.003     .0041991    .0203097
+       _cons |   4.683039   .2100989    22.29   0.000     4.271253    5.094826
+-------------+----------------------------------------------------------------
+     sigma_u |  .31951859
+     sigma_e |  .15220316
+         rho |  .81505521   (fraction of variance due to u_i)
+------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------
+                      (1)             (2)             (3)             (4)   
+                       WG            LSDV              FD        Mundlack   
+----------------------------------------------------------------------------
+exper               0.114***        0.114***        0.117***        0.114***
+                (0.00247)       (0.00247)       (0.00631)       (0.00247)   
+
+expsq              -0.424***       -0.424***       -0.532***       -0.424***
+                 (0.0546)        (0.0546)         (0.139)        (0.0546)   
+
+weeks            0.000836        0.000836       -0.000268        0.000836   
+               (0.000600)      (0.000600)      (0.000565)      (0.000600)   
+
+educ                    0               0                          0.0738***
+                      (.)             (.)                       (0.00490)   
+
+avexper                                                           -0.0756***
+                                                                (0.00621)   
+
+avexpsq                                                            -0.207   
+                                                                  (0.137)   
+
+avweeks                                                            0.0123** 
+                                                                (0.00411)   
+
+_cons               4.596***        4.596***                        4.683***
+                 (0.0389)        (0.0389)                         (0.210)   
+----------------------------------------------------------------------------
+N                    4165            4165            3570            4165   
+r2                  0.657           0.907           0.221                   
+r2_o               0.0476                                           0.416   
+r2_b               0.0276                                           0.326   
+r2_w                0.657                                           0.657   
+sigma_u             1.036                                           0.320   
+sigma_e             0.152                                           0.152   
+rho                 0.979                                           0.815   
+----------------------------------------------------------------------------
+Standard errors in parentheses
+* p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001
+
+Note: the rank of the differenced variance matrix (3) does not equal the number
+        of coefficients being tested (4); be sure this is what you expect, or
+        there may be problems computing the test.  Examine the output of your
+        estimators for anything unexpected and possibly consider scaling your
+        variables so that the coefficients are on a similar scale.
+
+                 ---- Coefficients ----
+             |      (b)          (B)            (b-B)     sqrt(diag(V_b-V_B))
+             |      MUN          FGLS        Difference       Std. err.
+-------------+----------------------------------------------------------------
+       exper |    .1137879     .0888609        .0249269        .0012778
+       expsq |   -.4243693     -.772565        .3481957        .0284727
+       weeks |    .0008359     .0009658       -.0001299        .0001108
+        educ |    .0737838     .1117099       -.0379262        .0009972
+------------------------------------------------------------------------------
+                          b = Consistent under H0 and Ha; obtained from xtreg.
+           B = Inconsistent under Ha, efficient under H0; obtained from xtreg.
+
+Test of H0: Difference in coefficients not systematic
+
+    chi2(3) = (b-B)'[(V_b-V_B)^(-1)](b-B)
+            = 1513.02
+Prob &gt; chi2 =  0.0000
+(V_b-V_B is not positive definite)</code></pre>
+</div>
+</div>
+<p><strong>11.</strong> Export the results as a single CSV/Excel file. You can use <code>esttab</code> for .csv or <code>outreg2</code> for .xlsx.</p>
+<div id="d44de377" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>esttab <span class="kw">using</span> <span class="st">"problem-set-5-results.csv"</span>, <span class="kw">replace</span> se <span class="fu">scalar</span>(<span class="kw">N</span> r2 r2_o r2_b r2_w sigma_u sigma_e rho) <span class="kw">rename</span>(D.exper exper D.expsq expsq D.weeks weeks) mtitle(<span class="st">"OLS"</span> <span class="st">"BG"</span> <span class="st">"FGLS"</span> <span class="st">"WG"</span> <span class="st">"LSDV"</span> <span class="st">"FD"</span> <span class="st">"Mundlack"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(output written to problem-set-5-results.csv)</code></pre>
+</div>
+</div>
+</section>
+<section id="postamble" class="level2">
+<h2 class="anchored" data-anchor-id="postamble">Postamble</h2>
+<div id="6d40fdba" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">close</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      name:  &lt;unnamed&gt;
+       log:  C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\we
+&gt; bsite\warwick-ec910\problem-sets\ps-5\problem-set-5-log.txt
+  log type:  smcl
+ closed on:  11 Nov 2024, 12:44:59
+-------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

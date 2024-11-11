@@ -207,6 +207,10 @@ window.Quarto = {
     <a class="dropdown-item" href="./problem-set-4-solutions.html">
  <span class="dropdown-text">Problem Set 4 (Solutions)</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-5.html">
+ <span class="dropdown-text">Problem Set 5</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -565,14 +569,14 @@ Y =&amp; X\beta+\varepsilon \\
 \begin{aligned}
 \hat{\varepsilon} =&amp; Y - X\hat{\beta} \\
 =&amp;Y-X(X'X)^{-1}X'Y \\
-=&amp;(I_n-X(X'X)X^{-1})Y
+=&amp;(I_n-X(X'X)^{-1}X)Y
 \end{aligned}
 \]</span></p>
 <p>by plugging the definition of <span class="math inline">\(\hat{\beta}\)</span>. Thus, the OLS estimator separates the vector <span class="math inline">\(Y\)</span> into two components:</p>
 <p><span class="math display">\[
 \begin{aligned}
 Y =&amp; X\hat{\beta} + \hat{\varepsilon} \\
-=&amp;\underbrace{X(X'X)^{-1}X'}_{P_X}Y + (\underbrace{I_n-X(X'X)X^{-1}}_{I_n-P_X = M_X})Y \\
+=&amp;\underbrace{X(X'X)^{-1}X'}_{P_X}Y + (\underbrace{I_n-X(X'X)^{-1}X}_{I_n-P_X = M_X})Y \\
 =&amp;P_XY + M_XY
 \end{aligned}
 \]</span></p>

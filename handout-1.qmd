@@ -417,7 +417,7 @@ $$
 \begin{aligned}
 \hat{\varepsilon} =& Y - X\hat{\beta} \\
 =&Y-X(X'X)^{-1}X'Y \\
-=&(I_n-X(X'X)X^{-1})Y
+=&(I_n-X(X'X)^{-1}X)Y
 \end{aligned}
 $$
 
@@ -426,7 +426,7 @@ by plugging the definition of $\hat{\beta}$. Thus, the OLS estimator separates t
 $$
 \begin{aligned}
  Y =& X\hat{\beta} + \hat{\varepsilon} \\
-=&\underbrace{X(X'X)^{-1}X'}_{P_X}Y + (\underbrace{I_n-X(X'X)X^{-1}}_{I_n-P_X = M_X})Y \\
+=&\underbrace{X(X'X)^{-1}X'}_{P_X}Y + (\underbrace{I_n-X(X'X)^{-1}X}_{I_n-P_X = M_X})Y \\
 =&P_XY + M_XY
 \end{aligned}
 $$
