@@ -168,6 +168,10 @@ window.Quarto = {
     <a class="dropdown-item" href="./handout-5.html">
  <span class="dropdown-text">Handout 5</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-6.html">
+ <span class="dropdown-text">Handout 6</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -210,6 +214,14 @@ window.Quarto = {
         <li>
     <a class="dropdown-item" href="./problem-set-5.html">
  <span class="dropdown-text">Problem Set 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-5-solutions.html">
+ <span class="dropdown-text">Problem Set 5 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-6.html">
+ <span class="dropdown-text">Problem Set 6</span></a>
   </li>  
     </ul>
   </li>
@@ -532,7 +544,7 @@ E[\upsilon\upsilon' |X] = \begin{bmatrix}
 \]</span></p>
 <p>The serial correlation of this error term is 0. Consider, for <span class="math inline">\(t\neq s\)</span> <span class="math display">\[
 \begin{aligned}
-E[\nu_{it}\nu_{is}|X_i] =&amp; E\big[\big((1-\theta)\alpha_i + \varepsilon_{it}-\frac{\theta}{T}\sum_{t'}\varepsilon_{it'}\big)\big((1-\theta)\alpha_i + \varepsilon_{is}-\frac{\theta}{T}\sum_{t'}\varepsilon_{it'}\big)|X_i\big] \\
+E[\upsilon_{it}^+\upsilon_{is}^+|X_i] =&amp; E\big[\big((1-\theta)\alpha_i + \varepsilon_{it}-\frac{\theta}{T}\sum_{t'}\varepsilon_{it'}\big)\big((1-\theta)\alpha_i + \varepsilon_{is}-\frac{\theta}{T}\sum_{t'}\varepsilon_{it'}\big)|X_i\big] \\
 =&amp;(1-\theta)^2\sigma^2_\alpha  -2\frac{\theta}{T}\sigma^2_\varepsilon+\frac{\theta^2}{T^2}\sum_{t'}\sigma^2_\varepsilon \\
 =&amp;\frac{\sigma^2_\varepsilon \sigma^2_\alpha}{T\sigma^2_\alpha+\sigma^2_\varepsilon} + \frac{\theta(\theta-2)}{T}\sigma^2_\varepsilon \\
 =&amp;\frac{\sigma^2_\varepsilon \sigma^2_\alpha}{T\sigma^2_\alpha+\sigma^2_\varepsilon} - \frac{\sigma^2_\varepsilon}{T}\bigg(1-\frac{\sigma_\varepsilon}{\sqrt{T\sigma^2_\alpha+\sigma^2_\varepsilon}}\bigg)\bigg(1+\frac{\sigma_\varepsilon}{\sqrt{T\sigma^2_\alpha+\sigma^2_\varepsilon}}\bigg) \\
@@ -642,7 +654,7 @@ E[\tilde{\varepsilon}\tilde{\varepsilon}'|X]=I_{n}\otimes \Sigma = \sigma^{2}_\v
 \]</span> where the <span class="math inline">\(rank(I_{n}\otimes M_\ell)=nT-n\)</span>. This follows from the fact that each <span class="math inline">\(M_\ell\)</span> has <span class="math inline">\(rank(M_\ell)=T-1\)</span>. The matrix <span class="math inline">\(M_{I_{n}\otimes M_\ell}\)</span> is a <span class="math inline">\(nT\times nT\)</span> matrix: a block diagonal matrix of <span class="math inline">\(n\)</span> <span class="math inline">\(M_\ell\)</span> matrices. With this we can now solve for the conditional variance of the WG estimator.</p>
 <p><span class="math display">\[
 \begin{aligned}
-Var(\hat{\beta}^{WG}|X) =&amp; (\tilde{X}'\tilde{X})^{-1}\tilde{X}'E[\tilde{\varepsilon}_{is}\tilde{\varepsilon}_{it}|X]\tilde{X}(\tilde{X}'\tilde{X})^{-1} \\
+Var(\hat{\beta}^{WG}|X) =&amp; (\tilde{X}'\tilde{X})^{-1}\tilde{X}'E[\tilde{\varepsilon}\tilde{\varepsilon}'|X]\tilde{X}(\tilde{X}'\tilde{X})^{-1} \\
 =&amp; \sigma^2_\varepsilon(\tilde{X}'\tilde{X})^{-1}\tilde{X}'(I_{n}\otimes M_\ell)\tilde{X}(\tilde{X}'\tilde{X})^{-1} \\
 =&amp; \sigma^2_\varepsilon(\tilde{X}'\tilde{X})^{-1}
 \end{aligned}
@@ -696,7 +708,7 @@ X_{k} = \sum_{j=1}^n\phi_j\mathbf{1}\{i = j\} + \xi
 (I_n\otimes M_\ell)X_k  = \tilde{X}_{k}
 \]</span> Thus, we regression is given by,</p>
 <p><span class="math display">\[
-(I_n\otimes M_\ell)Y = \tilde{Y} = (I_n\otimes M_\ell)X\beta + \varepsilon = \tilde{X}\beta + \varepsilon
+(I_n\otimes M_\ell)Y = \tilde{Y} = (I_n\otimes M_\ell)X\beta + (I_n\otimes M_\ell)\varepsilon = \tilde{X}\beta + \tilde{\varepsilon}
 \]</span> Employing the LSDV approach, one can estimated the unit-FE as,</p>
 <p><span class="math display">\[
 \hat{\phi}_i = \bar{Y}_i - \bar{X}_i'\hat{\beta}^{LSDV}
@@ -724,7 +736,7 @@ D = \begin{bmatrix}-1 &amp; 1 &amp; 0&amp; 0 &amp; \cdots &amp; 0 \\
 \end{bmatrix}
 \]</span> <span class="math inline">\(D\)</span> is a <span class="math inline">\((T-1)\times T\)</span> matrix. When applied to <span class="math inline">\(Y_i\)</span> or <span class="math inline">\(X_i\)</span>, it reduces the number of observations by 1. Note, we assume here that the data is sorted by <span class="math inline">\(t\)</span>. Thus, <span class="math inline">\(DX_i\)</span> is a <span class="math inline">\((T-1)\times k\)</span> matrix of first-differences. The model can therefore be expressed as,</p>
 <p><span class="math display">\[
-DY_i = DX_i\beta+D\varepsilon_{it}
+DY_i = DX_i\beta+D\varepsilon_{i}
 \]</span></p>
 <p>Under SLPM 1-6, <span class="math inline">\(\hat{\beta}^{FD}\)</span> is consistent and asympotitcally normal. However, we need to account for the error term structure. This is because,</p>
 <p><span class="math display">\[
@@ -733,7 +745,9 @@ E[(\varepsilon_{is}-\varepsilon_{is-1})(\varepsilon_{it}-\varepsilon_{it-1})|X_i
 0 \quad \text{otherwise}\end{cases}
 \]</span></p>
 <p>This is a MA(1) error term structure, in which the first-order correlation is non-zero. Using the linear transformation <span class="math inline">\(D\)</span>, we can express this as,</p>
-<p>E[D <em>{i}(D </em>{i})’|X_i] = ^2_{}DD’</p>
+<p><span class="math display">\[
+E[D \varepsilon_{i}(D \varepsilon_{i})'|X_i] = \sigma^2_{\varepsilon}DD'
+\]</span></p>
 <section id="ols-vs-gls" class="level3" data-number="9.1">
 <h3 data-number="9.1" class="anchored" data-anchor-id="ols-vs-gls"><span class="header-section-number">9.1</span> OLS vs GLS</h3>
 <p>The OLS estimator is given by,</p>

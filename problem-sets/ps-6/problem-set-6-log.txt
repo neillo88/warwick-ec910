@@ -1,0 +1,775 @@
+{smcl}
+{res}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick-ec910\problem-sets\ps-6\problem-set-6-log.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}19 Nov 2024, 16:48:49
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 5}dambexp {c |}{res}      3,328    .8419471    .3648454          0          1
+{txt}{space 6}ambexp {c |}{res}      3,328    1386.519    2530.406          0      49960
+{txt}{space 5}lambexp {c |}{res}      2,802    6.555066     1.41073          0   10.81898
+{txt}{space 9}age {c |}{res}      3,328    4.056881    1.121212        2.1        6.4
+{txt}{space 6}female {c |}{res}      3,328    .5084135    .5000043          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 8}educ {c |}{res}      3,328    13.40565    2.574199          0         17
+{txt}{space 6}blhisp {c |}{res}      3,328    .3085938    .4619824          0          1
+{txt}{space 6}totchr {c |}{res}      3,328    .4831731    .7720426          0          5
+{txt}{space 9}ins {c |}{res}      3,328    .3650841    .4815261          0          1
+{txt}{space 6}income {c |}{res}      3,328    36.80485    26.70121     -90.05    237.301
+
+{txt}{hline}
+-> dambexp = 0
+
+    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 9}age {c |}{res}        526    3.695627    1.076467        2.1        6.4
+{txt}{space 12} {c |}
+{space 6}female {c |}
+{space 10}0  {c |}{res}        526    .7338403    .4423695          0          1
+{txt}{space 10}1  {c |}{res}        526    .2661597    .4423695          0          1
+{txt}{space 12} {c |}
+{space 8}educ {c |}{res}        526    12.48859    2.697241          0         17
+{txt}{space 12} {c |}
+{space 6}blhisp {c |}
+{space 10}0  {c |}{res}        526    .5171103    .5001828          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 10}1  {c |}{res}        526    .4828897    .5001828          0          1
+{txt}{space 12} {c |}
+{space 6}totchr {c |}{res}        526    .0912548    .3074311          0          2
+{txt}{space 12} {c |}
+{space 9}ins {c |}
+{space 10}0  {c |}{res}        526    .6977186    .4596837          0          1
+{txt}{space 10}1  {c |}{res}        526    .3022814    .4596837          0          1
+{txt}{space 12} {c |}
+{space 6}income {c |}{res}        526    31.63409    23.17116          0     166.78
+
+{txt}{hline}
+-> dambexp = 1
+
+    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 9}age {c |}{res}      2,802    4.124697    1.116641        2.1        6.4
+{txt}{space 12} {c |}
+{space 6}female {c |}
+{space 10}0  {c |}{res}      2,802    .4461099    .4971761          0          1
+{txt}{space 10}1  {c |}{res}      2,802    .5538901    .4971761          0          1
+{txt}{space 12} {c |}
+{space 8}educ {c |}{res}      2,802     13.5778    2.513906          0         17
+{txt}{space 12} {c |}
+{space 6}blhisp {c |}
+{space 10}0  {c |}{res}      2,802    .7241256    .4470336          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 10}1  {c |}{res}      2,802    .2758744    .4470336          0          1
+{txt}{space 12} {c |}
+{space 6}totchr {c |}{res}      2,802    .5567452     .809943          0          5
+{txt}{space 12} {c |}
+{space 9}ins {c |}
+{space 10}0  {c |}{res}      2,802    .6231263    .4846893          0          1
+{txt}{space 10}1  {c |}{res}      2,802    .3768737    .4846893          0          1
+{txt}{space 12} {c |}
+{space 6}income {c |}{res}      2,802    37.77552    27.20742     -90.05    237.301
+
+
+{txt}Linear regression                               Number of obs     = {res}     3,328
+                                                {txt}F(7, 3320)        =  {res}    69.43
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.1276
+                                                {txt}Root MSE          =    {res} .34114
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     dambexp{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0216413{col 26}{space 2} .0056048{col 37}{space 1}    3.86{col 46}{space 3}0.000{col 54}{space 4} .0106521{col 67}{space 3} .0326304
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .1394928{col 26}{space 2} .0119061{col 37}{space 1}   11.72{col 46}{space 3}0.000{col 54}{space 4} .1161487{col 67}{space 3} .1628368
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0143544{col 26}{space 2} .0025774{col 37}{space 1}    5.57{col 46}{space 3}0.000{col 54}{space 4}  .009301{col 67}{space 3} .0194078
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.0889738{col 26}{space 2} .0143088{col 37}{space 1}   -6.22{col 46}{space 3}0.000{col 54}{space 4}-.1170288{col 67}{space 3}-.0609188
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .0830088{col 26}{space 2} .0057913{col 37}{space 1}   14.33{col 46}{space 3}0.000{col 54}{space 4} .0716539{col 67}{space 3} .0943637
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2} .0364663{col 26}{space 2} .0119311{col 37}{space 1}    3.06{col 46}{space 3}0.002{col 54}{space 4} .0130733{col 67}{space 3} .0598592
+{txt}{space 6}income {c |}{col 14}{res}{space 2}  .000443{col 26}{space 2} .0002215{col 37}{space 1}    2.00{col 46}{space 3}0.046{col 54}{space 4} 8.70e-06{col 67}{space 3} .0008774
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .4485313{col 26}{space 2} .0430509{col 37}{space 1}   10.42{col 46}{space 3}0.000{col 54}{space 4} .3641224{col 67}{space 3} .5329402
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-1452.4289}  
+Iteration 1:{space 2}Log likelihood = {res:-1218.0426}  
+Iteration 2:{space 2}Log likelihood = {res:-1195.6199}  
+Iteration 3:{space 2}Log likelihood = {res:-1195.5158}  
+Iteration 4:{space 2}Log likelihood = {res:-1195.5158}  
+{res}
+{txt}{col 1}Probit regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:3,328}
+{txt}{col 57}{lalign 13:LR chi2({res:7})}{col 70} = {res}{ralign 6:513.83}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-1195.5158}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.1769}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     dambexp{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0868152{col 26}{space 2} .0274556{col 37}{space 1}    3.16{col 46}{space 3}0.002{col 54}{space 4} .0330032{col 67}{space 3} .1406272
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .6635053{col 26}{space 2} .0609648{col 37}{space 1}   10.88{col 46}{space 3}0.000{col 54}{space 4} .5440164{col 67}{space 3} .7829941
+{txt}{space 8}educ {c |}{col 14}{res}{space 2}  .061884{col 26}{space 2}  .012039{col 37}{space 1}    5.14{col 46}{space 3}0.000{col 54}{space 4}  .038288{col 67}{space 3} .0854801
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.3657835{col 26}{space 2} .0619095{col 37}{space 1}   -5.91{col 46}{space 3}0.000{col 54}{space 4}-.4871239{col 67}{space 3}-.2444432
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .7957496{col 26}{space 2} .0712174{col 37}{space 1}   11.17{col 46}{space 3}0.000{col 54}{space 4}  .656166{col 67}{space 3} .9353332
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2}  .169107{col 26}{space 2} .0629296{col 37}{space 1}    2.69{col 46}{space 3}0.007{col 54}{space 4} .0457673{col 67}{space 3} .2924467
+{txt}{space 6}income {c |}{col 14}{res}{space 2} .0026773{col 26}{space 2} .0013105{col 37}{space 1}    2.04{col 46}{space 3}0.041{col 54}{space 4} .0001088{col 67}{space 3} .0052458
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.6686471{col 26}{space 2} .1941247{col 37}{space 1}   -3.44{col 46}{space 3}0.001{col 54}{space 4}-1.049125{col 67}{space 3}-.2881698
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{res}{txt}Iteration 0:{space 2}Log likelihood = {res:-1452.4289}  
+Iteration 1:{space 2}Log likelihood = {res: -1238.914}  
+Iteration 2:{space 2}Log likelihood = {res:-1194.7039}  
+Iteration 3:{space 2}Log likelihood = {res:-1192.8189}  
+Iteration 4:{space 2}Log likelihood = {res:-1192.8089}  
+Iteration 5:{space 2}Log likelihood = {res:-1192.8089}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:3,328}
+{txt}{col 57}{lalign 13:LR chi2({res:7})}{col 70} = {res}{ralign 6:519.24}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-1192.8089}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.1787}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     dambexp{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .1618629{col 26}{space 2} .0496641{col 37}{space 1}    3.26{col 46}{space 3}0.001{col 54}{space 4} .0645229{col 67}{space 3} .2592028
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} 1.226724{col 26}{space 2} .1130182{col 37}{space 1}   10.85{col 46}{space 3}0.000{col 54}{space 4} 1.005212{col 67}{space 3} 1.448235
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .1080498{col 26}{space 2} .0210874{col 37}{space 1}    5.12{col 46}{space 3}0.000{col 54}{space 4} .0667192{col 67}{space 3} .1493804
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.6666381{col 26}{space 2} .1093362{col 37}{space 1}   -6.10{col 46}{space 3}0.000{col 54}{space 4}-.8809332{col 67}{space 3} -.452343
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} 1.554664{col 26}{space 2} .1499606{col 37}{space 1}   10.37{col 46}{space 3}0.000{col 54}{space 4} 1.260746{col 67}{space 3} 1.848581
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2}  .296996{col 26}{space 2} .1133154{col 37}{space 1}    2.62{col 46}{space 3}0.009{col 54}{space 4} .0749019{col 67}{space 3} .5190901
+{txt}{space 6}income {c |}{col 14}{res}{space 2}   .00462{col 26}{space 2} .0024332{col 37}{space 1}    1.90{col 46}{space 3}0.058{col 54}{space 4} -.000149{col 67}{space 3}  .009389
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} -1.26832{col 26}{space 2} .3407805{col 37}{space 1}   -3.72{col 46}{space 3}0.000{col 54}{space 4}-1.936237{col 67}{space 3} -.600402
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Estimated Coefficients
+{txt}{hline 60}
+{txt}                      (1)             (2)             (3)   
+{txt}                      LPM          Probit           Logit   
+{txt}{hline 60}
+{res}main                                                        {txt}
+{txt}age         {res}       0.0216***       0.0868**         0.162** {txt}
+            {res} {ralign 12:{txt:(}0.00560{txt:)}}    {ralign 12:{txt:(}0.0275{txt:)}}    {ralign 12:{txt:(}0.0497{txt:)}}   {txt}
+
+{txt}0.female    {res}            0               0               0   {txt}
+            {res} {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}   {txt}
+
+{txt}1.female    {res}        0.139***        0.664***        1.227***{txt}
+            {res} {ralign 12:{txt:(}0.0119{txt:)}}    {ralign 12:{txt:(}0.0610{txt:)}}    {ralign 12:{txt:(}0.113{txt:)}}   {txt}
+
+{txt}educ        {res}       0.0144***       0.0619***        0.108***{txt}
+            {res} {ralign 12:{txt:(}0.00258{txt:)}}    {ralign 12:{txt:(}0.0120{txt:)}}    {ralign 12:{txt:(}0.0211{txt:)}}   {txt}
+
+{txt}0.blhisp    {res}            0               0               0   {txt}
+            {res} {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}   {txt}
+
+{txt}1.blhisp    {res}      -0.0890***       -0.366***       -0.667***{txt}
+            {res} {ralign 12:{txt:(}0.0143{txt:)}}    {ralign 12:{txt:(}0.0619{txt:)}}    {ralign 12:{txt:(}0.109{txt:)}}   {txt}
+
+{txt}totchr      {res}       0.0830***        0.796***        1.555***{txt}
+            {res} {ralign 12:{txt:(}0.00579{txt:)}}    {ralign 12:{txt:(}0.0712{txt:)}}    {ralign 12:{txt:(}0.150{txt:)}}   {txt}
+
+{txt}0.ins       {res}            0               0               0   {txt}
+            {res} {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}   {txt}
+
+{txt}1.ins       {res}       0.0365**         0.169**         0.297** {txt}
+            {res} {ralign 12:{txt:(}0.0119{txt:)}}    {ralign 12:{txt:(}0.0629{txt:)}}    {ralign 12:{txt:(}0.113{txt:)}}   {txt}
+
+{txt}income      {res}     0.000443*        0.00268*        0.00462   {txt}
+            {res} {ralign 12:{txt:(}0.000222{txt:)}}    {ralign 12:{txt:(}0.00131{txt:)}}    {ralign 12:{txt:(}0.00243{txt:)}}   {txt}
+
+{txt}_cons       {res}        0.449***       -0.669***       -1.268***{txt}
+            {res} {ralign 12:{txt:(}0.0431{txt:)}}    {ralign 12:{txt:(}0.194{txt:)}}    {ralign 12:{txt:(}0.341{txt:)}}   {txt}
+{txt}{hline 60}
+{txt}N           {res}         3328            3328            3328   {txt}
+{txt}r2          {res}        0.128                                   {txt}
+{txt}ll          {res}      -1139.1         -1195.5         -1192.8   {txt}
+{txt}{hline 60}
+{txt}Standard errors in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+{res}
+{txt}{col 1}Conditional marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:3,328}
+{txt}{col 1}Model VCE: {res:Robust}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Linear prediction, predict()}{p_end}
+{p2col:dy/dx wrt:}{res:age 1.female educ 1.blhisp totchr 1.ins income}{p_end}
+{p2colreset}{...}
+{lalign 4:At: }{space 0}{lalign 8:age} = {res:{ralign 8:4.056881}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:0.female} = {res:{ralign 8:.4915865}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:1.female} = {res:{ralign 8:.5084135}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:educ} = {res:{ralign 8:13.40565}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:0.blhisp} = {res:{ralign 8:.6914063}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:1.blhisp} = {res:{ralign 8:.3085938}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:totchr} = {res:{ralign 8:.4831731}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:0.ins} = {res:{ralign 8:.6349159}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:1.ins} = {res:{ralign 8:.3650841}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:income} = {res:{ralign 8:36.80485}} {txt:(mean)}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0216413{col 26}{space 2} .0056048{col 37}{space 1}    3.86{col 46}{space 3}0.000{col 54}{space 4} .0106521{col 67}{space 3} .0326304
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .1394928{col 26}{space 2} .0119061{col 37}{space 1}   11.72{col 46}{space 3}0.000{col 54}{space 4} .1161487{col 67}{space 3} .1628368
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0143544{col 26}{space 2} .0025774{col 37}{space 1}    5.57{col 46}{space 3}0.000{col 54}{space 4}  .009301{col 67}{space 3} .0194078
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.0889738{col 26}{space 2} .0143088{col 37}{space 1}   -6.22{col 46}{space 3}0.000{col 54}{space 4}-.1170288{col 67}{space 3}-.0609188
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .0830088{col 26}{space 2} .0057913{col 37}{space 1}   14.33{col 46}{space 3}0.000{col 54}{space 4} .0716539{col 67}{space 3} .0943637
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2} .0364663{col 26}{space 2} .0119311{col 37}{space 1}    3.06{col 46}{space 3}0.002{col 54}{space 4} .0130733{col 67}{space 3} .0598592
+{txt}{space 6}income {c |}{col 14}{res}{space 2}  .000443{col 26}{space 2} .0002215{col 37}{space 1}    2.00{col 46}{space 3}0.046{col 54}{space 4} 8.70e-06{col 67}{space 3} .0008774
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}
+{txt}{col 1}Conditional marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:3,328}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(dambexp), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:age 1.female educ 1.blhisp totchr 1.ins income}{p_end}
+{p2colreset}{...}
+{lalign 4:At: }{space 0}{lalign 8:age} = {res:{ralign 8:4.056881}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:0.female} = {res:{ralign 8:.4915865}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:1.female} = {res:{ralign 8:.5084135}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:educ} = {res:{ralign 8:13.40565}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:0.blhisp} = {res:{ralign 8:.6914063}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:1.blhisp} = {res:{ralign 8:.3085938}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:totchr} = {res:{ralign 8:.4831731}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:0.ins} = {res:{ralign 8:.6349159}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:1.ins} = {res:{ralign 8:.3650841}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:income} = {res:{ralign 8:36.80485}} {txt:(mean)}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0152201{col 26}{space 2}  .004837{col 37}{space 1}    3.15{col 46}{space 3}0.002{col 54}{space 4} .0057396{col 67}{space 3} .0247005
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .1184629{col 26}{space 2} .0112862{col 37}{space 1}   10.50{col 46}{space 3}0.000{col 54}{space 4} .0963423{col 67}{space 3} .1405835
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0108492{col 26}{space 2} .0021305{col 37}{space 1}    5.09{col 46}{space 3}0.000{col 54}{space 4} .0066736{col 67}{space 3} .0150249
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.0701607{col 26}{space 2} .0130287{col 37}{space 1}   -5.39{col 46}{space 3}0.000{col 54}{space 4}-.0956964{col 67}{space 3}-.0446249
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .1395073{col 26}{space 2} .0102098{col 37}{space 1}   13.66{col 46}{space 3}0.000{col 54}{space 4} .1194966{col 67}{space 3} .1595181
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2} .0288089{col 26}{space 2} .0104412{col 37}{space 1}    2.76{col 46}{space 3}0.006{col 54}{space 4} .0083445{col 67}{space 3} .0492733
+{txt}{space 6}income {c |}{col 14}{res}{space 2} .0004694{col 26}{space 2} .0002295{col 37}{space 1}    2.05{col 46}{space 3}0.041{col 54}{space 4} .0000195{col 67}{space 3} .0009192
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}
+{txt}{col 1}Conditional marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:3,328}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(dambexp), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:age 1.female educ 1.blhisp totchr 1.ins income}{p_end}
+{p2colreset}{...}
+{lalign 4:At: }{space 0}{lalign 8:age} = {res:{ralign 8:4.056881}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:0.female} = {res:{ralign 8:.4915865}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:1.female} = {res:{ralign 8:.5084135}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:educ} = {res:{ralign 8:13.40565}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:0.blhisp} = {res:{ralign 8:.6914063}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:1.blhisp} = {res:{ralign 8:.3085938}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:totchr} = {res:{ralign 8:.4831731}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:0.ins} = {res:{ralign 8:.6349159}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:1.ins} = {res:{ralign 8:.3650841}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:income} = {res:{ralign 8:36.80485}} {txt:(mean)}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0135771{col 26}{space 2} .0042044{col 37}{space 1}    3.23{col 46}{space 3}0.001{col 54}{space 4} .0053365{col 67}{space 3} .0218176
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .1068865{col 26}{space 2} .0107295{col 37}{space 1}    9.96{col 46}{space 3}0.000{col 54}{space 4}  .085857{col 67}{space 3} .1279159
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0090632{col 26}{space 2} .0018074{col 37}{space 1}    5.01{col 46}{space 3}0.000{col 54}{space 4} .0055208{col 67}{space 3} .0126056
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2} -.062462{col 26}{space 2} .0116115{col 37}{space 1}   -5.38{col 46}{space 3}0.000{col 54}{space 4}-.0852201{col 67}{space 3} -.039704
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .1304052{col 26}{space 2} .0093686{col 37}{space 1}   13.92{col 46}{space 3}0.000{col 54}{space 4}  .112043{col 67}{space 3} .1487674
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2} .0241537{col 26}{space 2} .0089994{col 37}{space 1}    2.68{col 46}{space 3}0.007{col 54}{space 4} .0065151{col 67}{space 3} .0417922
+{txt}{space 6}income {c |}{col 14}{res}{space 2} .0003875{col 26}{space 2} .0002043{col 37}{space 1}    1.90{col 46}{space 3}0.058{col 54}{space 4}-.0000128{col 67}{space 3} .0007879
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}
+{txt}Marginal Effects at the Mean
+{txt}{hline 60}
+{txt}                      (1)             (2)             (3)   
+{txt}                      LPM          Probit           Logit   
+{txt}{hline 60}
+{txt}age         {res}       0.0216***       0.0152**        0.0136** {txt}
+            {res} {ralign 12:{txt:(}0.00560{txt:)}}    {ralign 12:{txt:(}0.00484{txt:)}}    {ralign 12:{txt:(}0.00420{txt:)}}   {txt}
+
+{txt}0.female    {res}            0               0               0   {txt}
+            {res} {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}   {txt}
+
+{txt}1.female    {res}        0.139***        0.118***        0.107***{txt}
+            {res} {ralign 12:{txt:(}0.0119{txt:)}}    {ralign 12:{txt:(}0.0113{txt:)}}    {ralign 12:{txt:(}0.0107{txt:)}}   {txt}
+
+{txt}educ        {res}       0.0144***       0.0108***      0.00906***{txt}
+            {res} {ralign 12:{txt:(}0.00258{txt:)}}    {ralign 12:{txt:(}0.00213{txt:)}}    {ralign 12:{txt:(}0.00181{txt:)}}   {txt}
+
+{txt}0.blhisp    {res}            0               0               0   {txt}
+            {res} {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}   {txt}
+
+{txt}1.blhisp    {res}      -0.0890***      -0.0702***      -0.0625***{txt}
+            {res} {ralign 12:{txt:(}0.0143{txt:)}}    {ralign 12:{txt:(}0.0130{txt:)}}    {ralign 12:{txt:(}0.0116{txt:)}}   {txt}
+
+{txt}totchr      {res}       0.0830***        0.140***        0.130***{txt}
+            {res} {ralign 12:{txt:(}0.00579{txt:)}}    {ralign 12:{txt:(}0.0102{txt:)}}    {ralign 12:{txt:(}0.00937{txt:)}}   {txt}
+
+{txt}0.ins       {res}            0               0               0   {txt}
+            {res} {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}   {txt}
+
+{txt}1.ins       {res}       0.0365**        0.0288**        0.0242** {txt}
+            {res} {ralign 12:{txt:(}0.0119{txt:)}}    {ralign 12:{txt:(}0.0104{txt:)}}    {ralign 12:{txt:(}0.00900{txt:)}}   {txt}
+
+{txt}income      {res}     0.000443*       0.000469*       0.000388   {txt}
+            {res} {ralign 12:{txt:(}0.000222{txt:)}}    {ralign 12:{txt:(}0.000230{txt:)}}    {ralign 12:{txt:(}0.000204{txt:)}}   {txt}
+{txt}{hline 60}
+{txt}N           {res}         3328            3328            3328   {txt}
+{txt}r2          {res}        0.128                                   {txt}
+{txt}ll          {res}      -1139.1         -1195.5         -1192.8   {txt}
+{txt}{hline 60}
+{txt}Standard errors in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+{res}
+{txt}{col 1}Average marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:3,328}
+{txt}{col 1}Model VCE: {res:Robust}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Linear prediction, predict()}{p_end}
+{p2col:dy/dx wrt:}{res:age 1.female educ 1.blhisp totchr 1.ins income}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0216413{col 26}{space 2} .0056048{col 37}{space 1}    3.86{col 46}{space 3}0.000{col 54}{space 4} .0106521{col 67}{space 3} .0326304
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .1394928{col 26}{space 2} .0119061{col 37}{space 1}   11.72{col 46}{space 3}0.000{col 54}{space 4} .1161487{col 67}{space 3} .1628368
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0143544{col 26}{space 2} .0025774{col 37}{space 1}    5.57{col 46}{space 3}0.000{col 54}{space 4}  .009301{col 67}{space 3} .0194078
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.0889738{col 26}{space 2} .0143088{col 37}{space 1}   -6.22{col 46}{space 3}0.000{col 54}{space 4}-.1170288{col 67}{space 3}-.0609188
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .0830088{col 26}{space 2} .0057913{col 37}{space 1}   14.33{col 46}{space 3}0.000{col 54}{space 4} .0716539{col 67}{space 3} .0943637
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2} .0364663{col 26}{space 2} .0119311{col 37}{space 1}    3.06{col 46}{space 3}0.002{col 54}{space 4} .0130733{col 67}{space 3} .0598592
+{txt}{space 6}income {c |}{col 14}{res}{space 2}  .000443{col 26}{space 2} .0002215{col 37}{space 1}    2.00{col 46}{space 3}0.046{col 54}{space 4} 8.70e-06{col 67}{space 3} .0008774
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}
+{txt}{col 1}Average marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:3,328}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(dambexp), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:age 1.female educ 1.blhisp totchr 1.ins income}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0173895{col 26}{space 2} .0054832{col 37}{space 1}    3.17{col 46}{space 3}0.002{col 54}{space 4} .0066426{col 67}{space 3} .0281365
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2}  .132906{col 26}{space 2} .0118133{col 37}{space 1}   11.25{col 46}{space 3}0.000{col 54}{space 4} .1097524{col 67}{space 3} .1560596
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0123957{col 26}{space 2} .0023862{col 37}{space 1}    5.19{col 46}{space 3}0.000{col 54}{space 4} .0077189{col 67}{space 3} .0170725
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.0777517{col 26}{space 2} .0137954{col 37}{space 1}   -5.64{col 46}{space 3}0.000{col 54}{space 4}-.1047901{col 67}{space 3}-.0507133
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .1593929{col 26}{space 2} .0139062{col 37}{space 1}   11.46{col 46}{space 3}0.000{col 54}{space 4} .1321371{col 67}{space 3} .1866486
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2}  .033324{col 26}{space 2} .0121638{col 37}{space 1}    2.74{col 46}{space 3}0.006{col 54}{space 4} .0094834{col 67}{space 3} .0571646
+{txt}{space 6}income {c |}{col 14}{res}{space 2} .0005363{col 26}{space 2} .0002621{col 37}{space 1}    2.05{col 46}{space 3}0.041{col 54}{space 4} .0000225{col 67}{space 3} .0010501
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}
+{txt}{col 1}Average marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:3,328}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(dambexp), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:age 1.female educ 1.blhisp totchr 1.ins income}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0181007{col 26}{space 2} .0055261{col 37}{space 1}    3.28{col 46}{space 3}0.001{col 54}{space 4} .0072697{col 67}{space 3} .0289317
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .1357958{col 26}{space 2} .0117423{col 37}{space 1}   11.56{col 46}{space 3}0.000{col 54}{space 4} .1127813{col 67}{space 3} .1588102
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0120829{col 26}{space 2} .0023248{col 37}{space 1}    5.20{col 46}{space 3}0.000{col 54}{space 4} .0075264{col 67}{space 3} .0166394
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.0795676{col 26}{space 2} .0136638{col 37}{space 1}   -5.82{col 46}{space 3}0.000{col 54}{space 4}-.1063481{col 67}{space 3}-.0527871
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .1738536{col 26}{space 2} .0164518{col 37}{space 1}   10.57{col 46}{space 3}0.000{col 54}{space 4} .1416087{col 67}{space 3} .2060985
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2} .0326182{col 26}{space 2} .0121752{col 37}{space 1}    2.68{col 46}{space 3}0.007{col 54}{space 4} .0087552{col 67}{space 3} .0564812
+{txt}{space 6}income {c |}{col 14}{res}{space 2} .0005166{col 26}{space 2} .0002718{col 37}{space 1}    1.90{col 46}{space 3}0.057{col 54}{space 4} -.000016{col 67}{space 3} .0010493
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}
+{txt}Average Marginal Effects
+{txt}{hline 60}
+{txt}                      (1)             (2)             (3)   
+{txt}                      LPM          Probit           Logit   
+{txt}{hline 60}
+{txt}age         {res}       0.0216***       0.0174**        0.0181** {txt}
+            {res} {ralign 12:{txt:(}0.00560{txt:)}}    {ralign 12:{txt:(}0.00548{txt:)}}    {ralign 12:{txt:(}0.00553{txt:)}}   {txt}
+
+{txt}0.female    {res}            0               0               0   {txt}
+            {res} {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}   {txt}
+
+{txt}1.female    {res}        0.139***        0.133***        0.136***{txt}
+            {res} {ralign 12:{txt:(}0.0119{txt:)}}    {ralign 12:{txt:(}0.0118{txt:)}}    {ralign 12:{txt:(}0.0117{txt:)}}   {txt}
+
+{txt}educ        {res}       0.0144***       0.0124***       0.0121***{txt}
+            {res} {ralign 12:{txt:(}0.00258{txt:)}}    {ralign 12:{txt:(}0.00239{txt:)}}    {ralign 12:{txt:(}0.00232{txt:)}}   {txt}
+
+{txt}0.blhisp    {res}            0               0               0   {txt}
+            {res} {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}   {txt}
+
+{txt}1.blhisp    {res}      -0.0890***      -0.0778***      -0.0796***{txt}
+            {res} {ralign 12:{txt:(}0.0143{txt:)}}    {ralign 12:{txt:(}0.0138{txt:)}}    {ralign 12:{txt:(}0.0137{txt:)}}   {txt}
+
+{txt}totchr      {res}       0.0830***        0.159***        0.174***{txt}
+            {res} {ralign 12:{txt:(}0.00579{txt:)}}    {ralign 12:{txt:(}0.0139{txt:)}}    {ralign 12:{txt:(}0.0165{txt:)}}   {txt}
+
+{txt}0.ins       {res}            0               0               0   {txt}
+            {res} {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}    {ralign 12:{txt:(}.{txt:)}}   {txt}
+
+{txt}1.ins       {res}       0.0365**        0.0333**        0.0326** {txt}
+            {res} {ralign 12:{txt:(}0.0119{txt:)}}    {ralign 12:{txt:(}0.0122{txt:)}}    {ralign 12:{txt:(}0.0122{txt:)}}   {txt}
+
+{txt}income      {res}     0.000443*       0.000536*       0.000517   {txt}
+            {res} {ralign 12:{txt:(}0.000222{txt:)}}    {ralign 12:{txt:(}0.000262{txt:)}}    {ralign 12:{txt:(}0.000272{txt:)}}   {txt}
+{txt}{hline 60}
+{txt}N           {res}         3328            3328            3328   {txt}
+{txt}r2          {res}        0.128                                   {txt}
+{txt}ll          {res}      -1139.1         -1195.5         -1192.8   {txt}
+{txt}{hline 60}
+{txt}Standard errors in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+{res}
+{txt}Probit model for dambexp
+
+{col 15}{hline 8} True {hline 8}
+Classified {c |}{col 22}D{col 35}~D  {c |}{col 46}Total
+{hline 11}{c +}{hline 26}{c +}{hline 11}
+{col 6}+{col 12}{c |} {res}     2768{col 28}      469{txt}  {c |}  {res}     3237
+{txt}{col 6}-{col 12}{c |} {res}       34{col 28}       57{txt}  {c |}  {res}       91
+{txt}{hline 11}{c +}{hline 26}{c +}{hline 11}
+   Total   {c |} {res}     2802{col 28}      526{txt}  {c |}  {res}     3328
+
+{txt}Classified + if predicted Pr(D) >= .5
+True D defined as dambexp != 0
+{hline 50}
+Sensitivity                     Pr( +| D){res}   98.79%
+{txt}Specificity                     Pr( -|~D){res}   10.84%
+{txt}Positive predictive value       Pr( D| +){res}   85.51%
+{txt}Negative predictive value       Pr(~D| -){res}   62.64%
+{txt}{hline 50}
+False + rate for true ~D        Pr( +|~D){res}   89.16%
+{txt}False - rate for true D         Pr( -| D){res}    1.21%
+{txt}False + rate for classified +   Pr(~D| +){res}   14.49%
+{txt}False - rate for classified -   Pr( D| -){res}   37.36%
+{txt}{hline 50}
+Correctly classified                     {res}   84.89%
+{txt}{hline 50}
+{res}
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay modR:modR}{txt} nested within {res}{stata est replay modU:modU}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:4.30}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.0382}
+{txt}      pval = {res} .03817363
+{txt}      stat = {res}  4.297269
+{txt}    logl_R = {res}-1197.6644
+{txt}    logl_U = {res}-1195.5158
+{txt}(526 real changes made)
+{res}
+{txt}Heckman selection model -- two-step estimates   Number of obs     = {res}     3,328
+{txt}(regression model with sample selection)              Selected    = {res}     2,802
+                                                {txt}      Nonselected = {res}       526
+
+                                                {txt}Wald chi2({res}6{txt})      =  {res}   193.43
+                                                {txt}Prob > chi2       =     {res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}lambexp      {txt}{c |}
+{space 9}age {c |}{col 14}{res}{space 2} .2024668{col 26}{space 2} .0242202{col 37}{space 1}    8.36{col 46}{space 3}0.000{col 54}{space 4} .1549961{col 67}{space 3} .2499374
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .2921341{col 26}{space 2} .0725756{col 37}{space 1}    4.03{col 46}{space 3}0.000{col 54}{space 4} .1498886{col 67}{space 3} .4343796
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0123889{col 26}{space 2} .0115682{col 37}{space 1}    1.07{col 46}{space 3}0.284{col 54}{space 4}-.0102844{col 67}{space 3} .0350622
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.1828659{col 26}{space 2} .0653449{col 37}{space 1}   -2.80{col 46}{space 3}0.005{col 54}{space 4}-.3109396{col 67}{space 3}-.0547922
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .5006332{col 26}{space 2} .0485548{col 37}{space 1}   10.31{col 46}{space 3}0.000{col 54}{space 4} .4054675{col 67}{space 3} .5957988
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2}-.0465097{col 26}{space 2} .0529742{col 37}{space 1}   -0.88{col 46}{space 3}0.380{col 54}{space 4}-.1503373{col 67}{space 3} .0573179
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 5.288927{col 26}{space 2}  .288522{col 37}{space 1}   18.33{col 46}{space 3}0.000{col 54}{space 4} 4.723435{col 67}{space 3}  5.85442
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}dambexp      {txt}{c |}
+{space 9}age {c |}{col 14}{res}{space 2} .0868152{col 26}{space 2} .0274556{col 37}{space 1}    3.16{col 46}{space 3}0.002{col 54}{space 4} .0330032{col 67}{space 3} .1406272
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .6635053{col 26}{space 2} .0609648{col 37}{space 1}   10.88{col 46}{space 3}0.000{col 54}{space 4} .5440165{col 67}{space 3} .7829941
+{txt}{space 8}educ {c |}{col 14}{res}{space 2}  .061884{col 26}{space 2}  .012039{col 37}{space 1}    5.14{col 46}{space 3}0.000{col 54}{space 4}  .038288{col 67}{space 3} .0854801
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.3657835{col 26}{space 2} .0619095{col 37}{space 1}   -5.91{col 46}{space 3}0.000{col 54}{space 4}-.4871239{col 67}{space 3}-.2444432
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .7957496{col 26}{space 2} .0712174{col 37}{space 1}   11.17{col 46}{space 3}0.000{col 54}{space 4}  .656166{col 67}{space 3} .9353332
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2}  .169107{col 26}{space 2} .0629296{col 37}{space 1}    2.69{col 46}{space 3}0.007{col 54}{space 4} .0457673{col 67}{space 3} .2924467
+{txt}{space 6}income {c |}{col 14}{res}{space 2} .0026773{col 26}{space 2} .0013105{col 37}{space 1}    2.04{col 46}{space 3}0.041{col 54}{space 4} .0001088{col 67}{space 3} .0052458
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.6686471{col 26}{space 2} .1941247{col 37}{space 1}   -3.44{col 46}{space 3}0.001{col 54}{space 4}-1.049125{col 67}{space 3}-.2881698
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}/mills       {txt}{c |}
+{space 6}lambda {c |}{col 14}{res}{space 2}-.4637133{col 26}{space 2} .2825997{col 37}{space 1}   -1.64{col 46}{space 3}0.101{col 54}{space 4}-1.017598{col 67}{space 3}  .090172
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+         rho {c |} {res}  -0.35907
+       {txt}sigma {c |} {res} 1.2914258
+{txt}{hline 13}{c BT}{hline 64}
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-1452.4289}  
+Iteration 1:{space 2}Log likelihood = {res:-1218.0426}  
+Iteration 2:{space 2}Log likelihood = {res:-1195.6199}  
+Iteration 3:{space 2}Log likelihood = {res:-1195.5158}  
+Iteration 4:{space 2}Log likelihood = {res:-1195.5158}  
+{res}
+{txt}{col 1}Probit regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:3,328}
+{txt}{col 57}{lalign 13:LR chi2({res:7})}{col 70} = {res}{ralign 6:513.83}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-1195.5158}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.1769}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     dambexp{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0868152{col 26}{space 2} .0274556{col 37}{space 1}    3.16{col 46}{space 3}0.002{col 54}{space 4} .0330032{col 67}{space 3} .1406272
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .6635053{col 26}{space 2} .0609648{col 37}{space 1}   10.88{col 46}{space 3}0.000{col 54}{space 4} .5440164{col 67}{space 3} .7829941
+{txt}{space 8}educ {c |}{col 14}{res}{space 2}  .061884{col 26}{space 2}  .012039{col 37}{space 1}    5.14{col 46}{space 3}0.000{col 54}{space 4}  .038288{col 67}{space 3} .0854801
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.3657835{col 26}{space 2} .0619095{col 37}{space 1}   -5.91{col 46}{space 3}0.000{col 54}{space 4}-.4871239{col 67}{space 3}-.2444432
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .7957496{col 26}{space 2} .0712174{col 37}{space 1}   11.17{col 46}{space 3}0.000{col 54}{space 4}  .656166{col 67}{space 3} .9353332
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2}  .169107{col 26}{space 2} .0629296{col 37}{space 1}    2.69{col 46}{space 3}0.007{col 54}{space 4} .0457673{col 67}{space 3} .2924467
+{txt}{space 6}income {c |}{col 14}{res}{space 2} .0026773{col 26}{space 2} .0013105{col 37}{space 1}    2.04{col 46}{space 3}0.041{col 54}{space 4} .0001088{col 67}{space 3} .0052458
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.6686471{col 26}{space 2} .1941247{col 37}{space 1}   -3.44{col 46}{space 3}0.001{col 54}{space 4}-1.049125{col 67}{space 3}-.2881698
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{col 41}{hline 10} Difference {hline 10}
+{col 29}Count{col 41}Minimum{col 54}Average{col 66}Maximum
+{hline 72}
+mills<mills_a           {res}     1660     -5.02e-08    -8.91e-09   -1.75e-14
+{txt}mills>mills_a           {res}     1668      7.75e-15     8.64e-09    5.45e-08
+{txt}{col 24}{hline 10}
+Jointly defined         {res}     3328     -5.02e-08    -1.10e-10    5.45e-08
+{txt}{col 24}{hline 10}
+Total                   {res}     3328
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     3,328
+{txt}{hline 13}{c +}{hline 34}   F(7, 3320)      = {res}   164.14
+{txt}       Model {c |} {res} 6325.70678         7  903.672398   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 18278.1125     3,320  5.50545557   {txt}R-squared       ={res}    0.2571
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2555
+{txt}       Total {c |} {res} 24603.8193     3,327  7.39519666   {txt}Root MSE        =   {res} 2.3464
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     lambexp{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .1628716{col 26}{space 2} .0410937{col 37}{space 1}    3.96{col 46}{space 3}0.000{col 54}{space 4} .0823001{col 67}{space 3} .2434431
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .1898127{col 26}{space 2} .1257893{col 37}{space 1}    1.51{col 46}{space 3}0.131{col 54}{space 4}-.0568198{col 67}{space 3} .4364451
+{txt}{space 8}educ {c |}{col 14}{res}{space 2}-.0016555{col 26}{space 2} .0199775{col 37}{space 1}   -0.08{col 46}{space 3}0.934{col 54}{space 4}-.0408251{col 67}{space 3}  .037514
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.1086689{col 26}{space 2} .1107824{col 37}{space 1}   -0.98{col 46}{space 3}0.327{col 54}{space 4}-.3258776{col 67}{space 3} .1085397
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .4202052{col 26}{space 2} .0839337{col 37}{space 1}    5.01{col 46}{space 3}0.000{col 54}{space 4} .2556382{col 67}{space 3} .5847723
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2}-.0686172{col 26}{space 2} .0899672{col 37}{space 1}   -0.76{col 46}{space 3}0.446{col 54}{space 4}-.2450141{col 67}{space 3} .1077796
+{txt}{space 7}mills {c |}{col 14}{res}{space 2}-4.592193{col 26}{space 2} .4582359{col 37}{space 1}  -10.02{col 46}{space 3}0.000{col 54}{space 4}-5.490646{col 67}{space 3}-3.693739
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 5.904903{col 26}{space 2} .5004624{col 37}{space 1}   11.80{col 46}{space 3}0.000{col 54}{space 4} 4.923657{col 67}{space 3} 6.886149
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}{col 1}Average marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:3,328}
+{txt}{col 1}Model VCE: {res:Conventional}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(dambexp), predict(psel)}{p_end}
+{p2col:dy/dx wrt:}{res:age 1.female educ 1.blhisp totchr 1.ins income}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0173895{col 26}{space 2} .0054832{col 37}{space 1}    3.17{col 46}{space 3}0.002{col 54}{space 4} .0066426{col 67}{space 3} .0281365
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2}  .132906{col 26}{space 2} .0118133{col 37}{space 1}   11.25{col 46}{space 3}0.000{col 54}{space 4} .1097524{col 67}{space 3} .1560596
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0123957{col 26}{space 2} .0023862{col 37}{space 1}    5.19{col 46}{space 3}0.000{col 54}{space 4} .0077189{col 67}{space 3} .0170725
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.0777517{col 26}{space 2} .0137954{col 37}{space 1}   -5.64{col 46}{space 3}0.000{col 54}{space 4}-.1047901{col 67}{space 3}-.0507133
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .1593929{col 26}{space 2} .0139062{col 37}{space 1}   11.46{col 46}{space 3}0.000{col 54}{space 4} .1321371{col 67}{space 3} .1866486
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2}  .033324{col 26}{space 2} .0121638{col 37}{space 1}    2.74{col 46}{space 3}0.006{col 54}{space 4} .0094834{col 67}{space 3} .0571646
+{txt}{space 6}income {c |}{col 14}{res}{space 2} .0005363{col 26}{space 2} .0002621{col 37}{space 1}    2.05{col 46}{space 3}0.041{col 54}{space 4} .0000225{col 67}{space 3} .0010501
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}
+{txt}Heckman selection model                         Number of obs     = {res}     3,328
+{txt}(regression model with sample selection)              Selected    = {res}     2,802
+                                                {txt}      Nonselected = {res}       526
+
+                                                {txt}Wald chi2({res}6{txt})      =  {res}   288.88
+{txt}Log likelihood = {res}-5836.219                      {txt}Prob > chi2       =     {res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}lambexp      {txt}{c |}
+{space 9}age {c |}{col 14}{res}{space 2} .2119749{col 26}{space 2} .0230072{col 37}{space 1}    9.21{col 46}{space 3}0.000{col 54}{space 4} .1668816{col 67}{space 3} .2570682
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .3481441{col 26}{space 2} .0601142{col 37}{space 1}    5.79{col 46}{space 3}0.000{col 54}{space 4} .2303223{col 67}{space 3} .4659658
+{txt}{space 8}educ {c |}{col 14}{res}{space 2}  .018716{col 26}{space 2} .0105473{col 37}{space 1}    1.77{col 46}{space 3}0.076{col 54}{space 4}-.0019563{col 67}{space 3} .0393883
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.2185714{col 26}{space 2} .0596687{col 37}{space 1}   -3.66{col 46}{space 3}0.000{col 54}{space 4}-.3355199{col 67}{space 3} -.101623
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2}   .53992{col 26}{space 2} .0393324{col 37}{space 1}   13.73{col 46}{space 3}0.000{col 54}{space 4} .4628299{col 67}{space 3}   .61701
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2}-.0299871{col 26}{space 2} .0510882{col 37}{space 1}   -0.59{col 46}{space 3}0.557{col 54}{space 4}-.1301182{col 67}{space 3} .0701439
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 5.044056{col 26}{space 2} .2281259{col 37}{space 1}   22.11{col 46}{space 3}0.000{col 54}{space 4} 4.596938{col 67}{space 3} 5.491175
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}dambexp      {txt}{c |}
+{space 9}age {c |}{col 14}{res}{space 2} .0879359{col 26}{space 2}  .027421{col 37}{space 1}    3.21{col 46}{space 3}0.001{col 54}{space 4} .0341917{col 67}{space 3}   .14168
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .6626649{col 26}{space 2} .0609384{col 37}{space 1}   10.87{col 46}{space 3}0.000{col 54}{space 4} .5432278{col 67}{space 3} .7821021
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0619485{col 26}{space 2} .0120295{col 37}{space 1}    5.15{col 46}{space 3}0.000{col 54}{space 4} .0383711{col 67}{space 3} .0855258
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.3639377{col 26}{space 2} .0618734{col 37}{space 1}   -5.88{col 46}{space 3}0.000{col 54}{space 4}-.4852073{col 67}{space 3}-.2426682
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .7969518{col 26}{space 2} .0711306{col 37}{space 1}   11.20{col 46}{space 3}0.000{col 54}{space 4} .6575383{col 67}{space 3} .9363653
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2} .1701367{col 26}{space 2} .0628711{col 37}{space 1}    2.71{col 46}{space 3}0.007{col 54}{space 4} .0469117{col 67}{space 3} .2933618
+{txt}{space 6}income {c |}{col 14}{res}{space 2} .0027078{col 26}{space 2} .0013168{col 37}{space 1}    2.06{col 46}{space 3}0.040{col 54}{space 4}  .000127{col 67}{space 3} .0052886
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.6760546{col 26}{space 2} .1940288{col 37}{space 1}   -3.48{col 46}{space 3}0.000{col 54}{space 4}-1.056344{col 67}{space 3}-.2957652
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}/athrho {c |}{col 14}{res}{space 2}-.1313456{col 26}{space 2} .1496292{col 37}{space 1}   -0.88{col 46}{space 3}0.380{col 54}{space 4}-.4246134{col 67}{space 3} .1619222
+{txt}{space 4}/lnsigma {c |}{col 14}{res}{space 2} .2398173{col 26}{space 2} .0144598{col 37}{space 1}   16.59{col 46}{space 3}0.000{col 54}{space 4} .2114767{col 67}{space 3}  .268158
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+         rho {c |}{col 14}{res}{space 2}-.1305955{col 26}{space 2} .1470772{col 54}{space 4}-.4008098{col 67}{space 3} .1605217
+{txt}       sigma {c |}{col 14}{res}{space 2} 1.271017{col 26}{space 2} .0183786{col 54}{space 4} 1.235501{col 67}{space 3} 1.307554
+{txt}      lambda {c |}{col 14}{res}{space 2}-.1659891{col 26}{space 2} .1878698{col 54}{space 4}-.5342072{col 67}{space 3} .2022291
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+LR test of indep. eqns. (rho = 0): chi2({res}1{txt}) = {res}0.91         {txt}Prob > chi2 = {res}0.3406
+
+{txt}Heckman selection model -- two-step estimates   Number of obs     = {res}     3,328
+{txt}(regression model with sample selection)              Selected    = {res}     2,802
+                                                {txt}      Nonselected = {res}       526
+
+                                                {txt}Wald chi2({res}7{txt})      =  {res}   192.92
+                                                {txt}Prob > chi2       =     {res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}lambexp      {txt}{c |}
+{space 9}age {c |}{col 14}{res}{space 2} .2043022{col 26}{space 2} .0244086{col 37}{space 1}    8.37{col 46}{space 3}0.000{col 54}{space 4} .1564622{col 67}{space 3} .2521422
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .2786877{col 26}{space 2} .0750154{col 37}{space 1}    3.72{col 46}{space 3}0.000{col 54}{space 4} .1316602{col 67}{space 3} .4257151
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0141631{col 26}{space 2} .0118462{col 37}{space 1}    1.20{col 46}{space 3}0.232{col 54}{space 4}-.0090551{col 67}{space 3} .0373812
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.1797416{col 26}{space 2} .0656337{col 37}{space 1}   -2.74{col 46}{space 3}0.006{col 54}{space 4}-.3083812{col 67}{space 3} -.051102
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .4938391{col 26}{space 2}  .049539{col 37}{space 1}    9.97{col 46}{space 3}0.000{col 54}{space 4} .3967445{col 67}{space 3} .5909337
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2}-.0461181{col 26}{space 2}  .053113{col 37}{space 1}   -0.87{col 46}{space 3}0.385{col 54}{space 4}-.1502176{col 67}{space 3} .0579815
+{txt}{space 6}income {c |}{col 14}{res}{space 2}-.0007456{col 26}{space 2} .0010158{col 37}{space 1}   -0.73{col 46}{space 3}0.463{col 54}{space 4}-.0027367{col 67}{space 3} .0012454
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 5.306311{col 26}{space 2} .2901551{col 37}{space 1}   18.29{col 46}{space 3}0.000{col 54}{space 4} 4.737617{col 67}{space 3} 5.875004
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}dambexp      {txt}{c |}
+{space 9}age {c |}{col 14}{res}{space 2} .0868152{col 26}{space 2} .0274556{col 37}{space 1}    3.16{col 46}{space 3}0.002{col 54}{space 4} .0330032{col 67}{space 3} .1406272
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .6635053{col 26}{space 2} .0609648{col 37}{space 1}   10.88{col 46}{space 3}0.000{col 54}{space 4} .5440165{col 67}{space 3} .7829941
+{txt}{space 8}educ {c |}{col 14}{res}{space 2}  .061884{col 26}{space 2}  .012039{col 37}{space 1}    5.14{col 46}{space 3}0.000{col 54}{space 4}  .038288{col 67}{space 3} .0854801
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.3657835{col 26}{space 2} .0619095{col 37}{space 1}   -5.91{col 46}{space 3}0.000{col 54}{space 4}-.4871239{col 67}{space 3}-.2444432
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .7957496{col 26}{space 2} .0712174{col 37}{space 1}   11.17{col 46}{space 3}0.000{col 54}{space 4}  .656166{col 67}{space 3} .9353332
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2}  .169107{col 26}{space 2} .0629296{col 37}{space 1}    2.69{col 46}{space 3}0.007{col 54}{space 4} .0457673{col 67}{space 3} .2924467
+{txt}{space 6}income {c |}{col 14}{res}{space 2} .0026773{col 26}{space 2} .0013105{col 37}{space 1}    2.04{col 46}{space 3}0.041{col 54}{space 4} .0001088{col 67}{space 3} .0052458
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.6686471{col 26}{space 2} .1941247{col 37}{space 1}   -3.44{col 46}{space 3}0.001{col 54}{space 4}-1.049125{col 67}{space 3}-.2881698
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}/mills       {txt}{c |}
+{space 6}lambda {c |}{col 14}{res}{space 2}-.5087361{col 26}{space 2} .2894687{col 37}{space 1}   -1.76{col 46}{space 3}0.079{col 54}{space 4}-1.076084{col 67}{space 3} .0586121
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+         rho {c |} {res}  -0.39250
+       {txt}sigma {c |} {res} 1.2961455
+{txt}{hline 13}{c BT}{hline 64}
+{res}
+{txt}Heckman selection model                         Number of obs     = {res}     3,328
+{txt}(regression model with sample selection)              Selected    = {res}     2,802
+                                                {txt}      Nonselected = {res}       526
+
+                                                {txt}Wald chi2({res}7{txt})      =  {res}   285.98
+{txt}Log likelihood = {res} -5836.09                      {txt}Prob > chi2       =     {res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}lambexp      {txt}{c |}
+{space 9}age {c |}{col 14}{res}{space 2} .2137594{col 26}{space 2} .0232969{col 37}{space 1}    9.18{col 46}{space 3}0.000{col 54}{space 4} .1680983{col 67}{space 3} .2594205
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2}  .342293{col 26}{space 2} .0615522{col 37}{space 1}    5.56{col 46}{space 3}0.000{col 54}{space 4} .2216528{col 67}{space 3} .4629332
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0202746{col 26}{space 2} .0110032{col 37}{space 1}    1.84{col 46}{space 3}0.065{col 54}{space 4}-.0012913{col 67}{space 3} .0418406
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.2185104{col 26}{space 2} .0598099{col 37}{space 1}   -3.65{col 46}{space 3}0.000{col 54}{space 4}-.3357357{col 67}{space 3}-.1012852
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .5375964{col 26}{space 2} .0398453{col 37}{space 1}   13.49{col 46}{space 3}0.000{col 54}{space 4}  .459501{col 67}{space 3} .6156918
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2}-.0287728{col 26}{space 2} .0511856{col 37}{space 1}   -0.56{col 46}{space 3}0.574{col 54}{space 4}-.1290946{col 67}{space 3} .0715491
+{txt}{space 6}income {c |}{col 14}{res}{space 2}-.0005026{col 26}{space 2}  .000989{col 37}{space 1}   -0.51{col 46}{space 3}0.611{col 54}{space 4}-.0024411{col 67}{space 3} .0014359
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 5.041712{col 26}{space 2}  .229726{col 37}{space 1}   21.95{col 46}{space 3}0.000{col 54}{space 4} 4.591458{col 67}{space 3} 5.491967
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}dambexp      {txt}{c |}
+{space 9}age {c |}{col 14}{res}{space 2} .0878613{col 26}{space 2} .0274099{col 37}{space 1}    3.21{col 46}{space 3}0.001{col 54}{space 4}  .034139{col 67}{space 3} .1415837
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .6628035{col 26}{space 2}  .060929{col 37}{space 1}   10.88{col 46}{space 3}0.000{col 54}{space 4} .5433848{col 67}{space 3} .7822223
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0617998{col 26}{space 2} .0120332{col 37}{space 1}    5.14{col 46}{space 3}0.000{col 54}{space 4} .0382152{col 67}{space 3} .0853844
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.3636885{col 26}{space 2} .0618724{col 37}{space 1}   -5.88{col 46}{space 3}0.000{col 54}{space 4}-.4849562{col 67}{space 3}-.2424207
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .7968988{col 26}{space 2} .0711265{col 37}{space 1}   11.20{col 46}{space 3}0.000{col 54}{space 4} .6574934{col 67}{space 3} .9363041
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2} .1699645{col 26}{space 2} .0628669{col 37}{space 1}    2.70{col 46}{space 3}0.007{col 54}{space 4} .0467476{col 67}{space 3} .2931815
+{txt}{space 6}income {c |}{col 14}{res}{space 2} .0027483{col 26}{space 2} .0013209{col 37}{space 1}    2.08{col 46}{space 3}0.037{col 54}{space 4} .0001595{col 67}{space 3} .0053372
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} -.675346{col 26}{space 2} .1939739{col 37}{space 1}   -3.48{col 46}{space 3}0.000{col 54}{space 4}-1.055528{col 67}{space 3} -.295164
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}/athrho {c |}{col 14}{res}{space 2}-.1419126{col 26}{space 2} .1535634{col 37}{space 1}   -0.92{col 46}{space 3}0.355{col 54}{space 4}-.4428913{col 67}{space 3} .1590661
+{txt}{space 4}/lnsigma {c |}{col 14}{res}{space 2}  .240186{col 26}{space 2} .0146925{col 37}{space 1}   16.35{col 46}{space 3}0.000{col 54}{space 4} .2113892{col 67}{space 3} .2689828
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+         rho {c |}{col 14}{res}{space 2}-.1409675{col 26}{space 2} .1505118{col 54}{space 4}-.4160382{col 67}{space 3}  .157738
+{txt}       sigma {c |}{col 14}{res}{space 2} 1.271486{col 26}{space 2} .0186813{col 54}{space 4} 1.235393{col 67}{space 3} 1.308633
+{txt}      lambda {c |}{col 14}{res}{space 2}-.1792382{col 26}{space 2} .1924853{col 54}{space 4}-.5565025{col 67}{space 3} .1980261
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+LR test of indep. eqns. (rho = 0): chi2({res}1{txt}) = {res}1.02         {txt}Prob > chi2 = {res}0.3122
+
+{txt}Heckman Selection Models
+{txt}{hline 76}
+{txt}                      (1)             (2)             (3)             (4)   
+{txt}                2-step,w/      2-step,w/o           ML,w/          ML,w/o   
+{txt}{hline 76}
+{res}lambexp                                                                     {txt}
+{txt}age         {res}        0.202***        0.204***        0.212***        0.214***{txt}
+            {res} {ralign 12:{txt:(}0.0242{txt:)}}    {ralign 12:{txt:(}0.0244{txt:)}}    {ralign 12:{txt:(}0.0230{txt:)}}    {ralign 12:{txt:(}0.0233{txt:)}}   {txt}
+
+{txt}1.female    {res}        0.292***        0.279***        0.348***        0.342***{txt}
+            {res} {ralign 12:{txt:(}0.0726{txt:)}}    {ralign 12:{txt:(}0.0750{txt:)}}    {ralign 12:{txt:(}0.0601{txt:)}}    {ralign 12:{txt:(}0.0616{txt:)}}   {txt}
+
+{txt}educ        {res}       0.0124          0.0142          0.0187          0.0203   {txt}
+            {res} {ralign 12:{txt:(}0.0116{txt:)}}    {ralign 12:{txt:(}0.0118{txt:)}}    {ralign 12:{txt:(}0.0105{txt:)}}    {ralign 12:{txt:(}0.0110{txt:)}}   {txt}
+
+{txt}1.blhisp    {res}       -0.183**        -0.180**        -0.219***       -0.219***{txt}
+            {res} {ralign 12:{txt:(}0.0653{txt:)}}    {ralign 12:{txt:(}0.0656{txt:)}}    {ralign 12:{txt:(}0.0597{txt:)}}    {ralign 12:{txt:(}0.0598{txt:)}}   {txt}
+
+{txt}totchr      {res}        0.501***        0.494***        0.540***        0.538***{txt}
+            {res} {ralign 12:{txt:(}0.0486{txt:)}}    {ralign 12:{txt:(}0.0495{txt:)}}    {ralign 12:{txt:(}0.0393{txt:)}}    {ralign 12:{txt:(}0.0398{txt:)}}   {txt}
+
+{txt}1.ins       {res}      -0.0465         -0.0461         -0.0300         -0.0288   {txt}
+            {res} {ralign 12:{txt:(}0.0530{txt:)}}    {ralign 12:{txt:(}0.0531{txt:)}}    {ralign 12:{txt:(}0.0511{txt:)}}    {ralign 12:{txt:(}0.0512{txt:)}}   {txt}
+
+{txt}income      {res}                    -0.000746                       -0.000503   {txt}
+            {res}                 {ralign 12:{txt:(}0.00102{txt:)}}                    {ralign 12:{txt:(}0.000989{txt:)}}   {txt}
+
+{txt}_cons       {res}        5.289***        5.306***        5.044***        5.042***{txt}
+            {res} {ralign 12:{txt:(}0.289{txt:)}}    {ralign 12:{txt:(}0.290{txt:)}}    {ralign 12:{txt:(}0.228{txt:)}}    {ralign 12:{txt:(}0.230{txt:)}}   {txt}
+{hline 76}
+{res}dambexp                                                                     {txt}
+{txt}age         {res}       0.0868**        0.0868**        0.0879**        0.0879** {txt}
+            {res} {ralign 12:{txt:(}0.0275{txt:)}}    {ralign 12:{txt:(}0.0275{txt:)}}    {ralign 12:{txt:(}0.0274{txt:)}}    {ralign 12:{txt:(}0.0274{txt:)}}   {txt}
+
+{txt}1.female    {res}        0.664***        0.664***        0.663***        0.663***{txt}
+            {res} {ralign 12:{txt:(}0.0610{txt:)}}    {ralign 12:{txt:(}0.0610{txt:)}}    {ralign 12:{txt:(}0.0609{txt:)}}    {ralign 12:{txt:(}0.0609{txt:)}}   {txt}
+
+{txt}educ        {res}       0.0619***       0.0619***       0.0619***       0.0618***{txt}
+            {res} {ralign 12:{txt:(}0.0120{txt:)}}    {ralign 12:{txt:(}0.0120{txt:)}}    {ralign 12:{txt:(}0.0120{txt:)}}    {ralign 12:{txt:(}0.0120{txt:)}}   {txt}
+
+{txt}1.blhisp    {res}       -0.366***       -0.366***       -0.364***       -0.364***{txt}
+            {res} {ralign 12:{txt:(}0.0619{txt:)}}    {ralign 12:{txt:(}0.0619{txt:)}}    {ralign 12:{txt:(}0.0619{txt:)}}    {ralign 12:{txt:(}0.0619{txt:)}}   {txt}
+
+{txt}totchr      {res}        0.796***        0.796***        0.797***        0.797***{txt}
+            {res} {ralign 12:{txt:(}0.0712{txt:)}}    {ralign 12:{txt:(}0.0712{txt:)}}    {ralign 12:{txt:(}0.0711{txt:)}}    {ralign 12:{txt:(}0.0711{txt:)}}   {txt}
+
+{txt}1.ins       {res}        0.169**         0.169**         0.170**         0.170** {txt}
+            {res} {ralign 12:{txt:(}0.0629{txt:)}}    {ralign 12:{txt:(}0.0629{txt:)}}    {ralign 12:{txt:(}0.0629{txt:)}}    {ralign 12:{txt:(}0.0629{txt:)}}   {txt}
+
+{txt}income      {res}      0.00268*        0.00268*        0.00271*        0.00275*  {txt}
+            {res} {ralign 12:{txt:(}0.00131{txt:)}}    {ralign 12:{txt:(}0.00131{txt:)}}    {ralign 12:{txt:(}0.00132{txt:)}}    {ralign 12:{txt:(}0.00132{txt:)}}   {txt}
+
+{txt}_cons       {res}       -0.669***       -0.669***       -0.676***       -0.675***{txt}
+            {res} {ralign 12:{txt:(}0.194{txt:)}}    {ralign 12:{txt:(}0.194{txt:)}}    {ralign 12:{txt:(}0.194{txt:)}}    {ralign 12:{txt:(}0.194{txt:)}}   {txt}
+{hline 76}
+{res}/mills                                                                      {txt}
+{txt}lambda      {res}       -0.464          -0.509                                   {txt}
+            {res} {ralign 12:{txt:(}0.283{txt:)}}    {ralign 12:{txt:(}0.289{txt:)}}                                   {txt}
+{hline 76}
+{res}/                                                                           {txt}
+{txt}athrho      {res}                                       -0.131          -0.142   {txt}
+            {res}                                 {ralign 12:{txt:(}0.150{txt:)}}    {ralign 12:{txt:(}0.154{txt:)}}   {txt}
+
+{txt}lnsigma     {res}                                        0.240***        0.240***{txt}
+            {res}                                 {ralign 12:{txt:(}0.0145{txt:)}}    {ralign 12:{txt:(}0.0147{txt:)}}   {txt}
+{txt}{hline 76}
+{txt}N           {res}         3328            3328            3328            3328   {txt}
+{txt}{hline 76}
+{txt}Standard errors in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick-ec910\problem-sets\ps-6\problem-set-6-log.txt
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}19 Nov 2024, 16:48:57
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

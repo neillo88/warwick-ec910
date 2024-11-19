@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Binary Choice Models – EC910</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">EC910</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lecture-handouts" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lecture Handouts</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lecture-handouts">    
+        <li>
+    <a class="dropdown-item" href="./handout-1.html">
+ <span class="dropdown-text">Handout 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-2.html">
+ <span class="dropdown-text">Handout 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-3.html">
+ <span class="dropdown-text">Handout 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-4.html">
+ <span class="dropdown-text">Handout 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-5.html">
+ <span class="dropdown-text">Handout 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-6.html">
+ <span class="dropdown-text">Handout 6</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-problem-sets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Problem Sets</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-problem-sets">    
+        <li>
+    <a class="dropdown-item" href="./problem-sets/ps-1/problem-set-1.html">
+ <span class="dropdown-text">Problem Set 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-sets/ps-1/problem-set-1-solutions.html">
+ <span class="dropdown-text">Problem Set 1 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-2.html">
+ <span class="dropdown-text">Problem Set 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-2-solutions.html">
+ <span class="dropdown-text">Problem Set 2 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-3.html">
+ <span class="dropdown-text">Problem Set 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-3-solutions.html">
+ <span class="dropdown-text">Problem Set 3 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-4.html">
+ <span class="dropdown-text">Problem Set 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-4-solutions.html">
+ <span class="dropdown-text">Problem Set 4 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-5.html">
+ <span class="dropdown-text">Problem Set 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-5-solutions.html">
+ <span class="dropdown-text">Problem Set 5 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-6.html">
+ <span class="dropdown-text">Problem Set 6</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-additional-material" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Additional Material</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-additional-material">    
+        <li>
+    <a class="dropdown-item" href="./material-cef.html">
+ <span class="dropdown-text">Conditional Expectation Function</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./material-interpretation.html">
+ <span class="dropdown-text">Interpreting Linear Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./material-dummy.html">
+ <span class="dropdown-text">Dummy Variables</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./material-linearalgebra.html">
+ <span class="dropdown-text">Linear Algebra</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./material-inference.html">
+ <span class="dropdown-text">Statistical Inference</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a></li>
+  <li><a href="#binary-outcomes" id="toc-binary-outcomes" class="nav-link" data-scroll-target="#binary-outcomes"><span class="header-section-number">2</span> Binary Outcomes</a></li>
+  <li><a href="#linear-probability-model" id="toc-linear-probability-model" class="nav-link" data-scroll-target="#linear-probability-model"><span class="header-section-number">3</span> Linear Probability Model</a>
+  <ul class="collapse">
+  <li><a href="#estimation" id="toc-estimation" class="nav-link" data-scroll-target="#estimation"><span class="header-section-number">3.1</span> Estimation</a></li>
+  <li><a href="#predicted-values" id="toc-predicted-values" class="nav-link" data-scroll-target="#predicted-values"><span class="header-section-number">3.2</span> Predicted values</a></li>
+  </ul></li>
+  <li><a href="#latent-variable-model" id="toc-latent-variable-model" class="nav-link" data-scroll-target="#latent-variable-model"><span class="header-section-number">4</span> Latent Variable Model</a>
+  <ul class="collapse">
+  <li><a href="#utility-maximization" id="toc-utility-maximization" class="nav-link" data-scroll-target="#utility-maximization"><span class="header-section-number">4.1</span> Utility maximization</a></li>
+  <li><a href="#logit" id="toc-logit" class="nav-link" data-scroll-target="#logit"><span class="header-section-number">4.2</span> Logit</a></li>
+  <li><a href="#lpm" id="toc-lpm" class="nav-link" data-scroll-target="#lpm"><span class="header-section-number">4.3</span> LPM</a></li>
+  </ul></li>
+  <li><a href="#index-model-approach" id="toc-index-model-approach" class="nav-link" data-scroll-target="#index-model-approach"><span class="header-section-number">5</span> Index Model Approach</a></li>
+  <li><a href="#estimation-1" id="toc-estimation-1" class="nav-link" data-scroll-target="#estimation-1"><span class="header-section-number">6</span> Estimation</a>
+  <ul class="collapse">
+  <li><a href="#probit" id="toc-probit" class="nav-link" data-scroll-target="#probit"><span class="header-section-number">6.1</span> Probit</a></li>
+  <li><a href="#asymptotic-distribution" id="toc-asymptotic-distribution" class="nav-link" data-scroll-target="#asymptotic-distribution"><span class="header-section-number">6.2</span> Asymptotic distribution</a></li>
+  </ul></li>
+  <li><a href="#interpretation-fit" id="toc-interpretation-fit" class="nav-link" data-scroll-target="#interpretation-fit"><span class="header-section-number">7</span> Interpretation &amp; Fit</a>
+  <ul class="collapse">
+  <li><a href="#marginal-effects" id="toc-marginal-effects" class="nav-link" data-scroll-target="#marginal-effects"><span class="header-section-number">7.1</span> Marginal Effects</a></li>
+  <li><a href="#odds-ratios" id="toc-odds-ratios" class="nav-link" data-scroll-target="#odds-ratios"><span class="header-section-number">7.2</span> Odds ratios</a></li>
+  <li><a href="#goodness-of-fit" id="toc-goodness-of-fit" class="nav-link" data-scroll-target="#goodness-of-fit"><span class="header-section-number">7.3</span> Goodness of fit</a></li>
+  <li><a href="#likelihood-ratio-test" id="toc-likelihood-ratio-test" class="nav-link" data-scroll-target="#likelihood-ratio-test"><span class="header-section-number">7.4</span> Likelihood Ratio Test</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">8</span> References</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="handout-6.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Binary Choice Models</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1</span> Overview</h2>
+<p>In this handout we will review the binary case of discrete choice models (a type of limited dependent variable model). We will review:</p>
+<ul>
+<li>linear probability model (LPM);</li>
+<li>probit model;</li>
+<li>and logit model.</li>
+</ul>
+<p>Further reading can be found in:</p>
+<ul>
+<li>Section 14-14.4 of <span class="citation" data-cites="cameron2005">Cameron and Trivedi (<a href="#ref-cameron2005" role="doc-biblioref">2005</a>)</span></li>
+<li>Section 7-7.1.6 of <span class="citation" data-cites="verbeek2017">Verbeek (<a href="#ref-verbeek2017" role="doc-biblioref">2017</a>)</span></li>
+</ul>
+</section>
+<section id="binary-outcomes" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="binary-outcomes"><span class="header-section-number">2</span> Binary Outcomes</h2>
+<p>Consider a Bernoulli random variable <span class="math inline">\(Y\in\{0,1\}\)</span>. Given the vector of random variables <span class="math inline">\(X\in \mathbb{R}^k\)</span>, we can define</p>
+<p><span class="math display">\[
+\rho(x) = Pr(Y = 1|X=x)
+\]</span> and, <span class="math display">\[
+1-\rho(x) = 1-Pr(Y = 1|X=x) = Pr(Y = 0|X=x)
+\]</span> Then, the conditional mean is given by,</p>
+<p><span class="math display">\[
+E[Y|X] = 0\times Pr(Y = 0|X)+1\times Pr(Y = 1|X) = \rho(X)
+\]</span> Likewise, the conditional variance is, <span class="math display">\[
+\begin{aligned}
+Var(Y|X) =&amp; E[Y^2|X]-E[Y|X]^2 \\
+=&amp;E[Y|X]-E[Y|X]^2 \\
+=&amp;\rho(X)-\rho(X)^2 \\
+=&amp; \rho(X)\big(1-\rho(X)\big)
+\end{aligned}
+\]</span> where the second line follows from the fact that <span class="math inline">\(Y = Y^2\)</span>.</p>
+</section>
+<section id="linear-probability-model" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="linear-probability-model"><span class="header-section-number">3</span> Linear Probability Model</h2>
+<p>The LPM is simply a standard linear model with a binary outcome:</p>
+<p><span class="math display">\[
+Y_i = X_i'\beta + \varepsilon_i
+\]</span></p>
+<p>where <span class="math inline">\(Y_i\in\{0,1\}\)</span>. We can rationalize this model by assuming that the conditional expectation function of <span class="math inline">\(Y\)</span> is linear (in parameters),<br>
+<span class="math display">\[
+E[Y_i|X_i] = X_i'\beta = Pr(Y_i = 1|X_i)
+\]</span> However, since the conditional expectation is equivalent to the conditional probability (that <span class="math inline">\(Y=1\)</span>), it must be that: <span class="math display">\[
+0\leq X_i'\beta\leq 1
+\]</span> Outside of this interval, the model is not defined.</p>
+<p>Recall, assuming knowledge of the CEF is equivalent to assuming conditional mean independence of the error term, since we can always write <span class="math inline">\(Y_i = E[Y_i|X_i]+\varepsilon_i\)</span> where <span class="math inline">\(E[\varepsilon_i|X_i] = 0\)</span>. In this setting, the error term can take on 2 values for any given value of <span class="math inline">\(X_i\)</span>:</p>
+<p><span class="math display">\[
+\varepsilon_i = \begin{cases}1-X_i'\beta\qquad\text{for}\quad Y_i = 1\\
+-X_i'\beta \qquad\text{for}\quad Y_i = 0
+\end{cases}
+\]</span></p>
+<p>This implies that the error cannot be normally distributed (conditional on <span class="math inline">\(X_i\)</span>). This is limiting in terms of the finite sample distribution of estimators for <span class="math inline">\(\beta\)</span>. However, the asymptotic distribution of estimators will remain normal under CLT.</p>
+<p>What of the conditional variance? For continuous outcomes, we could assume homoskedasticity: <span class="math inline">\(Var(\varepsilon_i|X_i) = \sigma^2\)</span>. Now, with a binary outcome,</p>
+<p><span class="math display">\[
+Var(\varepsilon_i|X_i) = Var(Y_i|X_i) = \rho(X_i)\big(1-\rho(X_i)\big)
+\]</span> Thus, the error term is by definition heteroskedastic.</p>
+<section id="estimation" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="estimation"><span class="header-section-number">3.1</span> Estimation</h3>
+<p>The LPM can be estimated by OLS. So long as, <span class="math display">\[
+0\leq X_i'\beta\leq 1
+\]</span> OLS is unbiased and consistent. If not, OLS is neither unbiased nor consistent.</p>
+<p>Regardless, OLS is inefficient, given the heteroskedasticity of the error term. You should therefore estimate heteroskedastic robust SEs. An alternative is to estimate a Weighted Least Squares model.</p>
+</section>
+<section id="predicted-values" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="predicted-values"><span class="header-section-number">3.2</span> Predicted values</h3>
+<p>An issue with the LPM model is predictions outside of the range <span class="math inline">\([0,1]\)</span>. For example,</p>
+<p>This usually occurs in instances where <span class="math inline">\(X\)</span> has a large support, with the majority of observations close to the mean (of <span class="math inline">\(X\)</span>). For example, if <span class="math inline">\(X\)</span> is normally distributed.</p>
+</section>
+</section>
+<section id="latent-variable-model" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="latent-variable-model"><span class="header-section-number">4</span> Latent Variable Model</h2>
+<p>A latent variable model is one way of justifying the assumptions underlying the probit and logit models; however, it is not strictly required. This approach generalizes the model in a way that restricts the outcome (to a binary outcome), either conditionally or unconditionally.</p>
+<p>We observe <span class="math inline">\(Y_i\in\{0,1\}\)</span>. We can express this outcome as a function of <span class="math inline">\(\{X,\varepsilon\}\)</span> in the following way:</p>
+<p><span class="math display">\[
+Y_i = \mathbf{1}\{X_i'\beta + \varepsilon_i&gt;0\}
+\]</span> Here, <span class="math inline">\(\mathbf{1}\{\cdot\}\)</span> is an indicator function: equal to 1 when the statement is true and 0 otherwise. We can then write this as, <span class="math display">\[
+Y_i = \mathbf{1}\{Y_i^*&gt;0\}\qquad\text{where}\quad Y_i^*=X_i'\beta + \varepsilon_i
+\]</span> We refer to <span class="math inline">\(Y^*\)</span> as a <em>latent</em> variable. It is unobserved; hence, the name ‘latent’ which can be interpretted as hidden or concealed.</p>
+<p>There are a couple of important properties of this set-up:</p>
+<ol type="1">
+<li>The observed outcome is unique up to a scalar multiplication of the latent variable.</li>
+</ol>
+<p><span class="math display">\[
+Y_i = \mathbf{1}\{X_i'\beta+\varepsilon_i&gt;0\} = \mathbf{1}\{aX_i'\beta+a\varepsilon_i&gt;0\}
+\]</span> This implies that the absolute magnitude of <span class="math inline">\(\beta\)</span> cannot be identified. We will see this morning clearly in our discussion of the probit model.</p>
+<ol start="2" type="1">
+<li>The observed outcome is unique up to the addition and substraction of a constant:</li>
+</ol>
+<p><span class="math display">\[
+Y_i = \mathbf{1}\{X_i'\beta+\varepsilon_i&gt;0\} = \mathbf{1}\{X_i'\beta+c+\varepsilon_i-c&gt;0\}
+\]</span></p>
+<p>This implies that the threshold at which decisions are made cannot be identified and need not be zero.</p>
+<p>Practically, these two probabilities mean that we will need to normalize the location (mean) and variance of the unobserved error (<span class="math inline">\(\varepsilon\)</span>).</p>
+<section id="utility-maximization" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="utility-maximization"><span class="header-section-number">4.1</span> Utility maximization</h3>
+<p>Such a latent variable framework should be familiar to an Economics student. Afterall, von-Neumann and Morgenstern’s theory of utility maximization states that under certain axioms (concerning the preferences of the individual) individual choices are consistent with the maximization of a continuously differentiable utility function. We observe individual choices (which are often discrete), not their utility function: a latent variable determining their choices.</p>
+<p>Consider the choice between two goods/options <span class="math inline">\(j=0,1\)</span>; for example, travel by car (=1) or bus (=0). Suppose the utility derived from each choice is given by,</p>
+<p><span class="math display">\[
+U_{ij}=S_{ij}+\varepsilon_{ij}
+\]</span></p>
+<p>where <span class="math inline">\(S_ij\)</span> is a deterministic component, and <span class="math inline">\(\varepsilon_{ij}\)</span> stochastic. For example, in our example of travel options the deterministic component could be the known cost of each option, while the stochastic component could be due to unexpected variation in travel times if a private vehicle is more affected by traffic.</p>
+<p>Assuming utility maximization, the individual chooses to travel by car if <span class="math inline">\(U_{i1}&gt;U_{i0}\)</span>.</p>
+<p><span class="math display">\[
+\begin{aligned}
+Pr(Y_i = 1) =&amp; Pr(U_{i1}&gt;U_{i0})\\
+=&amp;Pr(S_{i1}+\varepsilon_{i1}&gt;S_{i0}+\varepsilon_{i0}) \\
+=&amp;Pr(\varepsilon_{i0}-\varepsilon_{i1}&lt;S_{i1}-S_{i0})
+\end{aligned}
+\]</span> Given known values of the deterministic components <span class="math inline">\(S_{i1}-S_{i0}\)</span>, we could component this probability given the CDF of <span class="math inline">\(\varepsilon_{i0}-\varepsilon_{i1}\)</span>. This, of course requires a an assumption.</p>
+<p>Suppose that the deterministic component depended on option-specific variables (<span class="math inline">\(W_{ij}'\lambda\)</span>; e.g.&nbsp;cost of transport option) and individual-specific variables with option-specific marginal utility (<span class="math inline">\(Z_i'\gamma_j\)</span>; e.g.&nbsp;age).</p>
+<p><span class="math display">\[
+S_{ij} = W_{ij}'\lambda + Z_i'\gamma_j
+\]</span> Then, the probability of observing choice <span class="math inline">\(j=1\)</span> (i.e.&nbsp;personal vehicle) is given by, <span class="math display">\[
+Pr(Y_i = 1|W_i,Z_i) =Pr(\varepsilon_{i0}-\varepsilon_{i1}&lt;(W_{i1}-W_{i0})'\lambda+Z_i'(\gamma_1-\gamma_0))
+\]</span> Suppose, <span class="math inline">\(var(\varepsilon_i|W_i,Z_i) =\sigma^2\)</span>. Then we can, we can define, <span class="math display">\[
+Pr(Y_i = 1|W_i,Z_i)=Pr(\varepsilon_i &lt; \Delta W_i'\eta + Z_i'\gamma)
+\]</span></p>
+<p>where, <span class="math display">\[
+\varepsilon_i = \frac{\varepsilon_{i0}-\varepsilon_{i1}}{\sigma};\;\eta = \frac{\delta}{\sigma};\;\text{and}\;\gamma = \frac{\gamma_1-\gamma_0}{\sigma}
+\]</span></p>
+<p>As a result we have a <span class="math inline">\(Pr(Y_i=1|X_i) = Pr(\varepsilon_i&lt;X_i'\beta)\)</span> where <span class="math inline">\(X_i'\beta = \Delta W_i'\eta + Z_i'\gamma\)</span>. This normalization of the parameters is standard in these models. Moreover, we cannot identify the option-specific parameters (<span class="math inline">\(\gamma_j\)</span>) on the invariant variables.</p>
+<p>Given a choice of the distribution of <span class="math inline">\(\varepsilon_i\)</span>,</p>
+<p><span class="math display">\[
+Pr(Y_i = 1|X_i) = F_\varepsilon(X_i'\beta)
+\]</span> ### Probit</p>
+<p>The probit model assumes that the error term from the expression, <span class="math display">\[
+Y_i = \mathbf{1}\{X_i'\beta + \varepsilon_i&gt;0\}
+\]</span> is independently and identicially distributed (conditional on <span class="math inline">\(X\)</span>),</p>
+<p><span class="math display">\[
+\varepsilon_i|X_i\sim N(0,1)
+\]</span></p>
+<p>Note, if we assume that the conditional variance is <span class="math inline">\(\sigma^2\)</span>, then we have to normalize the model since only <span class="math inline">\(\beta/\sigma\)</span> is identified.</p>
+<p>The PDF of the standard normal distribution is given by,</p>
+<p><span class="math display">\[
+\phi(z) = \frac{1}{\sqrt{2\pi}}exp(-z^2/2)
+\]</span> and the CDF by, <span class="math display">\[
+\Phi(z) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^z exp(-u^2/2)du
+\]</span> This latter expression has no closed form solution.</p>
+<p>The conditional probability of <span class="math inline">\(Y_i=1\)</span> (expectation of <span class="math inline">\(Y_i\)</span>), is given by,</p>
+<p><span class="math display">\[
+\begin{aligned}
+Pr(Y_i=1|X_i) =&amp; Pr(X_i'\beta + \varepsilon_i&gt;0|X_i)\\
+=&amp;Pr(\varepsilon_i&gt;-X_i'\beta|X_i) \\
+=&amp;Pr(\varepsilon_i&lt;X_i'\beta|X_i) \\
+=&amp;\Phi(X_i'\beta)
+\end{aligned}
+\]</span> where line 3 follows from the symmetry of <span class="math inline">\(N(0,1)\)</span>.</p>
+</section>
+<section id="logit" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="logit"><span class="header-section-number">4.2</span> Logit</h3>
+<p>In this case, we assume that the conditional distribution of the error term is logistic. The CDF of the (standard) logistic distribution is given by,</p>
+<p><span class="math display">\[
+\Lambda(z) = \frac{exp(z)}{1+exp(z)} = \frac{1}{1+exp(-z)}
+\]</span> and the PDF by, <span class="math display">\[
+\lambda(z) = \Lambda(z)(1-\Lambda(z))
+\]</span> Like the standard normal distribution, the standard logistic distribution is symmetric. It’s variance is <span class="math inline">\(\pi^2/3\)</span> and has slightly thicker tails compared to the standard normal.</p>
+</section>
+<section id="lpm" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="lpm"><span class="header-section-number">4.3</span> LPM</h3>
+<p>If we assume that the conditional distribution of the error is uniform with mean 0 and variance=1,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> then</p>
+<p><span class="math display">\[
+Pr(Y_i = 1|X_i) = X_i'\beta
+\]</span></p>
+<p>Thus, one way of justifying the use of a linear probability model is through assumption of a uniformly distributed error.</p>
+</section>
+</section>
+<section id="index-model-approach" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="index-model-approach"><span class="header-section-number">5</span> Index Model Approach</h2>
+<p>An alternative approach is to consider the problem of the modeling the conditional probability (expectation) function. In the case of the LPM we had, <span class="math display">\[
+Pr(Y_i = 1|X_i) = X_i'\beta
+\]</span> More generally, we can place this <strong>linear index</strong> - <span class="math inline">\(X_i'\beta\)</span> - inside a function <span class="math inline">\(G(\cdot)\)</span>.</p>
+<p><span class="math display">\[
+Pr(Y_i = 1|X_i) = G(X_i'\beta)
+\]</span></p>
+<p>The covariates affect the conditional probability only through the linear index, which is then mapped into a response probability by the function <span class="math inline">\(G(\cdot)\)</span>.</p>
+<p>For <span class="math inline">\(G(\cdot)\)</span> linear, we have the LPM. However, we know that this model can give predicted probabilities outside of the bounds of <span class="math inline">\([0,1]\)</span>. An ideal candidate for <span class="math inline">\(G(\cdot)\)</span> would be any function that bounds the values of the predicted probabilities within <span class="math inline">\([0,1]\)</span>. Given that a CDF is a function with values within this range, the functions <span class="math inline">\(\Phi(\cdot),\Lambda(\cdot)\)</span> are prime candidates. However, non-symmetric functions also exist; for example, the Gumbel (extreme-value or complementary log-log),</p>
+<p><span class="math display">\[
+1-exp\big(-exp(z)\big)
+\]</span></p>
+</section>
+<section id="estimation-1" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="estimation-1"><span class="header-section-number">6</span> Estimation</h2>
+<p>We will examine the estimation of these models by Maximum Likelihood (ML). Recall from Handout 3, we defined the ML estimator as the maximizer of the conditional log-likelihood function. Assuming an iid sample, this is given by, <span class="math display">\[
+\hat{\theta}^{ML} = \underset{\theta}{\text{arg max}}\;n^{-1}\log L_n(\theta) = \underset{\theta}{\text{arg max}}\;n^{-1}\sum_{i=1}^n\log\ell_i(\theta)
+\]</span> where <span class="math inline">\(ell_i(\theta) = f(Y_i|X_i;\theta)\)</span>. In this application, the data <span class="math inline">\(W_i=[Y_i,X_i']\)</span> where <span class="math inline">\(Y_i\in\{0,1\}\)</span> and <span class="math inline">\(X_i\in\mathbb{R}^k\)</span>. The population parameters are <span class="math inline">\(\theta = \beta\)</span>; since, we normalize <span class="math inline">\(\sigma = 1\)</span>. Since, the outcome is discrete, the conditional likelihood function is given by two probabilities:</p>
+<ul>
+<li><p><span class="math inline">\(Pr(Y_i=1|X_i) = F(X_i'\beta)\)</span></p></li>
+<li><p><span class="math inline">\(Pr(Y_i=0|X_i) = 1-F(X_i'\beta)\)</span></p></li>
+</ul>
+<p>where <span class="math inline">\(F(\cdot)\)</span> is the CDF of the unobserved error. Hence, the joint (conditional) likelihood is given by,</p>
+<p><span class="math display">\[
+L_n(\beta) = \prod_{i:Y_i = 1}F(X_i'\beta)\prod_{i:Y_i = 0}\big(1-F(X_i'\beta)\big)
+\]</span> which can be written as, <span class="math display">\[
+L_n(\beta) = \prod_{i= 1}^nF(X_i'\beta)^{Y_i}\big(1-F(X_i'\beta)\big)^{1-Y_i}
+\]</span> The ML estimator is then by given by,</p>
+<p><span class="math display">\[
+\hat{\beta}^{ML} = \underset{\beta}{\arg \max}\;\frac{1}{n}\sum_{i=1}^n Y_i\times\ln\big(F(X_i'\beta)\big)+(1-Y_i)\times\ln\big(1-F(X_i'\beta)\big)
+\]</span> Solving for the first-order conditions (FOCs), we get:</p>
+<p><span class="math display">\[
+\frac{1}{n}\frac{\partial L_n(\beta)}{\partial\beta}= \frac{1}{n}\sum_{i=1}^n \bigg[Y_i \frac{f(X_i'\beta)}{F(X_i'\beta)}-(1-Y_i)\frac{ f(X_i'\beta)}{1-F(X_i'\beta)}\bigg]X_i
+\]</span> The term in the square parenthesis is referred to as the <strong>generalized error</strong>. In this was, the above <strong>score function</strong> resembles the FOCs from a linear model. The generalized error can be solved for by taking the derivative of <span class="math inline">\(L_n(\theta)\)</span> with-respect-to the constant term in the model (assuming there is one).</p>
+<p><span class="math display">\[
+\text{generalized error}=\begin{cases}\frac{f(X_i'\beta)}{F(X_i'\beta)} \qquad \text{for}\quad Y_i=1\\
+\frac{-f(X_i'\beta)}{1-F(X_i'\beta)} \qquad \text{for}\quad Y_i=0\\
+\end{cases}
+\]</span> The scaling by <span class="math inline">\(1/n\)</span> is no impact on the solution to the FOCs, but is needed to ensure consistency of the variance-covariance matrix. This was the case for the linear model as well.</p>
+<p>Assuming a concave likelihood function, there is a unique maximum and we can solve for <span class="math inline">\(\hat{\beta}\)</span> by setting the score function <span class="math inline">\(= 0\)</span>.</p>
+<section id="probit" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="probit"><span class="header-section-number">6.1</span> Probit</h3>
+<p>In the case of the probit model, <span class="math inline">\(F(z)=\Phi(z)\)</span>. Solving the FOCs, we get</p>
+<p><span class="math display">\[
+\begin{aligned}
+0=&amp; \sum_{i=1}^n \bigg[Y_i \frac{\phi(X_i'\beta)}{\Phi(X_i'\beta)}-(1-Y_i)\frac{\phi(X_i'\beta)}{1-\Phi(X_i'\beta)}\bigg]X_i \\
+=&amp;\sum_{i=1}^n \bigg[\frac{Y_i -\Phi(X_i'\beta)}{\Phi(X_i'\beta)\big(1-\Phi(X_i'\beta)\big)}\bigg]X_i\cdot\phi(X_i'\beta)
+\end{aligned}
+\]</span> ### Logit In the case of the logit model, <span class="math inline">\(F(z)=\Lambda(z)\)</span> and <span class="math inline">\(f(z)=\Lambda(z)(1-\Lambda(z))\)</span>. This yields a simpler score function:</p>
+<p><span class="math display">\[
+0= \sum_{i=1}^n \bigg[Y_i -\Lambda(X_i'\beta)\bigg]X_i
+\]</span> However, neither the probit nor logit has an analytical solution and both must be solved numerically.</p>
+</section>
+<section id="asymptotic-distribution" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="asymptotic-distribution"><span class="header-section-number">6.2</span> Asymptotic distribution</h3>
+<p>For both probit and logit, the estimators are asymptotically normal,</p>
+<p><span class="math display">\[
+\sqrt{n}(\hat{\beta}_n^{ML}-\beta_0)\rightarrow_d N(0,V)
+\]</span></p>
+<p>where <span class="math inline">\(\beta_0\)</span> is the true value of <span class="math inline">\(\beta\)</span>,</p>
+<p><span class="math display">\[
+V =  (J(\beta_0))^{-1}=\bigg(\underbrace{-E\bigg[\frac{\partial^2}{\partial\beta\partial\beta'}\ln f(W_i,\beta_0)\bigg]}_{J(\beta_0)}\bigg)^{-1}
+\]</span> The variance is given by the inverse of the Jacobian matrix, evaluating at the true value of <span class="math inline">\(\beta\)</span>. The Jacobian matrix is the (negative) expected value of the Hessian matrix of second derivatives. This result derives from the Delta Method which is used to explain the asymptotic distribution of the ML estimator.</p>
+<p>In this application, with a binary Y, the Hessian matrix is given by,</p>
+<p><span class="math display">\[
+H_n(\beta) = \frac{1}{n}\sum_{i=1}^n\bigg[Y_i\frac{f'(X_i'\beta)F(X_i'\beta)-f(X_i'\beta)^2}{F(X_i'\beta)^2}-(1-Y_i)\frac{f'(X_i'\beta)(1-F(X_i'\beta))+f(X_i'\beta)^2}{(1-F(X_i'\beta))^2}\bigg]X_iX_i'
+\]</span> The solution is given by taking the derivative of the score function, applying the quotient rule.</p>
+<p>For <span class="math inline">\(F(\cdot)=\Phi(\cdot)\)</span>, you can show <span class="math inline">\(f'(z) = -zf(z)\)</span>. Therefore, the Hessian matrix for a probit model is,</p>
+<p><span class="math display">\[
+\begin{aligned}
+H_n(\beta) =&amp; \frac{1}{n}\sum_{i=1}^n\bigg[Y_i\frac{-X_i'\beta\phi(X_i\beta)\Phi(X_i'\beta)-\phi(X_i'\beta)^2}{\Phi(X_i'\beta)^2}-(1-Y_i)\frac{-X_i'\beta\phi(X_i\beta)\big(1-\Phi(X_i'\beta)\big)+\phi(X_i'\beta)^2}{\big(1-\Phi(X_i'\beta)\big)^2}\bigg]X_iX_i' \\
+=&amp;-\frac{1}{n}\sum_{i=1}^n\phi(X_i\beta)\bigg[Y_i\frac{X_i'\beta\Phi(X_i'\beta)+\phi(X_i'\beta)}{\Phi(X_i'\beta)^2}+(1-Y_i)\frac{-X_i'\beta\big(1-\Phi(X_i'\beta)\big)+\phi(X_i'\beta)}{\big(1-\Phi(X_i'\beta)\big)^2}\bigg]X_iX_i'
+\end{aligned}
+\]</span> For a logit model, we can use the simplified version of the score function to solve the Hessian matrix.</p>
+<p><span class="math display">\[
+H_n(\beta) = -\frac{1}{n}\sum_{i=1}^n\big[\lambda(X_i'\beta)\big]X_iX_i' = -\sum_{i=1}^n\big[\Lambda(X_i'\beta)\big(1-\Lambda(X_i'\beta)\big)\big]X_iX_i'
+\]</span> In both cases, the Hessian matrix is a negative-definite matrix given the strict concavity of distributions. However, a variance-covariance matrix must be positive-definite, which is why the Jacobian matrix is the negative of the Hessian.</p>
+<p>We say that the approximate distribution of <span class="math inline">\(\hat{\beta}^{ML}\)</span> is,</p>
+<p><span class="math display">\[
+\hat{\beta}^{ML}\overset{a}{\sim} N(\beta_0,\hat{V}_n/n)
+\]</span> where <span class="math inline">\(\hat{V}_n=-H_n(\hat{\beta})^{-1}\)</span> is the hessian matrix evaluated at <span class="math inline">\(\hat{\beta}_n^{ML}\)</span>. Under certain regularity conditions, we know that <span class="math inline">\(-H_n(\hat{\beta})\rightarrow_p J(\beta_0)\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span> by WLLN, since <span class="math inline">\(\hat{\beta}_n^{ML}\rightarrow_p \beta_0\)</span> and the likelihood functions in question are continuously differentiable. This ensures that <span class="math inline">\(\hat{V}_n\rightarrow_p V\)</span>. This is where the scaling of <span class="math inline">\(1/n\)</span> is important.</p>
+</section>
+</section>
+<section id="interpretation-fit" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="interpretation-fit"><span class="header-section-number">7</span> Interpretation &amp; Fit</h2>
+<p>A general problem with the probit and logit models is the interpretability of the coefficients. From a latent variable model perspective, <span class="math inline">\(\beta\)</span> has a clear marginal-effect interpretation (just as in a linear model). However, the latent variable is not a well-defined variable.</p>
+<p>Moreover, the discrete outcome need not consistently vary with <span class="math inline">\(X_i\)</span>. Suppose you change <span class="math inline">\(X_i\)</span> by a value <span class="math inline">\(\delta\)</span>. Then, <span class="math display">\[
+Y_i'-Y_i = \mathbf{1}\{X_i'\beta + \delta'\beta + \varepsilon_i\geq 0\} -\mathbf{1}\{X_i'\beta + \varepsilon_i\geq 0\}
+\]</span> could take on values <span class="math inline">\(\{-1,0,1\}\)</span>, depending on the error term. Thus, the marginal effect of <span class="math inline">\(X_i\)</span> on <span class="math inline">\(Y_i\)</span> is by definition heterogeneous.</p>
+<section id="marginal-effects" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="marginal-effects"><span class="header-section-number">7.1</span> Marginal Effects</h3>
+<p>For this reason, we focus on the effect of <span class="math inline">\(X_i\)</span> on the <span class="math inline">\(E[Y_i|X_i]=Pr(Y_i = 1|X_i)\)</span>. For a continuous regressor this is given by,</p>
+<p><span class="math display">\[
+ME=\frac{\partial E[Y_i|X_i]}{\partial X_i} = \frac{\partial F(X_i'\beta)}{\partial X_i} = f(X_i'\beta)X_i
+\]</span></p>
+<p>For the probit model, this is <span class="math inline">\(\phi(X_i'\beta)X_i\)</span>, while for logit it is (X_i’)(1-(X_i’))X_i.</p>
+<p>For a discrete covariate, then you should evaluate the difference between predicted probabilities:</p>
+<p><span class="math display">\[
+ME = E[Y_i|X_i,D_i=1]-E[Y_i|X_i,D_i=0] = F(X_i'\beta+\gamma)-F(X_i'\beta)
+\]</span> where <span class="math inline">\(\gamma\)</span> is the coefficient on the discrete dummy variable <span class="math inline">\(D\)</span>.</p>
+<p>The marginal effect depends on <span class="math inline">\(X_i\)</span>, which means that we can evaluate it at different values of <span class="math inline">\(X_i\)</span>. A common choice is ME at the Mean (MEM):</p>
+<p><span class="math display">\[
+MEM_n = f(\bar{X}'\hat{\beta})\bar{X}
+\]</span> One issue with this is the non-representativity of a the mean covariate value. For example, if <span class="math inline">\(X\)</span> includes a categorical variable (represented by dummy variables), the mean is an observation that does not exist in the data.</p>
+<p>Alternatively, you can then compute the Average ME (AME). <span class="math display">\[
+AME_n=\frac{1}{n}\sum_{i=1}^n f(X_i'\hat{\beta})X_i
+\]</span> You can show that <span class="math inline">\(AME_n\rightarrow_p E[f(X_i'\beta_0)X_i]\)</span>.</p>
+</section>
+<section id="odds-ratios" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="odds-ratios"><span class="header-section-number">7.2</span> Odds ratios</h3>
+<p>An alternative approach to interpretation that is more commonly applied to the logit model, is the odds ratio: the probability that <span class="math inline">\(Y=1\)</span> divided by the probability that <span class="math inline">\(Y=0\)</span>.</p>
+<p>For the logit model, this given by, <span class="math display">\[
+\frac{\Lambda(X_i'\beta)}{1-\Lambda(X_i'\beta)} = exp(X_i'\beta)
+\]</span> And the log odds-ratio is just <span class="math inline">\(X_i'\beta\)</span>.</p>
+<p>The ratio of two odds ratios can provide a useful interpretation interpretation. Consider, if you increase the <span class="math inline">\(j\)</span>-th regressor by a single unit then the change in the index is,</p>
+<p><span class="math display">\[
+\frac{exp(X_i'\beta+\beta_j)}{exp(X_i'\beta)} = exp(\beta_j)
+\]</span> A 1-unit change in <span class="math inline">\(X_j\)</span> increases the odds-ratio by a factor of <span class="math inline">\(exp(\beta_j)\)</span>. This interpretation is common in medical journals, which favour logit models and the presentation of odds ratios. In general, Economics journals tend to prefer probit models, with the estimation of marginal effects.</p>
+</section>
+<section id="goodness-of-fit" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="goodness-of-fit"><span class="header-section-number">7.3</span> Goodness of fit</h3>
+<p>Given the non-linearity of probit and logit models, we cannot use <span class="math inline">\(R^2\)</span> to describe goodness of fit. There are two alternatives:</p>
+<ol type="1">
+<li><strong>Number of correct predictions.</strong></li>
+</ol>
+<p>The predicted value of the model is the predicted probability <span class="math inline">\(Y_i=1\)</span>: a number <span class="math inline">\(\in[0,1]\)</span>. However, the outcome is discrete: <span class="math inline">\(Y_i\in\{0,1\}\)</span>. Pick a threshold - for example, <span class="math inline">\(\hat{\rho} = 0.5\)</span> - and assign the predicted outcome as follows:</p>
+<p><span class="math display">\[
+\hat{Y}_i = \begin{cases}Y_i=1 \qquad \text{if} \quad \hat{\rho} \geq 0.5 \\
+Y_i=0 \qquad \text{otherwise}
+\end{cases}
+\]</span> Test what share of the data is correctly predicted.</p>
+<ol start="2" type="1">
+<li><strong>McFadden’s <span class="math inline">\(R^2\)</span></strong></li>
+</ol>
+<p>McFadden’s <span class="math inline">\(R^2\)</span> is is given by the ratio of the log-likelihood of the model.</p>
+<p><span class="math display">\[
+\text{pseudo } R^2 = 1-\frac{\log(L_n(\hat{\beta}_U))}{\log(L_n(\hat{\beta}_R))}
+\]</span> where <span class="math inline">\(\ln(L_n(\hat{\beta}_U))\)</span> is the log-likelihood computed for the unrestricted model (the model with all regressors) and <span class="math inline">\(\ln(L_n(\hat{\beta}_R))\)</span> the log-lihood from the restricted model (with just a constant).</p>
+</section>
+<section id="likelihood-ratio-test" class="level3" data-number="7.4">
+<h3 data-number="7.4" class="anchored" data-anchor-id="likelihood-ratio-test"><span class="header-section-number">7.4</span> Likelihood Ratio Test</h3>
+<p>This the ratio of log-likelihoods of two models can also be used to test hypotheses of the form,</p>
+<p><span class="math display">\[
+H_0: h(\beta_0) = 0
+\]</span> Here, <span class="math inline">\(h(\cdot)\)</span> is a function from <span class="math inline">\(R^k\rightarrow R^q\)</span>. These need not be linear hypotheses. There exists two tests for hypotheses of this form. The first is the Wald statistic, which assumes that <span class="math inline">\(h(\cdot)\)</span> is a continuous function and we know the distribution of a continuous of <span class="math inline">\(h(\hat{\beta}^{ML})\)</span>.</p>
+<p><span class="math display">\[
+\text{Wald-stat} = nh\big(\hat{\beta}^{ML}\big)'\bigg(\frac{\partial h\big(\hat{\beta}^{ML}\big)}{\partial \beta'}\hat{V}^{-1}\frac{\partial h'\big(\hat{\beta}^{ML}\big)}{\partial \beta}\bigg)h\big(\hat{\beta}^{ML}\big)\rightarrow_d \chi^2_q
+\]</span> However, the second option is more common. This is the simpler Likelihood Ratio test derived using a restricted and unrestricted estimator. The restricted estimator is given by,</p>
+<p><span class="math display">\[
+\hat{\beta}_R = \underset{\beta\in B_R}{\arg\max} \;n^{-1}\log L_n(\beta)
+\]</span> where <span class="math inline">\(B_R=\{\beta\in\beta:\;h(\beta)=0\}\)</span>. The LR test statistic is then easily computed as,</p>
+<p><span class="math display">\[
+\text{LR-stat} = 2\times\big(\log\big(L_n(\hat{\beta}_U)\big)-\log\big(L_n(\hat{\beta}_R)\big)\big)\rightarrow_d \chi^2_q
+\]</span> These two tests are asymptotically equivalent, but the LR-test is far easier to compute.</p>
+</section>
+</section>
+<section id="references" class="level2" data-number="8">
+
+
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">8 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-cameron2005" class="csl-entry" role="listitem">
+Cameron, A Colin, and Pravin K Trivedi. 2005. <em>Microeconometrics: Methods and Applications</em>. Cambridge university press.
+</div>
+<div id="ref-verbeek2017" class="csl-entry" role="listitem">
+Verbeek, Marno. 2017. <em>A Guide to Modern Econometrics</em>. John Wiley &amp; Sons.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Note, this is not standard uniform distribution: <span class="math inline">\(U(0,1)\)</span>. A standard uniform distribution has mean 1/2 and variance 1/12.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

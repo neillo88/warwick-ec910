@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>material-interpretation – EC910</title>
+<title>problem-set-6 – EC910</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,10 +20,44 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -68,6 +102,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -249,18 +286,18 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#interpretation-of-linear-models" id="toc-interpretation-of-linear-models" class="nav-link active" data-scroll-target="#interpretation-of-linear-models">Interpretation of Linear Models</a>
+  <li><a href="#problem-set-6" id="toc-problem-set-6" class="nav-link active" data-scroll-target="#problem-set-6">Problem Set 6</a>
   <ul class="collapse">
-  <li><a href="#continuous-level-level-models" id="toc-continuous-level-level-models" class="nav-link" data-scroll-target="#continuous-level-level-models">Continuous, level-level models</a></li>
-  <li><a href="#continuous-discrete-models" id="toc-continuous-discrete-models" class="nav-link" data-scroll-target="#continuous-discrete-models">Continuous-discrete models</a></li>
-  <li><a href="#discrete-continuous-models" id="toc-discrete-continuous-models" class="nav-link" data-scroll-target="#discrete-continuous-models">Discrete-continuous models</a></li>
-  <li><a href="#discrete-discrete-models" id="toc-discrete-discrete-models" class="nav-link" data-scroll-target="#discrete-discrete-models">Discrete-discrete models</a></li>
-  <li><a href="#log-level-models" id="toc-log-level-models" class="nav-link" data-scroll-target="#log-level-models">Log-level models</a></li>
-  <li><a href="#level-log-models" id="toc-level-log-models" class="nav-link" data-scroll-target="#level-log-models">Level-log models</a></li>
-  <li><a href="#log-log-models" id="toc-log-log-models" class="nav-link" data-scroll-target="#log-log-models">Log-log models</a></li>
+  <li><a href="#preamble" id="toc-preamble" class="nav-link" data-scroll-target="#preamble">Preamble</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a>
+  <ul class="collapse">
+  <li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
+  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
+  </ul></li>
+  <li><a href="#postamble" id="toc-postamble" class="nav-link" data-scroll-target="#postamble">Postamble</a></li>
   </ul></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="material-interpretation.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="problem-set-6.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -268,111 +305,84 @@ window.Quarto = {
 
 
 
-<section id="interpretation-of-linear-models" class="level1">
-<h1>Interpretation of Linear Models</h1>
-<p>In this short handout we will consider the interpretation of linear regression model coefficients in models with different combinations of outcome and regressor variables:</p>
-<ol type="1">
-<li><p>continuous level-level</p></li>
-<li><p>continuous-discrete</p></li>
-<li><p>discrete-continuous</p></li>
-<li><p>discrete-discrete</p></li>
-<li><p>log-level</p></li>
-<li><p>level-log</p></li>
-<li><p>log-log</p></li>
-</ol>
-<p>In all instances, we will work on the CLRM model assumptions 1 &amp; 2, which tell us that the conditional expectation function is linear in parameters:</p>
-<p><span class="math display">\[
-E[Y_i|X_i] = X_i'\beta
-\]</span></p>
-<section id="continuous-level-level-models" class="level2">
-<h2 class="anchored" data-anchor-id="continuous-level-level-models">Continuous, level-level models</h2>
-<p>If <span class="math inline">\(Y_i\)</span> and <span class="math inline">\(X_i\)</span> are both continuously distributed random variables then,</p>
-<p><span class="math display">\[
-\beta_j = \frac{\partial E[Y_i|X_i]}{\partial X_{ij}}
-\]</span> or, as a vector,</p>
-<p><span class="math display">\[
-\beta = \frac{\partial E[Y_i|X_i]}{\partial X_{i}} = \begin{bmatrix}\frac{\partial E[Y_i|X_i]}{\partial X_{i1}}\\ \vdots \\ \frac{\partial E[Y_i|X_i]}{\partial X_{ik}}\end{bmatrix} = \begin{bmatrix}\beta_1\\ \vdots \\ \beta_k\end{bmatrix}
-\]</span></p>
-<p>The regression parameter has a partial derivative interpretation with respect to the CEF. As discussed in Handout 1, this is often used to motivate the experimental language of <em>ceteris paribus</em>: “holding all else fixed.</p>
+<section id="problem-set-6" class="level1">
+<h1>Problem Set 6</h1>
+<p>The purpose of the first part of this problem set is to estimate, interpret the results, and compare the results across different binary dependent variable models. In the second part you will estimate and compare different specifications of an endogenous selection model.</p>
+<p>First part will be discussed in week 9 and the second part in week 10 of this term.</p>
+<p>The data file for this exercise is on Moodle: <code>mus16data.dta</code>. It is a subset of the data used by P. Deb, M. Munkin and P.K. Trivedi (2006): “Bayesian Analysis of Two-Part Model with Endogeneity”, Journal of Applied Econometrics, 21, 1081-1100. Data is for 2001 and comes from the Medical Expenditure Survey. Sample has 3,328 observations.</p>
+<p>The main outcome variable of interest is ambulatory expenditure (<code>ambexp</code>) and the regressors are given below.</p>
+<p>Since the expenditure data is skewed, we will be using the logged expenditure variable as our dependent variable. You should read Cameron A.C. and Trivedi, P.K. Micro-econometrics using Stata to see the pros and cons regarding whether to log the dependent variable or not.</p>
+<p>Note, there is one individual who has an <code>expenditure</code>=1 and this will get coded as 0 when variable is logged. Since it is only one individual, we will ignore the problem by not doing anything. If there are many individuals like this, you will need to see whether you can say why this might be the case.</p>
+<p><strong>Dependent variable</strong></p>
+<ul>
+<li><p><code>ambexp</code>: Ambulatory medical expenditures (excluding dental and outpatient mental). There are 526 individuals with zero expenditure. There is one individual who has expenditure=$1. I am going to assume that this individual did not spend any money.</p></li>
+<li><p><code>lambexp</code>: ln(<code>ambexp</code>) given <code>ambexp</code> &gt; 0 ; missing otherwise</p></li>
+<li><p><code>dambexp</code>: 1 if <code>ambexp</code> &gt; 0 and 0 otherwise (binary indicator)</p></li>
+</ul>
+<p><strong>Regressors</strong></p>
+<ul>
+<li><p><code>ins</code>: health insurance measures, either PPO or HMO type insurance</p></li>
+<li><p><code>totchr</code>: health status measures: number of chronic diseases</p></li>
+<li><p><code>age</code>: age age in years/10</p></li>
+<li><p><code>female</code>: 1 for females, zero otherwise</p></li>
+<li><p><code>educ</code>: years of schooling of decision maker</p></li>
+<li><p><code>blhisp</code>: either black or Hispanic</p></li>
+<li><p><code>income</code>: income in USD/1000</p></li>
+</ul>
+<section id="preamble" class="level2">
+<h2 class="anchored" data-anchor-id="preamble">Preamble</h2>
+<div id="54763040" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<style>div.jp-Notebook .datagrid-container {min-height: 448px; }</style>
+</div>
+</div>
+<p>Create a do-file for this problem set and include a preamble that sets the directory and opens the data. For example,</p>
+<div id="2f014e23" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">//or, to remove all stored values (including macros, matrices, scalars, etc.) </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>*<span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>* Replace <span class="ot">$rootdir</span> with the relevant path to <span class="kw">on</span> your <span class="kw">local</span> harddrive.</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>cd <span class="st">"$rootdir/problem-sets/ps-6"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cap <span class="fu">log</span> <span class="kw">close</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">using</span> problem-<span class="kw">set</span>-6-<span class="fu">log</span>.txt, <span class="kw">replace</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> mus16data.dta, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="continuous-discrete-models" class="level2">
-<h2 class="anchored" data-anchor-id="continuous-discrete-models">Continuous-discrete models</h2>
-<p>Consider a case where there is a single discrete regressor: <span class="math inline">\(D_i \in \{0,1\}\)</span>. For example,</p>
-<p><span class="math display">\[
-  Y_i = \beta_1 + \beta_2 D_i + \varepsilon_i
-\]</span> We cannot apply the partial derivative interpretation since <span class="math inline">\(D\)</span> is not continuous. Instead, we will look at differences:</p>
-<p><span class="math display">\[
-\begin{aligned}
-    E[Y_i|D_i=1] =&amp; \beta_1 + \beta_2 \\
-    E[Y_i|D_i=0] =&amp; \beta_1 \\   
-    \Rightarrow \beta_2 =&amp; E[Y_i|D_i=1] - E[Y_i|D_i=0]
-\end{aligned}
-\]</span></p>
-<p>We can easily extend this the case where the model includes additional (discrete or continuous) covariates, as well as case where the variable takes on multiple discrete values.</p>
+<section id="questions" class="level2">
+<h2 class="anchored" data-anchor-id="questions">Questions</h2>
+<section id="part-1" class="level3">
+<h3 class="anchored" data-anchor-id="part-1">Part 1</h3>
+<p><strong>1.1.</strong> Obtain and comment on the descriptive statistics for ambexp, lambexp, age, female, educ, blhisp, totchr, ins, income.</p>
+<p><strong>1.2.</strong> Estimate a LP, Probit and a Logit model to explain dambexp. Store the <span class="math inline">\(\beta\)</span> coefficients and report them in a table.</p>
+<p><strong>1.3.</strong> Estimate the Marginal Effect at the Mean for each model, and report them in a table. You will want to use the <code>estpost margins</code> post-estimation command, with the relevant option for MEM. Pay special attention to the treatment of discrete regressors. Hint: check to see any differences in the estimated MEs based on whether you use factor notation; for example, <code>i.female</code> vs <code>female</code>.</p>
+<p><strong>1.4.</strong> Estimate the Average Marginal Effect at the Mean for each model, and report them in a table.You will want to use the <code>estpost margins</code> post-estimation command, with the relevant option for AME.</p>
+<p><strong>1.5.</strong> Check to see how well the prodbit model predicts the outcome using the <code>estat classification</code> post-estimation command.</p>
+<p><strong>1.6.</strong> Construct and interpret the LR test for the omission of income in the probit model. Do this in two ways: (1) using the post estimation <code>lrtest</code>; (2) manually recreate (1)’s results (both test-statistic and p-value).</p>
 </section>
-<section id="discrete-continuous-models" class="level2">
-<h2 class="anchored" data-anchor-id="discrete-continuous-models">Discrete-continuous models</h2>
-<p>If the outcome is discrete (<span class="math inline">\(Y_i\in\{0,1\}\)</span>) while the regressors are continuous, the resulting linear model is referred to as a linear probability model.</p>
-<p><span class="math display">\[
-E[Y_i|X_i] = Pr(Y_i = 1|X_i) = X_i'\beta
-\]</span> This is differentiable, since <span class="math inline">\(X\)</span> is continuous and the same partial derivative interpretation follows.</p>
-<p><span class="math display">\[
-\beta_j = \frac{\partial Pr(Y_i=1|X_i)}{\partial X_{ij}}
-\]</span></p>
-<p>Note, the unit of <span class="math inline">\(Y\)</span> is probability-points (<span class="math inline">\(\in[0,1]\)</span>), not %-points (<span class="math inline">\(\in[0,100]\)</span>). Of course, the conversion of units can be made by <span class="math inline">\(\times 100\)</span> to measure in <strong>%-points</strong>.</p>
+<section id="part-2" class="level3">
+<h3 class="anchored" data-anchor-id="part-2">Part 2</h3>
+<p>Estimate the following models for <code>lambexp</code> treating the selection into non-zero <code>lambexp</code> value as endogenous using, both Heckman 2-step method and also MLE.</p>
+<p>In the main data <code>lambexp</code> is missing for values of <code>ambexp</code>=0. Before proceeding,</p>
+<div id="e2296a36" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> lambexp = 0 <span class="kw">if</span> ambexp==0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This will correction will also treat observations with <code>ambexp=1</code> as equivalent to =0; however, this is only a single observation.</p>
+<p><strong>2.1.</strong> Estimate the Heckman 2-step estimator and store the results. In addition, store the Mills ratio as a separate variable. Use <code>income</code> as the excluded variable. This means that <code>income</code> appears in the selection equation, but NOT the main equation.</p>
+<p><strong>2.2.</strong> Replicate these results by applying the following steps: (1) estimate the selection equation using a probit model; (2) create the mills ratio; (3) <code>compare</code> your mills ratio with the one stored above; (4) estimate the main equation, including the mills ratio.</p>
+<p><strong>2.3</strong> Estimate the marginal effects of the selection equation. You can do this using the <code>estpost margins</code> command. This should correspond to a probit model estimation above.</p>
+<p><strong>2.4.</strong> Estimate the Maximum Likelihood version of the Heckmann correction (with an excluded variable) and store the results.</p>
+<p><strong>2.5.</strong> Now re-estimate the two-step and MLE approach without an excluded variable, storing the results each time. This means that the same set of regressors enter both equations. i.e.&nbsp;include income in the outcome equation.</p>
+<p><strong>2.6.</strong> Create a table that reports the four models alongside one another and compare the results.</p>
 </section>
-<section id="discrete-discrete-models" class="level2">
-<h2 class="anchored" data-anchor-id="discrete-discrete-models">Discrete-discrete models</h2>
-<p>If both the outcome and regressor(s) are discrete, then the parameter identifies a difference in conditional probabilities, <span class="math display">\[
-\beta_2 = Pr(Y_i|D_i=1) - Pr(Y_i=1|D_i=0)
-\]</span> Note, the unit of <span class="math inline">\(Y\)</span> is probability-points (<span class="math inline">\(\in[0,1]\)</span>), not %-points (<span class="math inline">\(\in[0,100]\)</span>).</p>
 </section>
-<section id="log-level-models" class="level2">
-<h2 class="anchored" data-anchor-id="log-level-models">Log-level models</h2>
-<p>Consider the model,</p>
-<p><span class="math display">\[
-  \ln(Y_i) = X_i'\beta + \varepsilon_i
-\]</span> Then,</p>
-<p><span class="math display">\[
-  X_i'\beta = E[\ln(Y_i)|X_i]
-\]</span></p>
-<p><span class="math display">\[
-\beta_j = \frac{\partial E[\ln(Y_i)|X_i]}{\partial X_{ij}}
-\]</span></p>
-<p>The coefficient is therefore measured in log-units of <span class="math inline">\(Y\)</span>. The relation to a change in the (expected) level of <span class="math inline">\(Y\)</span> is given by,</p>
-<p><span class="math display">\[
-\%\Delta E[Y_i|X_i] = (exp(\beta)-1)\times 100
-\]</span> For reasonably small values of <span class="math inline">\(\beta\)</span> (i.e.&nbsp;within the range <span class="math inline">\([-0.1,0.1]\)</span>) this can be approximated by,</p>
-<p><span class="math display">\[
-\%\Delta E[Y_i|X_i] = \beta\times 100
-\]</span> A 1-unit change in <span class="math inline">\(X_{i1}\)</span> is associated with a <span class="math inline">\(\beta_1\)</span> <strong>percent</strong> change in the expected value of <span class="math inline">\(Y\)</span>.</p>
-<p>This referred to as a <strong>semi-elasticity</strong>.</p>
-</section>
-<section id="level-log-models" class="level2">
-<h2 class="anchored" data-anchor-id="level-log-models">Level-log models</h2>
-<p>If the regressor(s) is measure in log-units; for example,</p>
-<p><span class="math display">\[
-  Y_i = \beta_1 + \beta_2 \ln(X_i)_i + \varepsilon_i
-\]</span> Then,</p>
-<p><span class="math display">\[
-\beta_2 = \frac{\partial E[Y_i|X_i]}{\partial \ln(X_{i})}
-\]</span></p>
-<p>A 1 <strong>percent</strong> increase in <span class="math inline">\(X\)</span> is given by <span class="math inline">\(X\times1.01\)</span>. This is equivalent to a change in <span class="math inline">\(\ln(X)\)</span> of,</p>
-<p><span class="math display">\[
-\ln(X_i\times1.01) - \ln(X_i) = \ln(1.01) \approx 0.01
-\]</span> Thus, a 1 <strong>percent</strong> increase in the level of <span class="math inline">\(X\)</span> is associated with a <span class="math inline">\(\beta_2/100\)</span> increase in the expected value of <span class="math inline">\(Y\)</span>. Or, more accurate</p>
-<p><span class="math display">\[
-  \Delta E[Y_i|X_i] = \beta_2\times \ln(1.01)
-\]</span> This is also a semi-elasticity.</p>
-</section>
-<section id="log-log-models" class="level2">
-<h2 class="anchored" data-anchor-id="log-log-models">Log-log models</h2>
-<p>In models where both the outcome and regressor are log-transformed with an <strong>elasticity</strong> interpretation.</p>
-<p><span class="math display">\[
-    \ln(Y_i) = \beta_1 + \beta_2 \ln(X_i)_i + \varepsilon_i
-\]</span> <span class="math display">\[
-\beta_2 = \frac{\partial E[\ln(Y_i)|X_i]}{\partial \ln(X_{i})}
-\]</span> <span class="math inline">\(\beta_2\)</span> is a the % change in the expected value of <span class="math inline">\(Y\)</span> from a 1 % change in <span class="math inline">\(X\)</span>.</p>
+<section id="postamble" class="level2">
+<h2 class="anchored" data-anchor-id="postamble">Postamble</h2>
+<div id="9c3c6cbe" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">close</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>

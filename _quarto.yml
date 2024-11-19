@@ -20,6 +20,8 @@ website:
             text: Handout 4
           - href: handout-5.qmd
             text: Handout 5
+          - href: handout-6.qmd
+            text: Handout 6            
       - text: Problem Sets
         menu:
           - href: problem-sets/ps-1/problem-set-1.html
@@ -40,6 +42,10 @@ website:
             text: Problem Set 4 (Solutions)
           - href: problem-set-5.qmd
             text: Problem Set 5
+          - href: problem-set-5-solutions.qmd
+            text: Problem Set 5 (Solutions)
+          - href: problem-set-6.qmd
+            text: Problem Set 6           
       - text: Additional Material
         menu:
           - href: material-cef.qmd

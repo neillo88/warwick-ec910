@@ -1,0 +1,1865 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>problem-set-6-solutions – EC910</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">EC910</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lecture-handouts" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lecture Handouts</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lecture-handouts">    
+        <li>
+    <a class="dropdown-item" href="./handout-1.html">
+ <span class="dropdown-text">Handout 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-2.html">
+ <span class="dropdown-text">Handout 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-3.html">
+ <span class="dropdown-text">Handout 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-4.html">
+ <span class="dropdown-text">Handout 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-5.html">
+ <span class="dropdown-text">Handout 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./handout-6.html">
+ <span class="dropdown-text">Handout 6</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-problem-sets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Problem Sets</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-problem-sets">    
+        <li>
+    <a class="dropdown-item" href="./problem-sets/ps-1/problem-set-1.html">
+ <span class="dropdown-text">Problem Set 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-sets/ps-1/problem-set-1-solutions.html">
+ <span class="dropdown-text">Problem Set 1 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-2.html">
+ <span class="dropdown-text">Problem Set 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-2-solutions.html">
+ <span class="dropdown-text">Problem Set 2 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-3.html">
+ <span class="dropdown-text">Problem Set 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-3-solutions.html">
+ <span class="dropdown-text">Problem Set 3 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-4.html">
+ <span class="dropdown-text">Problem Set 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-4-solutions.html">
+ <span class="dropdown-text">Problem Set 4 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-5.html">
+ <span class="dropdown-text">Problem Set 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-5-solutions.html">
+ <span class="dropdown-text">Problem Set 5 (Solutions)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./problem-set-6.html">
+ <span class="dropdown-text">Problem Set 6</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-additional-material" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Additional Material</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-additional-material">    
+        <li>
+    <a class="dropdown-item" href="./material-cef.html">
+ <span class="dropdown-text">Conditional Expectation Function</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./material-interpretation.html">
+ <span class="dropdown-text">Interpreting Linear Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./material-dummy.html">
+ <span class="dropdown-text">Dummy Variables</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./material-linearalgebra.html">
+ <span class="dropdown-text">Linear Algebra</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./material-inference.html">
+ <span class="dropdown-text">Statistical Inference</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#problem-set-6-solutions" id="toc-problem-set-6-solutions" class="nav-link active" data-scroll-target="#problem-set-6-solutions">Problem Set 6 (SOLUTIONS)</a>
+  <ul class="collapse">
+  <li><a href="#preamble" id="toc-preamble" class="nav-link" data-scroll-target="#preamble">Preamble</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a>
+  <ul class="collapse">
+  <li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
+  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
+  </ul></li>
+  <li><a href="#postamble" id="toc-postamble" class="nav-link" data-scroll-target="#postamble">Postamble</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="problem-set-6-solutions.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="problem-set-6-solutions" class="level1">
+<h1>Problem Set 6 (SOLUTIONS)</h1>
+<p>The purpose of the first part of this problem set is to estimate, interpret the results, and compare the results across different binary dependent variable models. In the second part you will estimate and compare different specifications of an endogenous selection model.</p>
+<p>First part will be discussed in week 9 and the second part in week 10 of this term.</p>
+<p>The data file for this exercise is on Moodle: <code>mus16data.dta</code>. It is a subset of the data used by P. Deb, M. Munkin and P.K. Trivedi (2006): “Bayesian Analysis of Two-Part Model with Endogeneity”, Journal of Applied Econometrics, 21, 1081-1100. Data is for 2001 and comes from the Medical Expenditure Survey. Sample has 3,328 observations.</p>
+<p>The main outcome variable of interest is ambulatory expenditure (<code>ambexp</code>) and the regressors are given below.</p>
+<p>Since the expenditure data is skewed, we will be using the logged expenditure variable as our dependent variable. You should read Cameron A.C. and Trivedi, P.K. Micro-econometrics using Stata to see the pros and cons regarding whether to log the dependent variable or not.</p>
+<p>Note, there is one individual who has an <code>expenditure</code>=1 and this will get coded as 0 when variable is logged. Since it is only one individual, we will ignore the problem by not doing anything. If there are many individuals like this, you will need to see whether you can say why this might be the case.</p>
+<p><strong>Dependent variable</strong></p>
+<ul>
+<li><p><code>ambexp</code>: Ambulatory medical expenditures (excluding dental and outpatient mental). There are 526 individuals with zero expenditure. There is one individual who has expenditure=$1. I am going to assume that this individual did not spend any money.</p></li>
+<li><p><code>lambexp</code>: ln(<code>ambexp</code>) given <code>ambexp</code> &gt; 0 ; missing otherwise</p></li>
+<li><p><code>dambexp</code>: 1 if <code>ambexp</code> &gt; 0 and 0 otherwise (binary indicator)</p></li>
+</ul>
+<p><strong>Regressors</strong></p>
+<ul>
+<li><p><code>ins</code>: health insurance measures, either PPO or HMO type insurance</p></li>
+<li><p><code>totchr</code>: health status measures: number of chronic diseases</p></li>
+<li><p><code>age</code>: age age in years/10</p></li>
+<li><p><code>female</code>: 1 for females, zero otherwise</p></li>
+<li><p><code>educ</code>: years of schooling of decision maker</p></li>
+<li><p><code>blhisp</code>: either black or Hispanic</p></li>
+<li><p><code>income</code>: income in USD/1000</p></li>
+</ul>
+<section id="preamble" class="level2">
+<h2 class="anchored" data-anchor-id="preamble">Preamble</h2>
+<div id="0d7b6cec" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<style>div.jp-Notebook .datagrid-container {min-height: 448px; }</style>
+</div>
+</div>
+<p>Create a do-file for this problem set and include a preamble that sets the directory and opens the data. For example,</p>
+<div id="fe823059" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">//or, to remove all stored values (including macros, matrices, scalars, etc.) </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>*<span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>* Replace <span class="ot">$rootdir</span> with the relevant path to <span class="kw">on</span> your <span class="kw">local</span> harddrive.</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>cd <span class="st">"$rootdir/problem-sets/ps-6"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cap <span class="fu">log</span> <span class="kw">close</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">using</span> problem-<span class="kw">set</span>-6-<span class="fu">log</span>.txt, <span class="kw">replace</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> mus16data.dta, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick
+&gt; -ec910\problem-sets\ps-6
+-------------------------------------------------------------------------------
+      name:  &lt;unnamed&gt;
+       log:  C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\we
+&gt; bsite\warwick-ec910\problem-sets\ps-6\problem-set-6-log.txt
+  log type:  smcl
+ opened on:  19 Nov 2024, 16:48:32</code></pre>
+</div>
+</div>
+</section>
+<section id="questions" class="level2">
+<h2 class="anchored" data-anchor-id="questions">Questions</h2>
+<section id="part-1" class="level3">
+<h3 class="anchored" data-anchor-id="part-1">Part 1</h3>
+<p><strong>1.1.</strong> Obtain and comment on the descriptive statistics for ambexp, lambexp, age, female, educ, blhisp, totchr, ins, income.</p>
+<div id="4a320de4" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>su dambexp ambexp lambexp age female educ blhisp totchr ins income</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+     dambexp |      3,328    .8419471    .3648454          0          1
+      ambexp |      3,328    1386.519    2530.406          0      49960
+     lambexp |      2,802    6.555066     1.41073          0   10.81898
+         age |      3,328    4.056881    1.121212        2.1        6.4
+      female |      3,328    .5084135    .5000043          0          1
+-------------+---------------------------------------------------------
+        educ |      3,328    13.40565    2.574199          0         17
+      blhisp |      3,328    .3085938    .4619824          0          1
+      totchr |      3,328    .4831731    .7720426          0          5
+         ins |      3,328    .3650841    .4815261          0          1
+      income |      3,328    36.80485    26.70121     -90.05    237.301</code></pre>
+</div>
+</div>
+<p><strong>1.2.</strong> Estimate a LP, Probit and a Logit model to explain dambexp. Store the <span class="math inline">\(\beta\)</span> coefficients and report them in a table.</p>
+<div id="f275ccbd" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> xlist age i.female educ i.blhisp totchr i.ins income  <span class="co">//Define regressor list $xlist</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">bys</span> dambexp: su <span class="ot">$xlist</span>   </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>** LPM    </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>eststo LPM: <span class="kw">reg</span> dambexp <span class="ot">$xlist</span>, <span class="kw">robust</span> <span class="co">// heterosk needs to be corrected</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>** <span class="kw">probit</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>eststo <span class="kw">probit</span>: <span class="kw">probit</span> dambexp <span class="ot">$xlist</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>** <span class="kw">logit</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>eststo <span class="kw">logit</span>: <span class="kw">logit</span> dambexp <span class="ot">$xlist</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>esttab LPM <span class="kw">probit</span> <span class="kw">logit</span>, se <span class="fu">scalar</span>(<span class="kw">N</span> r2 ll) mtitle(<span class="st">"LPM"</span> <span class="st">"Probit"</span> <span class="st">"Logit"</span>) <span class="bn">title</span>(Estimated Coefficients)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+-------------------------------------------------------------------------------
+-&gt; dambexp = 0
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+         age |        526    3.695627    1.076467        2.1        6.4
+             |
+      female |
+          0  |        526    .7338403    .4423695          0          1
+          1  |        526    .2661597    .4423695          0          1
+             |
+        educ |        526    12.48859    2.697241          0         17
+             |
+      blhisp |
+          0  |        526    .5171103    .5001828          0          1
+-------------+---------------------------------------------------------
+          1  |        526    .4828897    .5001828          0          1
+             |
+      totchr |        526    .0912548    .3074311          0          2
+             |
+         ins |
+          0  |        526    .6977186    .4596837          0          1
+          1  |        526    .3022814    .4596837          0          1
+             |
+      income |        526    31.63409    23.17116          0     166.78
+
+-------------------------------------------------------------------------------
+-&gt; dambexp = 1
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+         age |      2,802    4.124697    1.116641        2.1        6.4
+             |
+      female |
+          0  |      2,802    .4461099    .4971761          0          1
+          1  |      2,802    .5538901    .4971761          0          1
+             |
+        educ |      2,802     13.5778    2.513906          0         17
+             |
+      blhisp |
+          0  |      2,802    .7241256    .4470336          0          1
+-------------+---------------------------------------------------------
+          1  |      2,802    .2758744    .4470336          0          1
+             |
+      totchr |      2,802    .5567452     .809943          0          5
+             |
+         ins |
+          0  |      2,802    .6231263    .4846893          0          1
+          1  |      2,802    .3768737    .4846893          0          1
+             |
+      income |      2,802    37.77552    27.20742     -90.05    237.301
+
+
+Linear regression                               Number of obs     =      3,328
+                                                F(7, 3320)        =      69.43
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.1276
+                                                Root MSE          =     .34114
+
+------------------------------------------------------------------------------
+             |               Robust
+     dambexp | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |   .0216413   .0056048     3.86   0.000     .0106521    .0326304
+    1.female |   .1394928   .0119061    11.72   0.000     .1161487    .1628368
+        educ |   .0143544   .0025774     5.57   0.000      .009301    .0194078
+    1.blhisp |  -.0889738   .0143088    -6.22   0.000    -.1170288   -.0609188
+      totchr |   .0830088   .0057913    14.33   0.000     .0716539    .0943637
+       1.ins |   .0364663   .0119311     3.06   0.002     .0130733    .0598592
+      income |    .000443   .0002215     2.00   0.046     8.70e-06    .0008774
+       _cons |   .4485313   .0430509    10.42   0.000     .3641224    .5329402
+------------------------------------------------------------------------------
+
+Iteration 0:  Log likelihood = -1452.4289  
+Iteration 1:  Log likelihood = -1218.0426  
+Iteration 2:  Log likelihood = -1195.6199  
+Iteration 3:  Log likelihood = -1195.5158  
+Iteration 4:  Log likelihood = -1195.5158  
+
+Probit regression                                       Number of obs =  3,328
+                                                        LR chi2(7)    = 513.83
+                                                        Prob &gt; chi2   = 0.0000
+Log likelihood = -1195.5158                             Pseudo R2     = 0.1769
+
+------------------------------------------------------------------------------
+     dambexp | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |   .0868152   .0274556     3.16   0.002     .0330032    .1406272
+    1.female |   .6635053   .0609648    10.88   0.000     .5440164    .7829941
+        educ |    .061884    .012039     5.14   0.000      .038288    .0854801
+    1.blhisp |  -.3657835   .0619095    -5.91   0.000    -.4871239   -.2444432
+      totchr |   .7957496   .0712174    11.17   0.000      .656166    .9353332
+       1.ins |    .169107   .0629296     2.69   0.007     .0457673    .2924467
+      income |   .0026773   .0013105     2.04   0.041     .0001088    .0052458
+       _cons |  -.6686471   .1941247    -3.44   0.001    -1.049125   -.2881698
+------------------------------------------------------------------------------
+
+Iteration 0:  Log likelihood = -1452.4289  
+Iteration 1:  Log likelihood =  -1238.914  
+Iteration 2:  Log likelihood = -1194.7039  
+Iteration 3:  Log likelihood = -1192.8189  
+Iteration 4:  Log likelihood = -1192.8089  
+Iteration 5:  Log likelihood = -1192.8089  
+
+Logistic regression                                     Number of obs =  3,328
+                                                        LR chi2(7)    = 519.24
+                                                        Prob &gt; chi2   = 0.0000
+Log likelihood = -1192.8089                             Pseudo R2     = 0.1787
+
+------------------------------------------------------------------------------
+     dambexp | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |   .1618629   .0496641     3.26   0.001     .0645229    .2592028
+    1.female |   1.226724   .1130182    10.85   0.000     1.005212    1.448235
+        educ |   .1080498   .0210874     5.12   0.000     .0667192    .1493804
+    1.blhisp |  -.6666381   .1093362    -6.10   0.000    -.8809332    -.452343
+      totchr |   1.554664   .1499606    10.37   0.000     1.260746    1.848581
+       1.ins |    .296996   .1133154     2.62   0.009     .0749019    .5190901
+      income |     .00462   .0024332     1.90   0.058     -.000149     .009389
+       _cons |   -1.26832   .3407805    -3.72   0.000    -1.936237    -.600402
+------------------------------------------------------------------------------
+
+Estimated Coefficients
+------------------------------------------------------------
+                      (1)             (2)             (3)   
+                      LPM          Probit           Logit   
+------------------------------------------------------------
+main                                                        
+age                0.0216***       0.0868**         0.162** 
+                (0.00560)        (0.0275)        (0.0497)   
+
+0.female                0               0               0   
+                      (.)             (.)             (.)   
+
+1.female            0.139***        0.664***        1.227***
+                 (0.0119)        (0.0610)         (0.113)   
+
+educ               0.0144***       0.0619***        0.108***
+                (0.00258)        (0.0120)        (0.0211)   
+
+0.blhisp                0               0               0   
+                      (.)             (.)             (.)   
+
+1.blhisp          -0.0890***       -0.366***       -0.667***
+                 (0.0143)        (0.0619)         (0.109)   
+
+totchr             0.0830***        0.796***        1.555***
+                (0.00579)        (0.0712)         (0.150)   
+
+0.ins                   0               0               0   
+                      (.)             (.)             (.)   
+
+1.ins              0.0365**         0.169**         0.297** 
+                 (0.0119)        (0.0629)         (0.113)   
+
+income           0.000443*        0.00268*        0.00462   
+               (0.000222)       (0.00131)       (0.00243)   
+
+_cons               0.449***       -0.669***       -1.268***
+                 (0.0431)         (0.194)         (0.341)   
+------------------------------------------------------------
+N                    3328            3328            3328   
+r2                  0.128                                   
+ll                -1139.1         -1195.5         -1192.8   
+------------------------------------------------------------
+Standard errors in parentheses
+* p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001</code></pre>
+</div>
+</div>
+<p><strong>1.3.</strong> Estimate the Marginal Effect at the Mean for each model, and report them in a table. You will want to use the <code>estpost margins</code> post-estimation command, with the relevant option for MEM. Pay special attention to the treatment of discrete regressors. Hint: check to see any differences in the estimated MEs based on whether you use factor notation; for example, <code>i.female</code> vs <code>female</code>.</p>
+<div id="90e56329" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="kw">clear</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>** LPM   </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">reg</span> dambexp <span class="ot">$xlist</span>, <span class="kw">robust</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>estpost margins, <span class="kw">dydx</span>(*) atmean</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="kw">store</span> LPM</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>** <span class="kw">probit</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">probit</span> dambexp <span class="ot">$xlist</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>estpost margins, <span class="kw">dydx</span>(*) atmean</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="kw">store</span> <span class="kw">probit</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>** <span class="kw">logit</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">logit</span> dambexp <span class="ot">$xlist</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>estpost margins, <span class="kw">dydx</span>(*) atmean</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="kw">store</span> <span class="kw">logit</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>esttab LPM <span class="kw">probit</span> <span class="kw">logit</span>, se <span class="fu">scalar</span>(<span class="kw">N</span> r2 ll) mtitle(<span class="st">"LPM"</span> <span class="st">"Probit"</span> <span class="st">"Logit"</span>) <span class="bn">title</span>(Marginal Effects <span class="fu">at</span> the Mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Conditional marginal effects                             Number of obs = 3,328
+Model VCE: Robust
+
+Expression: Linear prediction, predict()
+dy/dx wrt:  age 1.female educ 1.blhisp totchr 1.ins income
+At: age      = 4.056881 (mean)
+    0.female = .4915865 (mean)
+    1.female = .5084135 (mean)
+    educ     = 13.40565 (mean)
+    0.blhisp = .6914063 (mean)
+    1.blhisp = .3085938 (mean)
+    totchr   = .4831731 (mean)
+    0.ins    = .6349159 (mean)
+    1.ins    = .3650841 (mean)
+    income   = 36.80485 (mean)
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |   .0216413   .0056048     3.86   0.000     .0106521    .0326304
+    1.female |   .1394928   .0119061    11.72   0.000     .1161487    .1628368
+        educ |   .0143544   .0025774     5.57   0.000      .009301    .0194078
+    1.blhisp |  -.0889738   .0143088    -6.22   0.000    -.1170288   -.0609188
+      totchr |   .0830088   .0057913    14.33   0.000     .0716539    .0943637
+       1.ins |   .0364663   .0119311     3.06   0.002     .0130733    .0598592
+      income |    .000443   .0002215     2.00   0.046     8.70e-06    .0008774
+------------------------------------------------------------------------------
+Note: dy/dx for factor levels is the discrete change from the base level.
+
+Conditional marginal effects                             Number of obs = 3,328
+Model VCE: OIM
+
+Expression: Pr(dambexp), predict()
+dy/dx wrt:  age 1.female educ 1.blhisp totchr 1.ins income
+At: age      = 4.056881 (mean)
+    0.female = .4915865 (mean)
+    1.female = .5084135 (mean)
+    educ     = 13.40565 (mean)
+    0.blhisp = .6914063 (mean)
+    1.blhisp = .3085938 (mean)
+    totchr   = .4831731 (mean)
+    0.ins    = .6349159 (mean)
+    1.ins    = .3650841 (mean)
+    income   = 36.80485 (mean)
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |   .0152201    .004837     3.15   0.002     .0057396    .0247005
+    1.female |   .1184629   .0112862    10.50   0.000     .0963423    .1405835
+        educ |   .0108492   .0021305     5.09   0.000     .0066736    .0150249
+    1.blhisp |  -.0701607   .0130287    -5.39   0.000    -.0956964   -.0446249
+      totchr |   .1395073   .0102098    13.66   0.000     .1194966    .1595181
+       1.ins |   .0288089   .0104412     2.76   0.006     .0083445    .0492733
+      income |   .0004694   .0002295     2.05   0.041     .0000195    .0009192
+------------------------------------------------------------------------------
+Note: dy/dx for factor levels is the discrete change from the base level.
+
+Conditional marginal effects                             Number of obs = 3,328
+Model VCE: OIM
+
+Expression: Pr(dambexp), predict()
+dy/dx wrt:  age 1.female educ 1.blhisp totchr 1.ins income
+At: age      = 4.056881 (mean)
+    0.female = .4915865 (mean)
+    1.female = .5084135 (mean)
+    educ     = 13.40565 (mean)
+    0.blhisp = .6914063 (mean)
+    1.blhisp = .3085938 (mean)
+    totchr   = .4831731 (mean)
+    0.ins    = .6349159 (mean)
+    1.ins    = .3650841 (mean)
+    income   = 36.80485 (mean)
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |   .0135771   .0042044     3.23   0.001     .0053365    .0218176
+    1.female |   .1068865   .0107295     9.96   0.000      .085857    .1279159
+        educ |   .0090632   .0018074     5.01   0.000     .0055208    .0126056
+    1.blhisp |   -.062462   .0116115    -5.38   0.000    -.0852201    -.039704
+      totchr |   .1304052   .0093686    13.92   0.000      .112043    .1487674
+       1.ins |   .0241537   .0089994     2.68   0.007     .0065151    .0417922
+      income |   .0003875   .0002043     1.90   0.058    -.0000128    .0007879
+------------------------------------------------------------------------------
+Note: dy/dx for factor levels is the discrete change from the base level.
+
+Marginal Effects at the Mean
+------------------------------------------------------------
+                      (1)             (2)             (3)   
+                      LPM          Probit           Logit   
+------------------------------------------------------------
+age                0.0216***       0.0152**        0.0136** 
+                (0.00560)       (0.00484)       (0.00420)   
+
+0.female                0               0               0   
+                      (.)             (.)             (.)   
+
+1.female            0.139***        0.118***        0.107***
+                 (0.0119)        (0.0113)        (0.0107)   
+
+educ               0.0144***       0.0108***      0.00906***
+                (0.00258)       (0.00213)       (0.00181)   
+
+0.blhisp                0               0               0   
+                      (.)             (.)             (.)   
+
+1.blhisp          -0.0890***      -0.0702***      -0.0625***
+                 (0.0143)        (0.0130)        (0.0116)   
+
+totchr             0.0830***        0.140***        0.130***
+                (0.00579)        (0.0102)       (0.00937)   
+
+0.ins                   0               0               0   
+                      (.)             (.)             (.)   
+
+1.ins              0.0365**        0.0288**        0.0242** 
+                 (0.0119)        (0.0104)       (0.00900)   
+
+income           0.000443*       0.000469*       0.000388   
+               (0.000222)      (0.000230)      (0.000204)   
+------------------------------------------------------------
+N                    3328            3328            3328   
+r2                  0.128                                   
+ll                -1139.1         -1195.5         -1192.8   
+------------------------------------------------------------
+Standard errors in parentheses
+* p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001</code></pre>
+</div>
+</div>
+<p><strong>1.4.</strong> Estimate the Average Marginal Effect at the Mean for each model, and report them in a table.You will want to use the <code>estpost margins</code> post-estimation command, with the relevant option for AME.</p>
+<div id="1552d7de" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="kw">clear</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>** LPM    </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">reg</span> dambexp <span class="ot">$xlist</span>, <span class="kw">robust</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>estpost margins, <span class="kw">dydx</span>(*)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="kw">store</span> LPM</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>** <span class="kw">probit</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">probit</span> dambexp <span class="ot">$xlist</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>estpost margins, <span class="kw">dydx</span>(*)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="kw">store</span> <span class="kw">probit</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>** <span class="kw">logit</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">logit</span> dambexp <span class="ot">$xlist</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>estpost margins, <span class="kw">dydx</span>(*)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="kw">store</span> <span class="kw">logit</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>esttab LPM <span class="kw">probit</span> <span class="kw">logit</span>, se <span class="fu">scalar</span>(<span class="kw">N</span> r2 ll) mtitle(<span class="st">"LPM"</span> <span class="st">"Probit"</span> <span class="st">"Logit"</span>) <span class="bn">title</span>(Average Marginal Effects)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Average marginal effects                                 Number of obs = 3,328
+Model VCE: Robust
+
+Expression: Linear prediction, predict()
+dy/dx wrt:  age 1.female educ 1.blhisp totchr 1.ins income
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |   .0216413   .0056048     3.86   0.000     .0106521    .0326304
+    1.female |   .1394928   .0119061    11.72   0.000     .1161487    .1628368
+        educ |   .0143544   .0025774     5.57   0.000      .009301    .0194078
+    1.blhisp |  -.0889738   .0143088    -6.22   0.000    -.1170288   -.0609188
+      totchr |   .0830088   .0057913    14.33   0.000     .0716539    .0943637
+       1.ins |   .0364663   .0119311     3.06   0.002     .0130733    .0598592
+      income |    .000443   .0002215     2.00   0.046     8.70e-06    .0008774
+------------------------------------------------------------------------------
+Note: dy/dx for factor levels is the discrete change from the base level.
+
+Average marginal effects                                 Number of obs = 3,328
+Model VCE: OIM
+
+Expression: Pr(dambexp), predict()
+dy/dx wrt:  age 1.female educ 1.blhisp totchr 1.ins income
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |   .0173895   .0054832     3.17   0.002     .0066426    .0281365
+    1.female |    .132906   .0118133    11.25   0.000     .1097524    .1560596
+        educ |   .0123957   .0023862     5.19   0.000     .0077189    .0170725
+    1.blhisp |  -.0777517   .0137954    -5.64   0.000    -.1047901   -.0507133
+      totchr |   .1593929   .0139062    11.46   0.000     .1321371    .1866486
+       1.ins |    .033324   .0121638     2.74   0.006     .0094834    .0571646
+      income |   .0005363   .0002621     2.05   0.041     .0000225    .0010501
+------------------------------------------------------------------------------
+Note: dy/dx for factor levels is the discrete change from the base level.
+
+Average marginal effects                                 Number of obs = 3,328
+Model VCE: OIM
+
+Expression: Pr(dambexp), predict()
+dy/dx wrt:  age 1.female educ 1.blhisp totchr 1.ins income
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |   .0181007   .0055261     3.28   0.001     .0072697    .0289317
+    1.female |   .1357958   .0117423    11.56   0.000     .1127813    .1588102
+        educ |   .0120829   .0023248     5.20   0.000     .0075264    .0166394
+    1.blhisp |  -.0795676   .0136638    -5.82   0.000    -.1063481   -.0527871
+      totchr |   .1738536   .0164518    10.57   0.000     .1416087    .2060985
+       1.ins |   .0326182   .0121752     2.68   0.007     .0087552    .0564812
+      income |   .0005166   .0002718     1.90   0.057     -.000016    .0010493
+------------------------------------------------------------------------------
+Note: dy/dx for factor levels is the discrete change from the base level.
+
+Average Marginal Effects
+------------------------------------------------------------
+                      (1)             (2)             (3)   
+                      LPM          Probit           Logit   
+------------------------------------------------------------
+age                0.0216***       0.0174**        0.0181** 
+                (0.00560)       (0.00548)       (0.00553)   
+
+0.female                0               0               0   
+                      (.)             (.)             (.)   
+
+1.female            0.139***        0.133***        0.136***
+                 (0.0119)        (0.0118)        (0.0117)   
+
+educ               0.0144***       0.0124***       0.0121***
+                (0.00258)       (0.00239)       (0.00232)   
+
+0.blhisp                0               0               0   
+                      (.)             (.)             (.)   
+
+1.blhisp          -0.0890***      -0.0778***      -0.0796***
+                 (0.0143)        (0.0138)        (0.0137)   
+
+totchr             0.0830***        0.159***        0.174***
+                (0.00579)        (0.0139)        (0.0165)   
+
+0.ins                   0               0               0   
+                      (.)             (.)             (.)   
+
+1.ins              0.0365**        0.0333**        0.0326** 
+                 (0.0119)        (0.0122)        (0.0122)   
+
+income           0.000443*       0.000536*       0.000517   
+               (0.000222)      (0.000262)      (0.000272)   
+------------------------------------------------------------
+N                    3328            3328            3328   
+r2                  0.128                                   
+ll                -1139.1         -1195.5         -1192.8   
+------------------------------------------------------------
+Standard errors in parentheses
+* p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001</code></pre>
+</div>
+</div>
+<p><strong>1.5.</strong> Check to see how well the prodbit model predicts the outcome using the <code>estat classification</code> post-estimation command.</p>
+<div id="035b91a0" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">probit</span> dambexp age i.female educ i.blhisp totchr i.ins income</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">estat</span> classification</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Probit model for dambexp
+
+              -------- True --------
+Classified |         D            ~D  |      Total
+-----------+--------------------------+-----------
+     +     |      2768           469  |       3237
+     -     |        34            57  |         91
+-----------+--------------------------+-----------
+   Total   |      2802           526  |       3328
+
+Classified + if predicted Pr(D) &gt;= .5
+True D defined as dambexp != 0
+--------------------------------------------------
+Sensitivity                     Pr( +| D)   98.79%
+Specificity                     Pr( -|~D)   10.84%
+Positive predictive value       Pr( D| +)   85.51%
+Negative predictive value       Pr(~D| -)   62.64%
+--------------------------------------------------
+False + rate for true ~D        Pr( +|~D)   89.16%
+False - rate for true D         Pr( -| D)    1.21%
+False + rate for classified +   Pr(~D| +)   14.49%
+False - rate for classified -   Pr( D| -)   37.36%
+--------------------------------------------------
+Correctly classified                        84.89%
+--------------------------------------------------</code></pre>
+</div>
+</div>
+<p><strong>1.6.</strong> Construct and interpret the LR test for the omission of income in the probit model. Do this in two ways: (1) using the post estimation <code>lrtest</code>; (2) manually recreate (1)’s results (both test-statistic and p-value).</p>
+<div id="44857a76" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="kw">clear</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>** Remove income from xlist</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> xlist age i.female educ i.blhisp totchr i.ins </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>eststo modU: <span class="kw">qui</span> <span class="kw">probit</span> dambexp <span class="ot">$xlist</span> income</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> logl_U = <span class="fu">e</span>(ll)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>eststo modR: <span class="kw">qui</span> <span class="kw">probit</span> dambexp <span class="ot">$xlist</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> logl_R = <span class="fu">e</span>(ll)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="kw">lrtest</span> modU modR</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>** Replicate</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> stat = 2 * (logl_U - logl_R) </span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> pval = <span class="fu">chi2tail</span>(1,stat)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="fu">scalar</span> <span class="ot">list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Likelihood-ratio test
+Assumption: modR nested within modU
+
+ LR chi2(1) =   4.30
+Prob &gt; chi2 = 0.0382
+      pval =  .03817363
+      stat =   4.297269
+    logl_R = -1197.6644
+    logl_U = -1195.5158</code></pre>
+</div>
+</div>
+</section>
+<section id="part-2" class="level3">
+<h3 class="anchored" data-anchor-id="part-2">Part 2</h3>
+<p>Estimate the following models for <code>lambexp</code> treating the selection into non-zero <code>lambexp</code> value as endogenous using, both Heckman 2-step method and also MLE.</p>
+<p>In the main data <code>lambexp</code> is missing for values of <code>ambexp</code>=0. Before proceeding,</p>
+<div id="055b88c8" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> lambexp = 0 <span class="kw">if</span> ambexp==0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(526 real changes made)</code></pre>
+</div>
+</div>
+<p>This will correction will also treat observations with <code>ambexp=1</code> as equivalent to =0; however, this is only a single observation.</p>
+<div id="a0351049" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>** Remove income from xlist</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> xlist age i.female educ i.blhisp totchr i.ins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>2.1.</strong> Estimate the Heckman 2-step estimator and store the results. In addition, store the Mills ratio as a separate variable. Use <code>income</code> as the excluded variable. This means that <code>income</code> appears in the selection equation, but NOT the main equation.</p>
+<div id="480470c1" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>eststo heck_2sW: <span class="kw">heckman</span> lambexp <span class="ot">$xlist</span>, select(dambexp = <span class="ot">$xlist</span> income) twostep mills(mills_a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Heckman selection model -- two-step estimates   Number of obs     =      3,328
+(regression model with sample selection)              Selected    =      2,802
+                                                      Nonselected =        526
+
+                                                Wald chi2(6)      =     193.43
+                                                Prob &gt; chi2       =     0.0000
+
+------------------------------------------------------------------------------
+             | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+lambexp      |
+         age |   .2024668   .0242202     8.36   0.000     .1549961    .2499374
+    1.female |   .2921341   .0725756     4.03   0.000     .1498886    .4343796
+        educ |   .0123889   .0115682     1.07   0.284    -.0102844    .0350622
+    1.blhisp |  -.1828659   .0653449    -2.80   0.005    -.3109396   -.0547922
+      totchr |   .5006332   .0485548    10.31   0.000     .4054675    .5957988
+       1.ins |  -.0465097   .0529742    -0.88   0.380    -.1503373    .0573179
+       _cons |   5.288927    .288522    18.33   0.000     4.723435     5.85442
+-------------+----------------------------------------------------------------
+dambexp      |
+         age |   .0868152   .0274556     3.16   0.002     .0330032    .1406272
+    1.female |   .6635053   .0609648    10.88   0.000     .5440165    .7829941
+        educ |    .061884    .012039     5.14   0.000      .038288    .0854801
+    1.blhisp |  -.3657835   .0619095    -5.91   0.000    -.4871239   -.2444432
+      totchr |   .7957496   .0712174    11.17   0.000      .656166    .9353332
+       1.ins |    .169107   .0629296     2.69   0.007     .0457673    .2924467
+      income |   .0026773   .0013105     2.04   0.041     .0001088    .0052458
+       _cons |  -.6686471   .1941247    -3.44   0.001    -1.049125   -.2881698
+-------------+----------------------------------------------------------------
+/mills       |
+      lambda |  -.4637133   .2825997    -1.64   0.101    -1.017598     .090172
+-------------+----------------------------------------------------------------
+         rho |   -0.35907
+       sigma |  1.2914258
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<p><strong>2.2.</strong> Replicate these results by applying the following steps: (1) estimate the selection equation using a probit model; (2) create the mills ratio; (3) <code>compare</code> your mills ratio with the one stored above; (4) estimate the main equation, including the mills ratio.</p>
+<div id="31c61c80" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">probit</span> dambexp <span class="ot">$xlist</span> income</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> <span class="fu">index</span>, <span class="kw">xb</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> mills = <span class="fu">normalden</span>(<span class="fu">index</span>)/<span class="fu">normal</span>(<span class="fu">index</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="kw">compare</span> mills mills_a</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lambexp <span class="ot">$xlist</span> mills</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Iteration 0:  Log likelihood = -1452.4289  
+Iteration 1:  Log likelihood = -1218.0426  
+Iteration 2:  Log likelihood = -1195.6199  
+Iteration 3:  Log likelihood = -1195.5158  
+Iteration 4:  Log likelihood = -1195.5158  
+
+Probit regression                                       Number of obs =  3,328
+                                                        LR chi2(7)    = 513.83
+                                                        Prob &gt; chi2   = 0.0000
+Log likelihood = -1195.5158                             Pseudo R2     = 0.1769
+
+------------------------------------------------------------------------------
+     dambexp | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |   .0868152   .0274556     3.16   0.002     .0330032    .1406272
+    1.female |   .6635053   .0609648    10.88   0.000     .5440164    .7829941
+        educ |    .061884    .012039     5.14   0.000      .038288    .0854801
+    1.blhisp |  -.3657835   .0619095    -5.91   0.000    -.4871239   -.2444432
+      totchr |   .7957496   .0712174    11.17   0.000      .656166    .9353332
+       1.ins |    .169107   .0629296     2.69   0.007     .0457673    .2924467
+      income |   .0026773   .0013105     2.04   0.041     .0001088    .0052458
+       _cons |  -.6686471   .1941247    -3.44   0.001    -1.049125   -.2881698
+------------------------------------------------------------------------------
+
+                                        ---------- Difference ----------
+                            Count       Minimum      Average     Maximum
+------------------------------------------------------------------------
+mills&lt;mills_a                1660     -5.02e-08    -8.91e-09   -1.75e-14
+mills&gt;mills_a                1668      7.75e-15     8.64e-09    5.45e-08
+                       ----------
+Jointly defined              3328     -5.02e-08    -1.10e-10    5.45e-08
+                       ----------
+Total                        3328
+
+      Source |       SS           df       MS      Number of obs   =     3,328
+-------------+----------------------------------   F(7, 3320)      =    164.14
+       Model |  6325.70678         7  903.672398   Prob &gt; F        =    0.0000
+    Residual |  18278.1125     3,320  5.50545557   R-squared       =    0.2571
+-------------+----------------------------------   Adj R-squared   =    0.2555
+       Total |  24603.8193     3,327  7.39519666   Root MSE        =    2.3464
+
+------------------------------------------------------------------------------
+     lambexp | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |   .1628716   .0410937     3.96   0.000     .0823001    .2434431
+    1.female |   .1898127   .1257893     1.51   0.131    -.0568198    .4364451
+        educ |  -.0016555   .0199775    -0.08   0.934    -.0408251     .037514
+    1.blhisp |  -.1086689   .1107824    -0.98   0.327    -.3258776    .1085397
+      totchr |   .4202052   .0839337     5.01   0.000     .2556382    .5847723
+       1.ins |  -.0686172   .0899672    -0.76   0.446    -.2450141    .1077796
+       mills |  -4.592193   .4582359   -10.02   0.000    -5.490646   -3.693739
+       _cons |   5.904903   .5004624    11.80   0.000     4.923657    6.886149
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<p><strong>2.3</strong> Estimate the marginal effects of the selection equation. You can do this using the <code>estpost margins</code> command. This should correspond to a probit model estimation above.</p>
+<div id="a41ea8e5" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">heckman</span> lambexp <span class="ot">$xlist</span>, select(dambexp = <span class="ot">$xlist</span> income) twostep</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>estpost margins, <span class="kw">dydx</span>(*) <span class="kw">predict</span>(psel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Average marginal effects                                 Number of obs = 3,328
+Model VCE: Conventional
+
+Expression: Pr(dambexp), predict(psel)
+dy/dx wrt:  age 1.female educ 1.blhisp totchr 1.ins income
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |   .0173895   .0054832     3.17   0.002     .0066426    .0281365
+    1.female |    .132906   .0118133    11.25   0.000     .1097524    .1560596
+        educ |   .0123957   .0023862     5.19   0.000     .0077189    .0170725
+    1.blhisp |  -.0777517   .0137954    -5.64   0.000    -.1047901   -.0507133
+      totchr |   .1593929   .0139062    11.46   0.000     .1321371    .1866486
+       1.ins |    .033324   .0121638     2.74   0.006     .0094834    .0571646
+      income |   .0005363   .0002621     2.05   0.041     .0000225    .0010501
+------------------------------------------------------------------------------
+Note: dy/dx for factor levels is the discrete change from the base level.</code></pre>
+</div>
+</div>
+<p><strong>2.4.</strong> Estimate the Maximum Likelihood version of the Heckmann correction (with an excluded variable) and store the results.</p>
+<div id="c48c196b" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>eststo heck_mlW: <span class="kw">heckman</span> lambexp <span class="ot">$xlist</span>, select(dambexp = <span class="ot">$xlist</span> income) <span class="kw">nolog</span> mills(mills_a_mle)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Heckman selection model                         Number of obs     =      3,328
+(regression model with sample selection)              Selected    =      2,802
+                                                      Nonselected =        526
+
+                                                Wald chi2(6)      =     288.88
+Log likelihood = -5836.219                      Prob &gt; chi2       =     0.0000
+
+------------------------------------------------------------------------------
+             | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+lambexp      |
+         age |   .2119749   .0230072     9.21   0.000     .1668816    .2570682
+    1.female |   .3481441   .0601142     5.79   0.000     .2303223    .4659658
+        educ |    .018716   .0105473     1.77   0.076    -.0019563    .0393883
+    1.blhisp |  -.2185714   .0596687    -3.66   0.000    -.3355199    -.101623
+      totchr |     .53992   .0393324    13.73   0.000     .4628299      .61701
+       1.ins |  -.0299871   .0510882    -0.59   0.557    -.1301182    .0701439
+       _cons |   5.044056   .2281259    22.11   0.000     4.596938    5.491175
+-------------+----------------------------------------------------------------
+dambexp      |
+         age |   .0879359    .027421     3.21   0.001     .0341917      .14168
+    1.female |   .6626649   .0609384    10.87   0.000     .5432278    .7821021
+        educ |   .0619485   .0120295     5.15   0.000     .0383711    .0855258
+    1.blhisp |  -.3639377   .0618734    -5.88   0.000    -.4852073   -.2426682
+      totchr |   .7969518   .0711306    11.20   0.000     .6575383    .9363653
+       1.ins |   .1701367   .0628711     2.71   0.007     .0469117    .2933618
+      income |   .0027078   .0013168     2.06   0.040      .000127    .0052886
+       _cons |  -.6760546   .1940288    -3.48   0.000    -1.056344   -.2957652
+-------------+----------------------------------------------------------------
+     /athrho |  -.1313456   .1496292    -0.88   0.380    -.4246134    .1619222
+    /lnsigma |   .2398173   .0144598    16.59   0.000     .2114767     .268158
+-------------+----------------------------------------------------------------
+         rho |  -.1305955   .1470772                     -.4008098    .1605217
+       sigma |   1.271017   .0183786                      1.235501    1.307554
+      lambda |  -.1659891   .1878698                     -.5342072    .2022291
+------------------------------------------------------------------------------
+LR test of indep. eqns. (rho = 0): chi2(1) = 0.91         Prob &gt; chi2 = 0.3406</code></pre>
+</div>
+</div>
+<p><strong>2.5.</strong> Now re-estimate the two-step and MLE approach without an excluded variable, storing the results each time. This means that the same set of regressors enter both equations. i.e.&nbsp;include income in the outcome equation.</p>
+<div id="d9f68167" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> xlist age i.female educ i.blhisp totchr i.ins income</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>eststo heck_2sWO: <span class="kw">heckman</span> lambexp <span class="ot">$xlist</span>, select(dambexp = <span class="ot">$xlist</span>) twostep mills(mills_b)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>eststo heck_mlWO: <span class="kw">heckman</span> lambexp <span class="ot">$xlist</span>, select(dambexp = <span class="ot">$xlist</span>) <span class="kw">nolog</span> mills(mills_b_mle)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Heckman selection model -- two-step estimates   Number of obs     =      3,328
+(regression model with sample selection)              Selected    =      2,802
+                                                      Nonselected =        526
+
+                                                Wald chi2(7)      =     192.92
+                                                Prob &gt; chi2       =     0.0000
+
+------------------------------------------------------------------------------
+             | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+lambexp      |
+         age |   .2043022   .0244086     8.37   0.000     .1564622    .2521422
+    1.female |   .2786877   .0750154     3.72   0.000     .1316602    .4257151
+        educ |   .0141631   .0118462     1.20   0.232    -.0090551    .0373812
+    1.blhisp |  -.1797416   .0656337    -2.74   0.006    -.3083812    -.051102
+      totchr |   .4938391    .049539     9.97   0.000     .3967445    .5909337
+       1.ins |  -.0461181    .053113    -0.87   0.385    -.1502176    .0579815
+      income |  -.0007456   .0010158    -0.73   0.463    -.0027367    .0012454
+       _cons |   5.306311   .2901551    18.29   0.000     4.737617    5.875004
+-------------+----------------------------------------------------------------
+dambexp      |
+         age |   .0868152   .0274556     3.16   0.002     .0330032    .1406272
+    1.female |   .6635053   .0609648    10.88   0.000     .5440165    .7829941
+        educ |    .061884    .012039     5.14   0.000      .038288    .0854801
+    1.blhisp |  -.3657835   .0619095    -5.91   0.000    -.4871239   -.2444432
+      totchr |   .7957496   .0712174    11.17   0.000      .656166    .9353332
+       1.ins |    .169107   .0629296     2.69   0.007     .0457673    .2924467
+      income |   .0026773   .0013105     2.04   0.041     .0001088    .0052458
+       _cons |  -.6686471   .1941247    -3.44   0.001    -1.049125   -.2881698
+-------------+----------------------------------------------------------------
+/mills       |
+      lambda |  -.5087361   .2894687    -1.76   0.079    -1.076084    .0586121
+-------------+----------------------------------------------------------------
+         rho |   -0.39250
+       sigma |  1.2961455
+------------------------------------------------------------------------------
+
+Heckman selection model                         Number of obs     =      3,328
+(regression model with sample selection)              Selected    =      2,802
+                                                      Nonselected =        526
+
+                                                Wald chi2(7)      =     285.98
+Log likelihood =  -5836.09                      Prob &gt; chi2       =     0.0000
+
+------------------------------------------------------------------------------
+             | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+lambexp      |
+         age |   .2137594   .0232969     9.18   0.000     .1680983    .2594205
+    1.female |    .342293   .0615522     5.56   0.000     .2216528    .4629332
+        educ |   .0202746   .0110032     1.84   0.065    -.0012913    .0418406
+    1.blhisp |  -.2185104   .0598099    -3.65   0.000    -.3357357   -.1012852
+      totchr |   .5375964   .0398453    13.49   0.000      .459501    .6156918
+       1.ins |  -.0287728   .0511856    -0.56   0.574    -.1290946    .0715491
+      income |  -.0005026    .000989    -0.51   0.611    -.0024411    .0014359
+       _cons |   5.041712    .229726    21.95   0.000     4.591458    5.491967
+-------------+----------------------------------------------------------------
+dambexp      |
+         age |   .0878613   .0274099     3.21   0.001      .034139    .1415837
+    1.female |   .6628035    .060929    10.88   0.000     .5433848    .7822223
+        educ |   .0617998   .0120332     5.14   0.000     .0382152    .0853844
+    1.blhisp |  -.3636885   .0618724    -5.88   0.000    -.4849562   -.2424207
+      totchr |   .7968988   .0711265    11.20   0.000     .6574934    .9363041
+       1.ins |   .1699645   .0628669     2.70   0.007     .0467476    .2931815
+      income |   .0027483   .0013209     2.08   0.037     .0001595    .0053372
+       _cons |   -.675346   .1939739    -3.48   0.000    -1.055528    -.295164
+-------------+----------------------------------------------------------------
+     /athrho |  -.1419126   .1535634    -0.92   0.355    -.4428913    .1590661
+    /lnsigma |    .240186   .0146925    16.35   0.000     .2113892    .2689828
+-------------+----------------------------------------------------------------
+         rho |  -.1409675   .1505118                     -.4160382     .157738
+       sigma |   1.271486   .0186813                      1.235393    1.308633
+      lambda |  -.1792382   .1924853                     -.5565025    .1980261
+------------------------------------------------------------------------------
+LR test of indep. eqns. (rho = 0): chi2(1) = 1.02         Prob &gt; chi2 = 0.3122</code></pre>
+</div>
+</div>
+<p><strong>2.6.</strong> Create a table that reports the four models alongside one another and compare the results.</p>
+<div id="4d6b28ae" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>esttab heck_2sW heck_2sWO heck_mlW heck_mlWO, se <span class="fu">scalar</span>(<span class="kw">N</span>) mtitle(<span class="st">"2-step,w/"</span> <span class="st">"2-step,w/o"</span> <span class="st">"ML,w/"</span> <span class="st">"ML,w/o"</span>) <span class="bn">title</span>(Heckman Selection Models) <span class="kw">drop</span>(0.*)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Heckman Selection Models
+----------------------------------------------------------------------------
+                      (1)             (2)             (3)             (4)   
+                2-step,w/      2-step,w/o           ML,w/          ML,w/o   
+----------------------------------------------------------------------------
+lambexp                                                                     
+age                 0.202***        0.204***        0.212***        0.214***
+                 (0.0242)        (0.0244)        (0.0230)        (0.0233)   
+
+1.female            0.292***        0.279***        0.348***        0.342***
+                 (0.0726)        (0.0750)        (0.0601)        (0.0616)   
+
+educ               0.0124          0.0142          0.0187          0.0203   
+                 (0.0116)        (0.0118)        (0.0105)        (0.0110)   
+
+1.blhisp           -0.183**        -0.180**        -0.219***       -0.219***
+                 (0.0653)        (0.0656)        (0.0597)        (0.0598)   
+
+totchr              0.501***        0.494***        0.540***        0.538***
+                 (0.0486)        (0.0495)        (0.0393)        (0.0398)   
+
+1.ins             -0.0465         -0.0461         -0.0300         -0.0288   
+                 (0.0530)        (0.0531)        (0.0511)        (0.0512)   
+
+income                          -0.000746                       -0.000503   
+                                (0.00102)                      (0.000989)   
+
+_cons               5.289***        5.306***        5.044***        5.042***
+                  (0.289)         (0.290)         (0.228)         (0.230)   
+----------------------------------------------------------------------------
+dambexp                                                                     
+age                0.0868**        0.0868**        0.0879**        0.0879** 
+                 (0.0275)        (0.0275)        (0.0274)        (0.0274)   
+
+1.female            0.664***        0.664***        0.663***        0.663***
+                 (0.0610)        (0.0610)        (0.0609)        (0.0609)   
+
+educ               0.0619***       0.0619***       0.0619***       0.0618***
+                 (0.0120)        (0.0120)        (0.0120)        (0.0120)   
+
+1.blhisp           -0.366***       -0.366***       -0.364***       -0.364***
+                 (0.0619)        (0.0619)        (0.0619)        (0.0619)   
+
+totchr              0.796***        0.796***        0.797***        0.797***
+                 (0.0712)        (0.0712)        (0.0711)        (0.0711)   
+
+1.ins               0.169**         0.169**         0.170**         0.170** 
+                 (0.0629)        (0.0629)        (0.0629)        (0.0629)   
+
+income            0.00268*        0.00268*        0.00271*        0.00275*  
+                (0.00131)       (0.00131)       (0.00132)       (0.00132)   
+
+_cons              -0.669***       -0.669***       -0.676***       -0.675***
+                  (0.194)         (0.194)         (0.194)         (0.194)   
+----------------------------------------------------------------------------
+/mills                                                                      
+lambda             -0.464          -0.509                                   
+                  (0.283)         (0.289)                                   
+----------------------------------------------------------------------------
+/                                                                           
+athrho                                             -0.131          -0.142   
+                                                  (0.150)         (0.154)   
+
+lnsigma                                             0.240***        0.240***
+                                                 (0.0145)        (0.0147)   
+----------------------------------------------------------------------------
+N                    3328            3328            3328            3328   
+----------------------------------------------------------------------------
+Standard errors in parentheses
+* p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="postamble" class="level2">
+<h2 class="anchored" data-anchor-id="postamble">Postamble</h2>
+<div id="f03f8ff5" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">close</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      name:  &lt;unnamed&gt;
+       log:  C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\we
+&gt; bsite\warwick-ec910\problem-sets\ps-6\problem-set-6-log.txt
+  log type:  smcl
+ closed on:  19 Nov 2024, 16:48:40
+-------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
