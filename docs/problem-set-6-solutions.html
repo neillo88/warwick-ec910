@@ -331,13 +331,13 @@ window.Quarto = {
 </ul>
 <section id="preamble" class="level2">
 <h2 class="anchored" data-anchor-id="preamble">Preamble</h2>
-<div id="0d7b6cec" class="cell" data-execution_count="1">
+<div id="72bb1314" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <style>div.jp-Notebook .datagrid-container {min-height: 448px; }</style>
 </div>
 </div>
 <p>Create a do-file for this problem set and include a preamble that sets the directory and opens the data. For example,</p>
-<div id="fe823059" class="cell" data-execution_count="2">
+<div id="21e8ef4b" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">//or, to remove all stored values (including macros, matrices, scalars, etc.) </span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>*<span class="kw">clear</span> <span class="ot">all</span></span>
@@ -357,7 +357,7 @@ window.Quarto = {
        log:  C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\we
 &gt; bsite\warwick-ec910\problem-sets\ps-6\problem-set-6-log.txt
   log type:  smcl
- opened on:  19 Nov 2024, 16:48:32</code></pre>
+ opened on:  19 Nov 2024, 17:40:40</code></pre>
 </div>
 </div>
 </section>
@@ -366,7 +366,7 @@ window.Quarto = {
 <section id="part-1" class="level3">
 <h3 class="anchored" data-anchor-id="part-1">Part 1</h3>
 <p><strong>1.1.</strong> Obtain and comment on the descriptive statistics for ambexp, lambexp, age, female, educ, blhisp, totchr, ins, income.</p>
-<div id="4a320de4" class="cell" data-execution_count="3">
+<div id="cf127b59" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>su dambexp ambexp lambexp age female educ blhisp totchr ins income</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -386,7 +386,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>1.2.</strong> Estimate a LP, Probit and a Logit model to explain dambexp. Store the <span class="math inline">\(\beta\)</span> coefficients and report them in a table.</p>
-<div id="f275ccbd" class="cell" data-execution_count="4">
+<div id="6d961c95" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> xlist age i.female educ i.blhisp totchr i.ins income  <span class="co">//Define regressor list $xlist</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">bys</span> dambexp: su <span class="ot">$xlist</span>   </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -572,7 +572,7 @@ Standard errors in parentheses
 </div>
 </div>
 <p><strong>1.3.</strong> Estimate the Marginal Effect at the Mean for each model, and report them in a table. You will want to use the <code>estpost margins</code> post-estimation command, with the relevant option for MEM. Pay special attention to the treatment of discrete regressors. Hint: check to see any differences in the estimated MEs based on whether you use factor notation; for example, <code>i.female</code> vs <code>female</code>.</p>
-<div id="90e56329" class="cell" data-execution_count="5">
+<div id="2912d2b1" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="kw">clear</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>** LPM   </span>
@@ -727,7 +727,7 @@ Standard errors in parentheses
 </div>
 </div>
 <p><strong>1.4.</strong> Estimate the Average Marginal Effect at the Mean for each model, and report them in a table.You will want to use the <code>estpost margins</code> post-estimation command, with the relevant option for AME.</p>
-<div id="1552d7de" class="cell" data-execution_count="6">
+<div id="15b92cb9" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="kw">clear</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>** LPM    </span>
@@ -852,7 +852,7 @@ Standard errors in parentheses
 </div>
 </div>
 <p><strong>1.5.</strong> Check to see how well the prodbit model predicts the outcome using the <code>estat classification</code> post-estimation command.</p>
-<div id="035b91a0" class="cell" data-execution_count="7">
+<div id="d9d3bdb3" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">probit</span> dambexp age i.female educ i.blhisp totchr i.ins income</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">estat</span> classification</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -885,7 +885,7 @@ Correctly classified                        84.89%
 </div>
 </div>
 <p><strong>1.6.</strong> Construct and interpret the LR test for the omission of income in the probit model. Do this in two ways: (1) using the post estimation <code>lrtest</code>; (2) manually recreate (1)’s results (both test-statistic and p-value).</p>
-<div id="44857a76" class="cell" data-execution_count="8">
+<div id="559c647f" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="kw">clear</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>** Remove income from xlist</span>
@@ -921,19 +921,19 @@ Prob &gt; chi2 = 0.0382
 <h3 class="anchored" data-anchor-id="part-2">Part 2</h3>
 <p>Estimate the following models for <code>lambexp</code> treating the selection into non-zero <code>lambexp</code> value as endogenous using, both Heckman 2-step method and also MLE.</p>
 <p>In the main data <code>lambexp</code> is missing for values of <code>ambexp</code>=0. Before proceeding,</p>
-<div id="055b88c8" class="cell" data-execution_count="9">
+<div id="db2c8aa0" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> lambexp = 0 <span class="kw">if</span> ambexp==0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(526 real changes made)</code></pre>
 </div>
 </div>
 <p>This will correction will also treat observations with <code>ambexp=1</code> as equivalent to =0; however, this is only a single observation.</p>
-<div id="a0351049" class="cell" data-execution_count="10">
+<div id="d0e688fd" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>** Remove income from xlist</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> xlist age i.female educ i.blhisp totchr i.ins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>2.1.</strong> Estimate the Heckman 2-step estimator and store the results. In addition, store the Mills ratio as a separate variable. Use <code>income</code> as the excluded variable. This means that <code>income</code> appears in the selection equation, but NOT the main equation.</p>
-<div id="480470c1" class="cell" data-execution_count="11">
+<div id="b308a1a4" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>eststo heck_2sW: <span class="kw">heckman</span> lambexp <span class="ot">$xlist</span>, select(dambexp = <span class="ot">$xlist</span> income) twostep mills(mills_a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -975,7 +975,7 @@ dambexp      |
 </div>
 </div>
 <p><strong>2.2.</strong> Replicate these results by applying the following steps: (1) estimate the selection equation using a probit model; (2) create the mills ratio; (3) <code>compare</code> your mills ratio with the one stored above; (4) estimate the main equation, including the mills ratio.</p>
-<div id="31c61c80" class="cell" data-execution_count="12">
+<div id="9350b2a0" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">probit</span> dambexp <span class="ot">$xlist</span> income</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> <span class="fu">index</span>, <span class="kw">xb</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> mills = <span class="fu">normalden</span>(<span class="fu">index</span>)/<span class="fu">normal</span>(<span class="fu">index</span>)</span>
@@ -1038,10 +1038,10 @@ Total                        3328
 ------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
-<p><strong>2.3</strong> Estimate the marginal effects of the selection equation. You can do this using the <code>estpost margins</code> command. This should correspond to a probit model estimation above.</p>
-<div id="a41ea8e5" class="cell" data-execution_count="13">
+<p><strong>2.3</strong> Estimate the marginal effects of the selection equation. You can do this using the <code>margins</code> command, with <code>predict()</code> option <code>psel</code>. This should correspond to a probit model estimation above.</p>
+<div id="7d52e8c5" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">heckman</span> lambexp <span class="ot">$xlist</span>, select(dambexp = <span class="ot">$xlist</span> income) twostep</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>estpost margins, <span class="kw">dydx</span>(*) <span class="kw">predict</span>(psel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>margins, <span class="kw">dydx</span>(*) <span class="kw">predict</span>(psel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Average marginal effects                                 Number of obs = 3,328
@@ -1066,7 +1066,7 @@ Note: dy/dx for factor levels is the discrete change from the base level.</code>
 </div>
 </div>
 <p><strong>2.4.</strong> Estimate the Maximum Likelihood version of the Heckmann correction (with an excluded variable) and store the results.</p>
-<div id="c48c196b" class="cell" data-execution_count="14">
+<div id="69eeaf8c" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>eststo heck_mlW: <span class="kw">heckman</span> lambexp <span class="ot">$xlist</span>, select(dambexp = <span class="ot">$xlist</span> income) <span class="kw">nolog</span> mills(mills_a_mle)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1109,13 +1109,83 @@ dambexp      |
 LR test of indep. eqns. (rho = 0): chi2(1) = 0.91         Prob &gt; chi2 = 0.3406</code></pre>
 </div>
 </div>
-<p><strong>2.5.</strong> Now re-estimate the two-step and MLE approach without an excluded variable, storing the results each time. This means that the same set of regressors enter both equations. i.e.&nbsp;include income in the outcome equation.</p>
-<div id="d9f68167" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> xlist age i.female educ i.blhisp totchr i.ins income</span>
+<p><strong>2.5</strong> Compute the marginal effects of each regressor for: (1) probability of selection; (2) the expected value of the outcome; and (3) the expected value of the outcome, conditional on selection. You will need to use the post-estimation command <code>margins, dydx(*) predict()</code> with predict options: <code>psel</code>, <code>yexpected</code>, and <code>ycond</code>.</p>
+<div id="93a1068b" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">heckman</span> lambexp <span class="ot">$xlist</span>, select(dambexp = <span class="ot">$xlist</span> income) <span class="kw">nolog</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>eststo heck_2sWO: <span class="kw">heckman</span> lambexp <span class="ot">$xlist</span>, select(dambexp = <span class="ot">$xlist</span>) twostep mills(mills_b)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>eststo heck_mlWO: <span class="kw">heckman</span> lambexp <span class="ot">$xlist</span>, select(dambexp = <span class="ot">$xlist</span>) <span class="kw">nolog</span> mills(mills_b_mle)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>margins, <span class="kw">dydx</span>(*) <span class="kw">predict</span>(psel) </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>margins, <span class="kw">dydx</span>(*) <span class="kw">predict</span>(yexpected) </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>margins, <span class="kw">dydx</span>(*) <span class="kw">predict</span>(ycond) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Average marginal effects                                 Number of obs = 3,328
+Model VCE: OIM
+
+Expression: Pr(dambexp), predict(psel)
+dy/dx wrt:  age 1.female educ 1.blhisp totchr 1.ins income
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |   .0176149   .0054761     3.22   0.001      .006882    .0283479
+    1.female |   .1327517   .0118078    11.24   0.000     .1096089    .1558945
+        educ |   .0124093   .0023845     5.20   0.000     .0077357    .0170828
+    1.blhisp |  -.0773377   .0137795    -5.61   0.000    -.1043449   -.0503305
+      totchr |    .159642    .013898    11.49   0.000     .1324024    .1868817
+       1.ins |    .033526   .0121515     2.76   0.006     .0097095    .0573425
+      income |   .0005424   .0002634     2.06   0.039     .0000262    .0010586
+------------------------------------------------------------------------------
+Note: dy/dx for factor levels is the discrete change from the base level.
+
+Average marginal effects                                 Number of obs = 3,328
+Model VCE: OIM
+
+Expression: E(lambexp*|Pr(dambexp)), predict(yexpected)
+dy/dx wrt:  age 1.female educ 1.blhisp totchr 1.ins income
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |   .2897346   .0381846     7.59   0.000     .2148942     .364575
+    1.female |    1.14081   .0832165    13.71   0.000     .9777089    1.303911
+        educ |   .0941877   .0167238     5.63   0.000     .0614096    .1269658
+    1.blhisp |  -.6692709    .095073    -7.04   0.000    -.8556106   -.4829312
+      totchr |   1.463455   .0890935    16.43   0.000     1.288834    1.638075
+       1.ins |   .1863924   .0856166     2.18   0.029     .0185871    .3541978
+      income |   .0034285   .0016722     2.05   0.040     .0001511    .0067059
+------------------------------------------------------------------------------
+Note: dy/dx for factor levels is the discrete change from the base level.
+
+Average marginal effects                                 Number of obs = 3,328
+Model VCE: OIM
+
+Expression: E(lambexp|Zg&gt;0), predict(ycond)
+dy/dx wrt:  age 1.female educ 1.blhisp totchr 1.ins income
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |   .2165793   .0222037     9.75   0.000     .1730609    .2600977
+    1.female |   .3826391   .0486389     7.87   0.000     .2873087    .4779695
+        educ |   .0219597   .0097532     2.25   0.024     .0028438    .0410755
+    1.blhisp |  -.2385954   .0551014    -4.33   0.000    -.3465921   -.1305986
+      totchr |   .5816493   .0379133    15.34   0.000     .5073406    .6559579
+       1.ins |  -.0212273   .0499484    -0.42   0.671    -.1191243    .0766697
+      income |   .0001418   .0001762     0.80   0.421    -.0002036    .0004872
+------------------------------------------------------------------------------
+Note: dy/dx for factor levels is the discrete change from the base level.</code></pre>
+</div>
+</div>
+<p><strong>2.6.</strong> Now re-estimate the two-step and MLE approach without an excluded variable, storing the results each time. This means that the same set of regressors enter both equations. i.e.&nbsp;include income in the outcome equation.</p>
+<div id="a73a8540" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> xlist age i.female educ i.blhisp totchr i.ins income</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>eststo heck_2sWO: <span class="kw">heckman</span> lambexp <span class="ot">$xlist</span>, select(dambexp = <span class="ot">$xlist</span>) twostep mills(mills_b)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>eststo heck_mlWO: <span class="kw">heckman</span> lambexp <span class="ot">$xlist</span>, select(dambexp = <span class="ot">$xlist</span>) <span class="kw">nolog</span> mills(mills_b_mle)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Heckman selection model -- two-step estimates   Number of obs     =      3,328
@@ -1195,9 +1265,9 @@ dambexp      |
 LR test of indep. eqns. (rho = 0): chi2(1) = 1.02         Prob &gt; chi2 = 0.3122</code></pre>
 </div>
 </div>
-<p><strong>2.6.</strong> Create a table that reports the four models alongside one another and compare the results.</p>
-<div id="4d6b28ae" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>esttab heck_2sW heck_2sWO heck_mlW heck_mlWO, se <span class="fu">scalar</span>(<span class="kw">N</span>) mtitle(<span class="st">"2-step,w/"</span> <span class="st">"2-step,w/o"</span> <span class="st">"ML,w/"</span> <span class="st">"ML,w/o"</span>) <span class="bn">title</span>(Heckman Selection Models) <span class="kw">drop</span>(0.*)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>2.7.</strong> Create a table that reports the four models alongside one another and compare the results.</p>
+<div id="d1edd394" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>esttab heck_2sW heck_2sWO heck_mlW heck_mlWO, se <span class="fu">scalar</span>(<span class="kw">N</span>) mtitle(<span class="st">"2-step,w/"</span> <span class="st">"2-step,w/o"</span> <span class="st">"ML,w/"</span> <span class="st">"ML,w/o"</span>) <span class="bn">title</span>(Heckman Selection Models) <span class="kw">drop</span>(0.*)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Heckman Selection Models
@@ -1276,14 +1346,14 @@ Standard errors in parentheses
 </section>
 <section id="postamble" class="level2">
 <h2 class="anchored" data-anchor-id="postamble">Postamble</h2>
-<div id="f03f8ff5" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">close</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7c3c1164" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">close</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      name:  &lt;unnamed&gt;
        log:  C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\we
 &gt; bsite\warwick-ec910\problem-sets\ps-6\problem-set-6-log.txt
   log type:  smcl
- closed on:  19 Nov 2024, 16:48:40
+ closed on:  19 Nov 2024, 17:40:52
 -------------------------------------------------------------------------------</code></pre>
 </div>
 </div>

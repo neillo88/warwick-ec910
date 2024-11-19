@@ -203,11 +203,11 @@ compare mills mills_a
 reg lambexp $xlist mills
 ```
 
-**2.3** Estimate the marginal effects of the selection equation. You can do this using the `estpost margins` command. This should correspond to a probit model estimation above. 
+**2.3** Estimate the marginal effects of the selection equation. You can do this using the `margins` command, with `predict()` option `psel`. This should correspond to a probit model estimation above. 
 
 ```{stata}
 qui heckman lambexp $xlist, select(dambexp = $xlist income) twostep
-estpost margins, dydx(*) predict(psel)
+margins, dydx(*) predict(psel)
 ```
 
 **2.4.** Estimate the Maximum Likelihood version of the Heckmann correction (with an excluded variable) and store the results. 
@@ -215,7 +215,17 @@ estpost margins, dydx(*) predict(psel)
 eststo heck_mlW: heckman lambexp $xlist, select(dambexp = $xlist income) nolog mills(mills_a_mle)
 ```
 
-**2.5.** Now re-estimate the two-step and MLE approach without an excluded variable, storing the results each time. This means that the same set of regressors enter both equations. i.e. include income in the outcome equation.  
+**2.5** Compute the marginal effects of each regressor for: (1) probability of selection; (2) the expected value of the outcome; and (3) the expected value of the outcome, conditional on selection. You will need to use the post-estimation command `margins, dydx(*) predict()` with predict options: `psel`, `yexpected`, and `ycond`. 
+
+```{stata}
+qui heckman lambexp $xlist, select(dambexp = $xlist income) nolog
+
+margins, dydx(*) predict(psel) 
+margins, dydx(*) predict(yexpected) 
+margins, dydx(*) predict(ycond) 
+```
+
+**2.6.** Now re-estimate the two-step and MLE approach without an excluded variable, storing the results each time. This means that the same set of regressors enter both equations. i.e. include income in the outcome equation.  
 
 ```{stata}
 global xlist age i.female educ i.blhisp totchr i.ins income
@@ -225,7 +235,7 @@ eststo heck_2sWO: heckman lambexp $xlist, select(dambexp = $xlist) twostep mills
 eststo heck_mlWO: heckman lambexp $xlist, select(dambexp = $xlist) nolog mills(mills_b_mle)
 ```
 
-**2.6.** Create a table that reports the four models alongside one another and compare the results. 
+**2.7.** Create a table that reports the four models alongside one another and compare the results. 
 
 ```{stata}
 esttab heck_2sW heck_2sWO heck_mlW heck_mlWO, se scalar(N) mtitle("2-step,w/" "2-step,w/o" "ML,w/" "ML,w/o") title(Heckman Selection Models) drop(0.*)

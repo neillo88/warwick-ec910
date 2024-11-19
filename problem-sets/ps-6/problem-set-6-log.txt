@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick-ec910\problem-sets\ps-6\problem-set-6-log.txt
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}19 Nov 2024, 16:48:49
+ {txt}opened on:  {res}19 Nov 2024, 17:41:06
 
 {txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
 {hline 13}{c +}{hline 57}
@@ -620,6 +620,72 @@ Total                   {res}     3328
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 LR test of indep. eqns. (rho = 0): chi2({res}1{txt}) = {res}0.91         {txt}Prob > chi2 = {res}0.3406
 
+{txt}{col 1}Average marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:3,328}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(dambexp), predict(psel)}{p_end}
+{p2col:dy/dx wrt:}{res:age 1.female educ 1.blhisp totchr 1.ins income}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0176149{col 26}{space 2} .0054761{col 37}{space 1}    3.22{col 46}{space 3}0.001{col 54}{space 4}  .006882{col 67}{space 3} .0283479
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .1327517{col 26}{space 2} .0118078{col 37}{space 1}   11.24{col 46}{space 3}0.000{col 54}{space 4} .1096089{col 67}{space 3} .1558945
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0124093{col 26}{space 2} .0023845{col 37}{space 1}    5.20{col 46}{space 3}0.000{col 54}{space 4} .0077357{col 67}{space 3} .0170828
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.0773377{col 26}{space 2} .0137795{col 37}{space 1}   -5.61{col 46}{space 3}0.000{col 54}{space 4}-.1043449{col 67}{space 3}-.0503305
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2}  .159642{col 26}{space 2}  .013898{col 37}{space 1}   11.49{col 46}{space 3}0.000{col 54}{space 4} .1324024{col 67}{space 3} .1868817
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2}  .033526{col 26}{space 2} .0121515{col 37}{space 1}    2.76{col 46}{space 3}0.006{col 54}{space 4} .0097095{col 67}{space 3} .0573425
+{txt}{space 6}income {c |}{col 14}{res}{space 2} .0005424{col 26}{space 2} .0002634{col 37}{space 1}    2.06{col 46}{space 3}0.039{col 54}{space 4} .0000262{col 67}{space 3} .0010586
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}
+{txt}{col 1}Average marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:3,328}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:E(lambexp*|Pr(dambexp)), predict(yexpected)}{p_end}
+{p2col:dy/dx wrt:}{res:age 1.female educ 1.blhisp totchr 1.ins income}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .2897346{col 26}{space 2} .0381846{col 37}{space 1}    7.59{col 46}{space 3}0.000{col 54}{space 4} .2148942{col 67}{space 3}  .364575
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2}  1.14081{col 26}{space 2} .0832165{col 37}{space 1}   13.71{col 46}{space 3}0.000{col 54}{space 4} .9777089{col 67}{space 3} 1.303911
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0941877{col 26}{space 2} .0167238{col 37}{space 1}    5.63{col 46}{space 3}0.000{col 54}{space 4} .0614096{col 67}{space 3} .1269658
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.6692709{col 26}{space 2}  .095073{col 37}{space 1}   -7.04{col 46}{space 3}0.000{col 54}{space 4}-.8556106{col 67}{space 3}-.4829312
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} 1.463455{col 26}{space 2} .0890935{col 37}{space 1}   16.43{col 46}{space 3}0.000{col 54}{space 4} 1.288834{col 67}{space 3} 1.638075
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2} .1863924{col 26}{space 2} .0856166{col 37}{space 1}    2.18{col 46}{space 3}0.029{col 54}{space 4} .0185871{col 67}{space 3} .3541978
+{txt}{space 6}income {c |}{col 14}{res}{space 2} .0034285{col 26}{space 2} .0016722{col 37}{space 1}    2.05{col 46}{space 3}0.040{col 54}{space 4} .0001511{col 67}{space 3} .0067059
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}
+{txt}{col 1}Average marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:3,328}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:E(lambexp|Zg>0), predict(ycond)}{p_end}
+{p2col:dy/dx wrt:}{res:age 1.female educ 1.blhisp totchr 1.ins income}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .2165793{col 26}{space 2} .0222037{col 37}{space 1}    9.75{col 46}{space 3}0.000{col 54}{space 4} .1730609{col 67}{space 3} .2600977
+{txt}{space 4}1.female {c |}{col 14}{res}{space 2} .3826391{col 26}{space 2} .0486389{col 37}{space 1}    7.87{col 46}{space 3}0.000{col 54}{space 4} .2873087{col 67}{space 3} .4779695
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0219597{col 26}{space 2} .0097532{col 37}{space 1}    2.25{col 46}{space 3}0.024{col 54}{space 4} .0028438{col 67}{space 3} .0410755
+{txt}{space 4}1.blhisp {c |}{col 14}{res}{space 2}-.2385954{col 26}{space 2} .0551014{col 37}{space 1}   -4.33{col 46}{space 3}0.000{col 54}{space 4}-.3465921{col 67}{space 3}-.1305986
+{txt}{space 6}totchr {c |}{col 14}{res}{space 2} .5816493{col 26}{space 2} .0379133{col 37}{space 1}   15.34{col 46}{space 3}0.000{col 54}{space 4} .5073406{col 67}{space 3} .6559579
+{txt}{space 7}1.ins {c |}{col 14}{res}{space 2}-.0212273{col 26}{space 2} .0499484{col 37}{space 1}   -0.42{col 46}{space 3}0.671{col 54}{space 4}-.1191243{col 67}{space 3} .0766697
+{txt}{space 6}income {c |}{col 14}{res}{space 2} .0001418{col 26}{space 2} .0001762{col 37}{space 1}    0.80{col 46}{space 3}0.421{col 54}{space 4}-.0002036{col 67}{space 3} .0004872
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}
 {txt}Heckman selection model -- two-step estimates   Number of obs     = {res}     3,328
 {txt}(regression model with sample selection)              Selected    = {res}     2,802
                                                 {txt}      Nonselected = {res}       526
@@ -769,7 +835,7 @@ LR test of indep. eqns. (rho = 0): chi2({res}1{txt}) = {res}1.02         {txt}Pr
       name:  {res}<unnamed>
        {txt}log:  {res}C:\Users\neil_\OneDrive - University of Warwick\Documents\EC910\website\warwick-ec910\problem-sets\ps-6\problem-set-6-log.txt
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}19 Nov 2024, 16:48:57
+ {txt}closed on:  {res}19 Nov 2024, 17:41:19
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

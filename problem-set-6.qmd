@@ -98,13 +98,15 @@ This will correction will also treat observations with `ambexp=1` as equivalent 
 
 **2.2.** Replicate these results by applying the following steps: (1) estimate the selection equation using a probit model; (2) create the mills ratio; (3) `compare` your mills ratio with the one stored above; (4) estimate the main equation, including the mills ratio.
 
-**2.3** Estimate the marginal effects of the selection equation. You can do this using the `estpost margins` command. This should correspond to a probit model estimation above. 
+**2.3** Estimate the marginal effects of the selection equation. You can do this using the `margins` command, with `predict()` option `psel`. This should correspond to a probit model estimation above. 
 
 **2.4.** Estimate the Maximum Likelihood version of the Heckmann correction (with an excluded variable) and store the results. 
 
-**2.5.** Now re-estimate the two-step and MLE approach without an excluded variable, storing the results each time. This means that the same set of regressors enter both equations. i.e. include income in the outcome equation.  
+**2.5** Compute the marginal effects of each regressor for: (1) probability of selection; (2) the expected value of the outcome; and (3) the expected value of the outcome, conditional on selection. You will need to use the post-estimation command `margins, dydx(*) predict()` with predict options: `psel`, `yexpected`, and `ycond`. 
 
-**2.6.** Create a table that reports the four models alongside one another and compare the results. 
+**2.6.** Now re-estimate the two-step and MLE approach without an excluded variable, storing the results each time. This means that the same set of regressors enter both equations. i.e. include income in the outcome equation.  
+
+**2.7.** Create a table that reports the four models alongside one another and compare the results. 
 
 
 ## Postamble

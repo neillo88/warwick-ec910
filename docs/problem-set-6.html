@@ -331,13 +331,13 @@ window.Quarto = {
 </ul>
 <section id="preamble" class="level2">
 <h2 class="anchored" data-anchor-id="preamble">Preamble</h2>
-<div id="54763040" class="cell" data-execution_count="1">
+<div id="f9b63c76" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <style>div.jp-Notebook .datagrid-container {min-height: 448px; }</style>
 </div>
 </div>
 <p>Create a do-file for this problem set and include a preamble that sets the directory and opens the data. For example,</p>
-<div id="2f014e23" class="cell" data-execution_count="2">
+<div id="a07ada82" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">//or, to remove all stored values (including macros, matrices, scalars, etc.) </span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>*<span class="kw">clear</span> <span class="ot">all</span></span>
@@ -366,21 +366,22 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="part-2">Part 2</h3>
 <p>Estimate the following models for <code>lambexp</code> treating the selection into non-zero <code>lambexp</code> value as endogenous using, both Heckman 2-step method and also MLE.</p>
 <p>In the main data <code>lambexp</code> is missing for values of <code>ambexp</code>=0. Before proceeding,</p>
-<div id="e2296a36" class="cell" data-execution_count="3">
+<div id="56aaa72a" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> lambexp = 0 <span class="kw">if</span> ambexp==0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This will correction will also treat observations with <code>ambexp=1</code> as equivalent to =0; however, this is only a single observation.</p>
 <p><strong>2.1.</strong> Estimate the Heckman 2-step estimator and store the results. In addition, store the Mills ratio as a separate variable. Use <code>income</code> as the excluded variable. This means that <code>income</code> appears in the selection equation, but NOT the main equation.</p>
 <p><strong>2.2.</strong> Replicate these results by applying the following steps: (1) estimate the selection equation using a probit model; (2) create the mills ratio; (3) <code>compare</code> your mills ratio with the one stored above; (4) estimate the main equation, including the mills ratio.</p>
-<p><strong>2.3</strong> Estimate the marginal effects of the selection equation. You can do this using the <code>estpost margins</code> command. This should correspond to a probit model estimation above.</p>
+<p><strong>2.3</strong> Estimate the marginal effects of the selection equation. You can do this using the <code>margins</code> command, with <code>predict()</code> option <code>psel</code>. This should correspond to a probit model estimation above.</p>
 <p><strong>2.4.</strong> Estimate the Maximum Likelihood version of the Heckmann correction (with an excluded variable) and store the results.</p>
-<p><strong>2.5.</strong> Now re-estimate the two-step and MLE approach without an excluded variable, storing the results each time. This means that the same set of regressors enter both equations. i.e.&nbsp;include income in the outcome equation.</p>
-<p><strong>2.6.</strong> Create a table that reports the four models alongside one another and compare the results.</p>
+<p><strong>2.5</strong> Compute the marginal effects of each regressor for: (1) probability of selection; (2) the expected value of the outcome; and (3) the expected value of the outcome, conditional on selection. You will need to use the post-estimation command <code>margins, dydx(*) predict()</code> with predict options: <code>psel</code>, <code>yexpected</code>, and <code>ycond</code>.</p>
+<p><strong>2.6.</strong> Now re-estimate the two-step and MLE approach without an excluded variable, storing the results each time. This means that the same set of regressors enter both equations. i.e.&nbsp;include income in the outcome equation.</p>
+<p><strong>2.7.</strong> Create a table that reports the four models alongside one another and compare the results.</p>
 </section>
 </section>
 <section id="postamble" class="level2">
 <h2 class="anchored" data-anchor-id="postamble">Postamble</h2>
-<div id="9c3c6cbe" class="cell" data-execution_count="4">
+<div id="eaca0a87" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">close</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
