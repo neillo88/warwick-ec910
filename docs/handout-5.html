@@ -297,7 +297,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#ols-vs-gls" id="toc-ols-vs-gls" class="nav-link" data-scroll-target="#ols-vs-gls"><span class="header-section-number">9.1</span> OLS vs GLS</a></li>
   </ul></li>
-  <li><a href="#wu-hausman-test" id="toc-wu-hausman-test" class="nav-link" data-scroll-target="#wu-hausman-test"><span class="header-section-number">10</span> Wu-Hausman Test</a></li>
+  <li><a href="#wu-hausman-test" id="toc-wu-hausman-test" class="nav-link" data-scroll-target="#wu-hausman-test"><span class="header-section-number">10</span> Wu-Hausman Test</a>
+  <ul class="collapse">
+  <li><a href="#mundlack-correction" id="toc-mundlack-correction" class="nav-link" data-scroll-target="#mundlack-correction"><span class="header-section-number">10.1</span> Mundlack correction</a></li>
+  </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">11</span> References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="handout-5.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -794,7 +797,39 @@ Var(\hat{\beta}_2-\hat{\beta}_1|X) =&amp; Var(\hat{\beta}_2|X) + Var(\hat{\beta}
 <p><span class="math display">\[
 0 = Cov(\hat{\beta}_1,\hat{\beta}_1-\hat{\beta}_2) = Var(\hat{\beta}_1)-Cov(\hat{\beta}_1,\hat{\beta}_2)
 \]</span> This result only holds in cases where the variances of the respectively estimators can be ranked: i.e.&nbsp;one estimator is more efficient than the other. As a result, the <span class="math inline">\(Var(\hat{\beta}_2-\hat{\beta}_1|X)\)</span> matrix is positive definite.</p>
-<p>This test can be applied in this setting to test the null: <span class="math inline">\(H_0: E[X_{it}\alpha_i] = 0\)</span> (i.e.&nbsp;uncorrelatedness). This condition must hold for the (F)GLS estimator to be consistent. If <span class="math inline">\(H_0\)</span> is false, then we know that the WG estimator is consistent, but that it is less efficient. To test this hypothesis we use the coefficients from the FGLS and WG estimators. Of course, this means that you can only test for restrictions on time-varying regressors (a restriction of WG estimator).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>This test can be applied in this setting to test the null: <span class="math inline">\(H_0: E[X_{it}\alpha_i] = 0\)</span> (i.e.&nbsp;uncorrelatedness). This condition must hold for the (F)GLS estimator to be consistent. If <span class="math inline">\(H_0\)</span> is false, then we know that the WG estimator is consistent, but that it is less efficient. To test this hypothesis we use the coefficients from the FGLS and WG estimators. Of course, this means that you can only test for restrictions on time-varying regressors (a restriction of WG estimator).</p>
+<section id="mundlack-correction" class="level3" data-number="10.1">
+<h3 data-number="10.1" class="anchored" data-anchor-id="mundlack-correction"><span class="header-section-number">10.1</span> Mundlack correction</h3>
+<p>The Mundlack correction provides a way of including time-invariant variables in a WG estimator, and therefore also in a Hausman test. Consider, the within-group transformation gives us the model,</p>
+<p><span class="math display">\[
+\tilde{Y}_{i} = \tilde{X}_{i}\beta+\tilde{\varepsilon}_{i}
+\]</span> which can be written as,</p>
+<p><span class="math display">\[
+M_\ell Y_{i} = M_\ell X_{i}\beta+ M_\ell \varepsilon_{i}
+\]</span> given that <span class="math inline">\(M_\ell\)</span> is the orthogonal projection matrix that demeans each variable. It turns out that the OLS estimator for <span class="math inline">\(\beta\)</span> in the above expression is equivalent to the OLS estimator from the equation,</p>
+<p><span class="math display">\[
+Y_{i} = X_{i}\beta+ \bar{X}_i\ell \gamma + \varepsilon_{i}
+\]</span> Where <span class="math inline">\(\bar{X}_i\ell=P_\ell X_i\)</span>, the (individual-specific) mean of each variable. Demeaning each variable is equivalent to controlling for the mean.</p>
+<p>We can demonstrate this result using partitioned regression. In this new equation, there are two sets of regressors: <span class="math inline">\(X_i\)</span> and <span class="math inline">\(\bar{X}_i\ell\)</span> (the unit-specific mean of each <span class="math inline">\(X\)</span>). We know that the OLS estimator for <span class="math inline">\(\beta\)</span> can be arrived at by first regressing <span class="math inline">\(X_i\)</span> on <span class="math inline">\(\bar{X}_i\ell\)</span>, <span class="math display">\[
+X_{i} = \bar{X}_i\ell\eta + \nu_{i}
+\]</span> and then regressing the residual from this equation on <span class="math inline">\(Y\)</span>. The residual from this expression is given by the orthogonal projection of <span class="math inline">\(\bar{X}_i\ell=P_\ell X_i\)</span>. In this case, tt is sufficient to consider the orthogonal projection for unit <span class="math inline">\(i\)</span>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+  &amp;(I_T-P_\ell X_i(X_i'P_\ell P_\ell X_i)^{-1}X_i'P_\ell)X_i \\
+  =&amp; X_i - P_\ell X_i(X_i' P_\ell X_i)^{-1}X_i'P_\ell X_i \\
+  =&amp;(I_T-P_\ell)X_i \\
+  =&amp; M_\ell X_i
+\end{aligned}  
+\]</span> Thus, partitioned regression says that the Mundlack correction will get the same OLS estimator as the regression of,</p>
+<p><span class="math display">\[
+  Y_i = M_\ell X_i \beta + \epsilon_{i}
+\]</span> which is equivalent, in terms of its OLS projection to,</p>
+<p><span class="math display">\[
+M_\ell Y_{i} = M_\ell X_{i}\beta+ M_\ell \varepsilon_{i}
+\]</span> Why does this matter? It means that we can estimate a model of the form, <span class="math display">\[
+Y_{it} = X_{it}'\beta + W_i'\psi + \bar{X}_i\gamma + \epsilon_{it}
+\]</span> that includes time invariant regressors <span class="math inline">\(W_i\)</span>, and gives us the same OLS estimates for <span class="math inline">\(\beta\)</span> as <span class="math inline">\(\hat{\beta}^{WG}\)</span>. Since this model, with time invariant regressors, can also be estimated using FGLS (under the assumption <span class="math inline">\(E[\alpha_i|X_i]=0\)</span>), we can conduct a Hausman test that compares the estimates of both <span class="math inline">\(\beta\)</span> <em>and</em> <span class="math inline">\(\psi\)</span>.</p>
+</section>
 </section>
 <section id="references" class="level2" data-number="11">
 
@@ -802,7 +837,6 @@ Var(\hat{\beta}_2-\hat{\beta}_1|X) =&amp; Var(\hat{\beta}_2|X) + Var(\hat{\beta}
 
 
 </section>
-
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-cameron2005" class="csl-entry" role="listitem">
@@ -814,12 +848,7 @@ Verbeek, Marno. 2017. <em>A Guide to Modern Econometrics</em>. John Wiley &amp; 
 <div id="ref-wooldridge2010" class="csl-entry" role="listitem">
 Wooldridge, Jeffrey M. 2010. <em>Econometric Analysis of Cross Section and Panel Data</em>. MIT press.
 </div>
-</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>This restriction can be dropped using Mundlak’s correction.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

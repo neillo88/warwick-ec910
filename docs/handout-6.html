@@ -279,14 +279,16 @@ window.Quarto = {
   <li><a href="#latent-variable-model" id="toc-latent-variable-model" class="nav-link" data-scroll-target="#latent-variable-model"><span class="header-section-number">4</span> Latent Variable Model</a>
   <ul class="collapse">
   <li><a href="#utility-maximization" id="toc-utility-maximization" class="nav-link" data-scroll-target="#utility-maximization"><span class="header-section-number">4.1</span> Utility maximization</a></li>
-  <li><a href="#logit" id="toc-logit" class="nav-link" data-scroll-target="#logit"><span class="header-section-number">4.2</span> Logit</a></li>
-  <li><a href="#lpm" id="toc-lpm" class="nav-link" data-scroll-target="#lpm"><span class="header-section-number">4.3</span> LPM</a></li>
+  <li><a href="#probit" id="toc-probit" class="nav-link" data-scroll-target="#probit"><span class="header-section-number">4.2</span> Probit</a></li>
+  <li><a href="#logit" id="toc-logit" class="nav-link" data-scroll-target="#logit"><span class="header-section-number">4.3</span> Logit</a></li>
+  <li><a href="#lpm" id="toc-lpm" class="nav-link" data-scroll-target="#lpm"><span class="header-section-number">4.4</span> LPM</a></li>
   </ul></li>
   <li><a href="#index-model-approach" id="toc-index-model-approach" class="nav-link" data-scroll-target="#index-model-approach"><span class="header-section-number">5</span> Index Model Approach</a></li>
   <li><a href="#estimation-1" id="toc-estimation-1" class="nav-link" data-scroll-target="#estimation-1"><span class="header-section-number">6</span> Estimation</a>
   <ul class="collapse">
-  <li><a href="#probit" id="toc-probit" class="nav-link" data-scroll-target="#probit"><span class="header-section-number">6.1</span> Probit</a></li>
-  <li><a href="#asymptotic-distribution" id="toc-asymptotic-distribution" class="nav-link" data-scroll-target="#asymptotic-distribution"><span class="header-section-number">6.2</span> Asymptotic distribution</a></li>
+  <li><a href="#probit-1" id="toc-probit-1" class="nav-link" data-scroll-target="#probit-1"><span class="header-section-number">6.1</span> Probit</a></li>
+  <li><a href="#logit-1" id="toc-logit-1" class="nav-link" data-scroll-target="#logit-1"><span class="header-section-number">6.2</span> Logit</a></li>
+  <li><a href="#asymptotic-distribution" id="toc-asymptotic-distribution" class="nav-link" data-scroll-target="#asymptotic-distribution"><span class="header-section-number">6.3</span> Asymptotic distribution</a></li>
   </ul></li>
   <li><a href="#interpretation-fit" id="toc-interpretation-fit" class="nav-link" data-scroll-target="#interpretation-fit"><span class="header-section-number">7</span> Interpretation &amp; Fit</a>
   <ul class="collapse">
@@ -329,6 +331,7 @@ window.Quarto = {
 <li>probit model;</li>
 <li>and logit model.</li>
 </ul>
+<p>Studying the simple case binary choice models, will provide you with tools needed to explore richer models like multinomial logit/probit, ordered logit/probit, and conditional logit.</p>
 <p>Further reading can be found in:</p>
 <ul>
 <li>Section 14-14.4 of <span class="citation" data-cites="cameron2005">Cameron and Trivedi (<a href="#ref-cameron2005" role="doc-biblioref">2005</a>)</span></li>
@@ -445,7 +448,10 @@ Pr(Y_i = 1|W_i,Z_i)=Pr(\varepsilon_i &lt; \Delta W_i'\eta + Z_i'\gamma)
 <p>Given a choice of the distribution of <span class="math inline">\(\varepsilon_i\)</span>,</p>
 <p><span class="math display">\[
 Pr(Y_i = 1|X_i) = F_\varepsilon(X_i'\beta)
-\]</span> ### Probit</p>
+\]</span></p>
+</section>
+<section id="probit" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="probit"><span class="header-section-number">4.2</span> Probit</h3>
 <p>The probit model assumes that the error term from the expression, <span class="math display">\[
 Y_i = \mathbf{1}\{X_i'\beta + \varepsilon_i&gt;0\}
 \]</span> is independently and identicially distributed (conditional on <span class="math inline">\(X\)</span>),</p>
@@ -469,8 +475,8 @@ Pr(Y_i=1|X_i) =&amp; Pr(X_i'\beta + \varepsilon_i&gt;0|X_i)\\
 \end{aligned}
 \]</span> where line 3 follows from the symmetry of <span class="math inline">\(N(0,1)\)</span>.</p>
 </section>
-<section id="logit" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="logit"><span class="header-section-number">4.2</span> Logit</h3>
+<section id="logit" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="logit"><span class="header-section-number">4.3</span> Logit</h3>
 <p>In this case, we assume that the conditional distribution of the error term is logistic. The CDF of the (standard) logistic distribution is given by,</p>
 <p><span class="math display">\[
 \Lambda(z) = \frac{exp(z)}{1+exp(z)} = \frac{1}{1+exp(-z)}
@@ -478,8 +484,8 @@ Pr(Y_i=1|X_i) =&amp; Pr(X_i'\beta + \varepsilon_i&gt;0|X_i)\\
 \lambda(z) = \Lambda(z)(1-\Lambda(z))
 \]</span> Like the standard normal distribution, the standard logistic distribution is symmetric. It’s variance is <span class="math inline">\(\pi^2/3\)</span> and has slightly thicker tails compared to the standard normal.</p>
 </section>
-<section id="lpm" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="lpm"><span class="header-section-number">4.3</span> LPM</h3>
+<section id="lpm" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="lpm"><span class="header-section-number">4.4</span> LPM</h3>
 <p>If we assume that the conditional distribution of the error is uniform with mean 0 and variance=1,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> then</p>
 <p><span class="math display">\[
 Pr(Y_i = 1|X_i) = X_i'\beta
@@ -528,21 +534,25 @@ L_n(\beta) = \prod_{i= 1}^nF(X_i'\beta)^{Y_i}\big(1-F(X_i'\beta)\big)^{1-Y_i}
 \end{cases}
 \]</span> The scaling by <span class="math inline">\(1/n\)</span> is no impact on the solution to the FOCs, but is needed to ensure consistency of the variance-covariance matrix. This was the case for the linear model as well.</p>
 <p>Assuming a concave likelihood function, there is a unique maximum and we can solve for <span class="math inline">\(\hat{\beta}\)</span> by setting the score function <span class="math inline">\(= 0\)</span>.</p>
-<section id="probit" class="level3" data-number="6.1">
-<h3 data-number="6.1" class="anchored" data-anchor-id="probit"><span class="header-section-number">6.1</span> Probit</h3>
+<section id="probit-1" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="probit-1"><span class="header-section-number">6.1</span> Probit</h3>
 <p>In the case of the probit model, <span class="math inline">\(F(z)=\Phi(z)\)</span>. Solving the FOCs, we get</p>
 <p><span class="math display">\[
 \begin{aligned}
 0=&amp; \sum_{i=1}^n \bigg[Y_i \frac{\phi(X_i'\beta)}{\Phi(X_i'\beta)}-(1-Y_i)\frac{\phi(X_i'\beta)}{1-\Phi(X_i'\beta)}\bigg]X_i \\
 =&amp;\sum_{i=1}^n \bigg[\frac{Y_i -\Phi(X_i'\beta)}{\Phi(X_i'\beta)\big(1-\Phi(X_i'\beta)\big)}\bigg]X_i\cdot\phi(X_i'\beta)
 \end{aligned}
-\]</span> ### Logit In the case of the logit model, <span class="math inline">\(F(z)=\Lambda(z)\)</span> and <span class="math inline">\(f(z)=\Lambda(z)(1-\Lambda(z))\)</span>. This yields a simpler score function:</p>
+\]</span></p>
+</section>
+<section id="logit-1" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="logit-1"><span class="header-section-number">6.2</span> Logit</h3>
+<p>In the case of the logit model, <span class="math inline">\(F(z)=\Lambda(z)\)</span> and <span class="math inline">\(f(z)=\Lambda(z)(1-\Lambda(z))\)</span>. This yields a simpler score function:</p>
 <p><span class="math display">\[
 0= \sum_{i=1}^n \bigg[Y_i -\Lambda(X_i'\beta)\bigg]X_i
 \]</span> However, neither the probit nor logit has an analytical solution and both must be solved numerically.</p>
 </section>
-<section id="asymptotic-distribution" class="level3" data-number="6.2">
-<h3 data-number="6.2" class="anchored" data-anchor-id="asymptotic-distribution"><span class="header-section-number">6.2</span> Asymptotic distribution</h3>
+<section id="asymptotic-distribution" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="asymptotic-distribution"><span class="header-section-number">6.3</span> Asymptotic distribution</h3>
 <p>For both probit and logit, the estimators are asymptotically normal,</p>
 <p><span class="math display">\[
 \sqrt{n}(\hat{\beta}_n^{ML}-\beta_0)\rightarrow_d N(0,V)
@@ -638,7 +648,7 @@ H_0: h(\beta_0) = 0
 \]</span> However, the second option is more common. This is the simpler Likelihood Ratio test derived using a restricted and unrestricted estimator. The restricted estimator is given by,</p>
 <p><span class="math display">\[
 \hat{\beta}_R = \underset{\beta\in B_R}{\arg\max} \;n^{-1}\log L_n(\beta)
-\]</span> where <span class="math inline">\(B_R=\{\beta\in\beta:\;h(\beta)=0\}\)</span>. The LR test statistic is then easily computed as,</p>
+\]</span> where <span class="math inline">\(B_R=\{\beta\in B:\;h(\beta)=0\}\)</span>. The LR test statistic is then easily computed as,</p>
 <p><span class="math display">\[
 \text{LR-stat} = 2\times\big(\log\big(L_n(\hat{\beta}_U)\big)-\log\big(L_n(\hat{\beta}_R)\big)\big)\rightarrow_d \chi^2_q
 \]</span> These two tests are asymptotically equivalent, but the LR-test is far easier to compute.</p>

@@ -24,6 +24,7 @@ In this handout we will review the binary case of discrete choice models (a type
 -   probit model;
 -   and logit model.
 
+Studying the simple case binary choice models, will provide you with tools needed to explore richer models like multinomial logit/probit, ordered logit/probit, and conditional logit.
 
 Further reading can be found in:
 
@@ -192,6 +193,7 @@ Given a choice of the distribution of $\varepsilon_i$,
 $$
 Pr(Y_i = 1|X_i) = F_\varepsilon(X_i'\beta)
 $$
+
 ### Probit
 
 The probit model assumes that the error term from the expression, 
@@ -326,7 +328,9 @@ $$
 =&\sum_{i=1}^n \bigg[\frac{Y_i -\Phi(X_i'\beta)}{\Phi(X_i'\beta)\big(1-\Phi(X_i'\beta)\big)}\bigg]X_i\cdot\phi(X_i'\beta)
 \end{aligned}
 $$
+
 ### Logit
+
 In the case of the logit model, $F(z)=\Lambda(z)$ and $f(z)=\Lambda(z)(1-\Lambda(z))$. This yields a simpler score function:
 
 $$
@@ -477,7 +481,7 @@ However, the second option is more common. This is the simpler Likelihood Ratio 
 $$
 \hat{\beta}_R = \underset{\beta\in B_R}{\arg\max} \;n^{-1}\log L_n(\beta)
 $$
-where $B_R=\{\beta\in\beta:\;h(\beta)=0\}$. The LR test statistic is then easily computed as, 
+where $B_R=\{\beta\in B:\;h(\beta)=0\}$. The LR test statistic is then easily computed as, 
 
 $$
 \text{LR-stat} = 2\times\big(\log\big(L_n(\hat{\beta}_U)\big)-\log\big(L_n(\hat{\beta}_R)\big)\big)\rightarrow_d \chi^2_q

@@ -670,8 +670,55 @@ $$
 $$
 This result only holds in cases where the variances of the respectively estimators can be ranked: i.e. one estimator is more efficient than the other. As a result, the $Var(\hat{\beta}_2-\hat{\beta}_1|X)$ matrix is positive definite.
 
-This test can be applied in this setting to test the null: $H_0: E[X_{it}\alpha_i] = 0$ (i.e. uncorrelatedness). This condition must hold for the (F)GLS estimator to be consistent. If $H_0$ is false, then we know that the WG estimator is consistent, but that it is less efficient. To test this hypothesis we use the coefficients from the FGLS and WG estimators. Of course, this means that you can only test for restrictions on time-varying regressors (a restriction of WG estimator).[^1]
+This test can be applied in this setting to test the null: $H_0: E[X_{it}\alpha_i] = 0$ (i.e. uncorrelatedness). This condition must hold for the (F)GLS estimator to be consistent. If $H_0$ is false, then we know that the WG estimator is consistent, but that it is less efficient. To test this hypothesis we use the coefficients from the FGLS and WG estimators. Of course, this means that you can only test for restrictions on time-varying regressors (a restriction of WG estimator).
 
-[^1]: This restriction can be dropped using Mundlak's correction. 
+### Mundlack correction
+
+The Mundlack correction provides a way of including time-invariant variables in a WG estimator, and therefore also in a Hausman test. Consider, the within-group transformation gives us the model, 
+
+$$
+\tilde{Y}_{i} = \tilde{X}_{i}\beta+\tilde{\varepsilon}_{i}
+$$
+which can be written as, 
+
+$$
+M_\ell Y_{i} = M_\ell X_{i}\beta+ M_\ell \varepsilon_{i}
+$$
+given that $M_\ell$ is the orthogonal projection matrix that demeans each variable. It turns out that the OLS estimator for $\beta$ in the above expression is equivalent to the OLS estimator from the equation,
+
+$$
+Y_{i} = X_{i}\beta+ \bar{X}_i\ell \gamma + \varepsilon_{i}
+$$
+Where $\bar{X}_i\ell=P_\ell X_i$, the (individual-specific) mean of each variable. Demeaning each variable is equivalent to controlling for the mean. 
+
+We can demonstrate this result using partitioned regression. In this new equation, there are two sets of regressors: $X_i$ and $\bar{X}_i\ell$ (the unit-specific mean of each $X$). We know that the OLS estimator for $\beta$ can be arrived at by first regressing $X_i$ on $\bar{X}_i\ell$,
+$$
+X_{i} = \bar{X}_i\ell\eta + \nu_{i}
+$$
+and then regressing the residual from this equation on $Y$. The residual from this expression is given by the orthogonal projection of $\bar{X}_i\ell=P_\ell X_i$. In this case, tt is sufficient to consider the orthogonal projection for unit $i$,  
+
+$$
+\begin{aligned}
+  &(I_T-P_\ell X_i(X_i'P_\ell P_\ell X_i)^{-1}X_i'P_\ell)X_i \\
+  =& X_i - P_\ell X_i(X_i' P_\ell X_i)^{-1}X_i'P_\ell X_i \\
+  =&(I_T-P_\ell)X_i \\
+  =& M_\ell X_i
+\end{aligned}  
+$$
+Thus, partitioned regression says that the Mundlack correction will get the same OLS estimator as the regression of,
+
+$$
+  Y_i = M_\ell X_i \beta + \epsilon_{i}
+$$
+which is equivalent, in terms of its OLS projection to,
+
+$$
+M_\ell Y_{i} = M_\ell X_{i}\beta+ M_\ell \varepsilon_{i}
+$$
+Why does this matter? It means that we can estimate a model of the form, 
+$$
+Y_{it} = X_{it}'\beta + W_i'\psi + \bar{X}_i\gamma + \epsilon_{it}
+$$
+that includes time invariant regressors $W_i$, and gives us the same OLS estimates for $\beta$ as $\hat{\beta}^{WG}$. Since this model, with time invariant regressors, can also be estimated using FGLS (under the assumption $E[\alpha_i|X_i]=0$), we can conduct a Hausman test that compares the estimates of both $\beta$ *and* $\psi$. 
 
 ## References
