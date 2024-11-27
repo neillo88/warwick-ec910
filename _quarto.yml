@@ -21,7 +21,9 @@ website:
           - href: handout-5.qmd
             text: Handout 5
           - href: handout-6.qmd
-            text: Handout 6            
+            text: Handout 6 
+          - href: handout-7.qmd
+            text: Handout 7   
       - text: Problem Sets
         menu:
           - href: problem-sets/ps-1/problem-set-1.html
@@ -45,7 +47,9 @@ website:
           - href: problem-set-5-solutions.qmd
             text: Problem Set 5 (Solutions)
           - href: problem-set-6.qmd
-            text: Problem Set 6           
+            text: Problem Set 6
+          - href: problem-set-6-solutions.qmd
+            text: Problem Set 6 (Solutions)
       - text: Additional Material
         menu:
           - href: material-cef.qmd
