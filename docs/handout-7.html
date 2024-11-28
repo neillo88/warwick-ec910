@@ -331,7 +331,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#tobit-model-1" id="toc-tobit-model-1" class="nav-link" data-scroll-target="#tobit-model-1"><span class="header-section-number">4.1</span> Tobit model</a></li>
   <li><a href="#threshold-model" id="toc-threshold-model" class="nav-link" data-scroll-target="#threshold-model"><span class="header-section-number">4.2</span> Threshold model</a></li>
-  <li><a href="#identfication" id="toc-identfication" class="nav-link" data-scroll-target="#identfication"><span class="header-section-number">4.3</span> Identfication</a></li>
+  <li><a href="#observational-equivalence" id="toc-observational-equivalence" class="nav-link" data-scroll-target="#observational-equivalence"><span class="header-section-number">4.3</span> Observational equivalence</a></li>
   </ul></li>
   <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">5</span> Interpretation</a>
   <ul class="collapse">
@@ -399,8 +399,8 @@ window.Quarto = {
 <p>The following is an example of a left-censored distribution. For individuals with values of the outcome <span class="math inline">\(Y&lt;c\)</span>, we only observe the threshold <span class="math inline">\(c\)</span>. The distribution is given by,</p>
 <p><span class="math display">\[
 f(y) = \begin{cases} 0 \qquad \text{for} \quad y &lt;c \\
-F(c)  \qquad \text{for} \quad y=c \\
-f(y^*) \qquad \text{for} \quad y&gt;c
+F^*(c)  \qquad \text{for} \quad y=c \\
+f^*(y) \qquad \text{for} \quad y&gt;c
 \end{cases}
 \]</span></p>
 <div class="cell">
@@ -458,11 +458,8 @@ f(y^*) \qquad \text{for} \quad y&gt;c
 <p>Another famous example is the labour market: we only observe the wages of those who are employed. Consider a consider where workers are observed working when they receive a wage offer that is as least as good as their reservation wage. According to such a model, those who are not employed must have received wage offers less than their reservation wage. It suggests, that the distribution of accepted wage offers will be truncated.</p>
 <p>The following, is an example of a distribution that is left-truncated. We only observe values of <span class="math inline">\(Y\)</span> for <span class="math inline">\(Y\geq c\)</span>. The density of a left-truncated random variable is,</p>
 <p><span class="math display">\[
-f(y) = f(y^*|y^*&gt;c) = \begin{cases}
-0 \qquad \text{for} \quad y^*\leq c \\
-\frac{f(y^*)}{1-F(c)} \qquad \text{for}\quad y^*&gt;c
-\end{cases}
-\]</span> where <span class="math inline">\(1-F(c) = Pr(y^*&gt;c)\)</span>. In this way, truncation reduces the range of values the outcome variable can take. In this case, the mean of the truncated variable is greater than the unconditional mean.</p>
+f(y) = f^*(y|y&gt;c) = \frac{f^*(y)}{1-F^*(c)}  
+\]</span> where <span class="math inline">\(1-F^*(c) = Pr(y|y&gt;c)\)</span>. In this way, truncation reduces the range of values the outcome variable can take. In this case, the mean of the truncated variable is greater than the unconditional mean.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -725,10 +722,10 @@ E[Y_{i}|Y_i^*&gt;c,X_i] =&amp;X_i'\beta + E[\varepsilon_{i}|\varepsilon_i&gt;c-X
 \]</span> This equation can be estimated by OLS using a two-step estimator (see of Heckman correction below). However, the more efficient estimator is Maximum Likelihood. The joint likelihood is given by,</p>
 <p><span class="math display">\[
 \begin{aligned}
-L_n(\theta) =&amp;\prod_{i:D_i=1}f(Y_i^*|Y_i^*&gt;c,X_i;\theta)\prod_{i:D_i=0}Pr(Y_i^*\leq c|X_i) \\
+L_n(\theta) =&amp;\prod_{i:D_i=1}f^*(Y_i|X_i;\theta)\prod_{i:D_i=0}F^*(c_i|X_i;\theta) \\
   =&amp;\prod_{i=1}^n\bigg(\frac{1}{\sigma_\varepsilon}\phi\bigg(\frac{Y_i-X_i'\beta}{\sigma_\varepsilon}\bigg)\bigg)^{D_i}\Phi\bigg(\frac{c-X_i'\beta}{\sigma_\varepsilon}\bigg)^{1-D_i}
   \end{aligned}
-\]</span> where <span class="math inline">\(\theta = [\beta,\sigma_\varepsilon]\)</span>.</p>
+\]</span> where <span class="math inline">\(\theta = [\beta,\sigma_\varepsilon]\)</span> and <span class="math inline">\(F^*(c_i|X_i;\theta) = Pr(Y_i\leq c|X_i)\)</span>.</p>
 <p>Notice, the first part of the likelihood function looks like the likelihood of the CLRM (from Handout 3) while the second part is similar to a probit model likelihood function for <span class="math inline">\(D_i=0\)</span> (from Handout 6). One issue with the likelihood function is that it is not globally concave (see Tobit II model).</p>
 </section>
 <section id="threshold-model" class="level3" data-number="4.2">
@@ -756,22 +753,22 @@ Y_i = X_i'\beta + \sigma_{\varepsilon\upsilon}\hat{\lambda}_i + \varepsilon_i \q
 <ol start="2" type="1">
 <li>Estimate the linear model with the added IMR using the observed (selected) sample.</li>
 </ol>
-<p>Recall, if <span class="math inline">\(\sigma_{\varepsilon\upsilon}=0\)</span> <strong>in the non-stochastic model</strong>, selection into observation is unrelated to the latent outcome. Hence, <span class="math inline">\(H_0:\sigma_{\varepsilon\upsilon}=0\)</span> is a valid test for the selection, <em>provide the model is non-stochastic</em>.</p>
+<p>Recall, if <span class="math inline">\(\sigma_{\varepsilon\upsilon}=0\)</span> <strong>in the non-stochastic model</strong>, selection into observation is unrelated to the latent outcome. Hence, <span class="math inline">\(H_0:\sigma_{\varepsilon\upsilon}=0\)</span> is a valid test for the selection, <em>provided the model is non-stochastic</em>.</p>
 <p>Since the second step includes a generated-regressor, the default vairance estimator will be incorrect. This is standard problem with two-step estimators, like two-stage-least-squares for instrumental variables.</p>
 <p>Identifcation relies on the non-linearity of the IMR. The IMR can be approximately linear for some values which means that the identification depends on there being a significant share of observations in the tail where the IMR is non-linear. In practice, many researchers will include squared terms of the IMR. Identification does NOT rely on an excluded variable: a variable in the selection equation that does not appear in the main equation. However, it will help to have an excluded variable.</p>
 <p>Heckman’s control function approach removed the need to use a Maximum Likelihood. However, the ML estimator is more efficient. The joint likelihood is given by,</p>
 <p><span class="math display">\[
 \begin{aligned}
-L_n(\theta) =&amp;\prod_{i:D_i=1}f(Y_i^*|D_i=1,Z_i;\theta)\prod_{i:D_i=0}Pr(D_i=0|Z_i) \\
-=&amp; \prod_{i:D_i=1} \frac{f(Y_i^*|Z_i;\theta)}{Pr(D_i=1|Z_i)}Pr(D_i=1|Y_i^*,Z_i)\prod_{i:D_i=0}Pr(D_i=0|Z_i)\\
+L_n(\theta) =&amp;\prod_{i:D_i=1}f^*(Y_i|D_i=1,Z_i;\theta)\cdot Pr(D_i=1|Z_i)\prod_{i:D_i=0}Pr(D_i=0|Z_i) \\
+=&amp; \prod_{i:D_i=1} f^*(Y_i|Z_i;\theta)\cdot Pr(D_i=1|Y_i,Z_i)\prod_{i:D_i=0}Pr(D_i=0|Z_i)\\
 =&amp;\prod_{i=1}^n\bigg[\frac{1}{\sigma_\varepsilon}\phi\bigg(\frac{Y_i-X_i'\beta}{\sigma_\varepsilon}\bigg)\cdot\Phi\bigg(\frac{Z_i'\gamma+\sigma_{\varepsilon\upsilon}\sigma_{\varepsilon}^{-2} (Y_i-X_i'\beta)}{\sqrt{1-\sigma_{\varepsilon\upsilon}^2\sigma_{\varepsilon}^{-2}}}\bigg)\bigg]^{D_i}(1-\Phi(Z_i'\gamma)\big)^{1-D_i}
 \end{aligned}
 \]</span> where <span class="math inline">\(\theta=[\beta,\gamma,\sigma_\varepsilon,\sigma_{\varepsilon\upsilon}]\)</span>. Line two follows from Bayes’ rule. The second term in the third row derives from:</p>
 <p><span class="math display">\[
 \begin{aligned}
-Pr(D_i=1|Y_i^*,Z_i) =&amp; Pr(\upsilon_i&gt;-Z_i'\gamma|Y_i^*,Z_i) \\
-=&amp; Pr(\sigma_{\varepsilon\upsilon}/\sigma_{\varepsilon}^2\varepsilon_i+ \zeta_i &gt;-Z_i'\gamma|Y_i^*,Z_i) \\
-=&amp; Pr(\zeta_i &gt;-Z_i'\gamma-\sigma_{\varepsilon\upsilon}/\sigma_{\varepsilon}^2\varepsilon_i|Y_i^*,Z_i) \\
+Pr(D_i=1|Y_i,Z_i) =&amp; Pr(\upsilon_i&gt;-Z_i'\gamma|Y_i,Z_i) \\
+=&amp; Pr(\sigma_{\varepsilon\upsilon}/\sigma_{\varepsilon}^2\varepsilon_i+ \zeta_i &gt;-Z_i'\gamma|Y_i,Z_i) \\
+=&amp; Pr(\zeta_i &gt;-Z_i'\gamma-\sigma_{\varepsilon\upsilon}/\sigma_{\varepsilon}^2\varepsilon_i|Y_i,Z_i) \\
 =&amp; \Phi\bigg(\frac{Z_i'\gamma+\sigma_{\varepsilon\upsilon}\sigma_{\varepsilon}^{-2} (Y_i-X_i'\beta)}{\sqrt{1-\sigma_{\varepsilon\upsilon}^2\sigma_{\varepsilon}^{-2}}}\bigg)
 \end{aligned}
 \]</span> This is because of the joint normality of the errors, which allows us to write,</p>
@@ -780,8 +777,8 @@ Pr(D_i=1|Y_i^*,Z_i) =&amp; Pr(\upsilon_i&gt;-Z_i'\gamma|Y_i^*,Z_i) \\
 \]</span> Conditional on <span class="math inline">\(Y_i^*\)</span>, <span class="math inline">\(\varepsilon_i\)</span> is not random, which is why is moved to the right-handside and is substituted with <span class="math inline">\(\varepsilon_i=Y_i-X_i'\beta\)</span>.</p>
 <p>Notice, if <span class="math inline">\(\sigma_{\varepsilon\upsilon}=0\)</span>, then likelihood of selection and observing <span class="math inline">\(Y_i\)</span> are independent of one another.</p>
 </section>
-<section id="identfication" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="identfication"><span class="header-section-number">4.3</span> Identfication</h3>
+<section id="observational-equivalence" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="observational-equivalence"><span class="header-section-number">4.3</span> Observational equivalence</h3>
 <p>In the non-stochastic threshold model, <span class="math inline">\(Cov(\varepsilon_i,\upsilon_i)=\sigma_{\varepsilon\upsilon}=0\)</span> implies there is not selection-bias in the main equation. However, in the stochastic model <span class="math inline">\(\sigma_{\varepsilon\upsilon}&gt;0\)</span> cannot be zero; since <span class="math inline">\(\upsilon_i = \varepsilon_i-\nu_i\)</span></p>
 <p><span class="math display">\[
 Cov(\varepsilon_i,\upsilon_i) = Cov(\varepsilon_i,\varepsilon_i-\nu_i) = Var(\varepsilon_i)-Cov(\varepsilon_i,\nu_i)
@@ -811,18 +808,18 @@ E[Y_i|D_i=1,X_i] = X_i'\beta + \sigma_{\varepsilon\upsilon}\lambda(Z_i'\gamma) =
 \]</span> and the total effect of <span class="math inline">\(X_i\)</span> on the observed outcome:</p>
 <p><span class="math display">\[
 \frac{\partial E[Y_i|X_i]}{\partial X_i}
-\]</span> ### Tobit model</p>
+\]</span> ### Tobit Model</p>
 <p>We can use the Law of Iterated Expectations to expand the conditional mean of <span class="math inline">\(E[Y_i|X_i]\)</span>:</p>
 <p><span class="math display">\[
 \begin{aligned}
 E[Y_i|X_i] =&amp; E[Y_i|X_i,D_i=1]\cdot Pr(D_i=1|X_i)+E[Y_i|X_i,D_i=0]\cdot Pr(D_i=0|X_i) \\
 =&amp;E[Y_i|X_i,D_i=1]\cdot Pr(D_i=1|X_i) + c\cdot Pr(D_i=0|X_i) \\
-=&amp;\bigg[X_i'\beta + \sigma_\varepsilon \lambda\bigg(\frac{c-X_i'\beta}{\sigma_\varepsilon}\bigg)\bigg]\cdot \Phi\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)+c\cdot \bigg[1-\Phi\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\bigg]
+=&amp;\bigg[X_i'\beta + \sigma_\varepsilon \lambda\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\bigg]\cdot \Phi\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)+c\cdot \bigg[1-\Phi\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\bigg]
 \end{aligned}
 \]</span> Recall, in this case <span class="math inline">\(Pr(D_i=1|X_i)=Pr(Y_i&gt;c|X_i)\)</span>. Naturally, <span class="math inline">\(c=0\)</span> simplifies the expression.</p>
 <p>The relevant marginal effects are:</p>
 <ul>
-<li><p><strong>conditional on observation/selection:</strong> <span class="math inline">\(\frac{\partial E[Y_i|D_i=1,X_i]}{\partial X_i} = \bigg[1 - \lambda'\bigg(\frac{c-X_i'\beta}{\sigma_\varepsilon}\bigg)\bigg]\beta\)</span></p></li>
+<li><p><strong>conditional on observation/selection:</strong> <span class="math inline">\(\frac{\partial E[Y_i|D_i=1,X_i]}{\partial X_i} = \bigg[1 + \lambda'\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\bigg]\beta\)</span></p></li>
 <li><p><strong>observation/selection:</strong> <span class="math inline">\(\frac{\partial Pr(Y_i=1|X_i)}{\partial X_i} = \frac{1}{\sigma_\varepsilon}\phi\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\beta\)</span></p></li>
 </ul>
 <section id="threshold-model-1" class="level3" data-number="5.1">

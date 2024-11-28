@@ -55,8 +55,8 @@ The following is an example of a left-censored distribution. For individuals wit
 
 $$
 f(y) = \begin{cases} 0 \qquad \text{for} \quad y <c \\
-F(c)  \qquad \text{for} \quad y=c \\
-f(y^*) \qquad \text{for} \quad y>c
+F^*(c)  \qquad \text{for} \quad y=c \\
+f^*(y) \qquad \text{for} \quad y>c
 \end{cases}
 $$
 
@@ -108,12 +108,9 @@ Another famous example is the labour market: we only observe the wages of those 
 The following, is an example of a distribution that is left-truncated. We only observe values of $Y$ for $Y\geq c$. The density of a left-truncated random variable is, 
 
 $$
-f(y) = f(y^*|y^*>c) = \begin{cases}
-0 \qquad \text{for} \quad y^*\leq c \\
-\frac{f(y^*)}{1-F(c)} \qquad \text{for}\quad y^*>c 
-\end{cases}
+f(y) = f^*(y|y>c) = \frac{f^*(y)}{1-F^*(c)}  
 $$
-where $1-F(c) = Pr(y^*>c)$. In this way, truncation reduces the range of values the outcome variable can take. In this case, the mean of the truncated variable is greater than the unconditional mean. 
+where $1-F^*(c) = Pr(y|y>c)$. In this way, truncation reduces the range of values the outcome variable can take. In this case, the mean of the truncated variable is greater than the unconditional mean. 
 
 ```{r}
 # Threshold
@@ -451,11 +448,11 @@ This equation can be estimated by OLS using a two-step estimator (see of Heckman
 
 $$
 \begin{aligned}
-L_n(\theta) =&\prod_{i:D_i=1}f(Y_i^*|Y_i^*>c,X_i;\theta)\prod_{i:D_i=0}Pr(Y_i^*\leq c|X_i) \\
+L_n(\theta) =&\prod_{i:D_i=1}f^*(Y_i|X_i;\theta)\prod_{i:D_i=0}F^*(c_i|X_i;\theta) \\
   =&\prod_{i=1}^n\bigg(\frac{1}{\sigma_\varepsilon}\phi\bigg(\frac{Y_i-X_i'\beta}{\sigma_\varepsilon}\bigg)\bigg)^{D_i}\Phi\bigg(\frac{c-X_i'\beta}{\sigma_\varepsilon}\bigg)^{1-D_i}
   \end{aligned}
 $$
-where $\theta = [\beta,\sigma_\varepsilon]$.
+where $\theta = [\beta,\sigma_\varepsilon]$ and $F^*(c_i|X_i;\theta) = Pr(Y_i\leq c|X_i)$.
 
 Notice, the first part of the likelihood function looks like the likelihood of the CLRM (from Handout 3) while the second part is similar to a probit model likelihood function for $D_i=0$ (from Handout 6). One issue with the likelihood function is that it is not globally concave (see Tobit II model). 
 
@@ -494,7 +491,7 @@ $$
 
 2.    Estimate the linear model with the added IMR using the observed (selected) sample. 
 
-Recall, if $\sigma_{\varepsilon\upsilon}=0$ **in the non-stochastic model**, selection into observation is unrelated to the latent outcome. Hence, $H_0:\sigma_{\varepsilon\upsilon}=0$ is a valid test for the selection, *provide the model is non-stochastic*.   
+Recall, if $\sigma_{\varepsilon\upsilon}=0$ **in the non-stochastic model**, selection into observation is unrelated to the latent outcome. Hence, $H_0:\sigma_{\varepsilon\upsilon}=0$ is a valid test for the selection, *provided the model is non-stochastic*.   
 
 Since the second step includes a generated-regressor, the default vairance estimator will be incorrect. This is standard problem with two-step estimators, like two-stage-least-squares for instrumental variables. 
 
@@ -504,8 +501,8 @@ Heckman's control function approach removed the need to use a Maximum Likelihood
 
 $$
 \begin{aligned}
-L_n(\theta) =&\prod_{i:D_i=1}f(Y_i^*|D_i=1,Z_i;\theta)\prod_{i:D_i=0}Pr(D_i=0|Z_i) \\
-=& \prod_{i:D_i=1} \frac{f(Y_i^*|Z_i;\theta)}{Pr(D_i=1|Z_i)}Pr(D_i=1|Y_i^*,Z_i)\prod_{i:D_i=0}Pr(D_i=0|Z_i)\\
+L_n(\theta) =&\prod_{i:D_i=1}f^*(Y_i|D_i=1,Z_i;\theta)\cdot Pr(D_i=1|Z_i)\prod_{i:D_i=0}Pr(D_i=0|Z_i) \\
+=& \prod_{i:D_i=1} f^*(Y_i|Z_i;\theta)\cdot Pr(D_i=1|Y_i,Z_i)\prod_{i:D_i=0}Pr(D_i=0|Z_i)\\
 =&\prod_{i=1}^n\bigg[\frac{1}{\sigma_\varepsilon}\phi\bigg(\frac{Y_i-X_i'\beta}{\sigma_\varepsilon}\bigg)\cdot\Phi\bigg(\frac{Z_i'\gamma+\sigma_{\varepsilon\upsilon}\sigma_{\varepsilon}^{-2} (Y_i-X_i'\beta)}{\sqrt{1-\sigma_{\varepsilon\upsilon}^2\sigma_{\varepsilon}^{-2}}}\bigg)\bigg]^{D_i}(1-\Phi(Z_i'\gamma)\big)^{1-D_i} 
 \end{aligned}
 $$
@@ -513,9 +510,9 @@ where $\theta=[\beta,\gamma,\sigma_\varepsilon,\sigma_{\varepsilon\upsilon}]$. L
 
 $$
 \begin{aligned}
-Pr(D_i=1|Y_i^*,Z_i) =& Pr(\upsilon_i>-Z_i'\gamma|Y_i^*,Z_i) \\
-=& Pr(\sigma_{\varepsilon\upsilon}/\sigma_{\varepsilon}^2\varepsilon_i+ \zeta_i >-Z_i'\gamma|Y_i^*,Z_i) \\
-=& Pr(\zeta_i >-Z_i'\gamma-\sigma_{\varepsilon\upsilon}/\sigma_{\varepsilon}^2\varepsilon_i|Y_i^*,Z_i) \\
+Pr(D_i=1|Y_i,Z_i) =& Pr(\upsilon_i>-Z_i'\gamma|Y_i,Z_i) \\
+=& Pr(\sigma_{\varepsilon\upsilon}/\sigma_{\varepsilon}^2\varepsilon_i+ \zeta_i >-Z_i'\gamma|Y_i,Z_i) \\
+=& Pr(\zeta_i >-Z_i'\gamma-\sigma_{\varepsilon\upsilon}/\sigma_{\varepsilon}^2\varepsilon_i|Y_i,Z_i) \\
 =& \Phi\bigg(\frac{Z_i'\gamma+\sigma_{\varepsilon\upsilon}\sigma_{\varepsilon}^{-2} (Y_i-X_i'\beta)}{\sqrt{1-\sigma_{\varepsilon\upsilon}^2\sigma_{\varepsilon}^{-2}}}\bigg)
 \end{aligned}
 $$
@@ -528,9 +525,7 @@ Conditional on $Y_i^*$, $\varepsilon_i$ is not random, which is why is moved to 
 
 Notice, if $\sigma_{\varepsilon\upsilon}=0$, then likelihood of selection and observing $Y_i$ are independent of one another.  
 
-
-
-### Identfication
+### Observational equivalence
 
 In the non-stochastic threshold model, $Cov(\varepsilon_i,\upsilon_i)=\sigma_{\varepsilon\upsilon}=0$ implies there is not selection-bias in the main equation. However, in the stochastic model $\sigma_{\varepsilon\upsilon}>0$ cannot be zero; since $\upsilon_i = \varepsilon_i-\nu_i$
 
@@ -576,7 +571,7 @@ and the total effect of $X_i$ on the observed outcome:
 $$
 \frac{\partial E[Y_i|X_i]}{\partial X_i}
 $$
-### Tobit model
+### Tobit Model
 
 We can use the Law of Iterated Expectations to expand the conditional mean of $E[Y_i|X_i]$:
 
@@ -584,14 +579,14 @@ $$
 \begin{aligned}
 E[Y_i|X_i] =& E[Y_i|X_i,D_i=1]\cdot Pr(D_i=1|X_i)+E[Y_i|X_i,D_i=0]\cdot Pr(D_i=0|X_i) \\
 =&E[Y_i|X_i,D_i=1]\cdot Pr(D_i=1|X_i) + c\cdot Pr(D_i=0|X_i) \\
-=&\bigg[X_i'\beta + \sigma_\varepsilon \lambda\bigg(\frac{c-X_i'\beta}{\sigma_\varepsilon}\bigg)\bigg]\cdot \Phi\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)+c\cdot \bigg[1-\Phi\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\bigg]
+=&\bigg[X_i'\beta + \sigma_\varepsilon \lambda\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\bigg]\cdot \Phi\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)+c\cdot \bigg[1-\Phi\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\bigg]
 \end{aligned}
 $$
 Recall, in this case $Pr(D_i=1|X_i)=Pr(Y_i>c|X_i)$. Naturally, $c=0$ simplifies the expression. 
 
 The relevant marginal effects are:
 
--   **conditional on observation/selection:** $\frac{\partial E[Y_i|D_i=1,X_i]}{\partial X_i} = \bigg[1 - \lambda'\bigg(\frac{c-X_i'\beta}{\sigma_\varepsilon}\bigg)\bigg]\beta$
+-   **conditional on observation/selection:** $\frac{\partial E[Y_i|D_i=1,X_i]}{\partial X_i} = \bigg[1 + \lambda'\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\bigg]\beta$
 
 -   **observation/selection:** $\frac{\partial Pr(Y_i=1|X_i)}{\partial X_i} = \frac{1}{\sigma_\varepsilon}\phi\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\beta$
 
