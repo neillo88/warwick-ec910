@@ -335,7 +335,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">5</span> Interpretation</a>
   <ul class="collapse">
-  <li><a href="#threshold-model-1" id="toc-threshold-model-1" class="nav-link" data-scroll-target="#threshold-model-1"><span class="header-section-number">5.1</span> Threshold model</a></li>
+  <li><a href="#tobit-model-2" id="toc-tobit-model-2" class="nav-link" data-scroll-target="#tobit-model-2"><span class="header-section-number">5.1</span> Tobit model</a></li>
+  <li><a href="#threshold-model-1" id="toc-threshold-model-1" class="nav-link" data-scroll-target="#threshold-model-1"><span class="header-section-number">5.2</span> Threshold model</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">6</span> References</a></li>
   </ul>
@@ -407,41 +408,42 @@ f^*(y) \qquad \text{for} \quad y&gt;c
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Threshold</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the censored normal density function: x &gt; c</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span>c, <span class="at">to=</span><span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>cens_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span>x1, <span class="at">pdf =</span> <span class="fu">dnorm</span>(x1))</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the uncensored normal density function</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="sc">-</span><span class="dv">5</span>, <span class="at">to=</span><span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>dens_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span>x2, <span class="at">pdf =</span> <span class="fu">dnorm</span>(x2))</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate data for shading the area under the curve for x&lt;=c</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, c, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>shade_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span>x3 ,<span class="at">ymin =</span> <span class="dv">0</span>,<span class="at">ymax =</span> <span class="fu">dnorm</span>(x3))</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> cens_data, <span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>pdf), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> shade_data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>ymin), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> c, <span class="at">y =</span> <span class="dv">0</span>), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">shape=</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> c, <span class="at">y =</span> <span class="fu">dnorm</span>(c)), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">2</span>,<span class="at">shape=</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> c, <span class="at">y =</span> <span class="fu">pnorm</span>(c)), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> dens_data, <span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>pdf), <span class="at">color =</span> <span class="st">"skyblue"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> shade_data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">ymin =</span> ymin, <span class="at">ymax =</span> ymax), <span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">TeX</span>(<span class="st">"Censored distribution"</span>),</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Density"</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(c),            </span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"c"</span>)  </span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> c<span class="sc">*</span><span class="dv">3</span>, <span class="at">y =</span> <span class="fl">0.1</span>, <span class="at">label =</span> <span class="st">"Censored region"</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">color =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the censored normal density function: x &gt; c</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span>c, <span class="at">to=</span><span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>cens_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span>x1, <span class="at">pdf =</span> <span class="fu">dnorm</span>(x1,<span class="at">sd=</span>sd))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the uncensored normal density function</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="sc">-</span><span class="dv">5</span>, <span class="at">to=</span><span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>dens_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span>x2, <span class="at">pdf =</span> <span class="fu">dnorm</span>(x2,<span class="at">sd=</span>sd))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate data for shading the area under the curve for x&lt;=c</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, c, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>shade_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span>x3 ,<span class="at">ymin =</span> <span class="dv">0</span>,<span class="at">ymax =</span> <span class="fu">dnorm</span>(x3,<span class="at">sd=</span>sd))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> cens_data, <span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>pdf), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> shade_data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>ymin), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> c, <span class="at">y =</span> <span class="dv">0</span>), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">shape=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> c, <span class="at">y =</span> <span class="fu">dnorm</span>(c,<span class="at">sd=</span>sd)), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">2</span>,<span class="at">shape=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> c, <span class="at">y =</span> <span class="fu">pnorm</span>(c,<span class="at">sd=</span>sd)), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> dens_data, <span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>pdf), <span class="at">color =</span> <span class="st">"skyblue"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> shade_data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">ymin =</span> ymin, <span class="at">ymax =</span> ymax), <span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">TeX</span>(<span class="st">"Censored distribution"</span>),</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Density"</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(c),            </span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"c"</span>)  </span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> c<span class="sc">*</span><span class="dv">3</span>, <span class="at">y =</span> <span class="fl">0.1</span>, <span class="at">label =</span> <span class="st">"Censored region"</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">color =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -464,40 +466,41 @@ f(y) = f^*(y|y&gt;c) = \frac{f^*(y)}{1-F^*(c)}
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Threshold</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the truncated normal density function: x &gt; c</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span>c, <span class="at">to=</span><span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>trun_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span>x1, <span class="at">pdf =</span> <span class="fu">dnorm</span>(x1)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">pnorm</span>(c)))</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the untruncated normal density function</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="sc">-</span><span class="dv">5</span>, <span class="at">to=</span><span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>dens_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span>x2, <span class="at">pdf =</span> <span class="fu">dnorm</span>(x2))</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate data for shading the area under the curve for x&lt;=c</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, c, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>shade_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span>x3 ,<span class="at">ymin =</span> <span class="dv">0</span>,<span class="at">ymax =</span> <span class="fu">dnorm</span>(x3))</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> trun_data, <span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>pdf), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> shade_data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>ymin), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> c, <span class="at">y =</span> <span class="dv">0</span>), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">shape=</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> c, <span class="at">y =</span> <span class="fu">dnorm</span>(c)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">pnorm</span>(c))), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> dens_data, <span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>pdf), <span class="at">color =</span> <span class="st">"pink"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> shade_data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">ymin =</span> ymin, <span class="at">ymax =</span> ymax), <span class="at">fill =</span> <span class="st">"pink"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">TeX</span>(<span class="st">"Truncated distribution"</span>),</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Density"</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(c),            </span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"c"</span>)  </span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> c<span class="sc">*</span><span class="dv">3</span>, <span class="at">y =</span> <span class="fl">0.1</span>, <span class="at">label =</span> <span class="st">"Truncated region"</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the truncated normal density function: x &gt; c</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span>c, <span class="at">to=</span><span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>trun_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span>x1, <span class="at">pdf =</span> <span class="fu">dnorm</span>(x1,<span class="at">sd=</span>sd)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">pnorm</span>(c,<span class="at">sd=</span>sd)))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the untruncated normal density function</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="sc">-</span><span class="dv">5</span>, <span class="at">to=</span><span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>dens_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span>x2, <span class="at">pdf =</span> <span class="fu">dnorm</span>(x2,<span class="at">sd=</span>sd))</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate data for shading the area under the curve for x&lt;=c</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, c, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>shade_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span>x3 ,<span class="at">ymin =</span> <span class="dv">0</span>,<span class="at">ymax =</span> <span class="fu">dnorm</span>(x3,<span class="at">sd=</span>sd))</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> trun_data, <span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>pdf), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> shade_data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>ymin), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> c, <span class="at">y =</span> <span class="dv">0</span>), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">shape=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> c, <span class="at">y =</span> <span class="fu">dnorm</span>(c,<span class="at">sd=</span>sd)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">pnorm</span>(c,<span class="at">sd=</span>sd))), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> dens_data, <span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>pdf), <span class="at">color =</span> <span class="st">"pink"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> shade_data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">ymin =</span> ymin, <span class="at">ymax =</span> ymax), <span class="at">fill =</span> <span class="st">"pink"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">TeX</span>(<span class="st">"Truncated distribution"</span>),</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Density"</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(c),            </span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"c"</span>)  </span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> c<span class="sc">*</span><span class="dv">3</span>, <span class="at">y =</span> <span class="fl">0.1</span>, <span class="at">label =</span> <span class="st">"Truncated region"</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -584,7 +587,7 @@ D_i = \begin{cases}1 \qquad \text{if} \quad Y^*&gt;c \\
 0 \qquad \text{if} \quad Y^*\leq c \end{cases}
 \]</span> Given the latent variable model, you observe, <span class="math display">\[
 Y_i = \begin{cases}X_i'\beta + \varepsilon_i \qquad \text{if} \quad X_i'\beta + \varepsilon_i&gt;c \\
-0 \qquad \text{if} \quad X_i'\beta + \varepsilon_i\leq c \end{cases}
+c \qquad \text{if} \quad X_i'\beta + \varepsilon_i\leq c \end{cases}
 \]</span> This is an example of left-censoring, but we could equally allow for right-censoring or both left- and right-censoring.</p>
 <p>The conditional mean of the observed outcome (above the threshold) is given by:</p>
 <p><span class="math display">\[
@@ -808,28 +811,50 @@ E[Y_i|D_i=1,X_i] = X_i'\beta + \sigma_{\varepsilon\upsilon}\lambda(Z_i'\gamma) =
 \]</span> and the total effect of <span class="math inline">\(X_i\)</span> on the observed outcome:</p>
 <p><span class="math display">\[
 \frac{\partial E[Y_i|X_i]}{\partial X_i}
-\]</span> ### Tobit Model</p>
-<p>We can use the Law of Iterated Expectations to expand the conditional mean of <span class="math inline">\(E[Y_i|X_i]\)</span>:</p>
+\]</span></p>
+<section id="tobit-model-2" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="tobit-model-2"><span class="header-section-number">5.1</span> Tobit model</h3>
+<p>We can use the Law of Iterated Expectations to expand the conditional mean of <span class="math inline">\(E[Y_i|X_i]\)</span>. Let where <span class="math inline">\(\omega_i= \frac{X_i'\beta-c}{\sigma_\varepsilon}\)</span>, then</p>
 <p><span class="math display">\[
 \begin{aligned}
 E[Y_i|X_i] =&amp; E[Y_i|X_i,D_i=1]\cdot Pr(D_i=1|X_i)+E[Y_i|X_i,D_i=0]\cdot Pr(D_i=0|X_i) \\
 =&amp;E[Y_i|X_i,D_i=1]\cdot Pr(D_i=1|X_i) + c\cdot Pr(D_i=0|X_i) \\
-=&amp;\bigg[X_i'\beta + \sigma_\varepsilon \lambda\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\bigg]\cdot \Phi\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)+c\cdot \bigg[1-\Phi\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\bigg]
+=&amp;\big[X_i'\beta + \sigma_\varepsilon \lambda(\omega_i)\big]\cdot \Phi(\omega_i)+c\cdot \big[1-\Phi(\omega_i)\big]
 \end{aligned}
-\]</span> Recall, in this case <span class="math inline">\(Pr(D_i=1|X_i)=Pr(Y_i&gt;c|X_i)\)</span>. Naturally, <span class="math inline">\(c=0\)</span> simplifies the expression.</p>
+\]</span> Recall, in this case <span class="math inline">\(Pr(D_i=1|X_i)=Pr(Y_i^*&gt;c|X_i)\)</span>. Naturally, <span class="math inline">\(c=0\)</span> simplifies the expression.</p>
 <p>The relevant marginal effects are:</p>
 <ul>
-<li><p><strong>conditional on observation/selection:</strong> <span class="math inline">\(\frac{\partial E[Y_i|D_i=1,X_i]}{\partial X_i} = \bigg[1 + \lambda'\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\bigg]\beta\)</span></p></li>
-<li><p><strong>observation/selection:</strong> <span class="math inline">\(\frac{\partial Pr(Y_i=1|X_i)}{\partial X_i} = \frac{1}{\sigma_\varepsilon}\phi\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\beta\)</span></p></li>
+<li><strong>conditional on observation/selection:</strong></li>
 </ul>
-<section id="threshold-model-1" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="threshold-model-1"><span class="header-section-number">5.1</span> Threshold model</h3>
-<p>In the threshold model, the above marginal effects are given by:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial E[Y_i|D_i=1,X_i]}{\partial X_i} =&amp; \big[1 + \lambda'(\omega_i)\big]\beta \\
+=&amp; \big[1 -\omega_i\cdot\lambda(\omega_i)-\lambda(\omega_i)^2\big]\beta
+\end{aligned}
+\]</span> You can verify this result using the definition of the IMR.</p>
 <ul>
-<li><p><strong>conditional on selection:</strong> <span class="math inline">\(\frac{\partial E[Y_i|D_i=1,X_i]}{\partial X_i} = \beta - \sigma_{\varepsilon\upsilon}\lambda'(-Z_i'\gamma)\gamma\)</span></p></li>
-<li><p><strong>selection:</strong> <span class="math inline">\(\frac{\partial Pr(D_i=1|Z_i)}{\partial Z_i} = \phi(Z_i'\gamma)\gamma\)</span></p></li>
+<li><strong>observation/selection:</strong></li>
 </ul>
-<p>Recall, in the threshold model the variance of the selection equation is not identified. In the tobit model, this variance is common to since selection is based on the outcome alone.</p>
+<p><span class="math display">\[
+\frac{\partial Pr(Y_i=1|X_i)}{\partial X_i} = \phi(\omega_i)\beta/\sigma_\varepsilon
+\]</span></p>
+</section>
+<section id="threshold-model-1" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="threshold-model-1"><span class="header-section-number">5.2</span> Threshold model</h3>
+<p>Let us assume that all <span class="math inline">\(X_i\)</span> regressors are included in <span class="math inline">\(Z_i\)</span>, which we know should be the case given the observational equivalence of the stochastic and non-stochastic models. The above marginal effects for these selection models is given by,</p>
+<ul>
+<li><p><strong>conditional on selection:</strong> <span class="math display">\[
+\begin{aligned}
+\frac{\partial E[Y_i|D_i=1,Z_i]}{\partial X_i} =&amp; \beta + \sigma_{\varepsilon\upsilon}\lambda'(Z_i'\gamma)\tilde{\gamma} \\
+=&amp;\beta -\sigma_{\varepsilon\upsilon}\big[Z_i'\gamma\cdot\lambda(Z_i'\gamma) + \lambda(Z_i'\gamma)^2\big]\tilde{\gamma}
+\end{aligned}
+\]</span> where <span class="math inline">\(\tilde{\gamma}\)</span> refers to the subset of <span class="math inline">\(\gamma\)</span>-vector corresponding to the <span class="math inline">\(X_i\)</span> regressors that appear in <span class="math inline">\(Z_i\)</span>. That is, it excludes the parameters on any excluded variables.</p></li>
+<li><p><strong>selection:</strong></p></li>
+</ul>
+<p><span class="math display">\[
+\frac{\partial Pr(D_i=1|Z_i)}{\partial Z_i} = \phi(Z_i'\gamma)\gamma
+\]</span></p>
+<p>Recall, in the threshold model the variance of the selection equation is not identified. Hence, the selection margin effect resembles that of a probit model. In the Tobit model, selection depends on the outcome itself and the variance can be identified from the part of the data where <span class="math inline">\(Y\)</span> is observed.</p>
 </section>
 </section>
 <section id="references" class="level2" data-number="6">

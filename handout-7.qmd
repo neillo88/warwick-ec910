@@ -62,27 +62,28 @@ $$
 
 ```{r}
 # Threshold
+sd <- 2
 c <- -1
 
 # Define the censored normal density function: x > c
 x1 <- seq(from=c, to=5, by = 0.05)
-cens_data <- data.frame(x=x1, pdf = dnorm(x1))
+cens_data <- data.frame(x=x1, pdf = dnorm(x1,sd=sd))
 
 # Define the uncensored normal density function
 x2 <- seq(from=-5, to=5, by = 0.05)
-dens_data <- data.frame(x=x2, pdf = dnorm(x2))
+dens_data <- data.frame(x=x2, pdf = dnorm(x2,sd=sd))
 
 # Generate data for shading the area under the curve for x<=c
 x3 <- seq(-5, c, by = 0.05)
-shade_data <- data.frame(x =x3 ,ymin = 0,ymax = dnorm(x3))
+shade_data <- data.frame(x =x3 ,ymin = 0,ymax = dnorm(x3,sd=sd))
 
 # Plot
 ggplot() +
   geom_line(data = cens_data, aes(x=x,y=pdf), color = "blue", linewidth = 1) +
   geom_line(data = shade_data, aes(x=x, y=ymin), color = "blue", linewidth = 1) +
   geom_point(aes(x = c, y = 0), color = "blue", size = 2, shape=1) +
-  geom_point(aes(x = c, y = dnorm(c)), color = "blue", size = 2,shape=1) +
-  geom_point(aes(x = c, y = pnorm(c)), color = "blue", size = 2) +
+  geom_point(aes(x = c, y = dnorm(c,sd=sd)), color = "blue", size = 2,shape=1) +
+  geom_point(aes(x = c, y = pnorm(c,sd=sd)), color = "blue", size = 2) +
   geom_line(data = dens_data, aes(x=x,y=pdf), color = "skyblue", linewidth = 0.5) +
   geom_ribbon(data = shade_data, aes(x = x, ymin = ymin, ymax = ymax), fill = "skyblue", alpha = 0.5) +
   labs(
@@ -114,26 +115,27 @@ where $1-F^*(c) = Pr(y|y>c)$. In this way, truncation reduces the range of value
 
 ```{r}
 # Threshold
+sd <- 2
 c <- -1
 
 # Define the truncated normal density function: x > c
 x1 <- seq(from=c, to=5, by = 0.05)
-trun_data <- data.frame(x=x1, pdf = dnorm(x1)/(1-pnorm(c)))
+trun_data <- data.frame(x=x1, pdf = dnorm(x1,sd=sd)/(1-pnorm(c,sd=sd)))
 
 # Define the untruncated normal density function
 x2 <- seq(from=-5, to=5, by = 0.05)
-dens_data <- data.frame(x=x2, pdf = dnorm(x2))
+dens_data <- data.frame(x=x2, pdf = dnorm(x2,sd=sd))
 
 # Generate data for shading the area under the curve for x<=c
 x3 <- seq(-5, c, by = 0.05)
-shade_data <- data.frame(x =x3 ,ymin = 0,ymax = dnorm(x3))
+shade_data <- data.frame(x =x3 ,ymin = 0,ymax = dnorm(x3,sd=sd))
 
 # Plot
 ggplot() +
   geom_line(data = trun_data, aes(x=x,y=pdf), color = "red", linewidth = 1) +
   geom_line(data = shade_data, aes(x=x, y=ymin), color = "red", linewidth = 1) +
   geom_point(aes(x = c, y = 0), color = "red", size = 2, shape=1) +
-  geom_point(aes(x = c, y = dnorm(c)/(1-pnorm(c))), color = "red", size = 2) +
+  geom_point(aes(x = c, y = dnorm(c,sd=sd)/(1-pnorm(c,sd=sd))), color = "red", size = 2) +
   geom_line(data = dens_data, aes(x=x,y=pdf), color = "pink", linewidth = 0.5) +
   geom_ribbon(data = shade_data, aes(x = x, ymin = ymin, ymax = ymax), fill = "pink", alpha = 0.5) +
   labs(
@@ -253,7 +255,7 @@ $$
 Given the latent variable model, you observe,
 $$
 Y_i = \begin{cases}X_i'\beta + \varepsilon_i \qquad \text{if} \quad X_i'\beta + \varepsilon_i>c \\
-0 \qquad \text{if} \quad X_i'\beta + \varepsilon_i\leq c \end{cases}
+c \qquad \text{if} \quad X_i'\beta + \varepsilon_i\leq c \end{cases}
 $$
 This is an example of left-censoring, but we could equally allow for right-censoring or both left- and right-censoring. 
 
@@ -571,33 +573,57 @@ and the total effect of $X_i$ on the observed outcome:
 $$
 \frac{\partial E[Y_i|X_i]}{\partial X_i}
 $$
-### Tobit Model
 
-We can use the Law of Iterated Expectations to expand the conditional mean of $E[Y_i|X_i]$:
+### Tobit model
+
+We can use the Law of Iterated Expectations to expand the conditional mean of $E[Y_i|X_i]$. Let where $\omega_i= \frac{X_i'\beta-c}{\sigma_\varepsilon}$, then
 
 $$
 \begin{aligned}
 E[Y_i|X_i] =& E[Y_i|X_i,D_i=1]\cdot Pr(D_i=1|X_i)+E[Y_i|X_i,D_i=0]\cdot Pr(D_i=0|X_i) \\
 =&E[Y_i|X_i,D_i=1]\cdot Pr(D_i=1|X_i) + c\cdot Pr(D_i=0|X_i) \\
-=&\bigg[X_i'\beta + \sigma_\varepsilon \lambda\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\bigg]\cdot \Phi\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)+c\cdot \bigg[1-\Phi\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\bigg]
+=&\big[X_i'\beta + \sigma_\varepsilon \lambda(\omega_i)\big]\cdot \Phi(\omega_i)+c\cdot \big[1-\Phi(\omega_i)\big]
 \end{aligned}
 $$
-Recall, in this case $Pr(D_i=1|X_i)=Pr(Y_i>c|X_i)$. Naturally, $c=0$ simplifies the expression. 
+Recall, in this case $Pr(D_i=1|X_i)=Pr(Y_i^*>c|X_i)$. Naturally, $c=0$ simplifies the expression. 
 
 The relevant marginal effects are:
 
--   **conditional on observation/selection:** $\frac{\partial E[Y_i|D_i=1,X_i]}{\partial X_i} = \bigg[1 + \lambda'\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\bigg]\beta$
+-   **conditional on observation/selection:** 
 
--   **observation/selection:** $\frac{\partial Pr(Y_i=1|X_i)}{\partial X_i} = \frac{1}{\sigma_\varepsilon}\phi\bigg(\frac{X_i'\beta-c}{\sigma_\varepsilon}\bigg)\beta$
+$$
+\begin{aligned}
+\frac{\partial E[Y_i|D_i=1,X_i]}{\partial X_i} =& \big[1 + \lambda'(\omega_i)\big]\beta \\
+=& \big[1 -\omega_i\cdot\lambda(\omega_i)-\lambda(\omega_i)^2\big]\beta
+\end{aligned}
+$$
+You can verify this result using the definition of the IMR. 
+
+-   **observation/selection:** 
+
+$$
+\frac{\partial Pr(Y_i=1|X_i)}{\partial X_i} = \phi(\omega_i)\beta/\sigma_\varepsilon
+$$
 
 ### Threshold model
 
-In the threshold model, the above marginal effects are given by:
+Let us assume that all $X_i$ regressors are included in $Z_i$, which we know should be the case given the observational equivalence of the stochastic and non-stochastic models. The above marginal effects for these selection models is given by,
 
--   **conditional on selection:** $\frac{\partial E[Y_i|D_i=1,X_i]}{\partial X_i} = \beta - \sigma_{\varepsilon\upsilon}\lambda'(-Z_i'\gamma)\gamma$
+-   **conditional on selection:** 
+$$
+\begin{aligned}
+\frac{\partial E[Y_i|D_i=1,Z_i]}{\partial X_i} =& \beta + \sigma_{\varepsilon\upsilon}\lambda'(Z_i'\gamma)\tilde{\gamma} \\
+=&\beta -\sigma_{\varepsilon\upsilon}\big[Z_i'\gamma\cdot\lambda(Z_i'\gamma) + \lambda(Z_i'\gamma)^2\big]\tilde{\gamma}
+\end{aligned}
+$$
+where $\tilde{\gamma}$ refers to the subset of $\gamma$-vector corresponding to the $X_i$ regressors that appear in $Z_i$. That is, it excludes the parameters on any excluded variables.  
 
--   **selection:** $\frac{\partial Pr(D_i=1|Z_i)}{\partial Z_i} = \phi(Z_i'\gamma)\gamma$
+-   **selection:** 
 
-Recall, in the threshold model the variance of the selection equation is not identified. In the tobit model, this variance is common to since selection is based on the outcome alone. 
+$$
+\frac{\partial Pr(D_i=1|Z_i)}{\partial Z_i} = \phi(Z_i'\gamma)\gamma
+$$
+
+Recall, in the threshold model the variance of the selection equation is not identified. Hence, the selection margin effect resembles that of a probit model. In the Tobit model, selection depends on the outcome itself and the variance can be identified from the part of the data where $Y$ is observed. 
 
 ## References
