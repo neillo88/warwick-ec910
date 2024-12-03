@@ -19,7 +19,6 @@ format:
 ```{r}
 #| warning: false
 library(ggplot2)
-library(cowplot)
 library(latex2exp)
 ```
 
