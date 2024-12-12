@@ -573,6 +573,58 @@ L_n(\beta) = \prod_{i= 1}^nF(X_i'\beta)^{Y_i}\big(1-F(X_i'\beta)\big)^{1-Y_i}
 <p><span class="math display">\[
 V =  (J(\beta_0))^{-1}=\bigg(\underbrace{-E\bigg[\frac{\partial^2}{\partial\beta\partial\beta'}\ln f(W_i,\beta_0)\bigg]}_{J(\beta_0)}\bigg)^{-1}
 \]</span> The variance is given by the inverse of the Jacobian matrix, evaluating at the true value of <span class="math inline">\(\beta\)</span>. The Jacobian matrix is the (negative) expected value of the Hessian matrix of second derivatives. This result derives from the Delta Method which is used to explain the asymptotic distribution of the ML estimator.</p>
+<p>Let us prove this result. In Handout 3 we established the consistency of the ML-estimator. To prove its asymptotic normality, we will need to use the Mean Value Theorem (MVT).<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<div id="thm-mvt" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 1 (Mean Value Theorem)</strong></span> For <span class="math inline">\(f(\cdot)\)</span> continuous on <span class="math inline">\([a,b]\)</span>, and continuously differentiable on <span class="math inline">\((a,b)\)</span>, <span class="math inline">\(\exists \;c\in(a,b)\)</span> s.t., <span class="math display">\[
+f'(c) = \frac{f(a)-f(b)}{a-b}
+\]</span></p>
+</div>
+<p>Using MVT, we can prove asymptotic normality and demonstrate the Jacobian-variance result.</p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>Consider the F.O.C.s from the ML estimator, evaluated at <span class="math inline">\(\hat{\beta}^{ML}_n\)</span>. <span class="math display">\[
+0 = n^{-1}\sum_{i=1}^n \frac{\partial}{\partial\beta}\log \underbrace{f(Y_i|X_i;\hat{\beta}_n)}_{\ell_i(\hat{\beta}_n)}
+\]</span> Apply MVT to the F.O.C.,</p>
+<p><span class="math display">\[
+\begin{aligned}
+0=&amp;n^{-1}\sum_{i=1}^n \frac{\partial}{\partial\beta}\log \ell_i(\beta_0) + n^{-1}\sum_{i=1}^n \frac{\partial^2}{\partial\beta\partial\beta'}\log \ell_i(\beta^*_n)(\hat{\beta}_n-\beta_0) \\
+\Rightarrow \sqrt{n}(\hat{\beta}_n-\beta_0) =&amp; \bigg(n^{-1}\sum_{i=1}^n \frac{\partial^2}{\partial\beta\partial\beta'}\log \ell_i(\beta^*_n)\bigg)^{-1}n^{-1/2}\sum_{i=1}^n \frac{\partial}{\partial\beta}\log \ell_i(\beta_0)
+\end{aligned}
+\]</span> where <span class="math inline">\(\beta^*_n\)</span> is a mean-value between the estimator, <span class="math inline">\(\hat{\beta}_n\)</span>, and the true value of the parameter, <span class="math inline">\(\beta_0\)</span>. Since, <span class="math inline">\(\hat{\beta}_n\rightarrow_p\beta_0\)</span> and <span class="math display">\[
+|\hat{\beta}_n-\beta_0|&gt;|\beta^*_n-\beta_0|
+\]</span> by definition of a mean value, then <span class="math inline">\(\beta^*_n\rightarrow_p\beta_0\)</span>. The mean-value will converge in probability to the true value as <span class="math inline">\(n\rightarrow \infty\)</span>.</p>
+<p>Then by WLLN and Slutzky’s Theorem, <span class="math display">\[
+\bigg(n^{-1}\sum_{i=1}^n \frac{\partial^2}{\partial\beta\partial\beta'}\log \ell_i(\beta^*_n)\bigg)^{-1}\rightarrow_p \bigg(E\bigg[\frac{\partial^2}{\partial\beta\partial\beta'}\log \ell_i(\beta_0)\bigg]\bigg)^{-1}
+\]</span> Consider the second term, <span class="math display">\[
+\begin{aligned}
+&amp;E\bigg[n^{-1}\sum_{i=1}^n \frac{\partial}{\partial\beta}\log \ell_i(\beta_0)\bigg] \\
+=&amp; E\bigg[ \frac{\partial}{\partial\beta}\log f(Y_i|X_i;\beta_0)\bigg] \\
+=&amp; E\bigg[\frac{\partial f(Y_i|X_i;\beta_0)/\partial\beta}{f(Y_i|X_i;\beta_0)}\bigg] \\
+=&amp; \int \frac{\partial f(y|X_i;\beta_0)/\partial\beta}{f(y|X_i;\beta_0)}f(y|X_i;\beta_0)dy \\
+=&amp; \frac{\partial}{\partial\beta} \underbrace{\int f(y|X_i;\beta_0)dy}_{=1} \\
+=&amp; 0
+\end{aligned}
+\]</span> Thus, an important condition of CLT is met: zero mean. By CLT, <span class="math display">\[
+n^{-1/2}\sum_{i=1}^n \frac{\partial}{\partial\beta}\log \ell_i(\beta_0)\rightarrow_dN(0,\Omega)
+\]</span> where the variance is a <span class="math inline">\(k\times k\)</span> matrix, <span class="math display">\[
+\Omega = E\bigg[\frac{\partial}{\partial\beta}\log \ell_i(\beta_0)\frac{\partial}{\partial\beta'}\log \ell_i(\beta_0)\bigg]
+\]</span> Combining these two results, <span class="math display">\[
+\sqrt{n}(\hat{\beta}-\beta_0)\rightarrow_d N(0,V)
+\]</span> where, <span class="math display">\[
+\begin{aligned}
+V =&amp; \bigg(E\bigg[\frac{\partial^2}{\partial\beta\partial\beta'}\log \ell_i(\beta_0)\bigg]\bigg)^{-1}E\bigg[\frac{\partial}{\partial\beta}\log \ell_i(\beta_0)\frac{\partial}{\partial\beta'}\log \ell_i(\beta_0)\bigg]\bigg(E\bigg[\frac{\partial^2}{\partial\beta\partial\beta'}\log \ell_i(\beta_0)\bigg]\bigg)^{-1} \\
+=&amp;-\bigg(E\bigg[\frac{\partial^2}{\partial\beta\partial\beta'}\log \ell_i(\beta_0)\bigg]\bigg)^{-1} \\
+=&amp; \big(J(\beta_0)\big)^{-1}
+\end{aligned}
+\]</span> We can show the second line as follows, <span class="math display">\[
+\begin{aligned}
+E\bigg[\frac{\partial^2}{\partial\beta\partial\beta'}\log \ell_i(\beta_0)\bigg] =&amp; E\bigg[\frac{\partial}{\partial\beta'}\frac{\partial f(Y_i|X_i;\beta_0)/\partial\beta}{f(Y_i|X_i;\beta_0)}\bigg]\\
+=&amp; E\bigg[\frac{\partial}{\partial\beta'}\frac{\partial f(Y_i|X_i;\beta_0)/\partial\beta}{f(Y_i|X_i;\beta_0)}\bigg]\\
+=&amp; E\bigg[\frac{\partial^2 f(Y_i|X_i;\beta_0)/\partial\beta\partial\beta'}{f(Y_i|X_i;\beta_0)}-\frac{(\partial f(Y_i|X_i;\beta_0)/\partial\beta)(\partial f(Y_i|X_i;\beta_0)/\partial\beta')}{f(Y_i|X_i;\beta_0)^2}\bigg] \\
+=&amp; \underbrace{E\bigg[\frac{\partial^2 f(Y_i|X_i;\beta_0)/\partial\beta\partial\beta'}{f(Y_i|X_i;\beta_0)}\bigg]}_{=0}-E\bigg[\frac{\partial}{\partial\beta}\log f(Y_i|X_i;\beta_0)\frac{\partial}{\partial\beta'}\log f(Y_i|X_i;\beta_0)\bigg] \\
+=&amp;-E\bigg[\frac{\partial}{\partial\beta}\log \ell_i(\beta_0)\frac{\partial}{\partial\beta'}\log \ell_i(\beta_0)\bigg]
+\end{aligned}
+\]</span> where the first term is 0 by the same arguments used to demonstrate the zero-mean CLT condition.</p>
+</div>
 <p>In this application, with a binary Y, the Hessian matrix is given by,</p>
 <p><span class="math display">\[
 H_n(\beta) = \frac{1}{n}\sum_{i=1}^n\bigg[Y_i\frac{f'(X_i'\beta)F(X_i'\beta)-f(X_i'\beta)^2}{F(X_i'\beta)^2}-(1-Y_i)\frac{f'(X_i'\beta)(1-F(X_i'\beta))+f(X_i'\beta)^2}{(1-F(X_i'\beta))^2}\bigg]X_iX_i'
@@ -685,6 +737,7 @@ Verbeek, Marno. 2017. <em>A Guide to Modern Econometrics</em>. John Wiley &amp; 
 
 <ol>
 <li id="fn1"><p>Note, this is not standard uniform distribution: <span class="math inline">\(U(0,1)\)</span>. A standard uniform distribution has mean 1/2 and variance 1/12.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The Mean Value Theorem looks very similar to the Taylor Series approximation: <span class="math inline">\(f(a) \approx f(b) + f'(b)(a-b)\)</span>. When <span class="math inline">\(f'(\cdot)\)</span> is evaluated at the mean-value, <span class="math inline">\(c\)</span>, the Taylor Series approximation is an equality.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

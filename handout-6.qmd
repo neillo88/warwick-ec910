@@ -353,6 +353,86 @@ V =  (J(\beta_0))^{-1}=\bigg(\underbrace{-E\bigg[\frac{\partial^2}{\partial\beta
 $$
 The variance is given by the inverse of the Jacobian matrix, evaluating at the true value of $\beta$. The Jacobian matrix is the (negative) expected value of the Hessian matrix of second derivatives. This result derives from the Delta Method which is used to explain the asymptotic distribution of the ML estimator. 
 
+Let us prove this result. In Handout 3 we established the consistency of the ML-estimator. To prove its asymptotic normality, we will need to use the Mean Value Theorem (MVT).[^2]
+
+[^2]: The Mean Value Theorem looks very similar to the Taylor Series approximation: $f(a) \approx f(b) + f'(b)(a-b)$. When $f'(\cdot)$ is evaluated at the mean-value, $c$, the Taylor Series approximation is an equality.
+
+::: {#thm-mvt name="Mean Value Theorem"}
+For $f(\cdot)$ continuous on $[a,b]$, and continuously differentiable on $(a,b)$, $\exists \;c\in(a,b)$ s.t., 
+$$
+f'(c) = \frac{f(a)-f(b)}{a-b}
+$$
+:::
+
+Using MVT, we can prove asymptotic normality and demonstrate the Jacobian-variance result. 
+
+::: {.proof}
+Consider the F.O.C.s from the ML estimator, evaluated at $\hat{\beta}^{ML}_n$.
+$$
+0 = n^{-1}\sum_{i=1}^n \frac{\partial}{\partial\beta}\log \underbrace{f(Y_i|X_i;\hat{\beta}_n)}_{\ell_i(\hat{\beta}_n)}
+$$
+Apply MVT to the F.O.C., 
+
+$$
+\begin{aligned}
+0=&n^{-1}\sum_{i=1}^n \frac{\partial}{\partial\beta}\log \ell_i(\beta_0) + n^{-1}\sum_{i=1}^n \frac{\partial^2}{\partial\beta\partial\beta'}\log \ell_i(\beta^*_n)(\hat{\beta}_n-\beta_0) \\
+\Rightarrow \sqrt{n}(\hat{\beta}_n-\beta_0) =& \bigg(n^{-1}\sum_{i=1}^n \frac{\partial^2}{\partial\beta\partial\beta'}\log \ell_i(\beta^*_n)\bigg)^{-1}n^{-1/2}\sum_{i=1}^n \frac{\partial}{\partial\beta}\log \ell_i(\beta_0)
+\end{aligned}
+$$
+where $\beta^*_n$ is a mean-value between the estimator, $\hat{\beta}_n$, and the true value of the parameter, $\beta_0$. Since, $\hat{\beta}_n\rightarrow_p\beta_0$ and 
+$$
+|\hat{\beta}_n-\beta_0|>|\beta^*_n-\beta_0|
+$$
+by definition of a mean value, then $\beta^*_n\rightarrow_p\beta_0$. The mean-value will converge in probability to the true value as $n\rightarrow \infty$. 
+
+Then by WLLN and Slutzky's Theorem, 
+$$
+\bigg(n^{-1}\sum_{i=1}^n \frac{\partial^2}{\partial\beta\partial\beta'}\log \ell_i(\beta^*_n)\bigg)^{-1}\rightarrow_p \bigg(E\bigg[\frac{\partial^2}{\partial\beta\partial\beta'}\log \ell_i(\beta_0)\bigg]\bigg)^{-1}
+$$
+Consider the second term, 
+$$
+\begin{aligned}
+&E\bigg[n^{-1}\sum_{i=1}^n \frac{\partial}{\partial\beta}\log \ell_i(\beta_0)\bigg] \\
+=& E\bigg[ \frac{\partial}{\partial\beta}\log f(Y_i|X_i;\beta_0)\bigg] \\
+=& E\bigg[\frac{\partial f(Y_i|X_i;\beta_0)/\partial\beta}{f(Y_i|X_i;\beta_0)}\bigg] \\
+=& \int \frac{\partial f(y|X_i;\beta_0)/\partial\beta}{f(y|X_i;\beta_0)}f(y|X_i;\beta_0)dy \\
+=& \frac{\partial}{\partial\beta} \underbrace{\int f(y|X_i;\beta_0)dy}_{=1} \\
+=& 0
+\end{aligned}
+$$
+Thus, an important condition of CLT is met: zero mean. By CLT, 
+$$
+n^{-1/2}\sum_{i=1}^n \frac{\partial}{\partial\beta}\log \ell_i(\beta_0)\rightarrow_dN(0,\Omega)
+$$
+where the variance is a $k\times k$ matrix, 
+$$
+\Omega = E\bigg[\frac{\partial}{\partial\beta}\log \ell_i(\beta_0)\frac{\partial}{\partial\beta'}\log \ell_i(\beta_0)\bigg]
+$$
+Combining these two results, 
+$$
+\sqrt{n}(\hat{\beta}-\beta_0)\rightarrow_d N(0,V)
+$$
+where, 
+$$
+\begin{aligned}
+V =& \bigg(E\bigg[\frac{\partial^2}{\partial\beta\partial\beta'}\log \ell_i(\beta_0)\bigg]\bigg)^{-1}E\bigg[\frac{\partial}{\partial\beta}\log \ell_i(\beta_0)\frac{\partial}{\partial\beta'}\log \ell_i(\beta_0)\bigg]\bigg(E\bigg[\frac{\partial^2}{\partial\beta\partial\beta'}\log \ell_i(\beta_0)\bigg]\bigg)^{-1} \\
+=&-\bigg(E\bigg[\frac{\partial^2}{\partial\beta\partial\beta'}\log \ell_i(\beta_0)\bigg]\bigg)^{-1} \\
+=& \big(J(\beta_0)\big)^{-1}
+\end{aligned}
+$$
+We can show the second line as follows, 
+$$
+\begin{aligned}
+E\bigg[\frac{\partial^2}{\partial\beta\partial\beta'}\log \ell_i(\beta_0)\bigg] =& E\bigg[\frac{\partial}{\partial\beta'}\frac{\partial f(Y_i|X_i;\beta_0)/\partial\beta}{f(Y_i|X_i;\beta_0)}\bigg]\\
+=& E\bigg[\frac{\partial}{\partial\beta'}\frac{\partial f(Y_i|X_i;\beta_0)/\partial\beta}{f(Y_i|X_i;\beta_0)}\bigg]\\
+=& E\bigg[\frac{\partial^2 f(Y_i|X_i;\beta_0)/\partial\beta\partial\beta'}{f(Y_i|X_i;\beta_0)}-\frac{(\partial f(Y_i|X_i;\beta_0)/\partial\beta)(\partial f(Y_i|X_i;\beta_0)/\partial\beta')}{f(Y_i|X_i;\beta_0)^2}\bigg] \\
+=& \underbrace{E\bigg[\frac{\partial^2 f(Y_i|X_i;\beta_0)/\partial\beta\partial\beta'}{f(Y_i|X_i;\beta_0)}\bigg]}_{=0}-E\bigg[\frac{\partial}{\partial\beta}\log f(Y_i|X_i;\beta_0)\frac{\partial}{\partial\beta'}\log f(Y_i|X_i;\beta_0)\bigg] \\
+=&-E\bigg[\frac{\partial}{\partial\beta}\log \ell_i(\beta_0)\frac{\partial}{\partial\beta'}\log \ell_i(\beta_0)\bigg]
+\end{aligned}
+$$
+where the first term is 0 by the same arguments used to demonstrate the zero-mean CLT condition. 
+:::
+
 In this application, with a binary Y, the Hessian matrix is given by,
 
 $$
