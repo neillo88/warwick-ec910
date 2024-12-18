@@ -64,7 +64,10 @@ website:
             text: Linear Algebra
           - href: material-inference.qmd
             text: Statistical Inference
-          
+      - text: Revision
+        menu: 
+          - href: revision.qmd
+            text: Revision
 
 bibliography: references.bib
 

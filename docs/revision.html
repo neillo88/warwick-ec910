@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>problem-set-5 – EC910</title>
+<title>Revision Questions – EC910</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -104,10 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
-
-
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -312,94 +309,347 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#problem-set-5" id="toc-problem-set-5" class="nav-link active" data-scroll-target="#problem-set-5">Problem Set 5</a>
-  <ul class="collapse">
-  <li><a href="#preamble" id="toc-preamble" class="nav-link" data-scroll-target="#preamble">Preamble</a></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
-  <li><a href="#postamble" id="toc-postamble" class="nav-link" data-scroll-target="#postamble">Postamble</a></li>
-  </ul></li>
+  <li><a href="#basics" id="toc-basics" class="nav-link active" data-scroll-target="#basics"><span class="header-section-number">1</span> Basics</a></li>
+  <li><a href="#clrm" id="toc-clrm" class="nav-link" data-scroll-target="#clrm"><span class="header-section-number">2</span> CLRM</a></li>
+  <li><a href="#ols" id="toc-ols" class="nav-link" data-scroll-target="#ols"><span class="header-section-number">3</span> OLS</a></li>
+  <li><a href="#linear-tests" id="toc-linear-tests" class="nav-link" data-scroll-target="#linear-tests"><span class="header-section-number">4</span> Linear Tests</a></li>
+  <li><a href="#panel-data" id="toc-panel-data" class="nav-link" data-scroll-target="#panel-data"><span class="header-section-number">5</span> Panel Data</a></li>
+  <li><a href="#binary-outcome-models" id="toc-binary-outcome-models" class="nav-link" data-scroll-target="#binary-outcome-models"><span class="header-section-number">6</span> Binary Outcome Models</a></li>
+  <li><a href="#endogenous-selection-models" id="toc-endogenous-selection-models" class="nav-link" data-scroll-target="#endogenous-selection-models"><span class="header-section-number">7</span> Endogenous Selection Models</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="problem-set-5.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="revision.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-
-
-
-<section id="problem-set-5" class="level1">
-<h1>Problem Set 5</h1>
-<p>This problem set will revise some of the material covered in Handout 5 on panel data models. This will require you to familiarize yourself with Stata’s panel-data commands.</p>
-<div id="43cef30d" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">help</span> xtset</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">help</span> <span class="kw">xttab</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">help</span> <span class="kw">xtreg</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Revision Questions</h1>
 </div>
-<p>You will be using a dataset that comes with Stata: psidextract.dta. The data is a correct version of the PSID sample in Cornwell and Rupert (1988), found in Baltagi and Khanti-Akom (1990). It includes a sample of 595 individuals observed for the years 1976-82.</p>
-<section id="preamble" class="level2">
-<h2 class="anchored" data-anchor-id="preamble">Preamble</h2>
-<div id="0211816c" class="cell" data-execution_count="2">
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="basics" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="basics"><span class="header-section-number">1</span> Basics</h2>
+<ol type="1">
+<li><p>Consider two random <span class="math inline">\(k\)</span>-dimension vectors <span class="math inline">\(\{X,Y\}\)</span> and non-random <span class="math inline">\(k\times k\)</span> matrices <span class="math inline">\(\{A,B\}\)</span>. Show,</p>
+<p>1.1. <span class="math inline">\(Var(AX) = A Var(X) A'\)</span></p>
+<p>1.2. <span class="math inline">\(Var(AX+b) = A Var(X) A'\)</span> for non-random <span class="math inline">\(k\)</span>-dimension vector <span class="math inline">\(b\)</span></p>
+<p>1.3. <span class="math inline">\(Cov(AX,BY) = A Cov(X,Y) B'\)</span></p></li>
+<li><p>Suppose <span class="math inline">\(X\sim N(\mu,\Sigma)\)</span>, with <span class="math inline">\(X\in \mathbb{R}^k\)</span>. Find the distribution, <span class="math inline">\(Y = AX + b\)</span>, for non-random <span class="math inline">\(k\times k\)</span> matrix <span class="math inline">\(A\)</span> and non-random <span class="math inline">\(k\)</span>-dimension vector <span class="math inline">\(b\)</span>.</p></li>
+</ol>
+</section>
+<section id="clrm" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="clrm"><span class="header-section-number">2</span> CLRM</h2>
+<ol type="1">
+<li><p>Which of the CLRM assumptions is required for identification of <span class="math inline">\(\beta\)</span>? Demonstrate this claim.</p></li>
+<li><p>Provide an example of a model that is non-linear in regressors, but linear in parameters. Similarly, provide an example of a model that is linear in regressors, but non-linear in parameters.</p></li>
+<li><p>Suppose, the true data generating process was given by,</p>
+<p><span class="math display">\[
+Y = X\beta + \epsilon
+\]</span> where <span class="math inline">\(E[\epsilon|X] = \alpha\)</span> and <span class="math inline">\(X\)</span> included a constant term with parameter <span class="math inline">\(\beta_1\)</span>. Is <span class="math inline">\(\beta_1\)</span> identified?</p></li>
+<li><p>Given the result <span class="math inline">\(\beta = E[X_iX_i']^{-1}E[X_iY_i]\)</span>. With two regressors, <span class="math inline">\(X_i = [1\;X_{2i}]'\)</span>, show</p>
+<p>4.1. <span class="math inline">\(\beta_2 = \frac{Cov(X_{2i},Y_i)}{Var(X_{2i})}\)</span></p>
+<p>4.2. <span class="math inline">\(\beta_1 = E[Y_i]-\beta_2E[X_i]\)</span></p></li>
+</ol>
+</section>
+<section id="ols" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="ols"><span class="header-section-number">3</span> OLS</h2>
+<ol type="1">
+<li><p>Consider the projection matrices <span class="math inline">\(P_X = X(X'X)^{-1}X'\)</span> and <span class="math inline">\(M_X = I_n-P_X\)</span>. Show,</p>
+<p>1.1. <span class="math inline">\(P_XX = X\)</span></p>
+<p>1.2. <span class="math inline">\(M_XX = 0\)</span></p>
+<p>1.3. <span class="math inline">\(P_XM_X = 0\)</span></p>
+<p>1.4. <span class="math inline">\(X'P_X=X'\)</span></p></li>
+<li><p>Show that <span class="math inline">\(X'X\)</span>, where <span class="math inline">\(X\)</span> is a <span class="math inline">\(n\times k\)</span> random matrix, can be expressed as <span class="math inline">\(\sum_{i=1}^nX_iX_i'\)</span>, where <span class="math inline">\(X_i\)</span> is a <span class="math inline">\(k\times 1\)</span> vector.</p></li>
+<li><p>Consider the partitioned regression model, <span class="math display">\[
+Y = X_1\beta_1 + X_2\beta_2 + u
+\]</span> Show,</p>
+<p>3.1. <span class="math inline">\(E[\hat{\beta}_1|X]=0\)</span> where <span class="math inline">\(\hat{\beta}_1 = (X_1'M_2X_1)^{-1}X_1'M_2Y\)</span>.</p>
+<p>3.2. Write down the conditional variance of the OLS estimator for <span class="math inline">\(\beta_1\)</span>, assuming homoskedasticity: <span class="math inline">\(E[uu'|X]=\sigma^2 I_n\)</span>.</p>
+<p>3.3. Write down the conditional variance of the OLS estimator for <span class="math inline">\(\beta_1\)</span>, assuming heteroskedasticity: <span class="math inline">\(E[uu'|X]=\Omega\)</span>.</p></li>
+<li><p>Demonstrate the BLUE result: the OLS estimator (<span class="math inline">\(\hat{\beta}\)</span>) is the Best Linear Unbiased Estimator. Consider the alternative unbiased, linear estimator <span class="math inline">\(b=AY\)</span>; such that, <span class="math display">\[
+\begin{aligned}
+E[b|X] = \beta
+\end{aligned}
+\]</span></p>
+<p>4.1. Show that since <span class="math inline">\(b\)</span> is unbiased, it must be that <span class="math inline">\(AX = I_k\)</span>.</p>
+<p>4.2. Using the above result, show that under CLRM 1-6 (i.e., including homoskedasticity), <span class="math display">\[
+Cov(\hat{\beta},b|X) = Var(\hat{\beta}|X)
+\]</span></p>
+<p>4.2. Show that <span class="math inline">\(Var(b|X)-Var(\hat{\beta}|X)\geq 0\)</span> (i.e.&nbsp;a positive semi-definite matrix), by solving for <span class="math display">\[
+Var(\hat{\beta}-b|X)
+\]</span></p></li>
+<li><p>Consider the GLS estimator (<span class="math inline">\(\tilde{\beta}\)</span>), which solves the problem</p>
+<p><span class="math display">\[
+\underset{b}{\min}\; (Y-Xb)'\Omega^{-1}(Y-Xb)
+\]</span></p>
+<p>where <span class="math inline">\(E[\varepsilon \varepsilon'|X]=\Omega\)</span>.</p>
+<p>5.1. Show that <span class="math inline">\(Var(\hat{\beta}|X)-Var(\tilde{\beta}|X)\geq 0\)</span>, where <span class="math inline">\(\hat{\beta}\)</span> is the OLS estimator.</p>
+<p>5.2. Under which assumption are the two estimators equivalent?</p></li>
+</ol>
+</section>
+<section id="linear-tests" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="linear-tests"><span class="header-section-number">4</span> Linear Tests</h2>
+<ol type="1">
+<li><p>Under CLRM 1-6, solve for the finite sample distribution of <span class="math inline">\(R\hat{beta}\)</span>, where <span class="math inline">\(R\)</span> is non-random <span class="math inline">\(k\times k\)</span> matrix.</p></li>
+<li><p>Consider the multiple, linear hypotheses:</p>
+<p><span class="math display">\[
+\begin{aligned}
+H_0:\;&amp; \beta_2 -4\beta_4 = 1 \\
+&amp; \beta_3 = 3 \\
+&amp; \beta_5 = \beta_6
+\end{aligned}
+\]</span></p>
+<p>2.1. Write the 4 hypotheses in the form <span class="math inline">\(R\beta = r\)</span>.</p>
+<p>2.2. Write down the F-statistic for the test (assuming homoskedasticity) as well as it’s finite sample distribution.</p>
+<p>2.3. What is the asymptotic distribution of this test statistic.</p>
+<p>2.4. For a linear model with <span class="math inline">\(k=6\)</span>, write the restricted model corresponding to the above hypotheses.</p></li>
+<li><p>Consider the model of household food expenditure,</p>
+<p><span class="math display">\[
+foodexp_i = \beta_1 + \beta_2 inc_i + \beta_3hhsize_i + \beta_4hhsize^2_i + \varepsilon_i
+\]</span></p>
+<p>3.1. Suppose you wish to test the hypothesis of increasing returns to food consumption in the household: each additional household member is marginally cheaper to feed. Which is a more powerful test:</p>
+<p><span class="math display">\[
+H_0:\; \beta_4=0 \qquad \text{against}\qquad H_1:\; \beta_4\neq0
+\]</span> or, <span class="math display">\[
+H_0:\; \beta_4\geq 0 \qquad \text{against}\qquad H_1:\; \beta_4&lt;0
+\]</span></p>
+<p>3.2. Transform the model to test the hypothesis <span class="math inline">\(H_0: -\beta_3/\beta_4 = 5\)</span>, using just the coefficient on the variable <span class="math inline">\(hhsize\)</span>.</p>
+<p>3.3. Transform the model to test the same hypothesis, using just the coefficient on the variable <span class="math inline">\(hhsize^2\)</span>.</p></li>
+</ol>
+</section>
+<section id="panel-data" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="panel-data"><span class="header-section-number">5</span> Panel Data</h2>
+<ol type="1">
+<li><p>Show that <span class="math inline">\(\tilde{Y}_i = Y_i - \bar{Y}_i\)</span>, where <span class="math inline">\(\bar{Y}_i = \frac{1}{T}\sum_{t=1}^T Y_{it}\)</span>, can be written as <span class="math inline">\(Y = M_\ell Y_i\)</span>, where <span class="math inline">\(M_\ell = \ell (\ell'\ell)^{-1}\ell'\)</span> and <span class="math inline">\(\ell\)</span> is a <span class="math inline">\(T\times 1\)</span> vector of 1’s.</p></li>
+<li><p>Show that <span class="math inline">\(X'X\)</span>, where <span class="math inline">\(X\)</span> is a <span class="math inline">\(nT\times k\)</span> random matrix, can be expressed as <span class="math inline">\(\sum_{i=1}^nX_i'X_i\)</span>, where <span class="math inline">\(X_i\)</span> is a <span class="math inline">\(T\times k\)</span> matrix.</p></li>
+<li><p>Show that <span class="math inline">\(I_n\otimes M_\ell\)</span> is an idempotent matrix and <span class="math inline">\(\sum_{i=1}^n\tilde{X}_i'\tilde{X}_i=X'(I_n\otimes M_\ell)X\)</span>.</p></li>
+<li><p>Show that for T=3, <span class="math inline">\(D'(DD')^{-1}D = M_\ell\)</span>.</p></li>
+<li><p>Demonstrate that the OLS estimator of the ‘within-unit’ transformed model is unbiased. Is it efficient?</p></li>
+<li><p>Conditional variance of random effects model,</p>
+<p>6.1. Solve for <span class="math inline">\(Var(\hat{\beta}^{OLS}|X)\)</span>, the variance of the (‘pooled’) OLS estimator for the random effects model.</p>
+<p>6.2. Solve for <span class="math inline">\(Var(\hat{\beta}^{GLS}|X)\)</span>, the variance of the GLS estimator for the random effects model.</p>
+<p>6.3. Verify that <span class="math inline">\(Var(\hat{\beta}^{OLS}|X)-Var(\hat{\beta}^{GLS}|X)\geq 0\)</span>, is a positive-semidefinite matrix.</p></li>
+<li><p>Conditional variance of first-differenced transformation</p>
+<p>7.1. Solve for <span class="math inline">\(Var(\hat{\beta}^{FD-OLS}|X)\)</span>, the variance of the OLS estimator for the FD transformation.</p>
+<p>7.2. Solve for <span class="math inline">\(Var(\hat{\beta}^{FD-GLS}|X)\)</span>, the variance of the GLS estimator for the FD transformation.</p>
+<p>7.3. Verify that <span class="math inline">\(Var(\hat{\beta}^{FD-OLS}|X)-Var(\hat{\beta}^{FD-GLS}|X)\geq 0\)</span>, is a positive-semidefinite matrix.</p></li>
+<li><p>Why is it important that the assumed model underlying the ‘pooled’ OLS estimator and ‘within’ OLS estimator are the same in the Hausman test? That is, why cannot we not compare the LSDV estimator of the fixed-effects model with the ‘pooled’ OLS estimator?</p></li>
+<li><p>What is the purpose of the Mundlack correction?</p></li>
+</ol>
+</section>
+<section id="binary-outcome-models" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="binary-outcome-models"><span class="header-section-number">6</span> Binary Outcome Models</h2>
+<ol type="1">
+<li><p>Consider the Logit model.</p>
+<p>1.1. Write down the likelihood function.</p>
+<p>1.2. State the maximization problem that solves for ML estimator.</p>
+<p>1.3. Solve for the F.O.C.s of the ML problem.</p>
+<p>1.4. Solve for the asymptotic variance-covariance matrix of <span class="math inline">\(\hat{\beta}^{ML}\)</span>.</p></li>
+<li><p>Consider the Probit model.</p>
+<p>2.1. Write down the likelihood function.</p>
+<p>2.2. State the maximization problem that solves for ML estimator.</p>
+<p>2.3. Solve for the F.O.C.s of the ML problem.</p>
+<p>2.4. Solve for the asymptotic variance-covariance matrix of <span class="math inline">\(\hat{\beta}^{ML}\)</span>.</p></li>
+<li><p>From the proof of the asymptotic normality, show</p>
+<p><span class="math display">\[
+E\bigg[\frac{\partial^2 f(Y_i|X_i;\beta_0)/\partial\beta\partial\beta'}{f(Y_i|X_i;\beta_0)}\bigg]=0
+\]</span></p></li>
+</ol>
+<div id="2e6546f6" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <style>div.jp-Notebook .datagrid-container {min-height: 448px; }</style>
 </div>
 </div>
-<p>Create a do-file for this problem set and include a preamble that sets the directory and opens the data. For example,</p>
-<div id="e8376aae" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">//or, to remove all stored values (including macros, matrices, scalars, etc.) </span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>*<span class="kw">clear</span> <span class="ot">all</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>* Replace <span class="ot">$rootdir</span> with the relevant path to <span class="kw">on</span> your <span class="kw">local</span> harddrive.</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>cd <span class="st">"$rootdir/problem-sets/ps-5"</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>cap <span class="fu">log</span> <span class="kw">close</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">using</span> problem-<span class="kw">set</span>-5-<span class="fu">log</span>.txt, <span class="kw">replace</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> problem-<span class="kw">set</span>-5-<span class="kw">data</span>.dta, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6179a817" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">gen</span> eduyrs = .</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">replace</span> eduyrs = .3 <span class="kw">if</span> grade92==31</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">replace</span> eduyrs = 3.2 <span class="kw">if</span> grade92==32</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">replace</span> eduyrs = 7.2 <span class="kw">if</span> grade92==33</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">replace</span> eduyrs = 7.2 <span class="kw">if</span> grade92==34</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">replace</span> eduyrs = 9  <span class="kw">if</span> grade92==35</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">replace</span> eduyrs = 10 <span class="kw">if</span> grade92==36</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">replace</span> eduyrs = 11 <span class="kw">if</span> grade92==37</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">replace</span> eduyrs = 12 <span class="kw">if</span> grade92==38</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">replace</span> eduyrs = 12 <span class="kw">if</span> grade92==39</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">replace</span> eduyrs = 13 <span class="kw">if</span> grade92==40</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">replace</span> eduyrs = 14 <span class="kw">if</span> grade92==41</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">replace</span> eduyrs = 14 <span class="kw">if</span> grade92==42</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">replace</span> eduyrs = 16 <span class="kw">if</span> grade92==43</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">replace</span> eduyrs = 18 <span class="kw">if</span> grade92==44</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">replace</span> eduyrs = 18 <span class="kw">if</span> grade92==45</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">replace</span> eduyrs = 18 <span class="kw">if</span> grade92==46</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    lab <span class="kw">var</span> eduyrs <span class="st">"completed education"</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">gen</span> exper = age-(eduyrs+6)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">replace</span> exper=0 <span class="kw">if</span> exper&lt;0</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="kw">keep</span> <span class="kw">if</span> <span class="fu">inrange</span>(age,18,54)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="kw">gen</span> lnwage = <span class="fu">ln</span>(earnwke)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="kw">gen</span> exper2 = exper^2</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">gen</span> employed = lnwage!=0</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="kw">gen</span> married = marital&lt;=3</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="kw">gen</span> female = sex==2</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="kw">gen</span> child = ownchild&gt;=1</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> employed eduyrs exper exper2 i.married i.female##i.child </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Iteration 0:  Log likelihood = -209.35624  
+Iteration 1:  Log likelihood = -205.66439  
+Iteration 2:  Log likelihood = -205.27888  
+Iteration 3:  Log likelihood = -205.27756  
+Iteration 4:  Log likelihood = -205.27756  
+
+Logistic regression                                    Number of obs = 165,038
+                                                       LR chi2(7)    =    8.16
+                                                       Prob &gt; chi2   =  0.3189
+Log likelihood = -205.27756                            Pseudo R2     =  0.0195
+
+------------------------------------------------------------------------------
+    employed | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+      eduyrs |  -.2139028   .0990457    -2.16   0.031    -.4080287   -.0197768
+       exper |   .0408304   .0861167     0.47   0.635    -.1279552    .2096161
+      exper2 |  -.0012522   .0024549    -0.51   0.610    -.0060637    .0035593
+   1.married |  -.1047635   .5283537    -0.20   0.843    -1.140318    .9307907
+    1.female |   .0208576   .5035107     0.04   0.967    -.9660052    1.007721
+     1.child |   .4950251   .7490084     0.66   0.509    -.9730045    1.963055
+             |
+female#child |
+        1 1  |   .6419965   1.046185     0.61   0.539    -1.408489    2.692482
+             |
+       _cons |   11.64254   1.476069     7.89   0.000     8.749502    14.53559
+------------------------------------------------------------------------------</code></pre>
 </div>
-</section>
-<section id="questions" class="level2">
-<h2 class="anchored" data-anchor-id="questions">Questions</h2>
-<p><strong>1.</strong> Set the unit identifier and time variable using <code>xtset</code>. Note, you can also use <code>tsset</code> for this task. This will allow you to use <code>xt</code> package commands.</p>
-<p><strong>2.</strong> Describe and summarise the variables in the dataset using the normal <code>describe</code> and <code>summarize</code> commands.</p>
-<p><strong>3.</strong> Describe and summarise the variables in the dataset using the panel commands: <code>xtdescribe</code> and <code>xtsummarize</code>. Comment on the information provided.</p>
-<p><strong>4.</strong> Use the command <code>xttab</code> and <code>xtrans, freq</code> to describe transitions over time in the variable <code>south</code>.</p>
-<p><strong>5.</strong> Create the variable: <code>expsq=exper^2/1000</code>. Why would you scale the variable in this way?</p>
-<p><strong>6.</strong> Estimate the following model using pooled OLS, between-group, feasible GLS, within-group, LSDV, and first-difference. For the first-difference estimator, you can define a first-difference in Stata using the time-series operator: <code>D.variable</code>.</p>
-<p><span class="math display">\[
-\ln(Wage_{it}) = \beta_1 + \beta_2 Exper_{it} + \beta_3 Exper^2_{it} + \beta_4 Weeks_{it} + \beta_5 Eduyrs_{it} + \varepsilon_{it}
-\]</span> With each model, store the results using <code>estimates store</code>. For example,</p>
-<div id="d15b69f7" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>* <span class="kw">clear</span> existing stored <span class="kw">estimates</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="kw">clear</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>* Pooled OLS</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> lwage exper expsq weeks ed</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="kw">store</span> OlS</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>* alternatively, </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>eststo OLS: <span class="kw">regress</span> lwage exper expsq weeks ed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>7.</strong> Using the formula from Handout 5, replicate the value of <span class="math inline">\(\theta\)</span> reported above by the FGLS estimator. Note, you will need to use the stored values of <span class="math inline">\(\sigma^2_{\varepsilon}\)</span> and <span class="math inline">\(\sigma^2_{\alpha}\)</span>.</p>
-<p><strong>8.</strong> Make a table of the computed estimates. You can either use <code>estimates table</code> or <code>esttab</code>. The latter is part of the <code>estout</code> package, which you may need to install: <code>ssc install estout</code>.</p>
-<p><strong>9.</strong> Perform a Hausman test comparing the results of the FLGS and WG estimators. You should use the <code>hausman</code> command, with the option <code>sigmamore</code>. Be sure to get the order of the estimates correct. What do you learn from the test?</p>
-<p><strong>10.</strong> Estimate FGLS for the model below:</p>
-<p><span class="math display">\[
-\begin{aligned}
-\ln(Wage_{it}) =&amp; \beta_1 + \beta_2 Exper_{it} + \beta_3 Exper^2_{it} + \beta_4 Weeks_{it} + \beta_5 Eduyrs_{it} \\
-&amp;+ \gamma_2 \overline{Exper}_{i} + \gamma_3 \overline{Exper^2}_{i} + \gamma_4 \overline{Weeks}_{i}+\varepsilon_{it}
-\end{aligned}
-\]</span> You will need to manually create the variables: <span class="math inline">\(\{\overline{Exper}_{i}, \overline{Exper^2}_{i},\overline{Weeks}_{i}\}\)</span> - the individual-level averages of each variable. This is referred to as the Mundlack correction. Once you have estimated the model, repeat the Hausman test comparing these results with those of the WG estimator. What is the significance of the Mundlack correction?</p>
-<p><strong>11.</strong> Export the results as a single CSV/Excel file. You can use <code>esttab</code> for .csv or <code>outreg2</code> for .xlsx.</p>
+<ol start="4" type="1">
+<li><p>Consider the logit model output above, estimated using the dataset from Problem Set 4. The sample and variables are defined as in PS 4.</p>
+<p>4.1. Compute the marginal effect of an additional year of education on the probability of being employed for a childless, unmarried, female with 15 years of education and 5 years of (potential) experience.</p>
+<p>4.2. Compute the marginal effect of being married for a male with children, 12 years of education and 10 years of experience.</p></li>
+</ol>
 </section>
-<section id="postamble" class="level2">
-<h2 class="anchored" data-anchor-id="postamble">Postamble</h2>
-<div id="75d0e2fc" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">close</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="endogenous-selection-models" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="endogenous-selection-models"><span class="header-section-number">7</span> Endogenous Selection Models</h2>
+<ol type="1">
+<li><p>Consider the endogenous the right-censored Tobit model. The observed distribution is,</p>
+<p><span class="math display">\[
+f(y) = \begin{cases} f^*(y) \qquad \text{for} \quad y &lt;0 \\
+F^*(0)  \qquad \text{for} \quad y=0 \\
+0 \qquad \text{for} \quad y&gt;0
+\end{cases}
+\]</span> Suppose, <span class="math inline">\(Y^* = X_i'\beta + \varepsilon_i\)</span>, where the error term has a normally distributed (conditional on <span class="math inline">\(X\)</span>).</p>
+<p>1.1. Solve for <span class="math inline">\(E[Y_i|Y_i&lt;0]\)</span></p>
+<p>1.2. Write down the likelihood function of the observed data.</p>
+<p>1.3. Solve for <span class="math inline">\(\frac{\partial E[Y_i|X_i,Y_i&lt;0]}{\partial X_i}\)</span></p>
+<p>1.4. Solve for <span class="math inline">\(\frac{\partial E[Y_i|X_i]}{\partial X_i}\)</span></p>
+<p>1.5. How do the answers compare to the case where <span class="math inline">\(Y\)</span> is left-censored at 0?</p></li>
+</ol>
+<div id="d3309baa" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">probit</span> employed eduyrs exper exper2 i.married i.female##i.child </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Iteration 0:  Log likelihood = -209.35624  
+Iteration 1:  Log likelihood = -205.60572  
+Iteration 2:  Log likelihood = -205.33806  
+Iteration 3:  Log likelihood = -205.33756  
+Iteration 4:  Log likelihood = -205.33756  
+
+Probit regression                                      Number of obs = 165,038
+                                                       LR chi2(7)    =    8.04
+                                                       Prob &gt; chi2   =  0.3293
+Log likelihood = -205.33756                            Pseudo R2     =  0.0192
+
+------------------------------------------------------------------------------
+    employed | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+      eduyrs |  -.0544498   .0255841    -2.13   0.033    -.1045937   -.0043059
+       exper |   .0095296   .0223186     0.43   0.669    -.0342139    .0532732
+      exper2 |  -.0002998   .0006319    -0.47   0.635    -.0015382    .0009387
+   1.married |  -.0259376   .1384233    -0.19   0.851    -.2972423    .2453672
+    1.female |   .0049027   .1321027     0.04   0.970    -.2540139    .2638192
+     1.child |   .1297358   .1937444     0.67   0.503    -.2499962    .5094679
+             |
+female#child |
+        1 1  |   .1540261   .2634162     0.58   0.559    -.3622602    .6703123
+             |
+       _cons |   4.341448   .3821216    11.36   0.000     3.592503    5.090392
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li><p>Consider an endogenous threshold model, for (log of) employee earnings. Included in the model is a linear term in years of education, quadratic terms in years of (potential) experience, a married dummy-variable, and a female dummy-variable.</p>
+<p>2.1. Consider the output above from the selection equation, which includes an additional interaction between gender and presence of children (under 18). Compute the Inverse Mills Ratio for a married women, with children, 15 years of education and 8 years of experience.</p>
+<p>2.2. Write down the likelihood function of the observed outcomes: <span class="math inline">\([ln(wage_i),Employed_i]\)</span>. Where the latter is a dummy variable indicating employment (positive earnings).</p>
+<p>2.3. The Heckit output is given below. What can you conclude regarding selection into employment. And, under what assumptions.</p>
+<p>2.4. Does the interaction bewteen gender and parenthood belong in the main equation?</p></li>
+</ol>
+<div id="4573ec19" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">heckman</span> lnwage eduyrs exper exper2 i.married i.female, select(employed = exper exper2 i.married i.female##i.child) twostep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>note: two-step estimate of rho = 19.806689 is being truncated to 1
+
+Heckman selection model -- two-step estimates   Number of obs     =    115,352
+(regression model with sample selection)              Selected    =    115,331
+                                                      Nonselected =         21
+
+                                                Wald chi2(5)      =       4.66
+                                                Prob &gt; chi2       =     0.4590
+
+------------------------------------------------------------------------------
+             | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+lnwage       |
+      eduyrs |   .1289768   .0827439     1.56   0.119    -.0331983     .291152
+       exper |   .0559093   .0878259     0.64   0.524    -.1162263    .2280449
+      exper2 |  -.0010644   .0023925    -0.44   0.656    -.0057535    .0036248
+   1.married |   .1015441   .4325466     0.23   0.814    -.7462316    .9493198
+    1.female |  -.3315884   .3953545    -0.84   0.402    -1.106469    .4432921
+       _cons |   4.387386   1.504299     2.92   0.004     1.439014    7.335759
+-------------+----------------------------------------------------------------
+employed     |
+       exper |   .0079269   .0219371     0.36   0.718    -.0350691    .0509228
+      exper2 |  -.0001872   .0006005    -0.31   0.755     -.001364    .0009897
+   1.married |  -.0687001   .1375189    -0.50   0.617    -.3382323    .2008321
+    1.female |   -.023606   .1337126    -0.18   0.860    -.2856778    .2384659
+     1.child |   .1552287   .1938012     0.80   0.423    -.2246146    .5350721
+             |
+female#child |
+        1 1  |   .1308613   .2683362     0.49   0.626    -.3950681    .6567907
+             |
+       _cons |   3.482178   .1598692    21.78   0.000      3.16884    3.795516
+-------------+----------------------------------------------------------------
+/mills       |
+      lambda |   66.28671    929.642     0.07   0.943    -1755.778    1888.352
+-------------+----------------------------------------------------------------
+         rho |    1.00000
+       sigma |  66.286706
+------------------------------------------------------------------------------</code></pre>
+</div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

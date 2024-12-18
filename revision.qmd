@@ -1,0 +1,295 @@
+---
+title: Revision Questions
+format:
+  html:
+    toc-depth: 3           # Set the depth of the table of contents
+    number-sections: true  # Number the sections in the HTML output
+    resources: 
+      - "revision.pdf" # Make the PDF file available for download
+    code-fold: true   # places code in dropdown
+  pdf:
+    #documentclass: article # LaTeX class used for the PDF document
+    toc: true              # Include a table of contents in the PDF output
+    number-sections: true  # Number the sections in the PDF output
+    keep-md: false          # Optionally keep the intermediate markdown file
+    output-file: "revision.pdf" # Specify the PDF output file name
+    echo: false  # hides code
+jupyter: nbstata  
+---
+
+## Basics
+
+1.    Consider two random $k$-dimension vectors $\{X,Y\}$ and non-random $k\times k$ matrices $\{A,B\}$. Show,
+
+      1.1. $Var(AX) = A Var(X) A'$
+      
+      1.2. $Var(AX+b) = A Var(X) A'$ for non-random $k$-dimension vector $b$    
+      
+      1.3. $Cov(AX,BY) = A Cov(X,Y) B'$
+      
+2.    Suppose $X\sim N(\mu,\Sigma)$, with $X\in \mathbb{R}^k$. Find the distribution, $Y = AX + b$, for non-random $k\times k$ matrix $A$ and non-random $k$-dimension vector $b$. 
+
+## CLRM
+
+1.    Which of the CLRM assumptions is required for identification of $\beta$? Demonstrate this claim. 
+
+2.    Provide an example of a model that is non-linear in regressors, but linear in parameters. Similarly, provide an example of a model that is linear in regressors, but non-linear in parameters. 
+
+3.    Suppose, the true data generating process was given by, 
+
+      $$
+      Y = X\beta + \epsilon
+      $$
+      where $E[\epsilon|X] = \alpha$ and $X$ included a constant term with parameter $\beta_1$. Is $\beta_1$ identified?
+      
+4.    Given the result $\beta = E[X_iX_i']^{-1}E[X_iY_i]$. With two regressors, $X_i = [1\;X_{2i}]'$, show 
+
+      4.1.    $\beta_2 = \frac{Cov(X_{2i},Y_i)}{Var(X_{2i})}$
+      
+      4.2.    $\beta_1 = E[Y_i]-\beta_2E[X_i]$
+      
+## OLS
+
+1.    Consider the projection matrices $P_X = X(X'X)^{-1}X'$ and $M_X = I_n-P_X$. Show,
+
+      1.1.  $P_XX = X$
+    
+      1.2. $M_XX = 0$
+    
+      1.3. $P_XM_X = 0$
+    
+      1.4. $X'P_X=X'$
+    
+2.    Show that $X'X$, where $X$ is a $n\times k$ random matrix, can be expressed as $\sum_{i=1}^nX_iX_i'$, where $X_i$ is a $k\times 1$ vector.
+
+3.    Consider the partitioned regression model, 
+      $$
+      Y = X_1\beta_1 + X_2\beta_2 + u
+      $$ 
+      Show,
+
+         
+      3.1.  $E[\hat{\beta}_1|X]=0$ where $\hat{\beta}_1 = (X_1'M_2X_1)^{-1}X_1'M_2Y$.
+    
+      3.2. Write down the conditional variance of the OLS estimator for $\beta_1$, assuming homoskedasticity: $E[uu'|X]=\sigma^2 I_n$.
+    
+      3.3. Write down the conditional variance of the OLS estimator for $\beta_1$, assuming heteroskedasticity: $E[uu'|X]=\Omega$.
+
+4.    Demonstrate the BLUE result: the OLS estimator ($\hat{\beta}$) is the Best Linear Unbiased Estimator. Consider the alternative unbiased, linear estimator $b=AY$; such that, 
+      $$
+      \begin{aligned}
+      E[b|X] = \beta
+      \end{aligned}
+      $$
+    
+      4.1. Show that since $b$ is unbiased, it must be that $AX = I_k$.
+    
+      4.2. Using the above result, show that under CLRM 1-6 (i.e., including homoskedasticity), 
+      $$
+      Cov(\hat{\beta},b|X) = Var(\hat{\beta}|X)
+      $$
+    
+      4.2.   Show that $Var(b|X)-Var(\hat{\beta}|X)\geq 0$ (i.e. a positive semi-definite matrix), by solving for 
+      $$
+      Var(\hat{\beta}-b|X)
+      $$
+    
+5.    Consider the GLS estimator ($\tilde{\beta}$), which solves the problem
+
+      $$
+      \underset{b}{\min}\; (Y-Xb)'\Omega^{-1}(Y-Xb)
+      $$
+      
+      where $E[\varepsilon \varepsilon'|X]=\Omega$. 
+      
+      5.1.    Show that $Var(\hat{\beta}|X)-Var(\tilde{\beta}|X)\geq 0$, where $\hat{\beta}$ is the OLS estimator. 
+      
+      5.2.    Under which assumption are the two estimators equivalent?
+
+## Linear Tests
+
+1.    Under CLRM 1-6, solve for the finite sample distribution of $R\hat{beta}$, where $R$ is non-random $k\times k$ matrix. 
+
+2.    Consider the multiple, linear hypotheses:
+
+      $$
+      \begin{aligned}
+      H_0:\;& \beta_2 -4\beta_4 = 1 \\
+      & \beta_3 = 3 \\
+      & \beta_5 = \beta_6
+      \end{aligned}
+      $$
+      
+      2.1.    Write the 4 hypotheses in the form $R\beta = r$. 
+      
+      2.2.    Write down the F-statistic for the test (assuming homoskedasticity) as well as it's finite sample distribution. 
+      
+      2.3.    What is the asymptotic distribution of this test statistic.
+      
+      2.4.    For a linear model with $k=6$, write the restricted model corresponding to the above hypotheses. 
+      
+3.    Consider the model of household food expenditure, 
+
+      $$
+      foodexp_i = \beta_1 + \beta_2 inc_i + \beta_3hhsize_i + \beta_4hhsize^2_i + \varepsilon_i
+      $$
+      
+      3.1.    Suppose you wish to test the hypothesis of increasing returns to food consumption in the household: each additional household member is marginally cheaper to feed. Which is a more powerful test:
+      
+      $$
+      H_0:\; \beta_4=0 \qquad \text{against}\qquad H_1:\; \beta_4\neq0 
+      $$
+      or, 
+      $$
+      H_0:\; \beta_4\geq 0 \qquad \text{against}\qquad H_1:\; \beta_4<0 
+      $$
+      
+      3.2.    Transform the model to test the hypothesis $H_0: -\beta_3/\beta_4 = 5$, using just the coefficient on the variable $hhsize$.
+      
+      3.3.     Transform the model to test the same hypothesis, using just the coefficient on the variable $hhsize^2$.
+      
+
+## Panel Data
+
+1.    Show that $\tilde{Y}_i = Y_i - \bar{Y}_i$, where $\bar{Y}_i = \frac{1}{T}\sum_{t=1}^T Y_{it}$, can be written as $Y = M_\ell Y_i$, where $M_\ell = \ell (\ell'\ell)^{-1}\ell'$ and $\ell$ is a $T\times 1$ vector of 1's. 
+
+2.    Show that $X'X$, where $X$ is a $nT\times k$ random matrix, can be expressed as $\sum_{i=1}^nX_i'X_i$, where $X_i$ is a $T\times k$ matrix. 
+
+3.    Show that $I_n\otimes M_\ell$ is an idempotent matrix and $\sum_{i=1}^n\tilde{X}_i'\tilde{X}_i=X'(I_n\otimes M_\ell)X$.
+
+4.    Show that for T=3, $D'(DD')^{-1}D = M_\ell$. 
+
+5.    Demonstrate that the OLS estimator of the 'within-unit' transformed model is unbiased. Is it efficient?
+
+6.    Conditional variance of random effects model,
+
+      6.1.    Solve for $Var(\hat{\beta}^{OLS}|X)$, the variance of the ('pooled') OLS estimator for the random effects model.
+      
+      6.2.    Solve for $Var(\hat{\beta}^{GLS}|X)$, the variance of the GLS estimator for the random effects model.
+      
+      6.3.    Verify that $Var(\hat{\beta}^{OLS}|X)-Var(\hat{\beta}^{GLS}|X)\geq 0$, is a positive-semidefinite matrix.
+      
+7.    Conditional variance of first-differenced transformation
+
+      7.1.    Solve for $Var(\hat{\beta}^{FD-OLS}|X)$, the variance of the OLS estimator for the FD transformation.
+      
+      7.2.    Solve for $Var(\hat{\beta}^{FD-GLS}|X)$, the variance of the GLS estimator for the FD transformation.
+      
+      7.3.    Verify that $Var(\hat{\beta}^{FD-OLS}|X)-Var(\hat{\beta}^{FD-GLS}|X)\geq 0$, is a positive-semidefinite matrix.
+      
+8.    Why is it important that the assumed model underlying the 'pooled' OLS estimator and 'within' OLS estimator are the same in the Hausman test? That is, why cannot we not compare the LSDV estimator of the fixed-effects model with the 'pooled' OLS estimator?
+
+9.    What is the purpose of the Mundlack correction?
+
+
+## Binary Outcome Models
+
+1.    Consider the Logit model.
+
+      1.1.    Write down the likelihood function. 
+  
+      1.2.    State the maximization problem that solves for ML estimator. 
+  
+      1.3.    Solve for the F.O.C.s of the ML problem. 
+
+      1.4.    Solve for the asymptotic variance-covariance matrix of $\hat{\beta}^{ML}$.
+
+2.    Consider the Probit model.
+
+      2.1.    Write down the likelihood function. 
+  
+      2.2.    State the maximization problem that solves for ML estimator. 
+  
+      2.3.    Solve for the F.O.C.s of the ML problem. 
+
+      2.4.    Solve for the asymptotic variance-covariance matrix of $\hat{\beta}^{ML}$.
+
+3.    From the proof of the asymptotic normality, show
+
+      $$
+      E\bigg[\frac{\partial^2 f(Y_i|X_i;\beta_0)/\partial\beta\partial\beta'}{f(Y_i|X_i;\beta_0)}\bigg]=0
+      $$
+
+```{stata}
+*| echo: false
+use "C:/Users/neil_/OneDrive - University of Warwick/Documents/EC910/website/warwick-ec910/problem-sets/ps-4/morg19.dta", clear
+```
+```{stata}
+quietly {
+  gen eduyrs = .
+    replace eduyrs = .3 if grade92==31
+    replace eduyrs = 3.2 if grade92==32
+    replace eduyrs = 7.2 if grade92==33
+    replace eduyrs = 7.2 if grade92==34
+    replace eduyrs = 9  if grade92==35
+    replace eduyrs = 10 if grade92==36
+    replace eduyrs = 11 if grade92==37
+    replace eduyrs = 12 if grade92==38
+    replace eduyrs = 12 if grade92==39
+    replace eduyrs = 13 if grade92==40
+    replace eduyrs = 14 if grade92==41
+    replace eduyrs = 14 if grade92==42
+    replace eduyrs = 16 if grade92==43
+    replace eduyrs = 18 if grade92==44
+    replace eduyrs = 18 if grade92==45
+    replace eduyrs = 18 if grade92==46
+    lab var eduyrs "completed education"
+  gen exper = age-(eduyrs+6)
+    replace exper=0 if exper<0
+  keep if inrange(age,18,54)
+  gen lnwage = ln(earnwke)
+  gen exper2 = exper^2
+  gen employed = lnwage!=0
+  gen married = marital<=3
+  gen female = sex==2
+  gen child = ownchild>=1
+}
+logit employed eduyrs exper exper2 i.married i.female##i.child 
+```
+
+4.    Consider the logit model output above, estimated using the dataset from Problem Set 4. The sample and variables are defined as in PS 4. 
+
+      4.1.    Compute the marginal effect of an additional year of education on the probability of being employed for a childless, unmarried, female with 15 years of education and 5 years of (potential) experience. 
+    
+      4.2.    Compute the marginal effect of being married for a male with children, 12 years of education and 10 years of experience.
+    
+    
+## Endogenous Selection Models    
+
+1.    Consider the endogenous the right-censored Tobit model. The observed distribution is,
+
+      $$
+      f(y) = \begin{cases} f^*(y) \qquad \text{for} \quad y <0 \\
+      F^*(0)  \qquad \text{for} \quad y=0 \\
+      0 \qquad \text{for} \quad y>0
+      \end{cases}
+      $$
+      Suppose, $Y^* = X_i'\beta + \varepsilon_i$, where the error term has a normally distributed (conditional on $X$).
+      
+      1.1.    Solve for $E[Y_i|Y_i<0]$ 
+      
+      1.2.    Write down the likelihood function of the observed data.
+      
+      1.3.    Solve for $\frac{\partial E[Y_i|X_i,Y_i<0]}{\partial X_i}$
+      
+      1.4.    Solve for $\frac{\partial E[Y_i|X_i]}{\partial X_i}$
+
+      1.5.    How do the answers compare to the case where $Y$ is left-censored at 0?
+    
+```{stata}
+probit employed eduyrs exper exper2 i.married i.female##i.child 
+```
+
+2.    Consider an endogenous threshold model, for (log of) employee earnings. Included in the model is a linear term in years of education, quadratic terms in years of (potential) experience, a married dummy-variable, and a female dummy-variable. 
+
+      2.1.    Consider the output above from the selection equation, which includes an additional interaction between gender and presence of children (under 18). Compute the Inverse Mills Ratio for a married women, with children, 15 years of education and 8 years of experience. 
+      
+      2.2.    Write down the likelihood function of the observed outcomes: $[ln(wage_i),Employed_i]$. Where the latter is a dummy variable indicating employment (positive earnings).
+      
+      2.3.    The Heckit output is given below. What can you conclude regarding selection into employment. And, under what assumptions. 
+
+      2.4.    Does the interaction bewteen gender and parenthood belong in the main equation?
+      
+```{stata}
+heckman lnwage eduyrs exper exper2 i.married i.female, select(employed = exper exper2 i.married i.female##i.child) twostep
+```      
