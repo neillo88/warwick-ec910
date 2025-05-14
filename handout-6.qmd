@@ -478,7 +478,7 @@ could take on values $\{-1,0,1\}$, depending on the error term. Thus, the margin
 For this reason, we focus on the effect of $X_i$ on the $E[Y_i|X_i]=Pr(Y_i = 1|X_i)$. For a continuous regressor this is given by, 
 
 $$
-ME=\frac{\partial E[Y_i|X_i]}{\partial X_i} = \frac{\partial F(X_i'\beta)}{\partial X_i} = f(X_i'\beta)X_i
+ME=\frac{\partial E[Y_i|X_i]}{\partial X_i} = \frac{\partial F(X_i'\beta)}{\partial X_i} = f(X_i'\beta)\beta
 $$
 
 For the probit model, this is $\phi(X_i'\beta)X_i$, while for logit it is \Lambda(X_i'\beta)\big(1-\Lambda(X_i'\beta)\big)X_i. 
@@ -493,15 +493,15 @@ where $\gamma$ is the coefficient on the discrete dummy variable $D$.
 The marginal effect depends on $X_i$, which means that we can evaluate it at different values of $X_i$. A common choice is ME at the Mean (MEM):
 
 $$
-MEM_n = f(\bar{X}'\hat{\beta})\bar{X}
+MEM_n = f(\bar{X}'\hat{\beta})\hat{\beta}
 $$
 One issue with this is the non-representativity of a the mean covariate value. For example, if $X$ includes a categorical variable (represented by dummy variables), the mean is an observation that does not exist in the data. 
 
 Alternatively, you can then compute the Average ME (AME).
 $$
-AME_n=\frac{1}{n}\sum_{i=1}^n f(X_i'\hat{\beta})X_i
+AME_n=\frac{1}{n}\sum_{i=1}^n f(X_i'\hat{\beta})\hat{\beta}
 $$
-You can show that $AME_n\rightarrow_p E[f(X_i'\beta_0)X_i]$.
+You can show that $AME_n\rightarrow_p E[f(X_i'\beta_0)\beta_0]$.
 
 ### Odds ratios
 

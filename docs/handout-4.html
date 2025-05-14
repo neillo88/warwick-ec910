@@ -427,7 +427,7 @@ s^2 = \frac{1}{n-k}\sum_{i=1}^{n}\hat{u}_i^2 = \frac{\hat{u}'\hat{u}}{n-k}
 \]</span> under <span class="math inline">\(H_0\)</span>. You will know from undergraduate texts that it is <span class="math inline">\(t\)</span>-distributed. We can demonstrate this result using the idempotent properties of projection matrices.</p>
 <p>First-off, substitue back in <span class="math inline">\(\sigma^2\)</span></p>
 <p><span class="math display">\[
-\text{T-stat} = \frac{c'\hat{\beta}-r}{\sqrt{\sigma^2 c'(X'X)^{-1}c}}\times\sqrt{\frac{s^2}{\sigma^2}}
+\text{T-stat} = \frac{c'\hat{\beta}-r}{\sqrt{\sigma^2 c'(X'X)^{-1}c}}\times\sqrt{\frac{\sigma^2}{s^2}}
 \]</span> The T-statistic can be rewritten as the Z-statistic (which has a standard normal distribution under <span class="math inline">\(H_0\)</span>) multiplied by the square-root of the ratio of <span class="math inline">\(s^2\)</span> and <span class="math inline">\(\sigma^2\)</span>. Consider the distribution of this ratio:</p>
 <p><span class="math display">\[
   \frac{s^2}{\sigma^2} = \frac{1}{n-k} \frac{\hat{u}'\hat{u}}{\sigma^2}

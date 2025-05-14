@@ -69,7 +69,7 @@ jupyter: nbstata
       Show,
 
          
-      3.1.  $E[\hat{\beta}_1|X]=0$ where $\hat{\beta}_1 = (X_1'M_2X_1)^{-1}X_1'M_2Y$.
+      3.1.  $E[\hat{\beta}_1|X]=\beta_1$ where $\hat{\beta}_1 = (X_1'M_2X_1)^{-1}X_1'M_2Y$.
     
       3.2. Write down the conditional variance of the OLS estimator for $\beta_1$, assuming homoskedasticity: $E[uu'|X]=\sigma^2 I_n$.
     

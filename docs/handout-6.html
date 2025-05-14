@@ -666,7 +666,7 @@ Y_i'-Y_i = \mathbf{1}\{X_i'\beta + \delta'\beta + \varepsilon_i\geq 0\} -\mathbf
 <h3 data-number="7.1" class="anchored" data-anchor-id="marginal-effects"><span class="header-section-number">7.1</span> Marginal Effects</h3>
 <p>For this reason, we focus on the effect of <span class="math inline">\(X_i\)</span> on the <span class="math inline">\(E[Y_i|X_i]=Pr(Y_i = 1|X_i)\)</span>. For a continuous regressor this is given by,</p>
 <p><span class="math display">\[
-ME=\frac{\partial E[Y_i|X_i]}{\partial X_i} = \frac{\partial F(X_i'\beta)}{\partial X_i} = f(X_i'\beta)X_i
+ME=\frac{\partial E[Y_i|X_i]}{\partial X_i} = \frac{\partial F(X_i'\beta)}{\partial X_i} = f(X_i'\beta)\beta
 \]</span></p>
 <p>For the probit model, this is <span class="math inline">\(\phi(X_i'\beta)X_i\)</span>, while for logit it is (X_i’)(1-(X_i’))X_i.</p>
 <p>For a discrete covariate, then you should evaluate the difference between predicted probabilities:</p>
@@ -675,11 +675,11 @@ ME = E[Y_i|X_i,D_i=1]-E[Y_i|X_i,D_i=0] = F(X_i'\beta+\gamma)-F(X_i'\beta)
 \]</span> where <span class="math inline">\(\gamma\)</span> is the coefficient on the discrete dummy variable <span class="math inline">\(D\)</span>.</p>
 <p>The marginal effect depends on <span class="math inline">\(X_i\)</span>, which means that we can evaluate it at different values of <span class="math inline">\(X_i\)</span>. A common choice is ME at the Mean (MEM):</p>
 <p><span class="math display">\[
-MEM_n = f(\bar{X}'\hat{\beta})\bar{X}
+MEM_n = f(\bar{X}'\hat{\beta})\hat{\beta}
 \]</span> One issue with this is the non-representativity of a the mean covariate value. For example, if <span class="math inline">\(X\)</span> includes a categorical variable (represented by dummy variables), the mean is an observation that does not exist in the data.</p>
 <p>Alternatively, you can then compute the Average ME (AME). <span class="math display">\[
-AME_n=\frac{1}{n}\sum_{i=1}^n f(X_i'\hat{\beta})X_i
-\]</span> You can show that <span class="math inline">\(AME_n\rightarrow_p E[f(X_i'\beta_0)X_i]\)</span>.</p>
+AME_n=\frac{1}{n}\sum_{i=1}^n f(X_i'\hat{\beta})\hat{\beta}
+\]</span> You can show that <span class="math inline">\(AME_n\rightarrow_p E[f(X_i'\beta_0)\beta_0]\)</span>.</p>
 </section>
 <section id="odds-ratios" class="level3" data-number="7.2">
 <h3 data-number="7.2" class="anchored" data-anchor-id="odds-ratios"><span class="header-section-number">7.2</span> Odds ratios</h3>

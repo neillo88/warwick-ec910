@@ -377,7 +377,7 @@ Y = X\beta + \epsilon
 <li><p>Consider the partitioned regression model, <span class="math display">\[
 Y = X_1\beta_1 + X_2\beta_2 + u
 \]</span> Show,</p>
-<p>3.1. <span class="math inline">\(E[\hat{\beta}_1|X]=0\)</span> where <span class="math inline">\(\hat{\beta}_1 = (X_1'M_2X_1)^{-1}X_1'M_2Y\)</span>.</p>
+<p>3.1. <span class="math inline">\(E[\hat{\beta}_1|X]=\beta_1\)</span> where <span class="math inline">\(\hat{\beta}_1 = (X_1'M_2X_1)^{-1}X_1'M_2Y\)</span>.</p>
 <p>3.2. Write down the conditional variance of the OLS estimator for <span class="math inline">\(\beta_1\)</span>, assuming homoskedasticity: <span class="math inline">\(E[uu'|X]=\sigma^2 I_n\)</span>.</p>
 <p>3.3. Write down the conditional variance of the OLS estimator for <span class="math inline">\(\beta_1\)</span>, assuming heteroskedasticity: <span class="math inline">\(E[uu'|X]=\Omega\)</span>.</p></li>
 <li><p>Demonstrate the BLUE result: the OLS estimator (<span class="math inline">\(\hat{\beta}\)</span>) is the Best Linear Unbiased Estimator. Consider the alternative unbiased, linear estimator <span class="math inline">\(b=AY\)</span>; such that, <span class="math display">\[
@@ -469,12 +469,12 @@ H_0:\; \beta_4\geq 0 \qquad \text{against}\qquad H_1:\; \beta_4&lt;0
 E\bigg[\frac{\partial^2 f(Y_i|X_i;\beta_0)/\partial\beta\partial\beta'}{f(Y_i|X_i;\beta_0)}\bigg]=0
 \]</span></p></li>
 </ol>
-<div id="2e6546f6" class="cell" data-execution_count="1">
+<div id="14229188" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <style>div.jp-Notebook .datagrid-container {min-height: 448px; }</style>
 </div>
 </div>
-<div id="6179a817" class="cell" data-execution_count="2">
+<div id="5dc1b352" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> {</span>
@@ -560,7 +560,7 @@ F^*(0)  \qquad \text{for} \quad y=0 \\
 <p>1.4. Solve for <span class="math inline">\(\frac{\partial E[Y_i|X_i]}{\partial X_i}\)</span></p>
 <p>1.5. How do the answers compare to the case where <span class="math inline">\(Y\)</span> is left-censored at 0?</p></li>
 </ol>
-<div id="d3309baa" class="cell" data-execution_count="3">
+<div id="d2152e5e" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">probit</span> employed eduyrs exper exper2 i.married i.female##i.child </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -602,7 +602,7 @@ female#child |
 <p>2.3. The Heckit output is given below. What can you conclude regarding selection into employment. And, under what assumptions.</p>
 <p>2.4. Does the interaction bewteen gender and parenthood belong in the main equation?</p></li>
 </ol>
-<div id="4573ec19" class="cell" data-execution_count="4">
+<div id="9ca57ff9" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">heckman</span> lnwage eduyrs exper exper2 i.married i.female, select(employed = exper exper2 i.married i.female##i.child) twostep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
